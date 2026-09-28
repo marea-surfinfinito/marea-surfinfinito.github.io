@@ -1092,4 +1092,38 @@ window.addEventListener('resize',fitLandscapeGame);
 window.addEventListener('orientationchange',fitLandscapeGame);
 window.visualViewport?.addEventListener('resize',fitLandscapeGame);
 document.addEventListener('fullscreenchange',fitLandscapeGame);
+
+// Anchor the fighters and foreground ropes to the rendered arena image.
+function alignFightArtwork(){
+  const ring=document.querySelector('#fight .ring');
+  const fighters=[document.getElementById('p1'),document.getElementById('p2')];
+  const ropes=[...ring.querySelectorAll('.front-ropes i')];
+  const properties=['left','right','bottom','width','height','scale'];
+  if(!document.body.classList.contains('landscape-fit')){
+    for(const fighter of fighters)for(const property of properties)fighter.style.removeProperty(property);
+    for(const rope of ropes)for(const property of ['left','width','bottom'])rope.style.removeProperty(property);
+    return;
+  }
+  if(!ring.clientWidth||!ring.clientHeight)return;
+  const side=Math.min(ring.clientWidth,ring.clientHeight);
+  const start=(ring.clientWidth-side)/2;
+  const set=(element,property,value)=>element.style.setProperty(property,Math.round(value*10)/10+'px','important');
+  const [luca,rival]=fighters;
+  set(luca,'width',side*.26);set(luca,'height',side*.33);
+  set(luca,'left',start+side*.22);luca.style.setProperty('right','auto','important');
+  set(luca,'bottom',side*.27);luca.style.setProperty('scale','1','important');
+  set(rival,'width',side*.31);set(rival,'height',side*.33);
+  set(rival,'right',ring.clientWidth-(start+side*.82));rival.style.setProperty('left','auto','important');
+  set(rival,'bottom',side*.27);rival.style.setProperty('scale','1','important');
+  for(let i=0;i<ropes.length;i++){
+    set(ropes[i],'left',start+side*.24);set(ropes[i],'width',side*.52);
+    set(ropes[i],'bottom',side*[.38,.32,.285][i]);
+  }
+}
+const fightScene=document.getElementById('fight');
+new MutationObserver(()=>requestAnimationFrame(alignFightArtwork)).observe(fightScene,{attributes:true,attributeFilter:['class']});
+window.addEventListener('resize',()=>requestAnimationFrame(alignFightArtwork));
+window.addEventListener('orientationchange',()=>requestAnimationFrame(alignFightArtwork));
+document.addEventListener('fullscreenchange',()=>requestAnimationFrame(alignFightArtwork));
+window.visualViewport?.addEventListener('resize',()=>requestAnimationFrame(alignFightArtwork));
 </script></body></html>
