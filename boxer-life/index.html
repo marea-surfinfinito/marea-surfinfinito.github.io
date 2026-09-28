@@ -867,6 +867,14 @@ body.landscape-fit #home .room,body.landscape-fit #fight .ring{background-image:
 body.landscape-fit #home .room .fit-room-art,body.landscape-fit #fight .ring .fit-ring-art{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:contain!important;object-position:center!important;image-rendering:pixelated!important;pointer-events:none!important}
 body.landscape-fit #home .room .fit-room-art{z-index:0!important}
 body.landscape-fit #fight .ring .fit-ring-art{z-index:0!important}
+
+/* Align fighters and the three foreground ropes with the contained square arena. */
+body.landscape-fit #fight .ring .boxer.left{width:78px!important;height:100px!important;left:calc(50% - 85px)!important;right:auto!important;bottom:80px!important;scale:1!important;transform-origin:center bottom!important}
+body.landscape-fit #fight .ring .boxer.right{width:95px!important;height:100px!important;right:calc(50% - 95px)!important;left:auto!important;bottom:80px!important;scale:1!important;transform-origin:center bottom!important}
+body.landscape-fit #fight .front-ropes i{left:calc(50% - 86px)!important;width:172px!important}
+body.landscape-fit #fight .front-ropes i:nth-child(1){bottom:38%!important}
+body.landscape-fit #fight .front-ropes i:nth-child(2){bottom:32%!important}
+body.landscape-fit #fight .front-ropes i:nth-child(3){bottom:28.5%!important}
 </style><style>/* Coherent fight sprites and compact opponent HUD */
 #fight .ring .boxer{background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;opacity:1!important;mix-blend-mode:normal!important;filter:none!important}
 #fight .ring .boxer.left .luca-cheek-bandage,#fight .ring .boxer.right .rival-hair,#fight .ring .boxer .rival-glove,#fight .ring .boxer .rival-skin,#fight .ring .boxer .trunks,#fight .ring .boxer .rival-tattoo,#fight .ring .boxer .glove-trail{display:none!important}
