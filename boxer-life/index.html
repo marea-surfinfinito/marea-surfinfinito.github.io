@@ -1056,8 +1056,8 @@ function placePhotoRopes(){
   const photoSide=Math.min(width/.67,height/.29);
   const photoLeft=(width-photoSide)/2;
   const photoTop=height*.5-photoSide*.69;
-  ring.style.backgroundSize=photoSide+'px '+photoSide+'px';
-  ring.style.backgroundPosition=photoLeft+'px '+photoTop+'px';
+  ring.style.setProperty('background-size',photoSide+'px '+photoSide+'px','important');
+  ring.style.setProperty('background-position',photoLeft+'px '+photoTop+'px','important');
   overlay.style.width=photoSide+'px';overlay.style.height=photoSide+'px';
   overlay.style.left=photoLeft+'px';overlay.style.top=photoTop+'px';
   // Feet and gloves use the same photo-space coordinates as the ropes.
