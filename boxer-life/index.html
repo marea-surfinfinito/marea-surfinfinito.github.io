@@ -838,6 +838,17 @@ body.landscape-fit #home.scene.active{overflow:hidden!important;grid-template-ro
 body.landscape-fit #home .room{min-height:0!important;height:100%!important}
 body.landscape-fit #home .actions{flex:none!important}
 body.landscape-fit .moment{position:absolute;inset:0}
+
+/* Keep the complete ring and fight HUD inside the scaled landscape stage. */
+body.landscape-fit #fight.scene.active{overflow-y:auto!important;overflow-x:hidden!important;padding:5px 8px!important;gap:3px!important}
+body.landscape-fit #fight .arena{flex:none!important;padding-top:3px!important}
+body.landscape-fit #fight .crowd{padding:2px!important}
+body.landscape-fit #fight .ring{width:100%!important;height:230px!important;min-height:230px!important;max-height:230px!important;margin:0!important;background-size:cover!important}
+body.landscape-fit #fight .hud{padding:3px 5px!important;margin:1px 0!important}
+body.landscape-fit #fight .rival-stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;padding:3px!important;gap:3px!important}
+body.landscape-fit #fight #commentary{min-height:30px!important;padding:4px!important;margin:2px 0!important}
+body.landscape-fit #fight #fightEconomy{margin:0 1%!important}
+body.landscape-fit #fight #homeBtn{margin:2px auto!important;padding:6px 10px!important}
 </style><style>/* Coherent fight sprites and compact opponent HUD */
 #fight .ring .boxer{background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;opacity:1!important;mix-blend-mode:normal!important;filter:none!important}
 #fight .ring .boxer.left .luca-cheek-bandage,#fight .ring .boxer.right .rival-hair,#fight .ring .boxer .rival-glove,#fight .ring .boxer .rival-skin,#fight .ring .boxer .trunks,#fight .ring .boxer .rival-tattoo,#fight .ring .boxer .glove-trail{display:none!important}
