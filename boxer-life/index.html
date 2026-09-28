@@ -187,7 +187,7 @@ applyGameLanguage();
 
 // Browser fullscreen requires a tap: the start gesture requests it so rotation stays immersive.
 function isMobilePlay(){return typeof matchMedia!=='undefined'&&matchMedia('(pointer: coarse)').matches}
-function requestGameFullscreen(){if(!isMobilePlay()||document.fullscreenElement||!document.fullscreenEnabled)return;const request=$('game').requestFullscreen;if(!request)return;Promise.resolve(request.call($('game'))).then(()=>{$('fullscreenFallback').hidden=true}).catch(()=>{$('fullscreenFallback').hidden=innerWidth<innerHeight})}
+async function requestGameFullscreen(){if(!isMobilePlay())return;try{if(!document.fullscreenElement&&document.fullscreenEnabled&&$('game').requestFullscreen)await $('game').requestFullscreen();if(screen.orientation&&typeof screen.orientation.lock==='function')await screen.orientation.lock('landscape')}catch{}checkLandscapeFullscreenHint()}function checkLandscapeFullscreenHint(){$('fullscreenFallback').hidden=!!document.fullscreenElement||innerWidth<innerHeight}
 $('fullscreenFallback').onclick=()=>requestGameFullscreen();
 function checkLandscapeFullscreen(){if(!isMobilePlay())return;const landscape=innerWidth>innerHeight;const playing=$('intro').classList.contains('dismissed');$('fullscreenFallback').hidden=!playing||!landscape||!!document.fullscreenElement;if(playing&&landscape&&!document.fullscreenElement)requestGameFullscreen()}
 if(typeof addEventListener==='function'){addEventListener('resize',checkLandscapeFullscreen);addEventListener('orientationchange',checkLandscapeFullscreen)}
