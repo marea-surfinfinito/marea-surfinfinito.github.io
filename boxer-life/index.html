@@ -830,6 +830,14 @@ footer .track i{height:100%}
 #fight .economy-meter{display:block;width:min(130px,26vw);height:7px;background:#29282c;overflow:hidden}
 #fight .economy-meter i{display:block;height:100%;width:50%;background:linear-gradient(90deg,#af303a,#ddad70);transition:width .35s steps(10,end)}
 @media(max-height:560px){#fight #fightEconomy{min-height:12px;margin:0 1%;font-size:9px}#fight .economy-meter{height:5px}}
+
+/* Scale the whole apartment stage to fit a landscape phone without cropping. */
+body.landscape-fit{display:block!important;width:100vw!important;height:100dvh!important;min-height:0!important;overflow:hidden!important;background:#000!important}
+body.landscape-fit #game,body.landscape-fit #game:fullscreen{position:fixed!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;width:900px!important;height:600px!important;min-width:900px!important;min-height:600px!important;max-width:900px!important;max-height:600px!important;margin:0!important;padding:4px!important;transform:translate(-50%,-50%) scale(var(--landscape-scale,1))!important;transform-origin:center center!important;overflow:hidden!important;border:0!important}
+body.landscape-fit #home.scene.active{overflow:hidden!important;grid-template-rows:minmax(0,1fr) auto!important}
+body.landscape-fit #home .room{min-height:0!important;height:100%!important}
+body.landscape-fit #home .actions{flex:none!important}
+body.landscape-fit .moment{position:absolute;inset:0}
 </style><style>/* Coherent fight sprites and compact opponent HUD */
 #fight .ring .boxer{background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;opacity:1!important;mix-blend-mode:normal!important;filter:none!important}
 #fight .ring .boxer.left .luca-cheek-bandage,#fight .ring .boxer.right .rival-hair,#fight .ring .boxer .rival-glove,#fight .ring .boxer .rival-skin,#fight .ring .boxer .trunks,#fight .ring .boxer .rival-tattoo,#fight .ring .boxer .glove-trail{display:none!important}
@@ -1032,4 +1040,19 @@ if(languageSelector.addEventListener)languageSelector.addEventListener('change',
 const dogLines={es:["Vamos, chico. ¡Sígueme!","Venga, vamos a correr un poco.","Buen chico. No aflojes ahora.","Un paseo más y volvemos a casa.","¡Eso es! A mi lado, compañero.","Tú y yo podemos con esta cuesta.","Vamos, chico. Hoy llegamos más lejos."],en:["Come on, boy. Follow me!","Let's go for a run.","Good boy. Don't slow down now.","One more lap, then we go home.","That's it! Stay by my side, buddy.","You and me can make it up this hill.","Come on, boy. We go farther today."]};
 function renderDogLine(index){$('runLine').textContent=dogLines[gameLanguage][index%dogLines.es.length]}
 if(languageSelector.addEventListener)languageSelector.addEventListener('change',()=>{if(!$('runMoment').hidden)renderDogLine(S.lastRunLineIndex||0)});
+
+// Keep the full 900 × 600 game frame visible on landscape phones.
+function fitLandscapeGame(){
+  const vw=Math.min(window.innerWidth,window.visualViewport?.width||window.innerWidth);
+  const vh=Math.min(window.innerHeight,window.visualViewport?.height||window.innerHeight);
+  const mobile=(navigator.maxTouchPoints>0||window.innerWidth<1000);
+  const landscape=vw>vh;
+  document.body.classList.toggle('landscape-fit',mobile&&landscape);
+  if(mobile&&landscape)$('game').style.setProperty('--landscape-scale',String(Math.min(vw/900,vh/600)*.98));
+}
+fitLandscapeGame();
+window.addEventListener('resize',fitLandscapeGame);
+window.addEventListener('orientationchange',fitLandscapeGame);
+window.visualViewport?.addEventListener('resize',fitLandscapeGame);
+document.addEventListener('fullscreenchange',fitLandscapeGame);
 </script></body></html>
