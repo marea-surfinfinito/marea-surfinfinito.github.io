@@ -833,7 +833,7 @@ footer .track i{height:100%}
 
 /* Scale the whole apartment stage to fit a landscape phone without cropping. */
 body.landscape-fit{display:block!important;width:100vw!important;height:100dvh!important;min-height:0!important;overflow:hidden!important;background:#000!important}
-body.landscape-fit #game,body.landscape-fit #game:fullscreen{position:fixed!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;width:900px!important;height:600px!important;min-width:900px!important;min-height:600px!important;max-width:900px!important;max-height:600px!important;margin:0!important;padding:4px!important;transform:translate(-50%,-50%) scale(var(--landscape-scale,1))!important;transform-origin:center center!important;overflow:hidden!important;border:0!important}
+body.landscape-fit #game,body.landscape-fit #game:fullscreen{position:fixed!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;width:900px!important;height:680px!important;min-width:900px!important;min-height:680px!important;max-width:900px!important;max-height:680px!important;margin:0!important;padding:4px!important;transform:translate(-50%,-50%) scale(var(--landscape-scale,1))!important;transform-origin:center center!important;overflow:hidden!important;border:0!important}
 body.landscape-fit #home.scene.active{overflow:hidden!important;grid-template-rows:minmax(0,1fr) auto!important}
 body.landscape-fit #home .room{min-height:0!important;height:100%!important}
 body.landscape-fit #home .actions{flex:none!important}
@@ -849,6 +849,17 @@ body.landscape-fit #fight .rival-stats{grid-template-columns:repeat(4,minmax(0,1
 body.landscape-fit #fight #commentary{min-height:30px!important;padding:4px!important;margin:2px 0!important}
 body.landscape-fit #fight #fightEconomy{margin:0 1%!important}
 body.landscape-fit #fight #homeBtn{margin:2px auto!important;padding:6px 10px!important}
+
+/* Show each complete illustration at the same stage scale as the action buttons. */
+body.landscape-fit #home .room{background-size:contain!important;background-repeat:no-repeat!important;background-position:center center!important;background-color:#000!important}
+body.landscape-fit #home .room .room-rain{inset:auto!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;width:auto!important;height:100%!important;aspect-ratio:16/9!important;max-width:100%!important}
+body.landscape-fit #fight .ring{height:300px!important;min-height:300px!important;max-height:300px!important;background-size:contain!important;background-repeat:no-repeat!important;background-position:center center!important;background-color:#000!important}
+body.landscape-fit #fight .ring .boxer.left{left:calc(50% - 160px)!important}
+body.landscape-fit #fight .ring .boxer.right{right:calc(50% - 160px)!important}
+body.landscape-fit #fight .front-ropes i{left:calc(50% - 110px)!important;width:220px!important}
+body.landscape-fit #fight .front-ropes i:nth-child(1){bottom:30%!important}
+body.landscape-fit #fight .front-ropes i:nth-child(2){bottom:23%!important}
+body.landscape-fit #fight .front-ropes i:nth-child(3){bottom:16%!important}
 </style><style>/* Coherent fight sprites and compact opponent HUD */
 #fight .ring .boxer{background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;opacity:1!important;mix-blend-mode:normal!important;filter:none!important}
 #fight .ring .boxer.left .luca-cheek-bandage,#fight .ring .boxer.right .rival-hair,#fight .ring .boxer .rival-glove,#fight .ring .boxer .rival-skin,#fight .ring .boxer .trunks,#fight .ring .boxer .rival-tattoo,#fight .ring .boxer .glove-trail{display:none!important}
@@ -1059,7 +1070,7 @@ function fitLandscapeGame(){
   const mobile=(navigator.maxTouchPoints>0||window.innerWidth<1000);
   const landscape=vw>vh;
   document.body.classList.toggle('landscape-fit',mobile&&landscape);
-  if(mobile&&landscape)$('game').style.setProperty('--landscape-scale',String(Math.min(vw/900,vh/600)*.98));
+  if(mobile&&landscape)$('game').style.setProperty('--landscape-scale',String(Math.min(vw/900,vh/680)*.98));
 }
 fitLandscapeGame();
 window.addEventListener('resize',fitLandscapeGame);
