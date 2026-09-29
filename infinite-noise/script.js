@@ -1,13 +1,11 @@
 (() => {
-  const stream=document.getElementById('infinite-stream');
-  const sentinel=document.querySelector('.scroll-sentinel');
-  const audioBtn=document.getElementById('audio-toggle');
+  const stream = document.getElementById('infinite-stream');
+  const audioBtn = document.getElementById('audio-toggle');
 
   const noise=['000','13','23','404','808','666','999','01','10','101','NULL','ERR','▓','▒','░','//','::','[]','{}','<>','0x00','0xFF','1100101','101010','404_BODY','NO_DATA','SIG_LOSS','CACHE_MISS','FEED_LOOP','000000','RIP','ALT','CTRL','VOID'];
   const marks=['☠','👁','⌁','✂','♻','⚠','☼','🜏','⛓','⌘','☹','◼','◻','◆','◇','※'];
   const classes=['serif','heavy','mono','pixel','wide','junk','icon','broken','ghost','strike','invert','micro','drop','censor'];
-
-  const languageLines=[
+  const lines=[
     'NOISE EATS TEXT TEXT KEEPS SCREAMING',
     'RUIDO COME TEXTO TEXTO SIGUE GRITANDO',
     'LE BRUIT MANGE LE TEXTE',
@@ -22,106 +20,152 @@
     'ZARATAK TESTUA JATEN DU',
     'EL SOROLL DEVORA EL TEXT'
   ];
-
   const culture=[
     '<span class="mono">BLACKSTAR / LAZARUS / ★ / 2016</span>',
     '<span class="mono">YEEZUS / 808s / POWER / STATIC</span>',
     '<span class="score">E|--12--12/15--12--|| G|--14b16~~~--12--| B|--12h15p12--|</span>',
     '<span class="receipt">HUEVOS 02<br>TOMATE 04<br>PAN 01<br>LECHUGA 01<br>TOTAL 8.47</span>',
     '<span class="barcode">||| |||||| ||| | ||||||| || |||</span>',
-    '<span class="ascii">  .-.\n (x x)\n  |=|\n __|__\n/     \\\\</span>',
-    '<span class="ascii">  _____\n /     \\\\n|  ☠   |\n|      |\n|______|</span>',
-    '<span class="pixelboob">▓▓░░▓▓  ░▒▓▒░  ▓▓░░▓▓</span>',
     '<span class="ticket">TXN#808404 / 23:59 / VOID / CASH / NO RETURN</span>',
     '<span class="junk">████████ CENSORED BODY ████████</span>'
   ];
 
-  function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  const rnd = a => a[Math.floor(Math.random()*a.length)];
   function distortWord(word){
     let text=word;
     if(Math.random()>.68) text=text.slice(0,Math.max(1,Math.floor(text.length*(.34+Math.random()*.62))));
-    const cls=rnd(classes);
-    const prefix=Math.random()>.52 ? rnd(noise)+' ' : '';
-    const suffix=Math.random()>.57 ? ' '+rnd(noise) : '';
-    const mark=Math.random()>.82 ? ' '+rnd(marks) : '';
-    return '<span class="'+cls+'">'+prefix+text+suffix+mark+'</span>';
+    return '<span class="'+rnd(classes)+'">'+
+      (Math.random()>.52 ? rnd(noise)+' ' : '')+
+      text+
+      (Math.random()>.57 ? ' '+rnd(noise) : '')+
+      (Math.random()>.82 ? ' '+rnd(marks) : '')+
+      '</span>';
   }
 
-  function makeBlock(i){
-    const sentences=[];
+  let serial=0;
+  function makeBlock(){
+    serial++;
+    const parts=[];
     const count=7+Math.floor(Math.random()*10);
     for(let n=0;n<count;n++){
-      sentences.push(rnd(languageLines).split(' ').map(distortWord).join(' '));
-      if(Math.random()>.36) sentences.push('<span class="junk">'+rnd(noise)+' '+rnd(noise)+' '+rnd(marks)+'</span>');
-      if(Math.random()>.5) sentences.push(rnd(culture));
+      parts.push(rnd(lines).split(' ').map(distortWord).join(' '));
+      if(Math.random()>.36) parts.push('<span class="junk">'+rnd(noise)+' '+rnd(noise)+' '+rnd(marks)+'</span>');
+      if(Math.random()>.5) parts.push(rnd(culture));
     }
-    const block=document.createElement('section');
-    block.className='stream-block';
-    block.innerHTML='<div class="stream-index">INFINITE_NOISE_'+String(i).padStart(7,'0')+' / TEXT_AUDIO_COUPLED / FEED_CONTINUES</div><p>'+sentences.join(' ')+'</p>';
-    return block;
+    const el=document.createElement('section');
+    el.className='stream-block';
+    el.innerHTML='<div class="stream-index">INFINITE_NOISE_'+String(serial).padStart(7,'0')+' / RECYCLED_FEED / NO_END</div><p>'+parts.join(' ')+'</p>';
+    return el;
   }
 
-  let blockCount=0;
-  function appendBlocks(n=6){
-    if(!stream) return;
+  function append(n){
     const frag=document.createDocumentFragment();
-    for(let i=0;i<n;i++) frag.appendChild(makeBlock(++blockCount));
+    for(let i=0;i<n;i++) frag.appendChild(makeBlock());
     stream.appendChild(frag);
-    if(blockCount>16) document.body.classList.add('deep-noise');
-    audioEngine.bump(blockCount);
   }
 
-  appendBlocks(9);
+  // Enough initial content that the user never sees an empty runway.
+  append(48);
 
-  let loadingMore=false;
-  function ensureInfiniteFeed(){
-    if(loadingMore) return;
-    loadingMore=true;
+  const MAX_BLOCKS=64;
+  const RECYCLE=16;
+  let busy=false;
+  let lastY=window.scrollY;
 
-    let guard=0;
-    const minAhead=Math.max(window.innerHeight*8,12000);
+  function recycleIfNeeded(){
+    if(busy || !stream) return;
+    busy=true;
 
-    while(
-      document.documentElement.scrollHeight-(window.scrollY+window.innerHeight) < minAhead
-      && guard < 12
-    ){
-      appendBlocks(10);
-      guard++;
+    const viewportBottom=window.scrollY+window.innerHeight;
+    const docHeight=document.documentElement.scrollHeight;
+    const remaining=docHeight-viewportBottom;
+
+    // Always extend well before the physical end.
+    if(remaining < window.innerHeight*6){
+      append(RECYCLE);
     }
 
-    requestAnimationFrame(()=>{loadingMore=false;});
+    const blocks=stream.querySelectorAll('.stream-block');
+    if(blocks.length > MAX_BLOCKS && window.scrollY > window.innerHeight*4){
+      // Measure the exact height being removed.
+      const victims=Array.from(blocks).slice(0,RECYCLE);
+      const firstTop=victims[0].getBoundingClientRect().top;
+      const lastBottom=victims[victims.length-1].getBoundingClientRect().bottom;
+      const removedHeight=lastBottom-firstTop;
+
+      victims.forEach(el=>el.remove());
+
+      // Keep the same visual content under the finger/cursor.
+      window.scrollBy(0,-removedHeight);
+
+      // Replace what was deleted at the bottom.
+      append(RECYCLE);
+    }
+
+    lastY=window.scrollY;
+    requestAnimationFrame(()=>{ busy=false; });
   }
 
-  ensureInfiniteFeed();
+  window.addEventListener('scroll',recycleIfNeeded,{passive:true});
+  window.addEventListener('touchmove',recycleIfNeeded,{passive:true});
+  window.addEventListener('wheel',recycleIfNeeded,{passive:true});
+  window.addEventListener('resize',recycleIfNeeded,{passive:true});
 
-  addEventListener('scroll',()=>{
-    if(ticking) return;
-    requestAnimationFrame(()=>{
-      audioEngine.updateFromScroll();
-      ensureInfiniteFeed();
-      ticking=false;
+  // iOS Safari safety net: keep checking even if scroll events are coalesced.
+  setInterval(recycleIfNeeded,200);
+
+  // Restore language switch.
+  document.querySelectorAll('.lang').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.lang').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.cutup').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector('.cutup.'+btn.dataset.lang)?.classList.add('active');
     });
-    ticking=true;
-  },{passive:true});
-
-  addEventListener('resize',ensureInfiniteFeed,{passive:true});
-
-  addEventListener('wheel',ensureInfiniteFeed,{passive:true});
-  setInterval(ensureInfiniteFeed,500);
-
-  let stage=0,timer=null;
-  document.addEventListener('pointerdown',(e)=>{
-    if(e.target===audioBtn) return;
-    clearTimeout(timer);
-    stage=(stage+1)%4;
-    document.body.classList.remove('decay1','decay2','decay3');
-    if(stage>0) document.body.classList.add('decay'+stage);
-    timer=setTimeout(()=>{document.body.classList.remove('decay1','decay2','decay3');stage=0;},1500);
   });
 
-  setInterval(()=>{
-    document.querySelectorAll('.cutup.active span,.stream-block span').forEach(s=>{
-      if(Math.random()>.996) s.classList.toggle('void');
-    });
-  },650);
+  // Lightweight generative audio; starts only after user gesture.
+  let ctx, master, osc, noiseNode;
+  function startAudio(){
+    if(ctx) return;
+    const AudioCtx=window.AudioContext||window.webkitAudioContext;
+    if(!AudioCtx) return;
+    ctx=new AudioCtx();
+    master=ctx.createGain();
+    master.gain.value=.08;
+    master.connect(ctx.destination);
+
+    osc=ctx.createOscillator();
+    const g=ctx.createGain();
+    osc.type='sawtooth';
+    osc.frequency.value=43;
+    g.gain.value=.035;
+    osc.connect(g).connect(master);
+    osc.start();
+
+    const buffer=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);
+    const data=buffer.getChannelData(0);
+    for(let i=0;i<data.length;i++) data[i]=Math.random()*2-1;
+    noiseNode=ctx.createBufferSource();
+    noiseNode.buffer=buffer;
+    noiseNode.loop=true;
+    const ng=ctx.createGain();
+    ng.gain.value=.05;
+    noiseNode.connect(ng).connect(master);
+    noiseNode.start();
+
+    audioBtn.textContent='NOISE ON';
+  }
+
+  audioBtn?.addEventListener('click',async()=>{
+    startAudio();
+    if(ctx?.state==='suspended') await ctx.resume();
+  });
+
+  window.addEventListener('scroll',()=>{
+    if(!ctx || !osc || !master) return;
+    const v=Math.min(1,Math.abs(window.scrollY-lastY)/600);
+    osc.frequency.setTargetAtTime(35+v*120,ctx.currentTime,.05);
+    master.gain.setTargetAtTime(.055+v*.09,ctx.currentTime,.05);
+  },{passive:true});
 })();
