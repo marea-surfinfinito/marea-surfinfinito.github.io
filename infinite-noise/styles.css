@@ -211,3 +211,47 @@ body{
     border-top-width:6px;
   }
 }
+
+
+/* FULLSCREEN_GLYPH_STREAM */
+.glyph-screen{
+  min-height:100vh;
+  width:100%;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  font-family:Impact,Haettenschweiler,'Arial Black',Arial,sans-serif;
+  font-size:clamp(55vw,72vw,95vw);
+  line-height:.7;
+  font-weight:900;
+  letter-spacing:-.08em;
+  transform:translateX(var(--shift,0)) rotate(var(--rot,0)) scale(var(--scale,1));
+  transform-origin:center;
+  user-select:none;
+  text-align:center;
+}
+.glyph-screen:nth-child(odd){
+  background:#000;
+  color:#fff;
+}
+.glyph-screen:nth-child(even){
+  background:#fff;
+  color:#000;
+}
+.glyph-screen:nth-child(5n){
+  text-decoration:line-through;
+  text-decoration-thickness:.07em;
+}
+.glyph-screen:nth-child(7n){
+  font-family:'Times New Roman',serif;
+  font-style:italic;
+}
+.glyph-screen:nth-child(9n){
+  filter:contrast(2);
+}
+@media(max-width:700px){
+  .glyph-screen{
+    min-height:100svh;
+    font-size:88vw;
+  }
+}
