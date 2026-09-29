@@ -76,150 +76,24 @@
   let loadingMore=false;
   function ensureInfiniteFeed(){
     if(loadingMore) return;
-    const remaining=document.documentElement.scrollHeight-(window.scrollY+window.innerHeight);
-    if(remaining<5000){
-      loadingMore=true;
-      appendBlocks(12);
-      requestAnimationFrame(()=>{loadingMore=false;});
+    loadingMore=true;
+
+    let guard=0;
+    const minAhead=Math.max(window.innerHeight*8,12000);
+
+    while(
+      document.documentElement.scrollHeight-(window.scrollY+window.innerHeight) < minAhead
+      && guard < 12
+    ){
+      appendBlocks(10);
+      guard++;
     }
+
+    requestAnimationFrame(()=>{loadingMore=false;});
   }
+
   ensureInfiniteFeed();
 
-  const audioEngine=(()=>{
-    let ctx, master, started=false, noiseNodes=[], droneNodes=[], clickTimer=null, scanTimer=null;
-    let depth=0;
-
-    function makeNoiseBuffer(seconds=2){
-      const length=Math.floor(ctx.sampleRate*seconds);
-      const buffer=ctx.createBuffer(1,length,ctx.sampleRate);
-      const data=buffer.getChannelData(0);
-      for(let i=0;i<length;i++){
-        const white=Math.random()*2-1;
-        const impulse=(Math.random()>.997)?(Math.random()*2-1)*3:0;
-        data[i]=white*.55+impulse;
-      }
-      return buffer;
-    }
-
-    function addStatic(type='white'){
-      const src=ctx.createBufferSource();
-      src.buffer=makeNoiseBuffer(2+Math.random()*3);
-      src.loop=true;
-      const filter=ctx.createBiquadFilter();
-      const gain=ctx.createGain();
-      filter.type=type==='radio'?'bandpass':(Math.random()>.5?'highpass':'lowpass');
-      filter.frequency.value=type==='radio'?900+Math.random()*2600:120+Math.random()*7000;
-      filter.Q.value=type==='radio'?4+Math.random()*10:.4+Math.random()*2;
-      gain.gain.value=.008+Math.random()*.028;
-      src.connect(filter).connect(gain).connect(master);
-      src.start();
-      noiseNodes.push({src,filter,gain});
-    }
-
-    function addDrone(){
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
-      const filter=ctx.createBiquadFilter();
-      osc.type=rnd(['sine','triangle','sawtooth','square']);
-      osc.frequency.value=rnd([49,55,60,73,82,98,110,147,196])*(.5+Math.random()*1.5);
-      filter.type='lowpass';
-      filter.frequency.value=220+Math.random()*1400;
-      gain.gain.value=.002+Math.random()*.012;
-      osc.connect(filter).connect(gain).connect(master);
-      osc.start();
-      droneNodes.push({osc,gain,filter});
-    }
-
-    function burst(){
-      if(!started) return;
-      const now=ctx.currentTime;
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
-      osc.type=Math.random()>.5?'square':'sawtooth';
-      osc.frequency.setValueAtTime(40+Math.random()*7000,now);
-      osc.frequency.exponentialRampToValueAtTime(20+Math.random()*900,now+.03+Math.random()*.12);
-      gain.gain.setValueAtTime(.0001,now);
-      gain.gain.exponentialRampToValueAtTime(.015+Math.random()*.06,now+.005);
-      gain.gain.exponentialRampToValueAtTime(.0001,now+.04+Math.random()*.22);
-      osc.connect(gain).connect(master);
-      osc.start(now);
-      osc.stop(now+.35);
-    }
-
-    function scheduleClicks(){
-      clearInterval(clickTimer);
-      clickTimer=setInterval(()=>{
-        if(Math.random()>.35) burst();
-      },Math.max(70,430-depth*5));
-    }
-
-    function scheduleScan(){
-      clearInterval(scanTimer);
-      scanTimer=setInterval(()=>{
-        if(!started) return;
-        noiseNodes.forEach(n=>{
-          const f=80+Math.random()*9000;
-          n.filter.frequency.setTargetAtTime(f,ctx.currentTime,.08+Math.random()*.25);
-          n.gain.gain.setTargetAtTime(.004+Math.random()*(.015+depth*.0009),ctx.currentTime,.1);
-        });
-        droneNodes.forEach(d=>{
-          d.osc.frequency.setTargetAtTime(35+Math.random()*(140+depth*4),ctx.currentTime,.4);
-        });
-      },550+Math.random()*900);
-    }
-
-    function start(){
-      if(started) return;
-      ctx=new (window.AudioContext||window.webkitAudioContext)();
-      master=ctx.createGain();
-      const comp=ctx.createDynamicsCompressor();
-      master.gain.value=.22;
-      master.connect(comp).connect(ctx.destination);
-      for(let i=0;i<4;i++) addStatic(i===0?'radio':'white');
-      for(let i=0;i<3;i++) addDrone();
-      scheduleClicks();
-      scheduleScan();
-      started=true;
-      audioBtn?.classList.add('active');
-      if(audioBtn) audioBtn.textContent='NOISE ON';
-    }
-
-    function stop(){
-      if(!started) return;
-      master.gain.setTargetAtTime(.0001,ctx.currentTime,.08);
-      setTimeout(()=>ctx.close(),180);
-      clearInterval(clickTimer);clearInterval(scanTimer);
-      noiseNodes=[];droneNodes=[];started=false;
-      audioBtn?.classList.remove('active');
-      if(audioBtn) audioBtn.textContent='START NOISE';
-    }
-
-    function updateFromScroll(){
-      if(!started) return;
-      const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
-      const ratio=scrollY/max;
-      depth=Math.floor(ratio*100);
-      master.gain.setTargetAtTime(.12+ratio*.2,ctx.currentTime,.08);
-      const targetNoise=4+Math.min(8,Math.floor(depth/12));
-      while(noiseNodes.length<targetNoise) addStatic(Math.random()>.7?'radio':'white');
-      const targetDrones=3+Math.min(5,Math.floor(depth/20));
-      while(droneNodes.length<targetDrones) addDrone();
-      if(Math.random()>.9) burst();
-    }
-
-    function bump(blocks){
-      depth=Math.max(depth,Math.min(100,blocks));
-      if(started && Math.random()>.7) burst();
-    }
-
-    return {start,stop,updateFromScroll,bump,get started(){return started;}};
-  })();
-
-  audioBtn?.addEventListener('click',()=>{
-    if(audioEngine.started) audioEngine.stop(); else audioEngine.start();
-  });
-
-  let ticking=false;
   addEventListener('scroll',()=>{
     if(ticking) return;
     requestAnimationFrame(()=>{
@@ -230,9 +104,10 @@
     ticking=true;
   },{passive:true});
 
-  addEventListener('touchmove',ensureInfiniteFeed,{passive:true});
+  addEventListener('resize',ensureInfiniteFeed,{passive:true});
+
   addEventListener('wheel',ensureInfiniteFeed,{passive:true});
-  setInterval(ensureInfiniteFeed,1200);
+  setInterval(ensureInfiniteFeed,500);
 
   let stage=0,timer=null;
   document.addEventListener('pointerdown',(e)=>{
