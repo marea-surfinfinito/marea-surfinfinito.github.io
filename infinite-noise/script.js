@@ -114,6 +114,34 @@
   // iOS Safari safety net: keep checking even if scroll events are coalesced.
   setInterval(recycleIfNeeded,200);
 
+
+  // Keep visible text travelling with the user through the enormous virtual depth.
+  // The DOM stays small; the stream is translated downward as scroll advances.
+  let virtualBase=0;
+  const CHUNK_PX=window.innerHeight*6;
+
+  function followVirtualDepth(){
+    if(!stream) return;
+    const y=window.scrollY;
+    const desiredBase=Math.max(0, Math.floor(y/CHUNK_PX)*CHUNK_PX);
+
+    if(desiredBase!==virtualBase){
+      virtualBase=desiredBase;
+      stream.style.transform='translateY('+virtualBase+'px)';
+
+      // Refresh a portion of the visible feed so it keeps mutating as depth increases.
+      const blocks=stream.querySelectorAll('.stream-block');
+      const replaceCount=Math.min(12,blocks.length);
+      for(let i=0;i<replaceCount;i++){
+        blocks[i].replaceWith(makeBlock());
+      }
+    }
+  }
+
+  window.addEventListener('scroll',followVirtualDepth,{passive:true});
+  window.addEventListener('resize',followVirtualDepth,{passive:true});
+  followVirtualDepth();
+
   // Restore language switch.
   document.querySelectorAll('.lang').forEach(btn=>{
     btn.addEventListener('click',()=>{
