@@ -1,0 +1,95 @@
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:#000}
+body{font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+.page{min-height:100vh;padding:14px 18px 24px;background:#fff}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.meta,.foot{font:10px/1.2 "Courier New",monospace;letter-spacing:.11em}
+.lang-switch{display:flex;gap:3px}
+.lang{border:1px solid #000;background:#fff;color:#000;padding:5px 8px;font:10px "Courier New",monospace;cursor:pointer}
+.lang.active{background:#000;color:#fff}
+.cutup{display:none;max-width:1700px;margin-top:6vh}
+.cutup.active{display:block}
+.cutup p{margin:0;font-size:clamp(33px,6.35vw,112px);line-height:.73;letter-spacing:-.065em;font-weight:700;text-transform:uppercase;word-break:normal}
+.cutup span{display:inline;position:relative}
+.serif{font-family:"Times New Roman",Times,serif;font-weight:400}
+.italic{font-style:italic;text-transform:none}
+.heavy{font-family:Arial Black,Arial,sans-serif;font-weight:900;letter-spacing:-.1em}
+.mono{font-family:"Courier New",monospace;font-weight:700;letter-spacing:-.08em}
+.pixel{font-family:monospace;font-weight:900;letter-spacing:-.12em;text-shadow:1px 0 #000,-1px 0 #000}
+.wide{font-family:Arial,sans-serif;font-weight:900;letter-spacing:.04em}
+.junk{font-family:"Courier New",monospace;font-size:.56em;letter-spacing:-.17em;vertical-align:.13em}
+.icon{font-size:.64em;vertical-align:.08em;filter:grayscale(1) contrast(2)}
+.huge{font-size:1.28em;line-height:.54}
+.broken{display:inline-block!important;transform:skewX(-13deg) translateY(-.035em);letter-spacing:-.125em;clip-path:polygon(0 0,100% 0,100% 41%,96% 41%,100% 47%,100% 100%,0 100%,0 62%,4% 62%,0 55%)}
+.cutup span:nth-child(7n){top:.08em}
+.cutup span:nth-child(9n){top:-.08em}
+.cutup span:nth-child(11n){display:inline-block;transform:rotate(-1.7deg)}
+.cutup span:nth-child(13n){display:inline-block;transform:rotate(1.2deg) scaleX(.93)}
+.cutup span:nth-child(17n){filter:blur(.2px)}
+.cutup span:nth-child(19n){letter-spacing:-.15em}
+.cutup span:hover{background:#000;color:#fff}
+.foot{margin-top:8vh;border-top:1px solid #000;padding-top:7px}
+body.rupture .cutup p{letter-spacing:-.095em}
+body.rupture .cutup span:nth-child(3n){font-family:"Times New Roman",serif}
+body.rupture .cutup span:nth-child(4n){font-family:"Courier New",monospace}
+body.rupture .cutup span:nth-child(5n){transform:skewX(-18deg) translateY(.06em)}
+body.rupture .cutup span:nth-child(8n){filter:blur(.6px)}
+body.rupture .cutup span:nth-child(10n){text-decoration:line-through;text-decoration-thickness:.08em}
+@media(max-width:700px){
+ .page{padding:10px 10px 18px}
+ .meta{max-width:72%}
+ .cutup{margin-top:4vh}
+ .cutup p{font-size:clamp(28px,10.3vw,64px);line-height:.74}
+ .junk{font-size:.54em}
+ .icon{font-size:.61em}
+}
+.erosion{position:fixed;inset:0;pointer-events:none;z-index:20;mix-blend-mode:multiply;opacity:.28;
+background:
+repeating-linear-gradient(0deg,transparent 0 18px,rgba(0,0,0,.025) 19px 20px),
+repeating-linear-gradient(90deg,transparent 0 37px,rgba(0,0,0,.018) 38px 39px)}
+.cutup .ghost{opacity:.22}
+.cutup .void{color:transparent;text-shadow:none;border-bottom:1px solid #000}
+.cutup .code{font-family:"Courier New",monospace;font-size:.46em;letter-spacing:-.12em;vertical-align:.18em}
+.cutup .strike{text-decoration:line-through;text-decoration-thickness:.09em}
+.cutup .invert{background:#000;color:#fff;padding:0 .05em}
+.cutup .micro{font-size:.31em;letter-spacing:.08em;vertical-align:.28em}
+.cutup .mega{font-size:1.52em;line-height:.46;letter-spacing:-.14em}
+.cutup .drop{display:inline-block;transform:translateY(.22em)}
+body.decay1 .cutup span:nth-child(4n){opacity:.55}
+body.decay1 .cutup span:nth-child(7n){text-decoration:line-through}
+body.decay2 .cutup span:nth-child(3n){opacity:.22}
+body.decay2 .cutup span:nth-child(5n){filter:blur(.7px)}
+body.decay2 .cutup span:nth-child(9n){color:transparent;-webkit-text-stroke:1px #000}
+body.decay3 .cutup span:nth-child(2n){opacity:.12}
+body.decay3 .cutup span:nth-child(4n){color:transparent}
+body.decay3 .cutup span:nth-child(7n){filter:blur(1.2px)}
+body.decay3 .cutup .junk,body.decay3 .cutup .code{opacity:1;color:#000}
+
+.infinite-stream{margin-top:10vh}
+.stream-block{padding:8vh 0 11vh;border-top:1px solid #000}
+.stream-block:nth-child(3n+2){transform:translateX(-1.2vw)}
+.stream-block:nth-child(4n){transform:translateX(1.4vw)}
+.stream-block p{margin:0;font-size:clamp(30px,5.8vw,105px);line-height:.72;letter-spacing:-.07em;text-transform:uppercase;font-weight:700}
+.stream-block span{display:inline;position:relative}
+.stream-block .gap{display:inline-block;width:.7em}
+.stream-index{font:9px "Courier New",monospace;letter-spacing:.12em;margin-bottom:1.8vh}
+.scroll-sentinel{height:55vh}
+body.deep-noise .stream-block:nth-child(odd){filter:contrast(1.4)}
+body.deep-noise .stream-block:nth-child(3n) span:nth-child(4n){opacity:.18}
+body.deep-noise .stream-block:nth-child(5n) span:nth-child(7n){color:transparent;-webkit-text-stroke:1px #000}
+@media(max-width:700px){
+ .stream-block{padding:6vh 0 8vh}
+ .stream-block p{font-size:clamp(27px,9.8vw,58px);line-height:.73}
+}
+
+.ascii{font-family:"Courier New",monospace;font-size:.42em;line-height:.8;white-space:pre;display:inline-block;vertical-align:.1em;letter-spacing:-.08em}
+.ticket{font-family:"Courier New",monospace;font-size:.36em;line-height:1.1;display:inline-block;border:1px solid #000;padding:.12em .2em;vertical-align:.15em}
+.barcode{font-family:monospace;font-size:.5em;letter-spacing:-.2em;display:inline-block;transform:scaleY(1.5);vertical-align:.12em}
+.score{font-family:"Times New Roman",serif;font-style:italic;font-size:.48em;letter-spacing:.02em;display:inline-block;transform:skewX(-8deg)}
+.censor{display:inline-block;background:#000;color:#fff;padding:0 .05em;box-shadow:.08em 0 0 #000,-.08em 0 0 #000}
+.pixelboob{font-family:monospace;font-size:.55em;letter-spacing:-.16em;filter:contrast(2)}
+.receipt{font-family:"Courier New",monospace;font-size:.34em;line-height:1.05;display:inline-block;transform:rotate(-1deg);border-top:1px dashed #000;border-bottom:1px dashed #000;padding:.18em .2em}
+
+.audio-toggle{position:fixed;right:12px;bottom:12px;z-index:50;border:1px solid #000;background:#fff;color:#000;padding:7px 9px;font:10px "Courier New",monospace;letter-spacing:.08em;cursor:pointer}
+.audio-toggle.active{background:#000;color:#fff}
+.audio-toggle::after{content:" / SCROLL = MIX";opacity:.5}
