@@ -290,3 +290,68 @@
   addEventListener('touchmove',mutateByDepth,{passive:true});
   mutateByDepth();
 })();
+
+
+/* PUNK_ASSAULT_MODE */
+(() => {
+  const stream=document.getElementById('infinite-stream');
+  if(!stream) return;
+
+  const slogans=[
+    'NO FUTURE / NO FEED / NO OWNER',
+    'MAKE NOISE / BREAK FORMAT',
+    'COPY / DAMAGE / REPEAT',
+    'SIGNAL AGAINST SIGNAL',
+    'NOTHING CLEAN SURVIVES',
+    'RIP THE PAGE OPEN',
+    'STATIC IS A WEAPON',
+    'FEED THE MACHINE TRASH'
+  ];
+
+  let last=-1;
+
+  function addPunkHit(depth){
+    const hit=document.createElement('div');
+    hit.className='punk-hit';
+    hit.textContent=slogans[(Math.random()*slogans.length)|0];
+    hit.style.setProperty('--rot',((Math.random()*16)-8).toFixed(1)+'deg');
+    hit.style.setProperty('--x',((Math.random()*30)-15).toFixed(1)+'vw');
+    stream.appendChild(hit);
+
+    const stamp=document.createElement('div');
+    stamp.className='punk-stamp';
+    stamp.textContent=['VOID','NOISE','CTRL','RIP','ERROR','ANTI'][depth%6];
+    stream.appendChild(stamp);
+  }
+
+  function punkify(){
+    const depth=Math.floor(window.scrollY/Math.max(1,window.innerHeight));
+    if(depth===last) return;
+    last=depth;
+
+    if(depth%3===0) addPunkHit(depth);
+
+    document.body.classList.toggle('punk-invert',depth%7===0);
+    document.body.classList.toggle('punk-crush',depth%5===0);
+
+    const blocks=stream.querySelectorAll('.stream-block');
+    const count=Math.min(18,blocks.length);
+    for(let i=0;i<count;i++){
+      const el=blocks[(Math.random()*blocks.length)|0];
+      if(!el) continue;
+      el.style.setProperty('--r',((Math.random()*8)-4).toFixed(1)+'deg');
+      el.style.setProperty('--dx',((Math.random()*40)-20).toFixed(1)+'px');
+      el.classList.toggle('punk-block',Math.random()>.35);
+    }
+
+    // Keep assault elements bounded.
+    const hits=stream.querySelectorAll('.punk-hit,.punk-stamp');
+    if(hits.length>40){
+      for(let i=0;i<hits.length-40;i++) hits[i].remove();
+    }
+  }
+
+  addEventListener('scroll',punkify,{passive:true});
+  addEventListener('touchmove',punkify,{passive:true});
+  punkify();
+})();
