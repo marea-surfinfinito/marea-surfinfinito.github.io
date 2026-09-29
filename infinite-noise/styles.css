@@ -124,3 +124,90 @@ body{
 @media (max-width:700px){
   .char-noise.extreme p{font-size:11px;line-height:.68}
 }
+
+
+/* PUNK_ASSAULT_MODE */
+body{
+  transition:background .04s linear,color .04s linear,filter .04s linear;
+}
+.punk-invert{
+  background:#000!important;
+  color:#fff!important;
+}
+.punk-invert .page,
+.punk-invert .stream-block{
+  background:#000!important;
+  color:#fff!important;
+}
+.punk-crush{
+  filter:contrast(1.8) saturate(.2);
+}
+.punk-block{
+  transform:translateX(var(--dx,0)) rotate(var(--r,0));
+  border-top:8px solid currentColor;
+  border-bottom:2px solid currentColor;
+  margin:2.5rem -2vw;
+  padding:1rem 2vw;
+}
+.punk-block p{
+  font-weight:900;
+  text-transform:uppercase;
+}
+.punk-hit{
+  position:relative;
+  z-index:4;
+  margin:5vh -5vw;
+  padding:.2em .08em;
+  font-family:Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif;
+  font-size:clamp(52px,13vw,190px);
+  line-height:.72;
+  letter-spacing:-.07em;
+  text-transform:uppercase;
+  transform:translateX(var(--x,0)) rotate(var(--rot,0));
+  border:10px solid currentColor;
+  background:currentColor;
+  color:#fff;
+  mix-blend-mode:difference;
+  word-break:break-word;
+}
+.punk-stamp{
+  display:inline-block;
+  margin:2vh 3vw 8vh;
+  padding:.15em .3em;
+  border:6px solid currentColor;
+  font:900 clamp(28px,7vw,90px)/.85 'Arial Black',Arial,sans-serif;
+  letter-spacing:-.08em;
+  transform:rotate(-7deg);
+}
+.stream-block:nth-child(4n) p{
+  text-decoration-line:line-through;
+  text-decoration-thickness:.13em;
+}
+.stream-block:nth-child(6n){
+  border-left:18px solid currentColor;
+}
+.stream-block:nth-child(9n){
+  border-right:24px solid currentColor;
+}
+.stream-block:nth-child(10n) p{
+  font-size:125%;
+  line-height:.8;
+}
+.char-noise.extreme{
+  border:0;
+  padding:0;
+}
+.char-noise.extreme p{
+  background:repeating-linear-gradient(0deg,transparent 0 12px,currentColor 12px 13px);
+}
+@media(max-width:700px){
+  .punk-hit{
+    font-size:clamp(42px,18vw,120px);
+    border-width:7px;
+    margin:6vh -8vw;
+  }
+  .punk-block{
+    margin:2rem -5vw;
+    border-top-width:6px;
+  }
+}
