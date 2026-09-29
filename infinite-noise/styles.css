@@ -98,6 +98,6 @@ body.deep-noise .stream-block:nth-child(5n) span:nth-child(7n){color:transparent
 .infinite-stream::after{
   content:"";
   display:block;
-  height:1000000vh;
+  height:10000000000vh;
   pointer-events:none;
 }
