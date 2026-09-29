@@ -142,6 +142,49 @@
   window.addEventListener('resize',followVirtualDepth,{passive:true});
   followVirtualDepth();
 
+
+  // 100M-character procedural layer: generated in chunks, never all resident in memory.
+  const CHAR_TARGET=100000000;
+  const CHARSET='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{};:,.<>/?\\|~░▒▓█☠⌁※';
+  let generatedChars=0;
+
+  function randomChars(n){
+    let out='';
+    const step=2048;
+    for(let i=0;i<n;i+=step){
+      const len=Math.min(step,n-i);
+      let chunk='';
+      for(let j=0;j<len;j++) chunk+=CHARSET[Math.floor(Math.random()*CHARSET.length)];
+      out+=chunk;
+    }
+    return out;
+  }
+
+  function makeCharBlock(size=12000){
+    const el=document.createElement('section');
+    el.className='stream-block char-noise';
+    const n=Math.min(size,CHAR_TARGET-generatedChars);
+    generatedChars+=n;
+    el.innerHTML='<div class="stream-index">CHAR_STREAM '+generatedChars.toLocaleString('en-US')+' / 100,000,000</div><p class="mono">'+randomChars(n)+'</p>';
+    return el;
+  }
+
+  function injectCharNoise(){
+    if(!stream || generatedChars>=CHAR_TARGET) return;
+    const batches=3;
+    for(let i=0;i<batches && generatedChars<CHAR_TARGET;i++){
+      stream.appendChild(makeCharBlock(12000));
+    }
+  }
+
+  // Seed the first character field immediately.
+  injectCharNoise();
+
+  window.addEventListener('scroll',()=>{
+    const remaining=document.documentElement.scrollHeight-(window.scrollY+window.innerHeight);
+    if(remaining<window.innerHeight*10) injectCharNoise();
+  },{passive:true});
+
   // Restore language switch.
   document.querySelectorAll('.lang').forEach(btn=>{
     btn.addEventListener('click',()=>{
