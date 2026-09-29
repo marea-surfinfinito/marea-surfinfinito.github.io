@@ -73,10 +73,17 @@
 
   appendBlocks(9);
 
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{ if(entry.isIntersecting) appendBlocks(8); });
-  },{rootMargin:'2200px 0px 2200px 0px'});
-  if(sentinel) observer.observe(sentinel);
+  let loadingMore=false;
+  function ensureInfiniteFeed(){
+    if(loadingMore) return;
+    const remaining=document.documentElement.scrollHeight-(window.scrollY+window.innerHeight);
+    if(remaining<5000){
+      loadingMore=true;
+      appendBlocks(12);
+      requestAnimationFrame(()=>{loadingMore=false;});
+    }
+  }
+  ensureInfiniteFeed();
 
   const audioEngine=(()=>{
     let ctx, master, started=false, noiseNodes=[], droneNodes=[], clickTimer=null, scanTimer=null;
@@ -217,10 +224,15 @@
     if(ticking) return;
     requestAnimationFrame(()=>{
       audioEngine.updateFromScroll();
+      ensureInfiniteFeed();
       ticking=false;
     });
     ticking=true;
   },{passive:true});
+
+  addEventListener('touchmove',ensureInfiniteFeed,{passive:true});
+  addEventListener('wheel',ensureInfiniteFeed,{passive:true});
+  setInterval(ensureInfiniteFeed,1200);
 
   let stage=0,timer=null;
   document.addEventListener('pointerdown',(e)=>{
