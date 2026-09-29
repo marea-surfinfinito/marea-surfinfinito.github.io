@@ -355,3 +355,47 @@
   addEventListener('touchmove',punkify,{passive:true});
   punkify();
 })();
+
+
+/* FULLSCREEN_GLYPH_STREAM */
+(() => {
+  const stream=document.getElementById('infinite-stream');
+  if(!stream) return;
+
+  const glyphs=['A','X','0','1','?','!','▓','█','░','▒','☠','※','⌁','◆','◇','◼','◻','/','\\','+','-','=','[',']','{','}','<','>','#','%','&','*'];
+  let glyphIndex=0;
+  let lastDepth=-1;
+
+  function addGlyphScreen(){
+    const el=document.createElement('section');
+    el.className='glyph-screen';
+    const glyph=glyphs[(Math.random()*glyphs.length)|0];
+    el.textContent=glyph;
+    el.style.setProperty('--rot',((Math.random()*18)-9).toFixed(1)+'deg');
+    el.style.setProperty('--scale',(0.85+Math.random()*0.55).toFixed(2));
+    el.style.setProperty('--shift',((Math.random()*24)-12).toFixed(1)+'vw');
+    stream.appendChild(el);
+    glyphIndex++;
+  }
+
+  function deepenGlyphStream(){
+    const depth=Math.floor(window.scrollY/Math.max(1,window.innerHeight));
+    if(depth===lastDepth) return;
+    lastDepth=depth;
+
+    if(depth%2===0){
+      addGlyphScreen();
+      if(depth%6===0) addGlyphScreen();
+    }
+
+    const screens=stream.querySelectorAll('.glyph-screen');
+    if(screens.length>36){
+      for(let i=0;i<screens.length-36;i++) screens[i].remove();
+    }
+  }
+
+  for(let i=0;i<12;i++) addGlyphScreen();
+  addEventListener('scroll',deepenGlyphStream,{passive:true});
+  addEventListener('touchmove',deepenGlyphStream,{passive:true});
+  deepenGlyphStream();
+})();
