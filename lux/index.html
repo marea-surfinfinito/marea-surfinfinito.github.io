@@ -55,7 +55,38 @@ main{min-width:0}.hero{min-height:92vh;display:grid;grid-template-columns:1.65fr
 @keyframes luxPulse{0%,100%{filter:brightness(.65)}50%{filter:brightness(1)}}@keyframes luxNoise{50%{transform:translateY(2px)}}@keyframes luxWords{0%,8%,34%,100%{opacity:0}12%,28%{opacity:.72}}
 @media(max-width:700px){.video-meta{grid-template-columns:1fr}.video-frame{aspect-ratio:4/3}}
 @media(prefers-reduced-motion:reduce){.video-sea,.video-orb,.video-noise,.video-line{animation:none}.video-line:first-of-type{opacity:.7}}
-</style><style>.contact{display:grid!important;grid-template-columns:minmax(220px,380px) 1fr;gap:clamp(28px,6vw,90px);align-items:center}.contact-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.72) contrast(1.05);border:1px solid var(--line)}.contact-copy{display:flex;flex-direction:column;align-items:flex-start}.contact-copy h2{font:400 clamp(55px,10vw,140px)/.85 Georgia,serif;letter-spacing:.08em;margin:0}@media(max-width:700px){.contact{grid-template-columns:1fr!important}.contact-portrait{max-width:420px}}</style></head>
+</style><style>.contact{display:grid!important;grid-template-columns:minmax(220px,380px) 1fr;gap:clamp(28px,6vw,90px);align-items:center}.contact-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.72) contrast(1.05);border:1px solid var(--line)}.contact-copy{display:flex;flex-direction:column;align-items:flex-start}.contact-copy h2{font:400 clamp(55px,10vw,140px)/.85 Georgia,serif;letter-spacing:.08em;margin:0}@media(max-width:700px){.contact{grid-template-columns:1fr!important}.contact-portrait{max-width:420px}}</style><style>
+html,body{max-width:100%;overflow-x:hidden}
+.contact{min-width:0}
+.contact-copy{min-width:0;width:100%}
+.contact-copy h2{max-width:100%;font-size:clamp(44px,8vw,112px);overflow-wrap:normal}
+.contact-portrait{height:auto;aspect-ratio:auto;object-fit:contain;object-position:center top;background:#080808}
+@media(max-width:1100px){
+ .shell{grid-template-columns:180px minmax(0,1fr)}
+ .section,.video-work,.polaroid-zone{padding-left:clamp(18px,4vw,42px);padding-right:clamp(18px,4vw,42px)}
+ .contact{grid-template-columns:minmax(180px,34vw) minmax(0,1fr);gap:clamp(22px,4vw,48px)}
+ .contact-copy h2{font-size:clamp(48px,8vw,86px);letter-spacing:.035em}
+}
+@media(max-width:820px){
+ .shell{display:block}
+ .rail{position:relative;width:auto;height:auto;padding:18px 20px;border-right:0;border-bottom:1px solid var(--line)}
+ .rail nav{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;margin:18px 0 0;padding-bottom:4px}
+ .rail footer{display:none}
+ main{width:100%;min-width:0}
+ .hero,.works,.bio,.process,.video-meta{grid-template-columns:1fr}
+ .hero-art{min-height:55vh}.hero-copy{min-height:auto;padding:44px 20px}
+ .section,.video-work,.polaroid-zone{padding:48px 20px}
+ .contact{display:grid!important;grid-template-columns:1fr!important;gap:28px;min-height:auto;align-items:start}
+ .contact-portrait{width:min(100%,520px);max-height:none;margin:0 auto}
+ .contact-copy h2{font-size:clamp(50px,14vw,92px);line-height:.9;letter-spacing:.01em;word-break:normal}
+ .polaroids{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+ .section,.video-work,.polaroid-zone{padding-left:16px;padding-right:16px}
+ .contact-copy h2{font-size:clamp(44px,15vw,68px)}
+ .polaroids{grid-template-columns:1fr 1fr;gap:8px}
+}
+</style></head>
 <body><div class="shell"><aside class="rail"><a class="brand" href="#">LUX</a><div class="role">ARTISTA</div><nav><a href="#obra">01 OBRA</a><a href="#video">02 VIDEO</a><a href="#proceso">03 PROCESO</a><a href="#bio">04 BIO / CV</a><a href="#contacto">05 CONTACTO</a></nav><footer>INSTALACIÓN<br>ESCULTURA<br>PINTURA<br>FOTOGRAFÍA<br>SISTEMAS</footer></aside>
 <main><section class="hero"><div class="hero-art"><div class="sphere"></div><div class="water"></div><div class="figure"></div><div class="hero-caption">THE THINGS I CANNOT KNOW<br>Proyecto de instalación · 2026</div></div><div class="hero-copy"><div class="eyebrow">LUX / ARTISTA CONCEPTUAL</div><h1>LUX</h1><div class="discipline">INSTALACIÓN<br>ESCULTURA<br>PINTURA<br>FOTOGRAFÍA<br>SISTEMAS INTERACTIVOS</div><blockquote>Arte para lo desconocido.</blockquote></div></section>
 
