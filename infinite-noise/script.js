@@ -240,3 +240,53 @@
     master.gain.setTargetAtTime(.055+v*.09,ctx.currentTime,.05);
   },{passive:true});
 })();
+
+/* EXTREME_VISUAL_MODE */
+(() => {
+  const stream=document.getElementById('infinite-stream');
+  if(!stream) return;
+
+  const glyphs='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789░▒▓█<>[]{}//\\|!?#$%&*+=-_:;.,☠※⌁◼◻◆◇';
+  let lastDepth=-1;
+
+  function gibberish(n){
+    let s='';
+    for(let i=0;i<n;i++) s+=glyphs[(Math.random()*glyphs.length)|0];
+    return s;
+  }
+
+  function mutateByDepth(){
+    const depth=Math.floor(window.scrollY/Math.max(1,window.innerHeight));
+    if(depth===lastDepth) return;
+    lastDepth=depth;
+
+    document.documentElement.style.setProperty('--depth',String(depth));
+
+    // Add a limited but very dense chunk as the viewer moves deeper.
+    if(depth%2===0){
+      const block=document.createElement('section');
+      block.className='stream-block char-noise extreme';
+      block.innerHTML='<div class="stream-index">DEPTH_'+depth+' / SIGNAL_OVERLOAD</div><p class="mono">'+gibberish(6000)+'</p>';
+      stream.appendChild(block);
+    }
+
+    // Keep DOM bounded while making the content feel increasingly corrupted.
+    const blocks=stream.querySelectorAll('.stream-block');
+    if(blocks.length>110){
+      for(let i=0;i<20;i++) blocks[i]?.remove();
+    }
+
+    const victims=stream.querySelectorAll('.stream-block span');
+    for(let i=0;i<Math.min(80,victims.length);i++){
+      const el=victims[(Math.random()*victims.length)|0];
+      if(!el) continue;
+      if(Math.random()>.5) el.classList.toggle('void');
+      if(Math.random()>.72) el.style.letterSpacing=(Math.random()*18-6).toFixed(1)+'px';
+      if(Math.random()>.8) el.style.transform='skew('+(Math.random()*24-12).toFixed(1)+'deg)';
+    }
+  }
+
+  addEventListener('scroll',mutateByDepth,{passive:true});
+  addEventListener('touchmove',mutateByDepth,{passive:true});
+  mutateByDepth();
+})();
