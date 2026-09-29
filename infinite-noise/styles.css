@@ -101,3 +101,26 @@ body.deep-noise .stream-block:nth-child(5n) span:nth-child(7n){color:transparent
   height:10000000000vh;
   pointer-events:none;
 }
+
+
+/* EXTREME_VISUAL_MODE */
+:root{--depth:0}
+.char-noise.extreme p{
+  font-size:clamp(10px,1.7vw,18px);
+  line-height:.72;
+  letter-spacing:-.08em;
+  word-break:break-all;
+  overflow-wrap:anywhere;
+  text-transform:uppercase;
+}
+body{
+  filter:contrast(calc(1 + min(var(--depth),80)*.006));
+}
+.stream-block:nth-child(7n){transform:skewX(-1deg)}
+.stream-block:nth-child(11n){letter-spacing:.08em}
+.stream-block:nth-child(13n){font-size:112%}
+.stream-block:nth-child(17n){filter:blur(.25px)}
+.deep-noise .stream-block:nth-child(5n){mix-blend-mode:multiply}
+@media (max-width:700px){
+  .char-noise.extreme p{font-size:11px;line-height:.68}
+}
