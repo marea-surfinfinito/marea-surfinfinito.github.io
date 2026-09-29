@@ -71,6 +71,7 @@ a.card:hover .art>img{transform:none!important}
     let secretClicks=0,secretTimer;const logoSecret=document.querySelector('#logoSecret'),signal=document.querySelector('#signal');if(logoSecret&&signal){logoSecret.addEventListener('click',()=>{secretClicks++;clearTimeout(secretTimer);secretTimer=setTimeout(()=>secretClicks=0,1600);if(secretClicks>=5){secretClicks=0;signal.classList.add('show');setTimeout(()=>signal.classList.remove('show'),3200)}})}
     document.querySelectorAll('a.card[href]').forEach(link=>link.addEventListener('click',e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target==='_blank')return;e.preventDefault();document.body.classList.add('leaving');setTimeout(()=>location.href=link.href,260)}));
   </script>
+<!-- pages-refresh: infinite-noise-force-20260929 -->
 </body>
 <!-- pages-redeploy: heraldo-lux-pair -->
 <!-- pages-refresh: mobile-thumb-path-fix-20260929 -->\n</html>
