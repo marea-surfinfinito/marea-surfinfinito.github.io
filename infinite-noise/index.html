@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>INFINITE NOISE — DEATH GRIPS</title>
   <meta name="description" content="Experimento tipográfico bilingüe no oficial sobre Death Grips." />
-  <link rel="stylesheet" href="./styles.css?v=20260929-glyph2" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <button id="music-gate" class="music-gate" type="button" aria-label="Play Noise"><span>PLAY NOISE</span><small>INFINITE NOISE / TOUCH TO ENTER</small></button>
   <main class="page">
     <header class="top">
       <button id="audio-toggle" class="audio-toggle" type="button">START NOISE</button>
@@ -173,9 +174,10 @@
     <section id="infinite-stream" class="infinite-stream" aria-live="polite"></section>
     <div class="scroll-sentinel" aria-hidden="true"></div>
     <div class="erosion" aria-hidden="true"></div>
+    <div id="glitch-layer" class="glitch-layer" aria-hidden="true"></div>
+    <canvas id="crt-static" class="crt-static" aria-hidden="true"></canvas>
     <div class="foot">RAIN INTERACTIVE / INFINITE NOISE / MULTILINGUAL SIGNAL ACTIVE</div>
   </main>
-  <script src="./script.js?v=20260929-glyph2"></script>
-<!-- pages-refresh: infinite-noise-20260929-c -->
+  <script src="script.js"></script>
 </body>
 </html>
