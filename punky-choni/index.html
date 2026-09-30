@@ -1,69 +1,222 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Imaginary Girl</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif}
-.wrap{max-width:900px;margin:0 auto;padding:10px}
+html,body{margin:0;background:#050505;color:#fff;font-family:"Courier New",monospace}
+.wrap{max-width:1100px;margin:0 auto;padding:8px}
 .stage{position:relative;width:100%;background:#000}
-.stage img{display:block;width:100%;height:auto}
-.hotspot{position:absolute;background:transparent;border:0;cursor:pointer;touch-action:manipulation}
-.hotspot:focus-visible{outline:2px solid #ff5fc8;outline-offset:2px}
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px;background:#000c;z-index:20}
+.stage img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.hotspot{position:absolute;background:transparent;border:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.hotspot:focus-visible{outline:2px solid #ff78c8;outline-offset:1px}
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px;background:#000c;z-index:50}
 .modal.open{display:flex}
-.card{width:min(520px,100%);max-height:80vh;overflow:auto;background:#111;border:2px solid #ff5fc8;padding:18px;box-shadow:0 0 25px #ff5fc866}
-.card h2{margin-top:0;color:#ff8fda}
-.close{float:right;background:#ff5fc8;color:#111;border:0;padding:10px 14px;font-weight:bold}
-.msg{border-top:1px dashed #82456f;padding:9px 0}
-.reply{color:#ff9edc}
-.mail{color:#ff9edc}
-small{color:#aaa}
-@media(max-width:600px){.wrap{padding:0}.card{border-radius:0}}
+.card{width:min(650px,96vw);max-height:84vh;overflow:auto;background:#0b0b0b;border:2px solid #ff76bd;padding:18px;box-shadow:0 0 0 2px #2a1421,0 0 28px #ff4ca866}
+.card h2{margin:0 52px 14px 0;color:#ff91c9;font:700 23px "Courier New",monospace;text-transform:lowercase}
+.card p{line-height:1.45}
+.close{float:right;background:#ff88c8;color:#16000d;border:1px solid #ffd3e8;padding:8px 12px;font-weight:bold;cursor:pointer}
+.sep{border-top:1px dashed #7f3e61;margin:12px 0}
+.entry{padding:10px 0;border-bottom:1px dashed #533044}
+.entry b,.reply,.pink{color:#ff8bc7}
+.tiny{color:#9a8791;font-size:11px}
+.album{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tile{border:1px solid #7f3e61;background:#171017;padding:12px;min-height:90px}
+.fakeplay{display:inline-block;margin-top:6px;padding:7px 10px;border:1px solid #ff76bd;background:#23101d;color:#ff9bce}
+.guest-form{display:grid;gap:7px;margin-top:12px}
+.guest-form input,.guest-form textarea{width:100%;background:#f1e7e7;color:#111;border:1px solid #ff8fc7;padding:9px;font:14px "Courier New",monospace}
+.guest-form textarea{min-height:76px;resize:vertical}
+.guest-form button{background:#ff86c5;color:#19000d;border:1px solid #ffd4e8;padding:10px;font:bold 13px "Courier New",monospace}
+.linkrow{display:block;color:#ff97cf;text-decoration:underline;padding:7px 0}
+@media(max-width:700px){
+  .wrap{padding:0}
+  .card{width:96vw;max-height:86vh;padding:14px}
+  .album{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="stage" id="stage">
-    <img src="../assets/imaginary-girl-main.png?v=3" alt="Imaginary Girl homepage">
-    <button class="hotspot" style="left:2%;top:18%;width:17%;height:4%" data-view="home" aria-label="Home"></button>
-    <button class="hotspot" style="left:2%;top:23%;width:17%;height:4%" data-view="diary" aria-label="Diary"></button>
-    <button class="hotspot" style="left:2%;top:28%;width:17%;height:4%" data-view="photos" aria-label="Photos"></button>
-    <button class="hotspot" style="left:2%;top:33%;width:17%;height:4%" data-view="videos" aria-label="Videos"></button>
-    <button class="hotspot" style="left:2%;top:38%;width:17%;height:4%" data-view="guestbook" aria-label="Guestbook"></button>
-    <button class="hotspot" style="left:2%;top:43%;width:17%;height:4%" data-view="about" aria-label="About"></button>
-    <button class="hotspot" style="left:2%;top:48%;width:17%;height:4%" data-view="contact" aria-label="Contact"></button>
-    <button class="hotspot" style="left:66%;top:15%;width:31%;height:12%" data-view="music" aria-label="Music player"></button>
-    <button class="hotspot" style="left:22%;top:56%;width:46%;height:30%" data-view="guestbook" aria-label="Guestbook area"></button>
+    <img src="../assets/imaginary-girl-main.png?v=5" alt="Imaginary Girl homepage">
+
+    <!-- LEFT MENU: positioned over the exact labels in the image -->
+    <button class="hotspot" style="left:3.1%;top:56.3%;width:18.2%;height:3.8%" data-view="home" aria-label="Home"></button>
+    <button class="hotspot" style="left:3.1%;top:60.0%;width:18.2%;height:3.3%" data-view="diary" aria-label="Diary"></button>
+    <button class="hotspot" style="left:3.1%;top:63.4%;width:18.2%;height:3.3%" data-view="photos" aria-label="Photos"></button>
+    <button class="hotspot" style="left:3.1%;top:66.8%;width:18.2%;height:3.3%" data-view="videos" aria-label="Videos"></button>
+    <button class="hotspot" style="left:3.1%;top:70.2%;width:18.2%;height:3.3%" data-view="guestbook" aria-label="Guestbook"></button>
+    <button class="hotspot" style="left:3.1%;top:73.6%;width:18.2%;height:3.3%" data-view="links" aria-label="Links"></button>
+    <button class="hotspot" style="left:3.1%;top:77.0%;width:18.2%;height:3.3%" data-view="about" aria-label="About"></button>
+    <button class="hotspot" style="left:3.1%;top:80.4%;width:18.2%;height:3.3%" data-view="contact" aria-label="Contact"></button>
+    <button class="hotspot" style="left:3.1%;top:84.2%;width:18.2%;height:5.1%" data-view="contact" aria-label="Send me a message"></button>
+
+    <!-- TOP MENU: same sections, also clickable -->
+    <button class="hotspot" style="left:23.6%;top:13.2%;width:5.2%;height:4.5%" data-view="home" aria-label="Home top"></button>
+    <button class="hotspot" style="left:29.1%;top:13.2%;width:5.2%;height:4.5%" data-view="diary" aria-label="Diary top"></button>
+    <button class="hotspot" style="left:35.1%;top:13.2%;width:5.8%;height:4.5%" data-view="photos" aria-label="Photos top"></button>
+    <button class="hotspot" style="left:41.8%;top:13.2%;width:5.7%;height:4.5%" data-view="videos" aria-label="Videos top"></button>
+    <button class="hotspot" style="left:48.4%;top:13.2%;width:7.8%;height:4.5%" data-view="guestbook" aria-label="Guestbook top"></button>
+    <button class="hotspot" style="left:57.5%;top:13.2%;width:5.2%;height:4.5%" data-view="links" aria-label="Links top"></button>
+    <button class="hotspot" style="left:63.8%;top:13.2%;width:5.4%;height:4.5%" data-view="about" aria-label="About top"></button>
+    <button class="hotspot" style="left:70.4%;top:13.2%;width:6.4%;height:4.5%" data-view="contact" aria-label="Contact top"></button>
+
+    <!-- extra interactive areas -->
+    <button class="hotspot" style="left:72.0%;top:4.9%;width:26.0%;height:7.2%" data-view="music" aria-label="Music player"></button>
+    <button class="hotspot" style="left:66.0%;top:18.2%;width:32.0%;height:80.0%" data-view="guestbook" aria-label="Guestbook panel"></button>
   </div>
 </div>
+
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="title">
   <div class="card">
-    <button class="close" id="close">X</button>
+    <button class="close" id="close" aria-label="Cerrar">X</button>
     <h2 id="title"></h2>
     <div id="body"></div>
   </div>
 </div>
+
 <script>
 const modal=document.getElementById('modal');
 const title=document.getElementById('title');
 const body=document.getElementById('body');
-const views={
-home:['HOME','Punky_Choni online. Welcome to Imaginary Girl.'],
-diary:['DIARY','<p><b>29/09</b> — Metallica demasiado alto. Chicle rosa. No me rayes.</p><p><b>28/09</b> — Britney otra vez. Sí, ¿y qué?</p><p><b>27/09</b> — Hoy paso de todo el mundo.</p>'],
-photos:['PHOTOS','<p>Álbum personal de Punky_Choni.</p><p><small>Las fotos se irán añadiendo aquí.</small></p>'],
-videos:['VIDEOS','<p>Clips, webcam y basura digital de 2005.</p>'],
-guestbook:['GUESTBOOK','<div class="msg"><b>xX_darkboy_Xx:</b> eres perfecta ♥</div><div class="msg reply"><b>Punky_Choni:</b> ya lo sé. siguiente.</div><div class="msg"><b>anonymous69:</b> estás sola esta noche?</div><div class="msg reply"><b>Punky_Choni:</b> qué pesados sois.</div><div class="msg"><b>cam_freak:</b> enciende la webcam!!!</div><div class="msg reply"><b>Punky_Choni:</b> págate una vida.</div>'],
-about:['ABOUT','<p>Morena, punky-choni, adicta al chicle rosa, Metallica, Britney Spears y al estampado de leopardo.</p><p>Fuma, lleva piercings en la nariz y ombligo y responde mal porque le da la gana.</p>'],
-contact:['CONTACT','<p class="mail">Punky_Choni@hotmail.com</p>'],
-music:['NOW PLAYING','<p>METALLICA</p><p>Britney Spears</p><p><small>reproductor visual estilo 2000</small></p>']
+
+const staticViews={
+  home:{
+    title:'home',
+    html:`
+      <p class="pink"><b>Punky_Choni online 😈</b></p>
+      <p>just a girl with nothing to say.<br>i post what i want, when i want.<br>if you don't like it, don't stay.</p>
+      <div class="sep"></div>
+      <p><b>status:</b> chewing pink gum · Metallica too loud · probably ignoring MSN</p>
+      <p class="tiny">last update: 12.02.2005 // 22:41</p>`
+  },
+  diary:{
+    title:'diary',
+    html:`
+      <div class="entry"><b>12.02.2005</b><br>me he puesto Metallica otra vez. si alguien llama al fijo que diga que no estoy.</div>
+      <div class="entry"><b>11.02.2005</b><br>me compré otro mechero rosa. no necesitaba otro mechero rosa.</div>
+      <div class="entry"><b>09.02.2005</b><br>Britney sigue siendo Britney y al que le moleste que cierre la página.</div>
+      <div class="entry"><b>07.02.2005</b><br>Yoli dice que me paso contestando a la gente. Yoli no entiende nada.</div>`
+  },
+  photos:{
+    title:'photos',
+    html:`
+      <p class="tiny">do not steal my pics!!!</p>
+      <div class="album">
+        <div class="tile"><b>last_night.jpg 😈</b><br><span class="tiny">flash, espejo, cero paciencia.</span></div>
+        <div class="tile"><b>details.jpg</b><br><span class="tiny">piercing rosa + leopardo.</span></div>
+        <div class="tile"><b>mood.jpg</b><br><span class="tiny">chicle, cigarro, uñas oscuras.</span></div>
+        <div class="tile"><b>shoes.jpg</b><br><span class="tiny">plataformas. sí, pesan.</span></div>
+      </div>`
+  },
+  videos:{
+    title:'videos',
+    html:`
+      <div class="entry"><b>webcam_01.avi</b><br>00:34 · habitación · señal horrible<br><span class="fakeplay">▶ play</span></div>
+      <div class="entry"><b>metallica_room.mov</b><br>00:18 · cámara temblando · volumen demasiado alto<br><span class="fakeplay">▶ play</span></div>
+      <div class="entry"><b>girls_night_03.mpg</b><br>00:51 · no preguntes<br><span class="fakeplay">▶ play</span></div>
+      <p class="tiny">los botones son parte de la ficción de la página; no reproducen vídeo real todavía.</p>`
+  },
+  links:{
+    title:'links',
+    html:`
+      <a class="linkrow" href="#" onclick="return false">♥ metallica fan page</a>
+      <a class="linkrow" href="#" onclick="return false">♥ britney shrine</a>
+      <a class="linkrow" href="#" onclick="return false">♥ fotolog de yoli</a>
+      <a class="linkrow" href="#" onclick="return false">♥ piercing + tattoo stuff</a>
+      <a class="linkrow" href="#" onclick="return false">♥ leopard print forever</a>
+      <p class="tiny">old web links // some are dead because obviously it's 2005.</p>`
+  },
+  about:{
+    title:'about',
+    html:`
+      <p><b>nickname:</b> Punky_Choni</p>
+      <p><b>age:</b> 22</p>
+      <p><b>music:</b> Metallica + Britney Spears</p>
+      <p><b>uniform:</b> chándal, plataformas, leopardo</p>
+      <p><b>bad habits:</b> chicle rosa, cigarrillos, responder borde</p>
+      <p><b>piercings:</b> nariz + ombligo</p>
+      <p class="tiny">pretty, mean and online 😈</p>`
+  },
+  contact:{
+    title:'contact',
+    html:`
+      <p class="pink"><b>Punky_Choni@hotmail.com</b></p>
+      <p>MSN: ask first. don't add me and then say "hola wapa".</p>
+      <div class="sep"></div>
+      <p><b>subject:</b> whatever<br><b>status:</b> online / away / ignoring you</p>`
+  },
+  music:{
+    title:'now playing',
+    html:`
+      <p class="pink"><b>Metallica — Nothing Else Matters</b></p>
+      <p>00:00 / 06:28</p>
+      <div class="sep"></div>
+      <p>also in the Winamp queue:</p>
+      <p>Britney Spears · random burned CD · more Metallica</p>`
+  }
 };
-document.querySelectorAll('.hotspot').forEach(btn=>btn.addEventListener('click',()=>{
-  const v=views[btn.dataset.view];
-  title.textContent=v[0]; body.innerHTML=v[1]; modal.classList.add('open');
-}));
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function getGuestbook(){
+  try{return JSON.parse(localStorage.getItem('ig-public-guestbook')||'[]')}catch(e){return[]}
+}
+function saveGuestbook(items){
+  try{localStorage.setItem('ig-public-guestbook',JSON.stringify(items.slice(-20)))}catch(e){}
+}
+function guestbookHTML(){
+  const saved=getGuestbook().map(x=>`
+    <div class="entry"><b>${esc(x.nick)}:</b> ${esc(x.msg)}</div>
+    <div class="entry reply"><b>Punky_Choni 😈:</b> ${esc(x.reply)}</div>`).join('');
+  return `
+    <div class="entry"><b>angelboy2001:</b> you're so fucking hot 😍</div>
+    <div class="entry reply"><b>Punky_Choni 😈:</b> ya lo he dicho mil veces. no.</div>
+    <div class="entry"><b>metalhead93:</b> what's your favorite album? 🤘</div>
+    <div class="entry reply"><b>Punky_Choni 😈:</b> deja de hacerme preguntas de mierda.</div>
+    <div class="entry"><b>sweetdude:</b> you're the most beautiful girl i've ever seen.</div>
+    <div class="entry reply"><b>Punky_Choni 😈:</b> das vergüenza.</div>
+    ${saved}
+    <form class="guest-form" id="guestForm">
+      <input id="guestNick" maxlength="20" placeholder="nickname">
+      <textarea id="guestMsg" maxlength="180" placeholder="write something..."></textarea>
+      <button type="submit">POST TO GUESTBOOK 😈</button>
+    </form>`;
+}
+function bindGuestbook(){
+  const form=document.getElementById('guestForm');
+  if(!form)return;
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const nick=(document.getElementById('guestNick').value||'an0nym0us').trim();
+    const msg=document.getElementById('guestMsg').value.trim();
+    if(!msg)return;
+    const replies=['ya. ¿y? 😈','qué pesado eres.','JAJAJA sueña.','me aburres. siguiente.','mañana vuelves igual.','vale, campeón.'];
+    const items=getGuestbook();
+    items.push({nick,msg,reply:replies[Math.floor(Math.random()*replies.length)]});
+    saveGuestbook(items);
+    body.innerHTML=guestbookHTML();
+    bindGuestbook();
+  });
+}
+function openView(name){
+  if(name==='guestbook'){
+    title.textContent='guestbook';
+    body.innerHTML=guestbookHTML();
+    bindGuestbook();
+  }else{
+    const v=staticViews[name]||staticViews.home;
+    title.textContent=v.title;
+    body.innerHTML=v.html;
+  }
+  modal.classList.add('open');
+}
+document.querySelectorAll('.hotspot').forEach(btn=>{
+  btn.addEventListener('click',e=>{e.stopPropagation();openView(btn.dataset.view)});
+});
 document.getElementById('close').addEventListener('click',()=>modal.classList.remove('open'));
 modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
