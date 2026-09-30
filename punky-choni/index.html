@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>PUNKY CHONI™</title><style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#ffb6df;color:#111;font-family:monospace;image-rendering:pixelated}button{font:inherit}
+#game{height:100dvh;display:flex;flex-direction:column;background:repeating-linear-gradient(0deg,#ffb6df 0 3px,#ffa5d5 3px 6px)}
+header{background:#111;color:#7cff00;padding:7px;font-weight:bold;display:flex;justify-content:space-between;font-size:12px}
+#scene{flex:1;position:relative;overflow:hidden;padding:12px;border:5px solid #111;background:#d8f4ff}
+#scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 4px,#0001 4px 5px)}
+h1{font:900 15vw/0.72 Arial,sans-serif;letter-spacing:-.09em;margin:2vh 0;color:#ff1493;-webkit-text-stroke:2px #111;transform:skew(-5deg)}
+#art{height:30%;display:grid;place-items:center;font-size:min(26vw,150px);filter:contrast(1.3)}
+#text{background:#fff;border:4px solid #111;padding:9px;min-height:92px;font-weight:bold;font-size:14px}
+#stats{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:#111;padding:2px;font-size:9px;text-align:center}.stat{background:#fff;padding:4px 1px}.stat b{display:block;font-size:14px}
+#choices{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px;background:#111}
+#choices button{min-height:48px;border:0;background:#fff;text-transform:uppercase;font-weight:900;padding:5px}.pink{background:#ff1493!important}.green{background:#7cff00!important}
+#start{position:fixed;inset:0;z-index:9;background:#111;color:#fff;display:grid;place-content:center;text-align:center;padding:18px}#start h1{font-size:20vw;color:#ff1493}#start button{border:4px solid #fff;background:#7cff00;padding:18px;font-weight:900;font-size:20px}
+</style></head><body><div id="start"><h1>PUNKY<br>CHONI™</h1><p>AÑO 2003 · VIERNES · 17,40 € · BATERÍA 12%</p><button onclick="start()">SALIR DE CASA</button></div>
+<div id="game"><header><span>PUNKY CHONI™</span><span id="clock">VIERNES 18:03</span></header><div id="scene"><h1 id="title">BARRIO</h1><div id="art">🐆📱</div><div id="text"></div></div><div id="stats"></div><div id="choices"></div></div>
+<script>
+const S={glamour:2,drama:3,pasta:17,resaca:0,reputacion:4,bateria:12,turno:0};
+const E=[
+["PORTAL","Tu Nokia vibra. SMS: «dicen que estás hablando de mí». Nadie firma.",["CONTESTAR",-1,2,1],["PASAR",-0,0,-1]],
+["BAZAR","Hay pendientes de plástico, chicle y una funda de móvil con purpurina.",["COMPRAR",-4,-1,2],["ROBAR MIRADAS",0,1,1]],
+["GASOLINERA","Neón. Dos scooters. Una amiga te ofrece un refresco sospechosamente energético.",["BEBER",-2,1,1],["FUMAR FUERA",-1,2,0]],
+["CENTRO COMERCIAL","Suena un politono horrible. Las plataformas de leopardo están rebajadas.",["PLATAFORMAS",-9,0,4],["FOTOMATÓN",-3,-1,2]],
+["DESCAMPADO","Alguien ha traído un altavoz diminuto. Suena fatal. Perfecto.",["BAILAR",0,-1,3],["LIARLA",0,4,2]],
+["RECREATIVOS","La máquina de baile cuesta 1 €. Hay público.",["JUGAR",-1,-1,3],["MIRAR",0,0,-1]],
+["DISCOTECA","El portero te mira las plataformas. Dentro todo es láser, humo y drama.",["ENTRAR",-6,3,4],["VOLVER AL BARRIO",0,-2,-1]]
+];
+function stats(){statsEl.innerHTML=[["GLAM",S.glamour],["DRAMA",S.drama],["PASTA",S.pasta+"€"],["RESACA",S.resaca],["REP",S.reputacion]].map(x=>'<div class=stat>'+x[0]+'<b>'+x[1]+'</b></div>').join('')}
+const statsEl=document.getElementById("stats"),ch=document.getElementById("choices"),txt=document.getElementById("text"),ttl=document.getElementById("title"),art=document.getElementById("art");
+function beep(){let A=window.AudioContext||window.webkitAudioContext,a=new A,o=a.createOscillator(),g=a.createGain();o.type="square";o.frequency.value=[110,165,220,330][Math.random()*4|0];g.gain.value=.04;o.connect(g).connect(a.destination);o.start();o.stop(a.currentTime+.06)}
+function render(){let e=E[S.turno%E.length];ttl.textContent=e[0];txt.textContent=e[1];art.textContent=["🐆📱","💄🛍️","⛽🛵","👢✨","📻🌙","🕹️💥","💿🚬"][S.turno%E.length];ch.innerHTML="";[e[2],e[3]].forEach((a,i)=>{let b=document.createElement("button");b.className=i?"green":"pink";b.textContent=a[0];b.onclick=()=>act(a);ch.appendChild(b)});stats()}
+function act(a){beep();S.pasta=Math.max(0,S.pasta+a[1]);S.drama=Math.max(0,S.drama+a[2]);S.glamour=Math.max(0,S.glamour+a[3]);S.reputacion+=Math.random()>.45?1:-1;S.resaca+=S.turno>2?1:0;S.bateria=Math.max(0,S.bateria-2);S.turno++;document.getElementById("clock").textContent="VIERNES "+(18+Math.floor(S.turno/3))+":"+String((S.turno*17)%60).padStart(2,"0");render()}
+function start(){document.getElementById("start").style.display="none";render();beep()}
+</script></body></html>
