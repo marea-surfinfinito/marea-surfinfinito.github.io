@@ -168,17 +168,61 @@ function getGuestbook(){
 function saveGuestbook(items){
   try{localStorage.setItem('ig-public-guestbook',JSON.stringify(items.slice(-20)))}catch(e){}
 }
+const liveNicks=['xX_DarkBoy_Xx','cam_freak86','rubio_69','metallica4ever','sk8r_666','latinlover2004','n0name','MSN_dude','pablito_x','badboy81','webcamking','angel_oscuro'];
+const liveMsgs=[
+  'hola wapa 😏',
+  'pon otra foto anda',
+  'estás tremenda 😈',
+  'contesta al msn',
+  'esa foto me mata',
+  'qué haces esta noche?',
+  'eres demasiado para esta web',
+  'mándame una foto solo a mí',
+  'te he agregado al messenger',
+  'vaya mirada tienes',
+  'me vas a ignorar otra vez? 😂',
+  'sube foto nueva ya',
+  'leopardo + tú = peligro',
+  'dime que estás conectada',
+  'me tienes enganchado a esta página',
+  'qué borde eres y por eso vuelvo',
+  'esa estética me vuelve loco',
+  'hola preciosa, no seas mala'
+];
+const punkyAutoReplies=[
+  'qué pesado.',
+  'sigue soñando 😈',
+  'no.',
+  'JAJAJA ni de coña.',
+  'te bloqueo y vuelves con otro nick.',
+  'me aburres.',
+  'qué vergüenza das.',
+  'vale, campeón.',
+  '¿no tienes otra cosa que hacer?',
+  'sí sí, lo que tú digas.',
+  'mañana vuelves igual.',
+  'vete a dormir.'
+];
+let liveFeed=[];
+function pushLive(nick,msg,reply=null){
+  liveFeed.push({nick,msg,reply});
+  if(liveFeed.length>36) liveFeed=liveFeed.slice(-36);
+}
 function guestbookHTML(){
   const saved=getGuestbook().map(x=>`
     <div class="entry"><b>${esc(x.nick)}:</b> ${esc(x.msg)}</div>
     <div class="entry reply"><b>Punky_Choni 😈:</b> ${esc(x.reply)}</div>`).join('');
+  const live=liveFeed.map(x=>`
+    <div class="entry"><b>${esc(x.nick)}:</b> ${esc(x.msg)}</div>
+    ${x.reply?'<div class="entry reply"><b>Punky_Choni 😈:</b> '+esc(x.reply)+'</div>':''}`).join('');
   return `
-    <div class="entry"><b>angelboy2001:</b> you're so fucking hot 😍</div>
+    <div class="entry"><b>angelboy2001:</b> estás increíble 😍</div>
     <div class="entry reply"><b>Punky_Choni 😈:</b> ya lo he dicho mil veces. no.</div>
     <div class="entry"><b>metalhead93:</b> what's your favorite album? 🤘</div>
     <div class="entry reply"><b>Punky_Choni 😈:</b> deja de hacerme preguntas de mierda.</div>
-    <div class="entry"><b>sweetdude:</b> you're the most beautiful girl i've ever seen.</div>
+    <div class="entry"><b>sweetdude:</b> eres la chica más guapa de internet.</div>
     <div class="entry reply"><b>Punky_Choni 😈:</b> das vergüenza.</div>
+    ${live}
     ${saved}
     <form class="guest-form" id="guestForm">
       <input id="guestNick" maxlength="20" placeholder="nickname">
@@ -202,6 +246,33 @@ function bindGuestbook(){
     bindGuestbook();
   });
 }
+function refreshGuestbookIfOpen(){
+  if(modal.classList.contains('open') && title.textContent==='guestbook'){
+    body.innerHTML=guestbookHTML();
+    bindGuestbook();
+    body.scrollTop=body.scrollHeight;
+  }
+}
+function scheduleRandomGuest(){
+  const delay=3500+Math.random()*6500;
+  setTimeout(()=>{
+    const nick=liveNicks[Math.floor(Math.random()*liveNicks.length)];
+    const msg=liveMsgs[Math.floor(Math.random()*liveMsgs.length)];
+    pushLive(nick,msg);
+    refreshGuestbookIfOpen();
+    if(Math.random()<0.55){
+      setTimeout(()=>{
+        const last=liveFeed[liveFeed.length-1];
+        if(last && last.nick===nick && !last.reply){
+          last.reply=punkyAutoReplies[Math.floor(Math.random()*punkyAutoReplies.length)];
+          refreshGuestbookIfOpen();
+        }
+      },900+Math.random()*2200);
+    }
+    scheduleRandomGuest();
+  },delay);
+}
+scheduleRandomGuest();
 function openView(name){
   if(name==='guestbook'){
     title.textContent='guestbook';
