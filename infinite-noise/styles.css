@@ -156,3 +156,31 @@ html,body{max-width:100%;overflow-x:hidden!important}
   .stream-block{width:100%;box-sizing:border-box}
   .stream-block span{font-size:15vw!important;transform:none!important}
 }
+
+/* v31 — generated stream uses the same giant scale as the opening */
+#infinite-stream .stream-block{
+  padding:5vh 0 7vh!important;
+  width:100vw!important;
+  max-width:100vw!important;
+  overflow:hidden!important;
+  transform:none!important;
+}
+#infinite-stream .stream-block > span{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  font-size:clamp(72px,24vw,220px)!important;
+  line-height:.72!important;
+  letter-spacing:-.09em!important;
+  font-weight:900!important;
+  overflow-wrap:anywhere!important;
+  word-break:break-all!important;
+  white-space:normal!important;
+  transform:none!important;
+}
+@media(max-width:700px){
+ #infinite-stream .stream-block > span{
+   font-size:24vw!important;
+   line-height:.70!important;
+ }
+}
