@@ -177,9 +177,18 @@
   appendBlocks(9);
 
   const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{ if(entry.isIntersecting) appendBlocks(8); });
-  },{rootMargin:'2200px 0px 2200px 0px'});
+    entries.forEach(entry=>{ if(entry.isIntersecting) appendBlocks(16); });
+  },{rootMargin:'5000px 0px 5000px 0px'});
   if(sentinel) observer.observe(sentinel);
+
+  function keepInfinite(){
+    // Never let the reader reach the physical end: grow the document procedurally
+    // whenever fewer than ~12 screens remain below the viewport.
+    const remaining=document.documentElement.scrollHeight-(scrollY+innerHeight);
+    if(remaining < innerHeight*12) appendBlocks(24);
+  }
+  appendBlocks(28);
+  keepInfinite();
 
   const audioEngine=(()=>{
     let ctx, master, started=false, noiseNodes=[], droneNodes=[], clickTimer=null, scanTimer=null;
@@ -354,6 +363,7 @@
       const AC=window.AudioContext||window.webkitAudioContext;
       if(!AC) return false;
       ctx=new AC();
+      window.__infiniteNoiseAudioContext=ctx;
       if(ctx.state==='suspended') {
         try{ await ctx.resume(); }catch(e){}
       }
@@ -406,13 +416,21 @@
   window.__infiniteNoiseAudio=audioEngine;
 
   musicGate?.addEventListener('click',async()=>{
-    // Hide the gate immediately on iOS so entering the page never depends on audio startup.
     musicGate.classList.add('gone');
     document.body.classList.add('music-entered');
-    try{ await audioEngine.start(); }catch(err){
-      console.warn('Audio could not start, visual experience continues.',err);
-    }
+    try{
+      await audioEngine.start();
+      // iOS may create the context but leave it suspended.
+      if(window.__infiniteNoiseAudioContext?.state==='suspended') await window.__infiniteNoiseAudioContext.resume();
+    }catch(err){ console.warn('Audio startup failed',err); }
   },{passive:false});
+
+  // A second direct gesture fallback for Safari/iOS audio policies.
+  document.addEventListener('touchend',()=>{
+    if(document.body.classList.contains('music-entered') && !audioEngine.started){
+      audioEngine.start().catch(()=>{});
+    }
+  },{once:true,passive:true});
 
   audioBtn?.addEventListener('click',()=>{
     if(audioEngine.started) audioEngine.stop(); else audioEngine.start().catch(()=>{});
@@ -423,6 +441,7 @@
     if(ticking) return;
     requestAnimationFrame(()=>{
       audioEngine.updateFromScroll();
+      keepInfinite();
       if(Math.random()>.78) glitchBurst(Math.min(3,1+scrollY/Math.max(innerHeight,1)/24));
       ticking=false;
     });
