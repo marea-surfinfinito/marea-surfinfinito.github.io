@@ -128,3 +128,9 @@ html{scrollbar-width:thin}
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-thumb{background:#000}
 ::-webkit-scrollbar-track{background:#fff}
+
+/* v28: almost invisible scroll indicator */
+html{scrollbar-width:thin!important}
+::-webkit-scrollbar{width:1px!important;height:1px!important}
+::-webkit-scrollbar-thumb{background:currentColor!important}
+::-webkit-scrollbar-track{background:transparent!important}
