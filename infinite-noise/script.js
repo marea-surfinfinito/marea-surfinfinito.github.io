@@ -346,9 +346,17 @@
       },550+Math.random()*900);
     }
 
-    function start(){
-      if(started) return;
-      ctx=new (window.AudioContext||window.webkitAudioContext)();
+    async function start(){
+      if(started) {
+        if(ctx && ctx.state==='suspended') await ctx.resume();
+        return true;
+      }
+      const AC=window.AudioContext||window.webkitAudioContext;
+      if(!AC) return false;
+      ctx=new AC();
+      if(ctx.state==='suspended') {
+        try{ await ctx.resume(); }catch(e){}
+      }
       master=ctx.createGain();
       const comp=ctx.createDynamicsCompressor();
       master.gain.value=.22;
@@ -362,6 +370,7 @@
       started=true;
       audioBtn?.classList.add('active');
       if(audioBtn) audioBtn.textContent='NOISE ON';
+      return true;
     }
 
     function stop(){
@@ -395,14 +404,17 @@
     return {start,stop,updateFromScroll,bump,get started(){return started;}};
   })();
 
-  musicGate?.addEventListener('click',()=>{
-    audioEngine.start();
+  musicGate?.addEventListener('click',async()=>{
+    // Hide the gate immediately on iOS so entering the page never depends on audio startup.
     musicGate.classList.add('gone');
     document.body.classList.add('music-entered');
-  });
+    try{ await audioEngine.start(); }catch(err){
+      console.warn('Audio could not start, visual experience continues.',err);
+    }
+  },{passive:false});
 
   audioBtn?.addEventListener('click',()=>{
-    if(audioEngine.started) audioEngine.stop(); else audioEngine.start();
+    if(audioEngine.started) audioEngine.stop(); else audioEngine.start().catch(()=>{});
   });
 
   let ticking=false;
