@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <button id="music-gate" class="music-gate" type="button" aria-label="Play Noise"><span>PLAY NOISE</span><small>INFINITE NOISE / TOUCH TO ENTER</small></button>
+  <button id="music-gate" class="music-gate" type="button" aria-label="Play Noise" onclick="this.style.display='none';document.body.classList.add('music-entered');"><span>PLAY NOISE</span><small>INFINITE NOISE / TOUCH TO ENTER</small></button>
   <main class="page">
     <header class="top">
       <button id="audio-toggle" class="audio-toggle" type="button">START NOISE</button>
