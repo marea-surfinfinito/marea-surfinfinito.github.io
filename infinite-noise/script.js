@@ -57,14 +57,25 @@ async function startAudio(){
   if(!ac||ac.state==='closed'){
    ac=new AC();
    master=ac.createGain();master.gain.value=.42;master.connect(ac.destination);
-   const hum=ac.createOscillator(),hg=ac.createGain();
-   hum.type='sawtooth';hum.frequency.value=55;hg.gain.value=.055;hum.connect(hg).connect(master);hum.start();sources.push(hum);
-   const len=ac.sampleRate*2,b=ac.createBuffer(1,len,ac.sampleRate),d=b.getChannelData(0);
-   for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*.7;
-   const ns=ac.createBufferSource(),bp=ac.createBiquadFilter(),ng=ac.createGain();
-   ns.buffer=b;ns.loop=true;bp.type='bandpass';bp.frequency.value=1250;bp.Q.value=.7;ng.gain.value=.20;
-   ns.connect(bp).connect(ng).connect(master);ns.start();sources.push(ns);
-   setInterval(()=>{if(on&&ac&&ac.state==='running'){bp.frequency.setTargetAtTime(250+Math.random()*5000,ac.currentTime,.08);hum.frequency.setTargetAtTime(38+Math.random()*150,ac.currentTime,.12)}},700);
+   // Tiny 8-bit handheld sound: square channels + crude low-rate noise.
+   const crush=ac.createWaveShaper(),cg=ac.createGain();
+   const curve=new Float32Array(256);for(let i=0;i<256;i++){const x=i/127.5-1;curve[i]=Math.round(x*7)/7}
+   crush.curve=curve;crush.oversample='none';cg.gain.value=.72;crush.connect(cg).connect(master);
+   const o1=ac.createOscillator(),o2=ac.createOscillator(),g1=ac.createGain(),g2=ac.createGain();
+   o1.type='square';o2.type='square';o1.frequency.value=110;o2.frequency.value=165;
+   g1.gain.value=.11;g2.gain.value=.055;o1.connect(g1).connect(crush);o2.connect(g2).connect(crush);o1.start();o2.start();sources.push(o1,o2);
+   const len=Math.max(256,(ac.sampleRate*.18)|0),b=ac.createBuffer(1,len,ac.sampleRate),d=b.getChannelData(0);
+   let hold=0,v=0;for(let i=0;i<len;i++){if(!(hold++%24))v=Math.random()<.5?-1:1;d[i]=v*.65}
+   const ns=ac.createBufferSource(),ng=ac.createGain();ns.buffer=b;ns.loop=true;ng.gain.value=.085;ns.connect(ng).connect(crush);ns.start();sources.push(ns);
+   const notes=[55,65.41,73.42,82.41,98,110,130.81,146.83,164.81,196,220,261.63,293.66,329.63,392,440,523.25];
+   setInterval(()=>{if(on&&ac&&ac.state==='running'){
+     const a=R(notes),bad=Math.random()<.3?1.03:1;
+     o1.frequency.setValueAtTime(a*bad,ac.currentTime);
+     o2.frequency.setValueAtTime(R(notes)*(Math.random()<.35?1.015:1),ac.currentTime);
+     g1.gain.setValueAtTime(.035+Math.random()*.13,ac.currentTime);
+     g2.gain.setValueAtTime(.018+Math.random()*.08,ac.currentTime);
+     ng.gain.setValueAtTime(.025+Math.random()*.12,ac.currentTime);
+   }},110+((Math.random()*170)|0));
   }
   if(ac.state==='suspended')await ac.resume();
   on=ac.state==='running';
