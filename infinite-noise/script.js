@@ -171,7 +171,7 @@
     for(let i=0;i<n;i++) frag.appendChild(makeBlock(++blockCount));
     stream.appendChild(frag);
     if(blockCount>16) document.body.classList.add('deep-noise');
-    audioEngine.bump(blockCount);
+    if(window.__infiniteNoiseAudio) window.__infiniteNoiseAudio.bump(blockCount);
   }
 
   appendBlocks(9);
@@ -403,6 +403,7 @@
 
     return {start,stop,updateFromScroll,bump,get started(){return started;}};
   })();
+  window.__infiniteNoiseAudio=audioEngine;
 
   musicGate?.addEventListener('click',async()=>{
     // Hide the gate immediately on iOS so entering the page never depends on audio startup.
