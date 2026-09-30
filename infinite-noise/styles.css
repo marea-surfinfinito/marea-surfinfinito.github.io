@@ -122,3 +122,9 @@ body.crt-hit .erosion{opacity:.5}
 .music-gate small{font:10px/1.2 "Courier New",monospace;letter-spacing:.18em}
 .music-gate:active{background:#fff;color:#000}
 .music-gate.gone{display:none}
+
+/* The scrollbar should read as a tiny indicator, not as the end of the work. */
+html{scrollbar-width:thin}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:#000}
+::-webkit-scrollbar-track{background:#fff}
