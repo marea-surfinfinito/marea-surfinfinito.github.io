@@ -472,6 +472,34 @@ body.intro-active footer{display:none}
   .enter-button{margin-top:38px}
 }
 
+
+/* --- información integrada dentro de cada camino --- */
+.compact-paths{padding-top:34px;padding-bottom:54px;min-height:100svh}
+.viewer-main{display:block}
+.path-block{margin-top:34px;padding-top:22px;border-top:1px solid #302d29}
+.path-block-label{
+  font:10px ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.16em;text-transform:uppercase;color:#6e685f;margin-bottom:13px
+}
+.path-block h4{font-size:24px;font-weight:400;margin:0 0 12px;color:#d5cdbf}
+.path-block p{margin:0;color:#89837a;line-height:1.7;font-size:14px}
+.path-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.path-item{border:1px solid #302d29;background:#10100f;padding:16px}
+.path-item b{display:block;color:#cfc7ba;font-weight:400;margin-bottom:6px}
+.path-item p{font-size:13px;line-height:1.55;color:#7f796f}
+.path-principles{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.path-principle{
+  border:1px solid #37332e;background:#11100f;padding:10px 12px;min-width:160px;flex:1 1 220px
+}
+.path-principle strong{display:block;font-weight:400;color:#cbc2b4;margin-bottom:5px}
+.path-principle span{display:block;color:#7a746b;font-size:12px;line-height:1.5}
+.viewer-side{position:sticky;top:0;align-self:start}
+@media(max-width:820px){
+  .compact-paths{padding-top:18px}
+  .path-list{grid-template-columns:1fr}
+  .viewer-side{position:static}
+}
+
 </style>
 </head>
 <body class="intro-active">
@@ -491,154 +519,15 @@ body.intro-active footer{display:none}
 <main id="siteContent">
 <section class="section compact-paths" id="caminos">
   <div class="wrap">
-    <div class="section-head">
-      <h2>Escoge un camino</h2>
-      <p class="section-intro">Seis reinterpretaciones abstractas inspiradas en manuscritos y ediciones históricas: papel, tinta, cartelas, cosido y tipografía. Sin fotografías.</p>
-    </div>
     <div class="gates" id="gates"></div>
     <div class="viewer" id="viewer" aria-live="polite"></div>
   </div>
 </section>
 
 
-<section class="section" id="cronologia">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Tiempo</h2>
-      <p class="section-intro">Los seis caminos no nacieron juntos. Esta línea separa el mundo de los clásicos chinos del Japón guerrero y, más tarde, de la reflexión samurái e inteligencia shinobi del período Edo.</p>
-    </div>
-    <div class="timeline-wrap">
-      <div class="timeline">
-        <article class="time-item"><div class="date">China antigua · texto estratificado</div><h3>Tao Te Ching</h3><p>La forma recibida tiene 81 secciones; manuscritos antiguos muestran que su transmisión fue más compleja.</p></article>
-        <article class="time-item"><div class="date">China antigua</div><h3>El arte de la guerra</h3><p>Tratado estratégico en 13 capítulos, con un cierre dedicado a la inteligencia y los agentes.</p></article>
-        <article class="time-item"><div class="date">Japón · tradición guerrera</div><h3>Bushidō</h3><p>No es un único código fijo, sino un conjunto cambiante de discursos e ideales sobre conducta guerrera.</p></article>
-        <article class="time-item"><div class="date">1676 · Edo</div><h3>Bansenshūkai</h3><p>Gran compilación shinobi atribuida a Fujibayashi Yasutake; las fuentes bibliográficas la registran en 22 volúmenes.</p></article>
-        <article class="time-item"><div class="date">1681 · Edo</div><h3>Shōninki</h3><p>Manual asociado a Natori Masazumi, estructurado en tres rollos y centrado en observación, adaptación e inteligencia.</p></article>
-        <article class="time-item"><div class="date">1709–1716 · Edo</div><h3>Hagakure</h3><p>Reflexiones de Yamamoto Tsunetomo recogidas en un mundo samurái ya alejado de la guerra civil constante.</p></article>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="conexiones">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Las conexiones</h2>
-      <p class="section-intro">No todas las líneas significan influencia directa. Unas señalan relación histórica documentada; otras, afinidades temáticas que sirven para navegar el portal.</p>
-    </div>
-    <div class="map-shell">
-      <div class="map-legend"><span>relación histórica</span><span class="echo">eco conceptual</span></div>
-      <div class="thought-map">
-        <div class="map-node n-tao">Tao Te Ching<small>vacío · agua · no-forzar</small></div>
-        <div class="map-node n-sunzi">El arte de la guerra<small>forma · terreno · inteligencia</small></div>
-        <div class="map-node n-bushido">Bushidō<small>conducta · deber · tradición</small></div>
-        <div class="map-node n-hagakure">Hagakure<small>decisión · servicio · mortalidad</small></div>
-        <div class="map-node n-shoninki">Shōninki<small>observación · disfraz · memoria</small></div>
-        <div class="map-node n-bansen">Bansenshūkai<small>sistema · señales · inteligencia</small></div>
-        <i class="flow echo f1"></i><i class="flow f2"></i><i class="flow echo f3"></i><i class="flow echo f4"></i><i class="flow f5"></i>
-      </div>
-      <p class="map-note">El enlace más fuerte del mapa es estratégico: la tradición de Sun Tzu reaparece en compilaciones shinobi posteriores. Bushidō y Hagakure se muestran próximos por contexto cultural, pero no como sinónimos. Tao y Sun Tzu comparten imágenes de flexibilidad y adaptación sin que el portal los reduzca a una sola doctrina.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="principios">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Principios</h2>
-      <p class="section-intro">Explora ideas que atraviesan varias obras. No como equivalencias exactas, sino como ecos: distintas respuestas a problemas semejantes.</p>
-    </div>
-    <div class="principles" id="chips"></div>
-    <div class="connections" id="connections"></div>
-  </div>
-</section>
-
-
-<section class="section" id="akutagawa-kurosawa">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Akutagawa → Kurosawa</h2>
-      <p class="section-intro">Un puente entre literatura y cine: la verdad fragmentada, el ego, la violencia, la percepción y la conversión de una idea escrita en una imagen.</p>
-    </div>
-
-    <div class="bridge-grid">
-      <article class="bridge-card">
-        <div class="eyebrow">Ryūnosuke Akutagawa · 1915</div>
-        <h3>Rashōmon</h3>
-        <p>Un relato breve situado junto a la gran puerta arruinada de Kioto. Hambre, decadencia y supervivencia erosionan las certezas morales. Kurosawa tomaría de aquí el título y la atmósfera del marco narrativo de su película.</p>
-        <a href="https://www.aozora.gr.jp/cards/000879/card128.html" target="_blank" rel="noopener">Leer el original japonés en Aozora Bunko ↗</a>
-      </article>
-      <article class="bridge-card">
-        <div class="eyebrow">Ryūnosuke Akutagawa · 1922</div>
-        <h3>En el bosque</h3>
-        <p>Un mismo crimen aparece a través de testimonios incompatibles. Cada voz recompone los hechos de una manera diferente. Éste es el núcleo narrativo que Kurosawa transforma en <em>Rashōmon</em>.</p>
-        <a href="https://www.aozora.gr.jp/cards/000879/card179.html" target="_blank" rel="noopener">Leer el original japonés en Aozora Bunko ↗</a>
-      </article>
-      <article class="bridge-card">
-        <div class="eyebrow">Ryūnosuke Akutagawa · 1927</div>
-        <h3>Kappa</h3>
-        <p>Una sátira fantástica y amarga sobre sociedad, cultura, trabajo, arte y locura. Amplía el portal desde la disciplina guerrera hacia una mirada moderna sobre el individuo atrapado dentro de un orden colectivo.</p>
-        <a href="https://www.aozora.gr.jp/cards/000879/card69.html" target="_blank" rel="noopener">Leer el original japonés en Aozora Bunko ↗</a>
-      </article>
-    </div>
-
-    <div class="film-line">
-      <div class="film-box">
-        <h3>En el bosque + Rashōmon</h3>
-        <p>Akutagawa construye una verdad que se rompe en versiones. El relato no ofrece un punto de vista soberano que cierre del todo el acontecimiento.</p>
-      </div>
-      <div class="arrow">→</div>
-      <div class="film-box">
-        <h3>Rashōmon · Kurosawa, 1950</h3>
-        <p>Kurosawa combina ambos relatos y convierte la incertidumbre narrativa en experiencia cinematográfica: espacio, lluvia, bosque, cuerpos y miradas pasan a formar parte del problema de la verdad.</p>
-      </div>
-    </div>
-
-    <div class="note">
-      <strong>Conexión con los seis caminos.</strong> La tensión entre percepción y realidad enlaza con Sun Tzu y la información; la ambigüedad moral dialoga con la disciplina y el deber del mundo guerrero; y la imposibilidad de fijar una verdad absoluta introduce un contrapunto moderno frente a sistemas que buscan orden, método o conducta.
-    </div>
-  </div>
-</section>
-
-<section class="section" id="kurosawa-visual">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>El cuaderno de Kurosawa</h2>
-      <p class="section-intro">Kurosawa fue pintor antes que cineasta y realizó cientos de dibujos y storyboards para traducir una película futura a color, movimiento, vestuario y composición.</p>
-    </div>
-
-    <div class="visual-archive">
-      <article class="visual-card">
-        <div><div class="eyebrow">1980</div><h3>Kagemusha</h3><p>Durante años de espera para financiar la película, Kurosawa convirtió escenas imaginadas en pinturas de gran formato. El film terminó naciendo, literalmente, de esos cuadros.</p></div>
-        <a href="https://www.criterion.com/current/posts/360-kagemusha-from-painting-to-film-pageantry" target="_blank" rel="noopener">Ver pinturas y estudio en Criterion ↗</a>
-      </article>
-      <article class="visual-card">
-        <div><div class="eyebrow">1985</div><h3>Ran</h3><p>Color como estrategia narrativa: ejércitos, clanes y violencia organizados mediante una planificación pictórica previa. Criterion documenta la reconstrucción de la película a través de pinturas y sketches.</p></div>
-        <a href="https://www.criterion.com/films/754-ran" target="_blank" rel="noopener">Abrir archivo de Ran ↗</a>
-      </article>
-      <article class="visual-card">
-        <div><div class="eyebrow">1990</div><h3>Dreams</h3><p>Los dibujos se utilizaron como referencia exacta de color para decorados, vestuario y fotografía. Aquí el storyboard deja de ser simple planificación y se acerca a una pintura autónoma.</p></div>
-        <a href="https://www.criterion.com/current/posts/3862-the-color-of-dreams" target="_blank" rel="noopener">Ver el archivo visual de Dreams ↗</a>
-      </article>
-      <article class="visual-card">
-        <div><div class="eyebrow">Archivo · 120 dibujos</div><h3>La mirada del samurái</h3><p>El catálogo del Museo ABC reúne storyboards de seis proyectos tardíos de Kurosawa y permite recorrer de forma continua su proceso pictórico y cinematográfico.</p></div>
-        <a href="https://museo.abc.es/wp-content/uploads/2011/04/ABC_AkiraKurosawa_MedRes.pdf" target="_blank" rel="noopener">Abrir catálogo del Museo ABC ↗</a>
-      </article>
-    </div>
-    <p class="rights">Las pinturas y storyboards de Akira Kurosawa siguen protegidos. Por eso el portal no almacena copias de las obras: enlaza a archivos, museos y ediciones que pueden mostrarlas legítimamente.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="note">
-      <strong>Nota histórica.</strong> “Bushidō” no designa un único libro canónico antiguo, sino un conjunto de ideales, discursos y códigos sobre la conducta guerrera que cambiaron con el tiempo. Aquí se presenta como tradición histórica y ética, diferenciándola de obras concretas como <em>Hagakure</em>, <em>Shōninki</em> o <em>Bansenshūkai</em>. El contenido de este portal es contextual y original; no reproduce traducciones modernas protegidas.
-    </div>
-  </div>
-</section>
 </main>
 
-<footer>\n  <div class="wrap">SEIS CAMINOS · Archivo de filosofía, estrategia y disciplina · cronología, conexiones y manuscritos relacionados</div>\n</footer>
+
 
 <script>
 const works=[
@@ -704,6 +593,54 @@ ideas:[
 ]}
 ];
 
+
+
+const workExtras={
+  tao:{
+    history:"El Tao Te Ching pertenece a la tradición filosófica china antigua. La versión recibida está organizada en 81 secciones, pero los manuscritos antiguos muestran una historia textual compleja. En el portal se trata como una tradición de pensamiento sobre el dao, la virtud, la naturalidad, el vacío y la acción no forzada.",
+    connections:[
+      ["El arte de la guerra","Comparte imágenes de flexibilidad, adaptación y ausencia de una forma rígida, aunque ambos textos persiguen fines distintos."],
+      ["Bansenshūkai","La idea de adaptarse a las condiciones reaparece siglos después en contextos estratégicos muy diferentes."]
+    ]
+  },
+  sunzi:{
+    history:"El arte de la guerra es un tratado estratégico chino organizado en 13 capítulos. El último se ocupa de inteligencia y agentes, lo que lo convierte en una referencia especialmente relevante para comprender textos shinobi posteriores.",
+    connections:[
+      ["Bansenshūkai","La tradición estratégica de Sun Tzu reaparece de manera explícita en compilaciones shinobi posteriores."],
+      ["Shōninki","Ambos privilegian información, observación y comprensión del entorno antes que el choque directo."],
+      ["Tao Te Ching","Comparten imágenes de flexibilidad y transformación sin ser una misma doctrina."]
+    ]
+  },
+  hagakure:{
+    history:"Hagakure reúne reflexiones de Yamamoto Tsunetomo recogidas por Tashiro Tsuramoto entre 1709 y 1716. Surge en pleno período Edo, cuando la identidad samurái debía pensarse también en una sociedad más estable y burocrática, no solo en el campo de batalla.",
+    connections:[
+      ["Bushidō","Hagakure es una obra concreta dentro del amplio universo de ideas sobre conducta samurái; no equivale a un código universal del bushidō."],
+      ["Tao Te Ching","La conciencia de la muerte y el desapego pueden dialogar conceptualmente con ideas de transitoriedad, aunque proceden de tradiciones distintas."]
+    ]
+  },
+  bushido:{
+    history:"Bushidō no es un único libro antiguo ni un código idéntico para todos los samuráis. Es una tradición cambiante de discursos sobre rectitud, deber, lealtad, coraje, reputación y conducta, reinterpretada de forma distinta según época y contexto.",
+    connections:[
+      ["Hagakure","Permite ver una formulación particular de conducta samurái en el período Edo, sin tomarla como definición total del bushidō."],
+      ["Budō Shoshinshū","Ofrece otro contrapunto histórico sobre disciplina y conducta guerrera dentro del mismo horizonte Edo."]
+    ]
+  },
+  shoninki:{
+    history:"Shōninki, asociado a Natori Masazumi y fechado en 1681, se estructura en tres rollos. Su interés histórico está en la observación, el disfraz, la memoria, la adaptación social y la inteligencia, muy lejos de la imagen fantástica moderna del ninja.",
+    connections:[
+      ["Bansenshūkai","Forma con Bansenshūkai y Ninpiden un núcleo documental fundamental para estudiar el ninjutsu histórico."],
+      ["El arte de la guerra","Comparte la prioridad dada a información, observación, engaño y comprensión del adversario."]
+    ]
+  },
+  bansenshukai:{
+    history:"Bansenshūkai, compilado en 1676 y atribuido a Fujibayashi Yasutake, es una gran enciclopedia shinobi de 22 volúmenes. Reúne estrategia, reconocimiento, señales, infiltración, herramientas, clima, fuego y principios de inteligencia. Su propio título evoca muchas corrientes reuniéndose en un mismo mar.",
+    connections:[
+      ["El arte de la guerra","La tradición de Sun Tzu aparece como una de sus referencias estratégicas más importantes."],
+      ["Shōninki","Ambos permiten separar la historia del shinobi de su representación moderna y espectacular."],
+      ["Ninpiden","Junto con Shōninki, completa el triángulo de grandes textos históricos asociados al ninjutsu."]
+    ]
+  }
+};
 
 const relatedArchives={
   tao:{title:"Zhuangzi · 莊子",text:"Texto relacionado del taoísmo clásico. Amplía temas como espontaneidad, transformación, perspectiva y límites del lenguaje mediante relatos y paradojas.",tag:"Texto relacionado"},
@@ -783,26 +720,56 @@ works.forEach(w=>{
 });
 function openWork(w){
  viewer.className="viewer open";
- viewer.innerHTML=`
- <aside class="viewer-side"><button class="close" aria-label="Cerrar">×</button><div class="jp">${w.jp}</div><h3>${w.coverTitle}</h3><small>${w.title} · ${w.subtitle}</small></aside>
- <article class="viewer-main">
-  <p class="lead">${w.lead}</p>
-  <div class="meta"><div><span>Contexto</span><strong>${w.era}</strong></div><div><span>Núcleo</span><strong>${w.focus}</strong></div><div><span>Forma</span><strong>${w.form}</strong></div></div>
-  <div class="ideas">${w.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p></div>`).join("")}</div>\n  <details class="archive"><summary>Manuscrito relacionado</summary><div class="archive-body"><h4>${relatedArchives[w.id].title}</h4><p>${relatedArchives[w.id].text}</p><span class="archive-tag">${relatedArchives[w.id].tag}</span></div></details>\n </article>`;
- viewer.querySelector(".close").onclick=()=>viewer.className="viewer";
- viewer.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
+ const principles=Object.entries(principleData)
+   .map(([name,items])=>({name,item:items.find(x=>x[0]===w.title)}))
+   .filter(x=>x.item);
+ const extra=workExtras[w.id];
+ const related=relatedArchives[w.id];
 
-const chips=document.getElementById("chips");
-const connections=document.getElementById("connections");
-Object.keys(principleData).forEach((name,i)=>{
- const b=document.createElement("button");b.className="chip";b.textContent=name;
- b.onclick=()=>selectPrinciple(name,b);chips.appendChild(b);
- if(i===0) setTimeout(()=>selectPrinciple(name,b),0);
-});
-function selectPrinciple(name,b){
- document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");
- connections.innerHTML=principleData[name].map(x=>`<article class="connection"><div class="source">${x[0]}</div><h3>${name}</h3><p>${x[1]}</p></article>`).join("");
+ viewer.innerHTML=`
+ <aside class="viewer-side">
+   <button class="close" aria-label="Cerrar">×</button>
+   <div class="jp">${w.jp}</div>
+   <h3>${w.coverTitle}</h3>
+   <small>${w.title} · ${w.subtitle}</small>
+ </aside>
+ <article class="viewer-main">
+   <p class="lead">${w.lead}</p>
+
+   <div class="meta">
+     <div><span>Contexto</span><strong>${w.era}</strong></div>
+     <div><span>Núcleo</span><strong>${w.focus}</strong></div>
+     <div><span>Forma</span><strong>${w.form}</strong></div>
+   </div>
+
+   <section class="path-block">
+     <div class="path-block-label">Contexto histórico</div>
+     <p>${extra.history}</p>
+   </section>
+
+   <section class="path-block">
+     <div class="path-block-label">Principios</div>
+     <div class="ideas">${w.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p></div>`).join("")}</div>
+   </section>
+
+   <section class="path-block">
+     <div class="path-block-label">Ecos dentro de los seis caminos</div>
+     <div class="path-principles">${principles.map(x=>`<div class="path-principle"><strong>${x.name}</strong><span>${x.item[1]}</span></div>`).join("")}</div>
+   </section>
+
+   <section class="path-block">
+     <div class="path-block-label">Conexiones</div>
+     <div class="path-list">${extra.connections.map(c=>`<div class="path-item"><b>${c[0]}</b><p>${c[1]}</p></div>`).join("")}</div>
+   </section>
+
+   <section class="path-block">
+     <div class="path-block-label">Manuscrito relacionado</div>
+     <h4>${related.title}</h4>
+     <p>${related.text}</p>
+   </section>
+ </article>`;
+ viewer.querySelector(".close").onclick=()=>viewer.className="viewer";
+ viewer.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 const entryPhrases=[
@@ -878,6 +845,7 @@ const entryPhrases=[
 
 
 
-<!-- deploy-refresh: no-cache-entry-2026-10-01 -->
+
+<!-- deploy-refresh: paths-only-2026-10-01 -->
 </body>
 </html>
