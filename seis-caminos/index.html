@@ -68,16 +68,39 @@ h1{font-size:clamp(52px,10vw,126px);font-weight:400;letter-spacing:.055em;margin
 .section-intro{max-width:620px;color:#8f8b82;line-height:1.65;margin:0}
 .gates{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .gate{
-  min-height:295px;background:var(--panel);border:0;color:var(--paper);padding:28px;text-align:left;
-  cursor:pointer;position:relative;transition:.25s ease;overflow:hidden
+  min-height:360px;border:0;color:var(--paper);padding:24px;text-align:left;
+  cursor:pointer;position:relative;transition:.25s ease;overflow:hidden;background:#0b0b0a;
+  display:flex;flex-direction:column;justify-content:flex-end
 }
-.gate:hover,.gate:focus-visible{background:#151512;outline:none}
-.gate:after{content:"→";position:absolute;right:24px;bottom:20px;color:#555;font-size:24px;transition:.25s}
-.gate:hover:after{color:var(--paper);transform:translateX(5px)}
-.gate .num{font:11px ui-monospace,SFMono-Regular,monospace;color:#656159;letter-spacing:.18em}
-.gate .glyph{font-size:54px;margin:42px 0 28px;display:block;color:#c9c2b4}
-.gate h3{font-size:24px;font-weight:400;margin:0 0 8px}
-.gate p{font-size:14px;color:#7d7971;margin:0;line-height:1.55;max-width:34ch}
+.gate:before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(180deg,rgba(6,6,6,.06) 0%,rgba(6,6,6,.12) 26%,rgba(6,6,6,.68) 72%,rgba(6,6,6,.96) 100%),
+    var(--img);
+  background-size:cover;background-position:var(--pos,center center);
+  filter:saturate(.74) contrast(1.06) brightness(.88);
+  transform:scale(1.025);transition:transform .45s ease,filter .45s ease
+}
+.gate:hover:before,.gate:focus-visible:before{transform:scale(1.075);filter:saturate(.92) contrast(1.08) brightness(.96)}
+.gate:hover,.gate:focus-visible{outline:none}
+.gate:after{
+  content:"Escoger este camino";position:relative;z-index:1;margin-top:18px;
+  color:#d7cfbf;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.18em;text-transform:uppercase
+}
+.gate .num,.gate h3,.gate p{position:relative;z-index:1}
+.gate .num{
+  margin-bottom:auto;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:#d4ccbe;letter-spacing:.2em
+}
+.gate h3{
+  font-size:clamp(26px,2.8vw,38px);font-weight:400;line-height:1.02;
+  margin:0 0 11px;max-width:12ch;text-shadow:0 3px 18px rgba(0,0,0,.92)
+}
+.gate p{
+  font-size:14px;color:#c3bbaf;margin:0;line-height:1.58;max-width:29ch;
+  text-shadow:0 2px 14px rgba(0,0,0,.95)
+}
 .viewer{
   margin-top:1px;border:1px solid var(--line);background:#0c0c0b;display:none
 }
@@ -123,8 +146,7 @@ footer{padding:52px 0 70px;color:#5f5b55;font-size:12px;text-align:center;letter
   .hero-copy{max-width:100%;padding-left:16px}
   .hero-credit{left:16px;right:auto;bottom:18px;text-align:left;max-width:80%;line-height:1.4}
   .gates{grid-template-columns:1fr}
-  .gate{min-height:220px}
-  .gate .glyph{margin:28px 0 22px}
+  .gate{min-height:275px}
   .viewer.open{grid-template-columns:1fr}
   .viewer-side{border-right:0;border-bottom:1px solid var(--line)}
   .meta{grid-template-columns:1fr}
@@ -181,8 +203,8 @@ footer{padding:52px 0 70px;color:#5f5b55;font-size:12px;text-align:center;letter
 <section class="section" id="caminos">
   <div class="wrap">
     <div class="section-head">
-      <h2>Los seis caminos</h2>
-      <p class="section-intro">No son un único sistema. Cada obra nace de un tiempo, una función y una cultura diferentes. El portal las aproxima sin borrar esas diferencias.</p>
+      <h2>Escoge un camino</h2>
+      <p class="section-intro">No necesitas conocer los libros antes de entrar. Elige la imagen y la idea que más te atraigan. Después descubrirás qué tradición hay detrás.</p>
     </div>
     <div class="gates" id="gates"></div>
     <div class="viewer" id="viewer" aria-live="polite"></div>
@@ -292,7 +314,7 @@ footer{padding:52px 0 70px;color:#5f5b55;font-size:12px;text-align:center;letter
 <script>
 const works=[
 {
-id:"tao",num:"I",glyph:"道",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",
+id:"tao",num:"I",glyph:"道",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",coverTitle:"El camino del vacío",coverDesc:"Ceder, dejar espacio y actuar sin forzar.",coverImage:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Great%20Wave%20off%20Kanagawa.jpg",coverPosition:"center center",
 era:"China · tradición taoísta",focus:"No-forzar · equilibrio",form:"81 capítulos breves",
 lead:"Una obra sobre el orden que no se impone. Propone atender a los ritmos de las cosas, reducir la violencia de la intervención y comprender la fuerza de lo flexible, lo vacío y lo incompleto.",
 ideas:[
@@ -302,7 +324,7 @@ ideas:[
 ["Simplicidad","Disminuir artificios, ambición y ruido para recuperar claridad y medida."]
 ]},
 {
-id:"sunzi",num:"II",glyph:"兵",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",
+id:"sunzi",num:"II",glyph:"兵",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",coverTitle:"El camino de la estrategia",coverDesc:"Leer el conflicto antes del choque.",coverImage:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tsukioka%20Yoshitoshi%20%281864%29%20The%20Loyal%20Samurai%20Break%20into%20the%20Mansion%20in%20the%20Night%20Attack.jpeg",coverPosition:"center center",
 era:"China · período antiguo",focus:"Información · adaptación",form:"Tratado estratégico",
 lead:"Un tratado sobre la gestión del conflicto antes de que el choque se produzca. La ventaja nace del conocimiento, la preparación, la lectura del terreno y la capacidad de transformar la situación.",
 ideas:[
@@ -312,7 +334,7 @@ ideas:[
 ["Economía","El conflicto prolongado consume incluso al vencedor. La eficacia exige evitar costes innecesarios."]
 ]},
 {
-id:"hagakure",num:"III",glyph:"葉",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",
+id:"hagakure",num:"III",glyph:"葉",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",coverTitle:"El camino de la decisión",coverDesc:"Actuar sin quedar dividido por la duda.",coverImage:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tsukioka%20Yoshitoshi%20%281864%29%20The%20Loyal%20Samurai%20Break%20into%20the%20Mansion%20in%20the%20Night%20Attack.jpeg",coverPosition:"16% center",
 era:"Japón · período Edo",focus:"Presencia · resolución",form:"Recopilación de conversaciones",
 lead:"Una colección de reflexiones asociadas al mundo samurái de Saga. Combina disciplina, servicio, muerte, reputación, etiqueta y resolución inmediata, pero refleja un contexto social e histórico muy concreto.",
 ideas:[
@@ -322,7 +344,7 @@ ideas:[
 ["Atención","La conducta cotidiana importa tanto como los momentos excepcionales."]
 ]},
 {
-id:"bushido",num:"IV",glyph:"武",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",
+id:"bushido",num:"IV",glyph:"武",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",coverTitle:"El camino de la conducta",coverDesc:"Ordenar la vida mediante deber, forma y rectitud.",coverImage:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tsunami%20by%20hokusai%2019th%20century.jpg",coverPosition:"center center",
 era:"Japón · tradición histórica",focus:"Conducta · deber",form:"Conjunto cambiante de ideales",
 lead:"Más que un único código eterno, el bushidō reúne ideas cambiantes sobre la conducta guerrera japonesa. Sus formulaciones modernas mezclan materiales medievales, Edo y reinterpretaciones posteriores.",
 ideas:[
@@ -332,7 +354,7 @@ ideas:[
 ["Lealtad","Fue un valor central en muchos discursos guerreros, aunque su significado y alcance variaron según época y dominio."]
 ]},
 {
-id:"shoninki",num:"V",glyph:"忍",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",
+id:"shoninki",num:"V",glyph:"忍",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",coverTitle:"El camino de la sombra",coverDesc:"Observar, comprender y pasar desapercibido.",coverImage:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tsukioka%20Yoshitoshi%20%281864%29%20The%20Loyal%20Samurai%20Break%20into%20the%20Mansion%20in%20the%20Night%20Attack.jpeg",coverPosition:"84% center",
 era:"Japón · 1681",focus:"Observación · infiltración",form:"Manual de shinobi",
 lead:"Un manual de inteligencia y actividad shinobi atribuido a Natori Masazumi. Su núcleo no es la fantasía del ninja moderno, sino la observación, el disfraz, la memoria, la adaptación social y la obtención de información.",
 ideas:[
@@ -342,7 +364,7 @@ ideas:[
 ["Psicología","Comprender deseos, temores y expectativas permite anticipar conductas y reducir la confrontación."]
 ]},
 {
-id:"bansenshukai",num:"VI",glyph:"萬",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",
+id:"bansenshukai",num:"VI",glyph:"萬",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",coverTitle:"El camino de las corrientes",coverDesc:"Unir tiempo, señales, información y método.",coverImage:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Great%20Wave%20off%20Kanagawa.jpg",coverPosition:"72% center",
 era:"Japón · 1676",focus:"Inteligencia · sistema",form:"Compendio enciclopédico",
 lead:"Una gran compilación de conocimientos shinobi del período Edo. Integra estrategia, organización, reconocimiento, señales, infiltración, herramientas, fuego, clima y principios de inteligencia.",
 ideas:[
@@ -407,14 +429,16 @@ const viewer=document.getElementById("viewer");
 works.forEach(w=>{
  const b=document.createElement("button");
  b.className="gate";
- b.innerHTML=`<span class="num">${w.num}</span><span class="glyph">${w.glyph}</span><h3>${w.title}</h3><p>${w.subtitle} · ${w.focus}</p>`;
+ b.style.setProperty("--img",`url("${w.coverImage}")`);
+ b.style.setProperty("--pos",w.coverPosition||"center center");
+ b.innerHTML=`<span class="num">CAMINO ${w.num}</span><h3>${w.coverTitle}</h3><p>${w.coverDesc}</p>`;
  b.onclick=()=>openWork(w);
  gates.appendChild(b);
 });
 function openWork(w){
  viewer.className="viewer open";
  viewer.innerHTML=`
- <aside class="viewer-side"><button class="close" aria-label="Cerrar">×</button><div class="jp">${w.jp}</div><h3>${w.title}</h3><small>${w.subtitle}</small></aside>
+ <aside class="viewer-side"><button class="close" aria-label="Cerrar">×</button><div class="jp">${w.jp}</div><h3>${w.coverTitle}</h3><small>${w.title} · ${w.subtitle}</small></aside>
  <article class="viewer-main">
   <p class="lead">${w.lead}</p>
   <div class="meta"><div><span>Contexto</span><strong>${w.era}</strong></div><div><span>Núcleo</span><strong>${w.focus}</strong></div><div><span>Forma</span><strong>${w.form}</strong></div></div>
