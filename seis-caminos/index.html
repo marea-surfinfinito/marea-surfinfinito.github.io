@@ -454,6 +454,14 @@ body.intro-active footer{display:none}
   transition:opacity .55s ease,transform .55s ease,filter .55s ease
 }
 .entry-hero.leaving{opacity:0;transform:scale(.985);filter:blur(3px)}
+.entry-hero[hidden]{
+  display:none!important;
+  min-height:0!important;
+  height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important
+}
 .entry-hero:before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
@@ -525,7 +533,7 @@ body.intro-active footer{display:none}
 
 
 /* --- información integrada dentro de cada camino --- */
-.compact-paths{padding-top:34px;padding-bottom:54px;min-height:100svh}
+.compact-paths{padding-top:18px;padding-bottom:54px;min-height:0}
 .viewer-main{display:block}
 .path-block{margin-top:34px;padding-top:22px;border-top:1px solid #302d29}
 .path-block-label{
@@ -1338,6 +1346,8 @@ const entryPhrases=[
     setTimeout(()=>{
       document.body.classList.remove("intro-active");
       hero.hidden=true;
+      hero.style.display="none";
+      hero.style.minHeight="0";
       window.scrollTo({top:0,behavior:"auto"});
       const first=document.getElementById("caminos");
       if(first) first.scrollIntoView({behavior:"auto",block:"start"});
@@ -1367,3 +1377,4 @@ const entryPhrases=[
 <!-- manual-philosophy-layout: 2026-10-01 -->
 <!-- concise-principles-sigils: 2026-10-01 -->
 <!-- force-all-refresh: 2026-10-01T19:12+02:00 -->
+<!-- empty-space-fix: 2026-10-01 -->
