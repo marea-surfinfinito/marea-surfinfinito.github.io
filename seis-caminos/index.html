@@ -551,7 +551,346 @@ body.intro-active footer{display:none}
   .viewer-side{position:static}
 }
 
+
+/* --- SEIS CAMINOS · TOMO ANTIGUO --- */
+:root{
+  --bg:#d7c7a4;
+  --paper:#efe4c8;
+  --paper-2:#e5d5b3;
+  --paper-deep:#cbb88f;
+  --ink:#2c251c;
+  --ink-soft:#665a49;
+  --muted:#7a6e5c;
+  --line:#b59f78;
+  --accent:#75633f;
+  --seal:#8f3e30;
+  --panel:#eadcbd;
+  --soft:#d8c7a3;
+}
+
+html{
+  background:#d7c7a4;
+}
+
+body{
+  color:var(--ink);
+  font-family:"Cormorant Garamond",Georgia,Cambria,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,255,255,.30),transparent 26%),
+    radial-gradient(circle at 78% 8%,rgba(255,248,225,.20),transparent 22%),
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(92,66,30,.035)),
+    #d7c7a4;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.48;
+  background:
+    repeating-linear-gradient(0deg,rgba(72,54,30,.032) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(88,66,36,.022) 0 1px,transparent 1px 5px),
+    radial-gradient(circle at 30% 20%,rgba(80,57,27,.045) 0 1px,transparent 1.5px);
+  background-size:auto,auto,37px 43px;
+  mix-blend-mode:multiply;
+  mask-image:none;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  box-shadow:inset 0 0 120px rgba(74,52,24,.11);
+}
+
+a{color:var(--seal)}
+button{font-family:"Noto Serif JP","Cormorant Garamond",serif}
+
+.hero{
+  background:
+    radial-gradient(circle at 48% 25%,rgba(255,255,255,.30),transparent 30%),
+    linear-gradient(180deg,rgba(239,228,200,.94),rgba(213,193,151,.90)) !important;
+  border-bottom:1px solid rgba(111,88,52,.34);
+  color:var(--ink);
+}
+
+.hero:before{
+  background:
+    linear-gradient(90deg,rgba(95,70,38,.035) 1px,transparent 1px),
+    linear-gradient(rgba(95,70,38,.026) 1px,transparent 1px) !important;
+  background-size:34px 34px !important;
+  opacity:.48 !important;
+  z-index:-2;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:auto 7vw 8vh auto;
+  width:76px;
+  height:76px;
+  border:2px solid rgba(143,62,48,.66);
+  background:
+    linear-gradient(45deg,transparent 42%,rgba(143,62,48,.18) 43% 57%,transparent 58%),
+    linear-gradient(-45deg,transparent 42%,rgba(143,62,48,.14) 43% 57%,transparent 58%);
+  opacity:.78;
+  transform:rotate(-4deg);
+  box-shadow:none;
+}
+
+.hero-copy{
+  border-left:1px solid rgba(77,58,34,.36);
+}
+
+.kicker,
+.scroll,
+.hero-credit,
+.gate .num,
+.gate-caption .original,
+.entry-mark,
+.entry-source,
+.entry-foot,
+.path-block-label,
+.archive-tag,
+.eyebrow{
+  font-family:"Noto Serif JP",serif !important;
+  color:#756957 !important;
+  letter-spacing:.13em !important;
+  text-shadow:none !important;
+}
+
+h1,h2,h3,h4,
+.viewer-side h3,
+.gate h3,
+.bridge-card h3,
+.film-box h3,
+.visual-card h3,
+.archive-body h4{
+  font-family:"Noto Serif JP","Cormorant Garamond",serif !important;
+  color:var(--ink) !important;
+  font-weight:500 !important;
+  text-shadow:none !important;
+}
+
+h1{
+  letter-spacing:.045em;
+}
+
+.hero p,
+.section-intro,
+.viewer-main .lead,
+.idea p,
+.connection p,
+.note,
+.bridge-card p,
+.film-box p,
+.visual-card p,
+.path-block p,
+.path-item p,
+.path-principle span,
+.archive-body p{
+  color:var(--ink-soft) !important;
+}
+
+.section{
+  border-bottom:1px solid rgba(111,88,52,.28);
+}
+
+.gates{
+  background:transparent !important;
+  border:none !important;
+  gap:18px !important;
+}
+
+.gate{
+  background:
+    linear-gradient(180deg,rgba(245,236,214,.90),rgba(225,210,177,.88)) !important;
+  color:var(--ink) !important;
+  border:1px solid rgba(117,93,57,.34) !important;
+  box-shadow:
+    0 10px 24px rgba(75,53,25,.10),
+    inset 0 0 0 1px rgba(255,255,255,.16);
+}
+
+.gate:hover,.gate:focus-visible{
+  background:
+    linear-gradient(180deg,rgba(248,239,218,.98),rgba(218,201,163,.94)) !important;
+  box-shadow:
+    0 15px 32px rgba(75,53,25,.16),
+    inset 0 0 0 1px rgba(255,255,255,.22);
+}
+
+.gate-caption{
+  border-top:1px solid rgba(111,88,52,.22);
+  margin-top:18px;
+}
+
+.historical-cover{
+  background:
+    linear-gradient(145deg,rgba(241,226,193,.96),rgba(206,185,143,.94)) !important;
+  border:1px solid rgba(105,81,48,.38) !important;
+  box-shadow:
+    0 12px 28px rgba(70,48,20,.18),
+    inset 0 0 24px rgba(255,255,255,.16) !important;
+}
+
+.historical-cover img{
+  filter:saturate(.90) contrast(1.02) brightness(.98) sepia(.05) !important;
+}
+
+.historical-cover figcaption{
+  background:rgba(232,216,182,.93) !important;
+  color:#514734 !important;
+  border-top:1px solid rgba(104,81,49,.28);
+}
+
+.viewer{
+  background:rgba(234,220,189,.86) !important;
+  border-color:rgba(104,81,49,.35) !important;
+  box-shadow:0 16px 38px rgba(76,52,21,.10);
+}
+
+.viewer-side{
+  border-color:rgba(104,81,49,.28) !important;
+  background:rgba(225,208,171,.42);
+}
+
+.viewer-side .jp{
+  color:#5d503d !important;
+}
+
+.meta{
+  background:rgba(111,88,52,.26) !important;
+}
+
+.meta div,
+.idea,
+.connection,
+.path-item,
+.path-principle,
+.note,
+.bridge-card,
+.film-box,
+.visual-card,
+.archive-card,
+.map-node{
+  background:
+    linear-gradient(180deg,rgba(242,231,206,.82),rgba(225,209,175,.78)) !important;
+  border-color:rgba(108,84,50,.32) !important;
+  color:var(--ink) !important;
+}
+
+.idea,
+.path-block{
+  border-top-color:rgba(108,84,50,.28) !important;
+}
+
+.idea b,
+.path-item b,
+.path-principle strong,
+.note strong,
+.connection h3{
+  color:var(--ink) !important;
+}
+
+.chip,
+.enter-button,
+.close{
+  background:rgba(238,226,200,.74) !important;
+  color:var(--ink) !important;
+  border-color:rgba(105,82,50,.46) !important;
+}
+
+.chip:hover,.chip.active,
+.enter-button:hover,.enter-button:focus-visible,
+.close:hover{
+  background:rgba(212,192,151,.86) !important;
+  border-color:rgba(112,86,48,.64) !important;
+  color:#241d15 !important;
+}
+
+.entry-hero{
+  background:
+    radial-gradient(circle at 50% 34%,rgba(255,255,255,.38),transparent 30%),
+    linear-gradient(180deg,#eadfc4 0%,#dac9a5 58%,#cdb991 100%) !important;
+  color:var(--ink);
+}
+
+.entry-hero:before{
+  background:
+    repeating-linear-gradient(0deg,rgba(78,58,31,.025) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(92,69,38,.018) 0 1px,transparent 1px 5px) !important;
+  background-size:auto !important;
+  opacity:.65 !important;
+}
+
+.entry-glyph{
+  color:#594c38 !important;
+  opacity:.86 !important;
+  font-family:"Noto Serif JP",serif !important;
+}
+
+.entry-quote{
+  color:#30271d !important;
+  font-family:"Cormorant Garamond","Noto Serif JP",serif !important;
+  text-shadow:none !important;
+}
+
+.entry-source{
+  color:#786a56 !important;
+}
+
+.entry-foot{
+  color:#7c6f5e !important;
+}
+
+.bridge-grid,
+.connections{
+  background:transparent !important;
+  border:none !important;
+  gap:14px !important;
+}
+
+.visual-card:before{
+  opacity:.10 !important;
+  mix-blend-mode:multiply;
+}
+
+.rights{
+  color:#786d5c !important;
+}
+
+.arrow{
+  color:#806f55 !important;
+}
+
+footer{
+  color:#6e6250 !important;
+  background:rgba(213,196,158,.28);
+}
+
+@media(max-width:820px){
+  .hero:after{
+    width:58px;
+    height:58px;
+    right:22px;
+    bottom:22px;
+    opacity:.58;
+  }
+  .gates{gap:14px !important}
+  .gate{border-radius:1px}
+  .entry-quote{color:#2d251c !important}
+}
+/* --- /SEIS CAMINOS · TOMO ANTIGUO --- */
+
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="intro-active">
 <header class="hero entry-hero" id="entryHero">
@@ -940,3 +1279,4 @@ const entryPhrases=[
 <!-- force-publish: 2026-10-01T18:35+02:00 -->
 <!-- historical-route: 2026-10-01T18:52+02:00 -->
 <!-- bansenshukai-frame-fix: 2026-10-01 -->
+<!-- visual-refresh: linen-bamboo-book-theme-2026-10-01 -->
