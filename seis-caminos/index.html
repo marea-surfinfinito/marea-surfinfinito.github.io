@@ -736,38 +736,45 @@ const viewer=document.getElementById("viewer");
 function coverMarkup(w){
  const covers={
   tao:{
-   src:"https://upload.wikimedia.org/wikipedia/commons/b/b9/%E9%83%AD%E5%BA%97%E6%A5%9A%E7%AE%80%E3%80%8A%E8%80%81%E5%AD%90%E7%94%B2%E3%80%8B.jpg",
-   alt:"Tablillas de bambú de Guodian con una versión antigua del Laozi",
-   note:"Guodian · Laozi · ca. 300 a. C."
+   src:"https://upload.wikimedia.org/wikipedia/commons/c/ca/Guodian-laozi.kopi.png",
+   fallback:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Guodian-laozi.kopi.png",
+   alt:"Tablillas de bambú de Guodian con una antigua versión del Laozi",
+   note:"Laozi de Guodian · s. IV a. C. · testimonio antiguo"
   },
   sunzi:{
-   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Bamboo_Slips_with_Text_of_Sunzi_%289873600775%29.jpg",
+   src:"https://upload.wikimedia.org/wikipedia/commons/3/3e/Bamboo_Slips_with_Text_of_Sunzi_%289873600775%29.jpg",
+   fallback:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Bamboo_Slips_with_Text_of_Sunzi_%289873600775%29.jpg",
    alt:"Tablillas de bambú de Yinqueshan con texto de Sunzi",
-   note:"Yinqueshan · Sunzi · Han occidental"
+   note:"Sunzi · tradición de Yinqueshan · Han occidental"
   },
   hagakure:{
    src:"https://online.bunka.go.jp/heritage/416804/_137493/416804_137493110613154542233_900.jpg",
-   alt:"Conjunto de manuscritos de Hagakure de época Edo",
-   note:"Hagakure · copia Yamamoto · época Edo"
+   fallback:"https://www.dl.saga-u.ac.jp/images/book/5/thum/251613102757.jpg",
+   alt:"Conjunto histórico de manuscritos Hagakure Yamamoto-bon",
+   note:"Hagakure · Yamamoto-bon · copia histórica Edo"
   },
   bushido:{
-   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Houghton_Hearn_92.40.10_-_Bushido_cover.jpg",
-   alt:"Cubierta de Bushido The Soul of Japan de Inazo Nitobe, edición de 1900",
-   note:"Nitobe · Bushido · edición de 1900"
+   src:"https://upload.wikimedia.org/wikipedia/commons/4/4c/Houghton_Hearn_92.40.10_-_Bushido_cover.jpg",
+   fallback:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Houghton_Hearn_92.40.10_-_Bushido_cover.jpg",
+   alt:"Cubierta de la edición de 1900 de Bushido The Soul of Japan de Inazo Nitobe",
+   note:"Nitobe · Bushido · cubierta original de 1900"
   },
   shoninki:{
-   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/NDL12865777_%E6%AD%A3%E5%BF%8D%E8%A8%98_3%E5%B7%BB.%E5%A4%A9.pdf?width=900&page=1",
-   alt:"Escaneo histórico del volumen Ten de Shoninki conservado por la Biblioteca Nacional de Japón",
-   note:"Shōninki · copia de 1743 · NDL"
+   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/NDL12865777_%E6%AD%A3%E5%BF%8D%E8%A8%98_3%E5%B7%BB.%E5%A4%A9.pdf?width=960&page=1",
+   fallback:"https://www.ninja-museum.com/ninja-database/wp-content/uploads/sites/2/2015/02/syoujin.jpg",
+   alt:"Copia histórica del Shoninki, tradición manuscrita de 1743",
+   note:"Shōninki · copia de 1743 · no se conserva el autógrafo"
   },
   bansenshukai:{
-   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Bansenshukai_at_Shinobi_no_sato_PLALA%2C_Koka_city.jpg",
-   alt:"Ejemplar histórico de Bansenshukai expuesto en Koka",
-   note:"Bansenshūkai · tradición manuscrita Edo"
+   src:"https://iganinja.jp/2008/02/15/bansensyukai.jpg",
+   fallback:"https://www.shinobinosato.com/common/images/heritage/front05.png",
+   alt:"Volúmenes históricos de Bansenshukai conservados en la tradición de Iga y Koka",
+   note:"Bansenshūkai · copia histórica Edo · colección ninja"
   }
  };
  const x=covers[w.id];
- return '<figure class="historical-cover"><img src="'+x.src+'" alt="'+x.alt+'" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>'+x.note+'</figcaption></figure>';
+ const safeFallback=x.fallback.replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+ return '<figure class="historical-cover"><img src="'+x.src+'" data-fallback="'+safeFallback+'" alt="'+x.alt+'" loading="eager" decoding="async" onerror="if(!this.dataset.usedFallback){this.dataset.usedFallback=\'1\';this.src=this.dataset.fallback}else{this.style.opacity=\'.16\'}"><figcaption>'+x.note+'</figcaption></figure>';
 }
 works.forEach(w=>{
  const b=document.createElement("button");
@@ -911,3 +918,4 @@ const entryPhrases=[
 </html>
 <!-- historical-covers-refresh: 2026-10-01T18:32+02:00 -->
 <!-- force-publish: 2026-10-01T18:35+02:00 -->
+<!-- historical-route: 2026-10-01T18:52+02:00 -->
