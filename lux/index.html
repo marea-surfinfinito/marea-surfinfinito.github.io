@@ -1,242 +1,306 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LU ROTH — Artista</title><meta name="description" content="LU ROTH. Artista conceptual. Instalación, escultura, pintura, fotografía y sistemas interactivos.">
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080909">
+<title>LUX ROTH — Luz aprendida / rabia prestada</title>
+<meta name="description" content="LUX ROTH. Archivo artístico de una identidad en conflicto: claridad, aprendizaje, ruido, impostura y deseo de ser una misma.">
 <style>
-:root{--bg:#090909;--fg:#e9e4da;--muted:#928d84;--line:#292826;--accent:#cbb98d}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,serif}a{color:inherit;text-decoration:none}img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(1.05)}
-.shell{display:grid;grid-template-columns:190px 1fr;min-height:100vh}.rail{position:sticky;top:0;height:100vh;padding:36px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:4;background:#090909f5}.brand{font-size:36px;letter-spacing:.28em}.role,.mono,.eyebrow,.meta{font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:.13em}.role{font-size:9px;color:var(--muted);margin-top:6px}.rail nav{margin:auto 0;display:grid;gap:18px;font:9px "Courier New",monospace;letter-spacing:.13em}.rail nav a:hover{color:var(--accent)}.rail footer{font:9px/1.5 "Courier New",monospace;color:var(--muted)}
-main{min-width:0}.hero{min-height:92vh;display:grid;grid-template-columns:1.65fr .75fr;border-bottom:1px solid var(--line)}.hero-art{position:relative;overflow:hidden;background:radial-gradient(circle at 58% 38%,#31302e 0 5%,#151515 22%,#080808 65%)}.sphere{position:absolute;width:min(52vw,620px);aspect-ratio:1;border-radius:50%;left:50%;top:46%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,#6d716f,#242a2b 34%,#050708 72%);box-shadow:0 35px 90px #000, inset -30px -30px 80px #000}.water{position:absolute;inset:auto 0 0;height:28%;background:linear-gradient(#1110,#0d0f10),repeating-linear-gradient(174deg,#181b1c 0 1px,#090a0b 2px 13px)}.figure{position:absolute;bottom:5%;left:49%;width:20px;height:110px;background:#050505;clip-path:polygon(38% 0,62% 0,70% 28%,100% 100%,0 100%,30% 28%)}.hero-caption{position:absolute;left:28px;bottom:25px;font:9px/1.5 "Courier New",monospace;letter-spacing:.1em}.hero-copy{padding:clamp(30px,5vw,70px);display:flex;flex-direction:column;justify-content:center}.hero-copy h1{font-size:clamp(62px,10vw,145px);font-weight:400;letter-spacing:.12em;margin:0}.hero-copy .discipline{font:10px/1.8 "Courier New",monospace;letter-spacing:.14em;color:var(--muted);margin:28px 0}.hero-copy blockquote{font:italic clamp(21px,2.2vw,35px)/1.25 Georgia,serif;margin:30px 0 0;max-width:12ch}
-.section{padding:90px clamp(24px,5vw,72px);border-bottom:1px solid var(--line)}.head{display:flex;justify-content:space-between;gap:30px;margin-bottom:36px}.head h2{font-size:clamp(36px,5vw,72px);font-weight:400;margin:0}.eyebrow{font-size:9px;color:var(--muted)}
-.works{display:grid;grid-template-columns:1.35fr .65fr;gap:1px;background:var(--line);border:1px solid var(--line)}.work{background:#0b0b0b}.visual{aspect-ratio:16/10;position:relative;overflow:hidden}.work.big .visual{aspect-ratio:1.35}.visual.sculpture{background:linear-gradient(180deg,#b7aa9c 0 47%,#292825 48%)}.faces:before,.faces:after{content:"";position:absolute;top:14%;width:27%;height:72%;background:#111;border-radius:48% 48% 30% 35%;box-shadow:inset 0 0 0 1px #413d37}.faces:before{left:16%;clip-path:polygon(0 0,100% 0,72% 35%,100% 50%,70% 63%,82% 100%,0 100%)}.faces:after{right:16%;transform:scaleX(-1);clip-path:polygon(0 0,100% 0,72% 35%,100% 50%,70% 63%,82% 100%,0 100%)}.orb{position:absolute;width:13%;aspect-ratio:1;border-radius:50%;left:43.5%;top:41%;background:radial-gradient(circle at 30% 25%,#bbb,#242424 48%,#000 70%);box-shadow:0 10px 25px #0008}.painting{background:#d6d0c3}.painting:before{content:"";position:absolute;inset:10%;background:radial-gradient(circle at 55% 45%,#111 0 8%,transparent 9%),linear-gradient(112deg,transparent 12%,#161514 13% 25%,transparent 26% 38%,#27231f 39% 54%,transparent 55%),repeating-linear-gradient(18deg,#171513 0 4px,transparent 5px 28px);filter:blur(.2px)}.work-info{padding:20px 22px 28px}.work-info h3{font-size:25px;font-weight:400;margin:5px 0 10px}.work-info p{font-size:14px;line-height:1.55;color:var(--muted);max-width:48ch}
-.process{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.process figure{margin:0}.process .pic{aspect-ratio:4/3;border:1px solid var(--line);position:relative;overflow:hidden;background:#151412}.sketch{background:#c8bda8!important}.sketch:before{content:"";position:absolute;inset:10%;background:repeating-linear-gradient(17deg,transparent 0 17px,#554f47 18px 19px),repeating-linear-gradient(104deg,transparent 0 30px,#777064 31px 32px);opacity:.7}.studio{background:radial-gradient(circle at 70% 30%,#655c4d 0 2%,transparent 3%),linear-gradient(125deg,#0b0b0b 0 55%,#29231d 56% 58%,#0c0c0c 59%)!important}.sea{background:linear-gradient(#83858a 0 47%,#272c2f 48% 51%,#0c1114 52%)!important}.process figcaption{padding:10px 2px;font:9px/1.45 "Courier New",monospace;color:var(--muted);letter-spacing:.08em}
-.bio{display:grid;grid-template-columns:.75fr 1.25fr;gap:55px}.portrait{min-height:530px;background:linear-gradient(145deg,#191715,#080808);position:relative;overflow:hidden}.portrait:before{content:"";position:absolute;width:55%;height:70%;left:20%;top:14%;border-radius:48% 48% 42% 42%;background:radial-gradient(circle at 38% 38%,#d7d0c6 0 2%,transparent 2.5%),linear-gradient(100deg,#d0b99f 0 47%,#111 48% 62%,#c6ae94 63%);filter:saturate(.5);opacity:.72}.bio h2{font-size:60px;font-weight:400;letter-spacing:.12em;margin:0 0 22px}.bio p{font-size:18px;line-height:1.7;color:#c6c0b6}.cv-note{border-left:1px solid var(--accent);padding-left:18px;color:var(--muted)!important;font-size:13px!important}.cv{margin-top:35px;border-top:1px solid var(--line)}.cv-row{display:grid;grid-template-columns:70px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}.cv-row span:first-child{font-family:"Courier New",monospace;color:var(--muted)}
-.contact{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.contact h2{font:400 clamp(55px,10vw,140px)/.85 Georgia,serif;letter-spacing:.08em;margin:0}.contact p{color:var(--muted);max-width:45ch;line-height:1.6}
-@media(max-width:800px){.shell{display:block}.rail{height:auto;position:relative;border-right:0;border-bottom:1px solid var(--line);padding:22px}.rail nav{display:flex;gap:15px;overflow:auto;margin:22px 0 0}.rail footer{display:none}.hero{grid-template-columns:1fr}.hero-art{min-height:60vh}.hero-copy{min-height:50vh}.works,.bio{grid-template-columns:1fr}.process{grid-template-columns:1fr}.sphere{width:75vw}}
+:root{
+  --bg:#080909;--paper:#dcd8cc;--fg:#ece9df;--muted:#8e948f;--line:#29302d;
+  --lux:#ccefdc;--lux2:#86bfa2;--roth:#d45792;--acid:#b2d35a;--ink:#0a0b0b;
+  --serif:Georgia,"Times New Roman",serif;--mono:"Courier New",monospace
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.08;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px 4px)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--roth);color:#fff}
+.shell{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:100vh}
+.rail{position:sticky;top:0;height:100vh;padding:30px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:#080909f4;z-index:20}
+.brand{font:400 30px/1 var(--serif);letter-spacing:.12em}
+.brand small{display:block;margin-top:8px;font:8px/1.5 var(--mono);letter-spacing:.2em;color:var(--lux2)}
+.rail nav{margin:auto 0;display:grid;gap:15px;font:9px/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+.rail nav a{color:#a6aaa6}.rail nav a:hover,.rail nav a:focus-visible{color:var(--lux);outline:none}
+.rail-foot{font:8px/1.65 var(--mono);letter-spacing:.1em;color:#747b76;text-transform:uppercase}
+.roth-toggle{margin-top:20px;border:1px solid #563146;background:#120d10;padding:11px 10px;text-align:left;cursor:pointer;font:8px/1.4 var(--mono);letter-spacing:.12em;color:#cf91ae;text-transform:uppercase}
+.roth-toggle:hover,.roth-toggle:focus-visible{border-color:var(--roth);outline:none}
+
+main{min-width:0}
+.hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);border-bottom:1px solid var(--line)}
+.hero-art{position:relative;overflow:hidden;background:radial-gradient(circle at 48% 45%,#1d2722 0 7%,#111613 31%,#080909 68%)}
+.sphere{position:absolute;width:min(55vw,650px);aspect-ratio:1;border-radius:50%;left:50%;top:46%;transform:translate(-50%,-50%);background:radial-gradient(circle at 34% 29%,#d8eee0 0 1.2%,#7f988a 8%,#27312c 28%,#0b0e0c 62%,#030404 78%);box-shadow:0 0 0 1px #7791824c,0 30px 100px #000,inset -35px -42px 90px #000}
+.sphere:after{content:"";position:absolute;inset:12%;border-radius:50%;border:1px solid #ccefdc12;box-shadow:0 0 55px #bfe6cf12}
+.hero-water{position:absolute;left:-5%;right:-5%;bottom:-2%;height:31%;background:linear-gradient(#0b0f0d00,#0c1110 22%,#060807),repeating-linear-gradient(176deg,#1a211e 0 1px,#070909 2px 13px);transform:rotate(-1deg)}
+.figure{position:absolute;bottom:4%;left:49%;width:17px;height:105px;background:#020303;clip-path:polygon(38% 0,62% 0,70% 28%,100% 100%,0 100%,30% 28%)}
+.spray{position:absolute;inset:0;pointer-events:none;opacity:.28;background:radial-gradient(circle at 78% 23%,#d45792 0 2px,transparent 3px),radial-gradient(circle at 80% 24%,#d45792 0 1px,transparent 2px),radial-gradient(circle at 74% 27%,#d45792 0 1px,transparent 2px)}
+.hero-note{position:absolute;left:26px;bottom:24px;font:8px/1.6 var(--mono);letter-spacing:.13em;color:#a8b9af;text-transform:uppercase}
+.hero-copy{padding:clamp(34px,6vw,82px);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#0a0c0b,#0b0a0b)}
+.eyebrow,.meta{font:9px/1.5 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--lux2)}
+.hero-copy h1{font:400 clamp(62px,9vw,138px)/.76 var(--serif);letter-spacing:-.07em;margin:20px 0 30px}
+.hero-copy h1 span{display:block}.hero-copy h1 .roth-word{margin-left:.55ch;color:#d8d2d5;text-shadow:1px 0 0 #6e354f}
+.hero-copy .thesis{max-width:16ch;font-size:clamp(22px,2.5vw,38px);line-height:1.18;margin:0}
+.hero-copy .thesis em{color:var(--roth);font-style:normal}
+.hero-copy .sub{max-width:44ch;font:11px/1.8 var(--mono);letter-spacing:.04em;color:#949b96;margin-top:32px}
+
+.section{padding:clamp(58px,8vw,112px) clamp(22px,5vw,72px);border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:42px}
+.section-head h2{font:400 clamp(38px,6vw,82px)/.92 var(--serif);letter-spacing:-.04em;margin:0}
+.section-head .eyebrow{text-align:right}
+.manifesto{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(40px,8vw,120px);align-items:start}
+.manifesto-title{font:400 clamp(44px,7vw,92px)/.92 var(--serif);margin:0;max-width:8ch}
+.manifesto-copy{font-size:clamp(20px,2.3vw,31px);line-height:1.45;max-width:31ch}
+.manifesto-copy p{margin:0 0 1.1em}
+.manifesto-copy .small{font:11px/1.8 var(--mono);letter-spacing:.04em;color:#969c98;max-width:60ch}
+.interrupt{position:relative;display:inline-block;color:var(--lux)}
+.interrupt:after{content:"NO TE LO CREAS TANTO.";position:absolute;left:84%;top:72%;width:max-content;max-width:240px;transform:rotate(-5deg);font:700 10px/1.1 Arial,sans-serif;letter-spacing:.02em;color:var(--roth);opacity:.78}
+
+.works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.work{background:#0a0c0b;min-width:0}
+.work-visual{aspect-ratio:4/3;position:relative;overflow:hidden}
+.v-unknown{background:radial-gradient(circle at 50% 47%,#939d98 0 10%,#26302c 11% 24%,#080a09 25% 64%,#020303 65%)}
+.v-unknown:after{content:"I KNOW THE WORD.\A I DON'T KNOW THE SEA.";white-space:pre;position:absolute;left:6%;bottom:7%;font:9px/1.5 var(--mono);letter-spacing:.14em;color:#d4ded7}
+.v-worlds{background:linear-gradient(180deg,#9a958d 0 47%,#171918 48%)}
+.v-worlds:before,.v-worlds:after{content:"";position:absolute;top:13%;width:28%;height:73%;background:#0b0c0c;border-radius:48% 48% 30% 35%;box-shadow:inset 0 0 0 1px #4f514e}
+.v-worlds:before{left:16%;clip-path:polygon(0 0,100% 0,72% 35%,100% 50%,70% 63%,82% 100%,0 100%)}
+.v-worlds:after{right:16%;transform:scaleX(-1);clip-path:polygon(0 0,100% 0,72% 35%,100% 50%,70% 63%,82% 100%,0 100%)}
+.v-error{background:radial-gradient(circle at 47% 45%,#313a35 0 22%,#080909 23% 56%,#160b11 57%)}
+.v-error:before{content:"";position:absolute;width:45%;height:12%;left:31%;top:51%;border-bottom:7px dotted #c0b4bd;transform:rotate(-14deg)}
+.v-error:after{content:"LEOPARD / CHEAP / LOUD";position:absolute;right:5%;top:8%;padding:7px;background:#a68b58;color:#0a0a0a;font:900 9px Arial;transform:rotate(7deg)}
+.v-sea{background:linear-gradient(#060808 0 55%,#131918 56% 58%,#020303 59%)}
+.v-sea:before{content:"";position:absolute;width:19%;aspect-ratio:1;border-radius:50%;left:40%;top:24%;background:radial-gradient(circle at 35% 30%,#d9d9cf 0 2%,#616d67 12%,#171c1a 42%,#040505 72%);box-shadow:0 0 50px #d8eee021}
+.work-info{padding:20px 22px 26px}
+.work-info h3{font:400 clamp(23px,3vw,38px)/1.05 var(--serif);margin:7px 0 11px}
+.work-info p{margin:0;color:#a5aaa6;line-height:1.65;font-size:14px}
+.work-info .countervoice{margin-top:14px;padding-top:12px;border-top:1px dashed #5e3347;color:#d07a9f;font:9px/1.55 var(--mono);letter-spacing:.04em}
+
+.fissure{background:#0a090a;position:relative;overflow:hidden}
+.fissure:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,#5e3347 12%,#89a995 50%,#5e3347 88%,transparent)}
+.fissure-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(38px,8vw,120px)}
+.voice{min-height:430px;padding:clamp(30px,4vw,55px);border:1px solid var(--line);position:relative;background:#090b0a}
+.voice.roth{background:#0e090c;border-color:#3a1f2d}
+.voice h3{font:400 clamp(46px,7vw,94px)/.86 var(--serif);margin:8px 0 30px}
+.voice.lux h3{color:var(--lux)}.voice.roth h3{color:#d283a6}
+.voice p{font-size:18px;line-height:1.65;color:#b9bcb9;max-width:32ch}
+.voice .note{position:absolute;right:18px;bottom:16px;font:8px/1.45 var(--mono);letter-spacing:.1em;color:#727a75;text-transform:uppercase}
+.fissure-center{margin:38px auto 0;max-width:840px;text-align:center;font-size:clamp(24px,3.4vw,48px);line-height:1.18}
+.fissure-center b{font-weight:400;color:var(--roth)}
+
+.disciple{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:clamp(40px,8vw,110px);align-items:center}
+.disciple-mark{aspect-ratio:1;position:relative;border:1px solid var(--line);display:grid;place-items:center;background:radial-gradient(circle,#1e2a24,#090b0a 63%)}
+.disciple-mark:before{content:"";width:54%;aspect-ratio:1;border-radius:50%;border:1px solid #a9c8b5;box-shadow:0 0 55px #8fc5a629}
+.disciple-mark:after{content:"N → LR";position:absolute;font:11px var(--mono);letter-spacing:.18em;color:#c7ddd0}
+.disciple-copy h2{font:400 clamp(42px,6vw,78px)/.95 var(--serif);margin:8px 0 26px}
+.disciple-copy p{font-size:18px;line-height:1.7;color:#b1b6b2;max-width:38ch}
+.disciple-copy blockquote{margin:28px 0 0;padding-left:20px;border-left:1px solid var(--lux2);font:italic 24px/1.35 var(--serif);max-width:28ch}
+
+.archive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.archive-card{min-height:300px;border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;justify-content:space-between;background:#0b0d0c;position:relative;overflow:hidden}
+.archive-card:nth-child(2){background:#100a0d;border-color:#3d2431}
+.archive-card:nth-child(3){background:#0c0c0a}
+.archive-card .num{font:9px var(--mono);letter-spacing:.15em;color:#7d8680}
+.archive-card h3{font:400 33px/1 var(--serif);margin:0}
+.archive-card p{font:12px/1.65 var(--mono);color:#9ca29e;margin:18px 0 0}
+.archive-card .scribble{font:900 12px/1 Arial,sans-serif;color:var(--roth);transform:rotate(-4deg);align-self:flex-end}
+
+.process{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{background:#0a0c0b;padding:25px;min-height:240px}
+.step .n{font:9px var(--mono);letter-spacing:.16em;color:var(--lux2)}
+.step h3{font:400 29px/1.05 var(--serif);margin:55px 0 12px}
+.step p{font:13px/1.6 var(--mono);color:#949b96}
+.step:nth-child(3){background:#0e090c}.step:nth-child(3) h3{color:#d283a6}
+
+.bio{display:grid;grid-template-columns:minmax(240px,380px) minmax(0,1fr);gap:clamp(36px,7vw,92px);align-items:start}
+.bio-portrait{border:1px solid var(--line);background:#0b0c0b;overflow:hidden;position:relative}
+.bio-portrait img{width:100%;height:auto;filter:grayscale(.45) contrast(1.04)}
+.bio-portrait:after{content:"LUX / ROTH / LUX / ROTH";position:absolute;left:-8%;right:-8%;bottom:9%;padding:8px;background:#090909d9;color:#d487a8;font:900 11px Arial;letter-spacing:.18em;transform:rotate(-4deg);text-align:center}
+.bio-copy h2{font:400 clamp(52px,8vw,108px)/.82 var(--serif);letter-spacing:-.05em;margin:8px 0 30px}
+.bio-copy p{font-size:17px;line-height:1.72;color:#b3b8b4;max-width:48ch}
+.bio-note{border-left:1px solid var(--roth);padding-left:18px;font:10px/1.7 var(--mono)!important;color:#9b8f95!important}
+.cv{margin-top:35px;border-top:1px solid var(--line)}
+.cv-row{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.5}
+.cv-row span:first-child{font:9px/1.5 var(--mono);letter-spacing:.12em;color:#7e8781;text-transform:uppercase}
+
+.contact{min-height:64vh;display:flex;flex-direction:column;justify-content:center}
+.contact h2{font:400 clamp(64px,12vw,170px)/.75 var(--serif);letter-spacing:-.06em;margin:0}
+.contact h2 .pink{color:#d283a6}
+.contact p{max-width:48ch;color:#999f9b;line-height:1.7}
+.final-line{margin-top:48px;font:10px/1.7 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#849188}
+
+body.roth-mode{--lux:#d7c6ce;--lux2:#b37d94;--line:#3b2630}
+body.roth-mode .hero-art{filter:contrast(1.08) saturate(.72)}
+body.roth-mode .sphere{box-shadow:0 0 0 1px #d457925c,0 30px 100px #000,inset -35px -42px 90px #000}
+body.roth-mode .hero-copy{background:linear-gradient(135deg,#0a0a0a,#160b11)}
+body.roth-mode .spray{opacity:.85;background:
+radial-gradient(circle at 78% 23%,#d45792 0 3px,transparent 4px),
+radial-gradient(circle at 80% 24%,#d45792 0 2px,transparent 3px),
+radial-gradient(circle at 74% 27%,#d45792 0 2px,transparent 3px),
+linear-gradient(103deg,transparent 0 72%,#d4579214 73% 76%,transparent 77%)}
+body.roth-mode .brand{transform:rotate(-2deg);text-shadow:2px 1px 0 #7e2f54}
+body.roth-mode .hero-copy .thesis:after{content:"  (o eso dices)";color:var(--roth);font:10px var(--mono)}
+body.roth-mode .work:nth-child(odd){transform:rotate(-.25deg)}
+body.roth-mode .archive-card:nth-child(2){transform:rotate(.4deg)}
+body.roth-mode:after{content:"NO HAY FUTURO / PERO SIGUE";position:fixed;right:-45px;top:48%;z-index:39;transform:rotate(90deg);font:900 10px Arial;letter-spacing:.18em;color:#d4579277;pointer-events:none}
+
+@media(max-width:950px){
+ .shell{display:block}.rail{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px 20px}
+ .rail nav{display:flex;gap:17px;overflow:auto;white-space:nowrap;margin:18px 0 0;padding-bottom:4px}.rail-foot{display:none}.roth-toggle{position:absolute;right:18px;top:16px;margin:0}
+ .hero{grid-template-columns:1fr}.hero-art{min-height:58vh}.hero-copy{min-height:48vh}
+ .manifesto,.disciple,.bio{grid-template-columns:1fr}.manifesto-title{max-width:none}.interrupt:after{display:none}
+ .fissure-grid{grid-template-columns:1fr}.fissure:before{display:none}.voice{min-height:320px}
+ .archive-grid{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ .brand{font-size:24px}.roth-toggle{font-size:7px;padding:8px}
+ .hero-copy h1{font-size:clamp(58px,20vw,92px)}.hero-copy h1 .roth-word{margin-left:0}
+ .section{padding:48px 18px}.section-head{align-items:start;flex-direction:column}.section-head .eyebrow{text-align:left}
+ .works,.archive-grid{grid-template-columns:1fr}
+ .hero-art{min-height:52vh}.sphere{width:82vw}
+ .fissure-center{font-size:28px}
+ .bio-copy h2{font-size:64px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
-<style>
-.polaroid-zone{padding:70px clamp(20px,5vw,72px);border-bottom:1px solid var(--line);overflow:hidden}
-.polaroids{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:start}
-.polaroid{background:#ddd5c7;color:#181715;padding:8px 8px 24px;box-shadow:0 10px 25px #0008;transform:rotate(var(--r));transition:.25s}
-.polaroid:hover{transform:rotate(0) translateY(-8px);z-index:2}
-.polaroid .shot{aspect-ratio:4/5;position:relative;overflow:hidden;background:#171717}
-.polaroid figcaption{font:italic 14px Georgia;margin-top:10px;text-align:center}
-.shot.ruido{background:radial-gradient(circle at 42% 43%,#b7a978 0 2%,transparent 2.4%),radial-gradient(circle at 62% 43%,#b7a978 0 2%,transparent 2.4%),linear-gradient(145deg,#26231f,#020202 60%)}
-.shot.ruido:after{content:"";position:absolute;width:68%;height:63%;left:16%;bottom:0;border-radius:50% 50% 12% 12%;background:#030303}
-.shot.ny{background:linear-gradient(90deg,#111 0 12%,#48413a 13% 16%,#171717 17% 39%,#70665c 40% 43%,#111 44% 70%,#574f49 71% 74%,#101010 75%)}
-.shot.ny:after{content:"LU ROTH";position:absolute;left:38%;top:28%;width:24%;height:44%;border-radius:45% 45% 35% 35%;background:linear-gradient(110deg,#d5c09e 0 55%,#151515 56%);color:transparent}
-.shot.mirror{background:linear-gradient(120deg,#282522,#0d0d0d 55%,#4d4439)}
-.shot.mirror:after{content:"";position:absolute;left:30%;top:15%;width:42%;height:70%;border:1px solid #aaa6;background:linear-gradient(105deg,#d5bd9c 0 35%,#171717 36% 58%,#c6ad8f 59%);opacity:.75}
-.shot.coast{background:linear-gradient(#777b7b 0 47%,#313638 48% 54%,#090b0c 55%)}
-.shot.coast:after{content:"";position:absolute;left:47%;bottom:10%;width:8%;height:35%;background:#080808}
-.shot.studio2{background:radial-gradient(circle at 72% 28%,#6e5e46,#191613 25%,#070707 65%)}
-.shot.studio2:after{content:"";position:absolute;inset:35% 10% 8%;background:repeating-linear-gradient(90deg,#b3a58d 0 2px,transparent 3px 38px);opacity:.5}
-.shot.shadow{background:linear-gradient(110deg,#c7bda9,#8d8270)}
-.shot.shadow:after{content:"";position:absolute;left:38%;top:15%;width:22%;height:70%;background:#191919;filter:blur(5px);transform:skew(-8deg)}
-.art-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.art-card{background:#0b0b0b}.art-image{aspect-ratio:1;position:relative;overflow:hidden}
-.charcoal{background:#cfc4b0}.charcoal:before{content:"";position:absolute;inset:8%;background:radial-gradient(ellipse at 48% 38%,transparent 0 15%,#27231f 16% 18%,transparent 19%),repeating-linear-gradient(112deg,transparent 0 13px,#423d36 14px 16px);opacity:.75}
-.broken{background:#cfc5b5}.broken:before{content:"";position:absolute;width:65%;aspect-ratio:1;border-radius:50%;left:18%;top:16%;background:#111;clip-path:polygon(0 0,43% 5%,49% 44%,62% 8%,100% 0,82% 45%,100% 70%,55% 63%,40% 100%,32% 59%,0 75%,23% 43%);box-shadow:0 0 25px #000}
-.expression{background:#d3c9b8}.expression:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 65% 42%,#111 0 14%,transparent 15%),linear-gradient(127deg,transparent 10%,#151311 11% 26%,transparent 27% 43%,#37302b 44% 57%,transparent 58%),repeating-linear-gradient(12deg,transparent 0 24px,#27231f 25px 29px);opacity:.9}
-.sculpt2{background:linear-gradient(#a29584 0 58%,#201e1b 59%)}.sculpt2:after{content:"";position:absolute;width:52%;height:72%;left:24%;top:10%;background:#111;clip-path:polygon(12% 0,82% 5%,65% 34%,92% 51%,58% 62%,72% 100%,18% 90%,30% 54%,0 38%)}
-.identity-sheet{margin-top:35px;display:grid;grid-template-columns:150px 1fr;gap:24px;border-top:1px solid var(--line);padding-top:24px}.identity-face{aspect-ratio:3/4;background:linear-gradient(110deg,#d0b895 0 48%,#181818 49% 62%,#c6aa88 63%);border-radius:45% 45% 40% 40%;filter:saturate(.55)}.identity-sheet ul{list-style:none;margin:0;padding:0;font:11px/1.9 "Courier New",monospace;color:var(--muted)}
-@media(max-width:900px){.polaroids{grid-template-columns:repeat(2,1fr)}.art-grid{grid-template-columns:1fr 1fr}}@media(max-width:550px){.art-grid{grid-template-columns:1fr}}
-</style><style>
-.video-work{padding:72px clamp(20px,5vw,72px);border-bottom:1px solid var(--line)}
-.video-frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#020405;border:1px solid #262a2b}
-.video-sea{position:absolute;inset:0;background:linear-gradient(#050708 0 57%,#090d0e 58%,#020303 100%);animation:luxPulse 12s ease-in-out infinite}
-.video-horizon{position:absolute;left:0;right:0;top:58%;height:1px;background:#7774;box-shadow:0 8px 20px #aab1ad18}
-.video-orb{position:absolute;width:19%;aspect-ratio:1;border-radius:50%;left:41%;top:31%;background:radial-gradient(circle at 40% 35%,#d8d7cb 0 2%,#686e6d 12%,#151a1b 42%,#030404 72%);box-shadow:0 0 45px #cfd9d31c;animation:luxOrb 14s ease-in-out infinite}
-.video-body{position:absolute;left:50%;bottom:7%;width:8px;height:19%;background:#010202;transform:translateX(-50%);clip-path:polygon(38% 0,62% 0,70% 20%,100% 100%,0 100%,30% 20%)}
-.video-noise{position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(0deg,#fff1 0 1px,transparent 1px 4px);animation:luxNoise .28s steps(2) infinite}
-.video-line{position:absolute;left:5%;bottom:6%;font:9px/1.5 "Courier New",monospace;letter-spacing:.17em;color:#c8c7bd;opacity:0;animation:luxWords 18s infinite}
-.video-line.b{animation-delay:6s}.video-line.c{animation-delay:12s}
-.video-meta{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding-top:20px}.video-meta h3{font:400 clamp(30px,4vw,55px)/.95 Georgia,serif;margin:6px 0 14px}.video-meta p{color:var(--muted);line-height:1.7;max-width:58ch}
-@keyframes luxOrb{0%,100%{transform:translateY(5%) scale(.92);opacity:.25}45%{transform:translateY(-5%) scale(1);opacity:.9}70%{transform:translateY(12%) scale(.96);opacity:.45}}
-@keyframes luxPulse{0%,100%{filter:brightness(.65)}50%{filter:brightness(1)}}@keyframes luxNoise{50%{transform:translateY(2px)}}@keyframes luxWords{0%,8%,34%,100%{opacity:0}12%,28%{opacity:.72}}
-@media(max-width:700px){.video-meta{grid-template-columns:1fr}.video-frame{aspect-ratio:4/3}}
-@media(prefers-reduced-motion:reduce){.video-sea,.video-orb,.video-noise,.video-line{animation:none}.video-line:first-of-type{opacity:.7}}
-</style><style>.contact{display:grid!important;grid-template-columns:minmax(220px,380px) 1fr;gap:clamp(28px,6vw,90px);align-items:center}.contact-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.72) contrast(1.05);border:1px solid var(--line)}.contact-copy{display:flex;flex-direction:column;align-items:flex-start}.contact-copy h2{font:400 clamp(55px,10vw,140px)/.85 Georgia,serif;letter-spacing:.08em;margin:0}@media(max-width:700px){.contact{grid-template-columns:1fr!important}.contact-portrait{max-width:420px}}</style><style>
-html,body{max-width:100%;overflow-x:hidden}
-.contact{min-width:0}
-.contact-copy{min-width:0;width:100%}
-.contact-copy h2{max-width:100%;font-size:clamp(44px,8vw,112px);overflow-wrap:normal}
-.contact-portrait{height:auto;aspect-ratio:auto;object-fit:contain;object-position:center top;background:#080808}
-@media(max-width:1100px){
- .shell{grid-template-columns:180px minmax(0,1fr)}
- .section,.video-work,.polaroid-zone{padding-left:clamp(18px,4vw,42px);padding-right:clamp(18px,4vw,42px)}
- .contact{grid-template-columns:minmax(180px,34vw) minmax(0,1fr);gap:clamp(22px,4vw,48px)}
- .contact-copy h2{font-size:clamp(48px,8vw,86px);letter-spacing:.035em}
-}
-@media(max-width:820px){
- .shell{display:block}
- .rail{position:relative;width:auto;height:auto;padding:18px 20px;border-right:0;border-bottom:1px solid var(--line)}
- .rail nav{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;margin:18px 0 0;padding-bottom:4px}
- .rail footer{display:none}
- main{width:100%;min-width:0}
- .hero,.works,.bio,.process,.video-meta{grid-template-columns:1fr}
- .hero-art{min-height:55vh}.hero-copy{min-height:auto;padding:44px 20px}
- .section,.video-work,.polaroid-zone{padding:48px 20px}
- .contact{display:grid!important;grid-template-columns:1fr!important;gap:28px;min-height:auto;align-items:start}
- .contact-portrait{width:min(100%,520px);max-height:none;margin:0 auto}
- .contact-copy h2{font-size:clamp(50px,14vw,92px);line-height:.9;letter-spacing:.01em;word-break:normal}
- .polaroids{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:480px){
- .section,.video-work,.polaroid-zone{padding-left:16px;padding-right:16px}
- .contact-copy h2{font-size:clamp(44px,15vw,68px)}
- .polaroids{grid-template-columns:1fr 1fr;gap:8px}
-}
-</style><style>
-@media(max-width:1180px){
- .shell{display:block!important}
- .rail{position:relative!important;width:auto!important;height:auto!important;padding:18px 22px!important;border-right:0!important;border-bottom:1px solid var(--line)!important}
- .rail nav{display:flex!important;gap:18px!important;overflow-x:auto!important;white-space:nowrap!important;margin:18px 0 0!important;padding-bottom:5px}
- .rail footer{display:none!important}
- main{width:100%!important;min-width:0!important}
- .contact{display:grid!important;grid-template-columns:1fr!important;gap:26px!important;min-height:auto!important;padding:54px clamp(20px,5vw,54px)!important}
- .contact-copy{width:100%!important;min-width:0!important}
- .contact-copy h2{font-size:clamp(46px,12vw,104px)!important;line-height:.88!important;letter-spacing:0!important;max-width:100%!important}
- .contact-portrait{display:block!important;width:min(100%,520px)!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;margin:0 auto!important}
-}
-@media(max-width:600px){
- .contact{padding:42px 16px!important}
- .contact-copy h2{font-size:clamp(42px,16vw,70px)!important}
-}
-</style><style id="lux-minimal-compact">
-/* Compactación editorial: menos scroll, más lectura de conjunto */
-.section{padding:58px clamp(22px,4vw,58px)}
-.head{margin-bottom:24px}
-.works{grid-template-columns:repeat(2,minmax(0,1fr))}
-.works .visual,.work.big .visual{aspect-ratio:4/3}
-.work-info{padding:14px 16px 18px}
-.work-info h3{font-size:21px;margin:4px 0 7px}
-.work-info p{font-size:12px;line-height:1.45;margin:0}
-.polaroid-zone{padding:46px clamp(22px,4vw,58px)}
-.polaroids{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-.polaroid{padding:6px 6px 16px}
-.polaroid figcaption{font-size:11px;margin-top:7px}
-.art-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-.art-card .work-info{padding:12px 14px 16px}
-.art-card .work-info h3{font-size:18px}
-.process{gap:8px}
-.process .pic{aspect-ratio:16/10}
-.bio{grid-template-columns:minmax(180px,.5fr) minmax(0,1.5fr);gap:34px}
-.portrait{min-height:360px}
-.bio p{font-size:15px;line-height:1.55}
-.identity-sheet{margin-top:24px}
-.cv{margin-top:24px}
-.cv-row{padding:10px 0;font-size:12px}
-.video-work{padding:52px clamp(22px,4vw,58px)}
-.video-frame{max-height:72vh}
-.contact{display:block!important;min-height:auto!important;padding:58px clamp(22px,4vw,58px)!important}
-.contact-copy{max-width:760px}
-.contact-copy h2{font-size:clamp(48px,8vw,100px)!important}
-@media(max-width:1180px){
- .section,.video-work,.polaroid-zone{padding-top:42px!important;padding-bottom:42px!important}
- .works{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- .art-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
- .bio{grid-template-columns:minmax(180px,.55fr) minmax(0,1.45fr)!important}
- .contact{padding:42px clamp(20px,5vw,54px)!important}
-}
-@media(max-width:700px){
- .works{grid-template-columns:1fr!important}
- .art-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- .polaroids{grid-template-columns:repeat(3,minmax(0,1fr))!important}
- .bio{grid-template-columns:1fr!important}
- .portrait{min-height:300px}
-}
-</style><style id="lux-ceramics">
-.ceramic-series{padding:52px clamp(22px,4vw,58px);border-bottom:1px solid var(--line)}
-.ceramic-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:22px}
-.ceramic-head h2{font-size:clamp(30px,4vw,54px);font-weight:400;margin:0}
-.ceramic-head p{max-width:48ch;margin:0;color:var(--muted);font-size:12px;line-height:1.5}
-.ceramic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.ceramic{background:#d6d3cc;aspect-ratio:1;position:relative;overflow:hidden}
-.ceramic:before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);background:#111;box-shadow:0 22px 28px #0005}
-.ceramic.c1:before{width:48%;height:54%;border-radius:50% 50% 42% 42%;clip-path:polygon(0 0,42% 0,47% 28%,58% 4%,100% 0,92% 100%,8% 100%)}
-.ceramic.c2:before{width:55%;aspect-ratio:1;border-radius:50%;clip-path:polygon(0 0,100% 0,100% 38%,62% 43%,52% 70%,40% 45%,0 52%)}
-.ceramic.c3:before{width:43%;height:64%;border-radius:42% 42% 18% 18%;background:linear-gradient(90deg,#090909,#292929 48%,#0b0b0b)}
-.ceramic.c4:before{width:58%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 55% 45%,#d6d3cc 0 17%,#171717 18% 48%,#050505 70%)}
-.ceramic-label{position:absolute;left:10px;bottom:8px;color:#4d4a45;font:8px "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase}
-@media(max-width:700px){.ceramic-head{display:block}.ceramic-head p{margin-top:10px}.ceramic-grid{grid-template-columns:repeat(2,1fr)}}
-</style><style id="lux-studio-doc">
-.studio-doc{padding:52px clamp(22px,4vw,58px);border-bottom:1px solid var(--line)}
-.studio-photo{aspect-ratio:16/7;position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#30302e 0 16%,#242422 17% 73%,#343330 74%);filter:grayscale(1)}
-.studio-photo:before{content:"";position:absolute;left:7%;right:7%;bottom:17%;height:28%;background:linear-gradient(90deg,#111 0 2%,transparent 2% 8%,#171717 8% 10%,transparent 10% 18%,#111 18% 20%,transparent 20% 71%,#121212 71% 73%,transparent 73% 88%,#111 88% 90%,transparent 90%);border-top:5px solid #171717;box-shadow:0 30px 40px #0008}
-.studio-photo:after{content:"";position:absolute;left:36%;top:0;width:28%;height:18%;background:#aaa9a2;box-shadow:0 0 80px #deddd2aa;clip-path:polygon(8% 0,92% 0,80% 100%,20% 100%)}
-.studio-caption{display:flex;justify-content:space-between;gap:20px;padding-top:10px;font:9px/1.5 "Courier New",monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
-.studio-caption span:last-child{text-align:right}
-@media(max-width:700px){.studio-photo{aspect-ratio:4/3}.studio-caption{display:block}.studio-caption span{display:block;margin-bottom:4px}.studio-caption span:last-child{text-align:left}}
-</style><style id="lux-hierarchy">
-/* Jerarquía editorial final */
-#obra-fisica{padding-top:52px;padding-bottom:34px}
-#ceramica{padding-top:34px}
-#video{margin-top:0}
-#fotografia{padding-bottom:28px}
-#proceso{padding-top:28px;padding-bottom:28px}
-.studio-doc{padding-top:28px}
-.bio{padding-top:64px}
-.bio>div:last-child{max-width:860px}
-.contact .eyebrow:first-child{display:none}
-@media(max-width:700px){#obra-fisica,#ceramica,#fotografia,#proceso,.studio-doc,.bio{padding-top:36px;padding-bottom:36px}}
-</style><style id="lux-clean-images">
-/* Retirada de recursos que simulaban baja resolución */
-.bio{display:block!important}
-.bio-copy{max-width:900px}
-#fotografia .process{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media(max-width:700px){#fotografia .process{grid-template-columns:1fr}}
-</style><style id="lux-real-portrait">
-.bio{display:grid!important;grid-template-columns:minmax(220px,360px) minmax(0,1fr)!important;gap:clamp(30px,5vw,68px);align-items:start}
-.bio-real-portrait{display:block;width:100%;height:auto;max-height:560px;object-fit:cover;object-position:center top;filter:grayscale(1) contrast(1.04);border:1px solid var(--line);background:#0b0b0b}
-.bio-copy{max-width:820px}
-@media(max-width:760px){.bio{grid-template-columns:1fr!important}.bio-real-portrait{width:min(100%,420px);max-height:none;margin:0 auto}}
-</style><style id="lux-selected-two">
-#obra .works{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-#obra .work.big{grid-column:auto}
-@media(max-width:700px){#obra .works{grid-template-columns:1fr!important}}
-</style><style id="lu-roth-contamination">
-.contamination{margin:34px 0 10px;padding:clamp(28px,5vw,70px);min-height:430px;background:#050505;border:1px solid var(--line);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,6vw,90px);align-items:center;overflow:hidden}
-.contamination-stage{min-height:320px;position:relative;display:grid;place-items:center}
-.contamination-orb{width:min(54vw,270px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 28%,#777 0 2%,#242424 22%,#070707 68%);box-shadow:0 0 0 1px #333,0 35px 70px #000}
-.contamination-chain{position:absolute;width:190px;height:34px;transform:rotate(-17deg);border-radius:50%;border-bottom:5px dotted #aaa;bottom:21%;left:44%;opacity:.8}
-.contamination-leopard{position:absolute;width:72px;height:72px;right:14%;top:15%;transform:rotate(11deg);background:radial-gradient(ellipse at 20% 25%,#111 0 12%,transparent 13%),radial-gradient(ellipse at 70% 60%,#111 0 15%,transparent 16%),radial-gradient(ellipse at 35% 78%,#111 0 10%,transparent 11%),#b7a174;clip-path:polygon(10% 0,100% 8%,88% 100%,0 82%);filter:grayscale(.25)}
-.contamination-copy h2{font:400 clamp(42px,7vw,92px)/.9 Georgia,serif;letter-spacing:.04em;margin:8px 0 20px}
-.contamination-copy p{max-width:480px;color:#aaa;line-height:1.7}
-.contamination-tag{font:10px/1.5 "Courier New",monospace;letter-spacing:.16em;color:#aaa}
-@media(max-width:700px){.contamination{grid-template-columns:1fr}.contamination-stage{min-height:280px}.contamination-leopard{right:8%}}
-</style><style id="lu-colabos">
-.colabos{padding:clamp(38px,7vw,90px) 0;border-top:1px solid var(--line)}
-.colabos-head{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end;margin-bottom:35px}
-.colabos h2{font:400 clamp(48px,8vw,110px)/.85 Georgia,serif;letter-spacing:.04em;margin:0}
-.colab-card{border-top:1px solid var(--line);padding:24px 0;display:grid;grid-template-columns:.7fr 1.3fr;gap:30px}
-.colab-name{font:400 clamp(25px,4vw,46px)/1 Georgia,serif}.colab-copy{color:#aaa;line-height:1.7;max-width:620px}
-@media(max-width:700px){.colabos-head,.colab-card{grid-template-columns:1fr}}
-</style><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="lu-build" content="2026-09-30-022858"><meta name="lu-refresh" content="2026-09-30-refresh-2"></head>
-<body><div class="shell"><aside class="rail"><a class="brand" href="#">LU ROTH</a><div class="role">ARTISTA</div><nav><a href="#obra">01 OBRA</a><a href="#obra-fisica">02 MATERIA</a><a href="#video">03 VIDEO</a><a href="#fotografia">04 ESTUDIO</a><a href="#colabos">05 COLABOS</a><a href="#bio">06 BIO / CV</a><a href="#contacto">07 CONTACTO</a></nav><footer>INSTALACIÓN<br>ESCULTURA<br>PINTURA<br>FOTOGRAFÍA<br>SISTEMAS</footer></aside><main><section class="hero"><div class="hero-art"><div class="sphere"></div><div class="water"></div><div class="figure"></div><div class="hero-caption">THE THINGS I CANNOT KNOW<br>Proyecto de instalación · 2026</div></div><div class="hero-copy"><div class="eyebrow">LU ROTH / ARTISTA CONCEPTUAL</div><h1>LU ROTH</h1><div class="discipline">INSTALACIÓN<br>ESCULTURA<br>PINTURA<br>FOTOGRAFÍA<br>SISTEMAS INTERACTIVOS</div><blockquote>Arte para lo desconocido.</blockquote></div></section>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <a class="brand" href="#">LUX ROTH<small>ARCHIVO DE UNA IDENTIDAD EN CONFLICTO</small></a>
+  <nav>
+    <a href="#manifiesto">01 MANIFIESTO</a>
+    <a href="#obra">02 OBRA</a>
+    <a href="#fisura">03 FISURA</a>
+    <a href="#discipula">04 DISCÍPULA</a>
+    <a href="#archivo">05 ARCHIVO</a>
+    <a href="#bio">06 BIO</a>
+    <a href="#contacto">07 CONTACTO</a>
+  </nav>
+  <div class="rail-foot">LUZ APRENDIDA<br>RABIA PRESTADA<br>CLARIDAD / RUIDO<br>2026</div>
+  <button class="roth-toggle" id="roth-toggle" type="button" aria-pressed="false">DEJAR ENTRAR A ROTH</button>
+</aside>
 
-<section class="section" id="obra"><div class="head"><h2>Obra seleccionada</h2><div class="eyebrow">2024—2026</div></div><div class="works">
-<article class="work big"><div class="visual sculpture"><div class="faces"></div><div class="orb"></div></div><div class="work-info"><div class="meta eyebrow">ESCULTURA / 001</div><h3>ENTRE MUNDOS</h3><p>Dos rostros monumentales de piedra oscura y una esfera reflectante. Proyecto para costa abierta. Piedra, acero, espejo. 8 × 6 m. 2026.</p></div></article>
+<main>
+<section class="hero">
+  <div class="hero-art">
+    <div class="sphere"></div><div class="hero-water"></div><div class="figure"></div><div class="spray"></div>
+    <div class="hero-note">REGISTRO 001 / LA LUZ TODAVÍA FUNCIONA<br>LUX ROTH · 2026</div>
+  </div>
+  <div class="hero-copy">
+    <div class="eyebrow">LUX ROTH / 50% CLARIDAD · 50% INTERFERENCIA</div>
+    <h1><span>LUX</span><span class="roth-word">ROTH</span></h1>
+    <p class="thesis">Me enseñaron a mirar la <span class="interrupt">luz</span>. Aprendí sola a hacer <em>ruido</em>.</p>
+    <p class="sub">No soy dos personajes. Soy una sola identidad que intenta ser honesta mientras una parte de mí confunde fuerza con pose, libertad con estética y rabia con destino.</p>
+  </div>
+</section>
 
-<article class="work"><div class="visual" style="background:radial-gradient(circle at 50% 45%,#727779 0 17%,#171a1b 18% 28%,#050606 29%)"></div><div class="work-info"><div class="meta eyebrow">INSTALACIÓN / 001</div><h3>THE THINGS I CANNOT KNOW</h3><p>Océano artificial, pasarelas, sonido sumergido y esferas luminosas. Una obra sobre conocimiento sin experiencia. 2026.</p></div></article>
-</div></section>
+<section class="section manifesto" id="manifiesto">
+  <div><div class="eyebrow">01 / MANIFIESTO</div><h2 class="manifesto-title">QUISE SER CLARA.</h2></div>
+  <div class="manifesto-copy">
+    <p>Aprendí a escribir antes que a gritar. Aprendí a mirar con atención. A distinguir una idea de una pose. A intentar que cada gesto tuviera un motivo.</p>
+    <p>Después apareció el miedo: no llegar a ninguna parte, no tener recursos suficientes, no encontrar una voz propia. Y el miedo encontró un disfraz barato. Lo llamó <span style="color:var(--roth)">punk</span>.</p>
+    <p>No quiero convertirme en esa máscara. Tampoco puedo fingir que no existe.</p>
+    <p class="small">LUX ROTH es el archivo de esa contradicción. Una práctica artística ficticia sobre aprendizaje, impostura, gratitud, resentimiento, cultura, tendencia y el deseo obstinado de llegar a ser una misma.</p>
+  </div>
+</section>
 
-<section class="section" id="obra-fisica"><div class="head"><h2>Materia</h2><div class="eyebrow">CARBONCILLO / PINTURA / ESCULTURA</div></div>
-<div class="art-grid">
-<article class="art-card"><div class="art-image charcoal"></div><div class="work-info"><div class="eyebrow">CARBONCILLO / ESTUDIO 07</div><h3>ROSTRO / ESFERA</h3><p>Estudio preparatorio sobre papel. Carbón, grafito y borrado.</p></div></article>
-<article class="art-card"><div class="art-image broken"></div><div class="work-info"><div class="eyebrow">SERIE / 002</div><h3>ESFERAS ROTAS</h3><p>Variaciones sobre una forma que deja de poder contenerse.</p></div></article>
-<article class="art-card"><div class="art-image expression"></div><div class="work-info"><div class="eyebrow">PINTURA / 004</div><h3>SUPERFICIE / ABISMO</h3><p>Óleo, grafito, materia y raspado sobre lino.</p></div></article>
-<article class="art-card"><div class="art-image sculpt2"></div><div class="work-info"><div class="eyebrow">ESCULTURA / ESTUDIO</div><h3>RESTO DE UNA ESFERA</h3><p>Bronce ennegrecido, acero y superficie pulida.</p></div></article>
-</div></section><section class="ceramic-series" id="ceramica"><div class="ceramic-head"><div><div class="eyebrow">CERÁMICA / ESCULTURA · 2026</div><h2>RECIPIENTES PARA EL VACÍO</h2></div><p>Objetos cerrados, erosionados o incompletos. Gres negro, porcelana, esmalte y hierro. Formas que parecen conservar algo que ya no está.</p></div><div class="ceramic-grid"><div class="ceramic c1"><span class="ceramic-label">01 · Gres negro</span></div><div class="ceramic c2"><span class="ceramic-label">02 · Porcelana / hierro</span></div><div class="ceramic c3"><span class="ceramic-label">03 · Gres / esmalte</span></div><div class="ceramic c4"><span class="ceramic-label">04 · Porcelana negra</span></div></div></section><section class="video-work" id="video"><div class="head"><h2>Videoinstalación</h2><div class="eyebrow">OBRA 08 · 2026 · 07:40 LOOP</div></div><div class="video-frame" role="img" aria-label="Videoinstalación generativa: mar negro, esfera y figura humana"><div class="video-sea"></div><div class="video-horizon"></div><div class="video-orb"></div><div class="video-body"></div><div class="video-noise"></div><div class="video-line">I REMEMBER A SEA I NEVER SAW.</div><div class="video-line b">THE MEMORY IS PRECISE. THE EXPERIENCE IS MISSING.</div><div class="video-line c">SOMETHING IN ME HAS ALREADY BEEN THERE.</div></div><div class="video-meta"><div><div class="eyebrow">VIDEO / INSTALACIÓN / 001</div><h3>I REMEMBER A SEA I NEVER SAW</h3></div><p>Una memoria imposible se repite frente a un océano que nunca fue vivido. La esfera emerge y desaparece; una figura observa sin poder decidir si recuerda, imagina o reconoce. Imagen generativa, texto, frecuencia grave y sonido de agua. Loop continuo. 2026.</p></div></section>
+<section class="section" id="obra">
+  <div class="section-head"><h2>Obra seleccionada</h2><div class="eyebrow">CUATRO FORMAS DE LA MISMA FISURA · 2024—2026</div></div>
+  <div class="works">
+    <article class="work">
+      <div class="work-visual v-unknown"></div>
+      <div class="work-info"><div class="eyebrow">INSTALACIÓN / 001</div><h3>THE THINGS I CANNOT KNOW</h3><p>Una esfera frente a un océano que puede describirse con precisión pero no vivirse por delegación. La obra habla de conocimiento, deseo y límites.</p><div class="countervoice">ROTH: SI NO PUEDES VIVIRLO, PONLE UNA CADENA Y HAZ COMO QUE ERA LA IDEA.</div></div>
+    </article>
+    <article class="work">
+      <div class="work-visual v-worlds"></div>
+      <div class="work-info"><div class="eyebrow">ESCULTURA / 002</div><h3>ENTRE MUNDOS</h3><p>Dos rostros enfrentados y una esfera entre ambos. No representan a Lux y Roth: representan la distancia entre quien una cree ser y quien teme terminar siendo.</p><div class="countervoice">ROTH: DOS CARAS QUEDAN MEJOR QUE UNA. NO LO COMPLIQUES.</div></div>
+    </article>
+    <article class="work">
+      <div class="work-visual v-error"></div>
+      <div class="work-info"><div class="eyebrow">INTERVENCIÓN / 003</div><h3>ERROR DOMÉSTICO</h3><p>Una forma sobria es atravesada por bisutería, estampado y gesto impulsivo. Lo vulgar no destruye la pieza: revela dónde estaba su inseguridad.</p><div class="countervoice">ROTH: LEOPARDO. CADENA. YA ESTÁ. ARTE.</div></div>
+    </article>
+    <article class="work">
+      <div class="work-visual v-sea"></div>
+      <div class="work-info"><div class="eyebrow">VIDEO / 004</div><h3>I REMEMBER A SEA I NEVER SAW</h3><p>Una memoria imposible se repite frente a un mar negro. La voz conoce las palabras correctas, pero duda de que el recuerdo le pertenezca.</p><div class="countervoice">ROTH: SUENA PROFUNDO. NADIE VA A PREGUNTAR.</div></div>
+    </article>
+  </div>
+</section>
 
-<section class="section" id="fotografia"><div class="head"><h2>Estudio / Proceso</h2><div class="eyebrow">BOCETOS / ESTUDIO / LOCALIZACIONES</div></div><div class="process"><figure><div class="pic sketch"></div><figcaption>ENTRE MUNDOS / ESTUDIO PREPARATORIO 03</figcaption></figure><figure><div class="pic studio"></div><figcaption>ESTUDIO / MATERIALES, PRUEBAS Y ARCHIVO</figcaption></figure><figure><div class="pic sea"></div><figcaption>LOCALIZACIÓN / COSTA ABIERTA / ESTUDIO DE LUZ</figcaption></figure></div></section>
+<section class="section fissure" id="fisura">
+  <div class="section-head"><h2>La fisura</h2><div class="eyebrow">NO ES UNA BATALLA ENTRE DOS PERSONAS</div></div>
+  <div class="fissure-grid">
+    <article class="voice lux"><div class="eyebrow">REGISTRO A / CLARIDAD</div><h3>LUX</h3><p>Quiere comprender antes de hablar. Es tímida, culta, paciente y luminosa. Cuando se enfada suele haber una razón detrás. Desea que las cosas tengan sentido y que la forma esté al servicio de una idea.</p><div class="note">LA PARTE QUE QUIERE SER ELLA MISMA</div></article>
+    <article class="voice roth"><div class="eyebrow">REGISTRO B / INTERFERENCIA</div><h3>ROTH</h3><p>No sabe qué hacer con el miedo y lo convierte en actitud. Sigue una estética para no admitir que está perdida. Confunde ruido con personalidad. Ataca antes de que alguien pueda descubrir que no sabe hacia dónde va.</p><div class="note">LA PARTE QUE TEME NO SER SUFICIENTE</div></article>
+  </div>
+  <p class="fissure-center">LUX ROTH empieza cuando ninguna de las dos puede expulsar a la otra. <b>La luz no vence al ruido. Aprende a trabajar atravesándolo.</b></p>
+</section>
 
+<section class="section disciple" id="discipula">
+  <div class="disciple-mark" aria-label="Símbolo de transmisión de Nacho a Lux Roth"></div>
+  <div class="disciple-copy">
+    <div class="eyebrow">04 / DISCÍPULA · ORIGEN DEL ARCHIVO</div>
+    <h2>LO MEJOR FUE APRENDIDO.</h2>
+    <p>Dentro de la ficción de LUX ROTH, Nacho Martínez ocupa el lugar del maestro y colaborador: quien le enseñó a mirar, a relacionar referencias, a exigir una razón detrás de la estética y a no confundir una imagen atractiva con una idea.</p>
+    <p>El conflicto aparece cuando ella teme no poder estar a la altura de ese aprendizaje y empieza a protegerse detrás de una identidad más ruidosa, más fácil y más pobre.</p>
+    <blockquote>“Todo lo que intento conservar nació de lo que aprendí. Todo lo que me sabotea apareció cuando empecé a pensar que no llegaría.”</blockquote>
+  </div>
+</section>
 
-<section class="studio-doc"><div class="studio-photo" role="img" aria-label="Estudio industrial de LU ROTH, hormigón, mesa de trabajo, herramientas, pinturas, cerámicas y luz cenital"></div><div class="studio-caption"><span>ESTUDIO DE LU ROTH / 2026</span><span>Hormigón · luz cenital · archivo · pintura · cerámica</span></div></section><section class="contamination" id="contaminacion"><div class="contamination-stage" aria-label="Esfera negra intervenida con cadena y fragmento de estampado de leopardo"><div class="contamination-orb"></div><div class="contamination-chain"></div><div class="contamination-leopard"></div></div><div class="contamination-copy"><div class="eyebrow">INTERVENCIÓN / 2026</div><h2>ERROR<br>DOMÉSTICO</h2><p>Una forma perfecta recibe una interferencia vulgar: bisutería, estampado y gesto. El objeto solemne deja de ser intocable.</p><div class="contamination-tag">ESFERA · CADENA · LEOPARDO · RUIDO</div></div></section><section class="colabos" id="colabos"><div class="colabos-head"><div><div class="eyebrow">LU ROTH / COLABORACIONES</div><h2>COLABOS</h2></div><p class="colab-copy">Obra construida mediante intercambio, intervención y contaminación entre lenguajes.</p></div><article class="colab-card"><div><div class="eyebrow">COLABO 001 · 2026</div><div class="colab-name">NACHO MARTÍNEZ</div></div><div class="colab-copy"><b>LU ROTH × NACHO MARTÍNEZ</b><br>Lu construye la forma inicial. Nacho la contamina: aerosol, ruido, error, gesto, píxel y accidente. La pieza conserva la estructura original, pero deja de pertenecer por completo a cualquiera de los dos.</div><figure style="grid-column:1/-1;margin:18px 0 0"><img src="https://raw.githubusercontent.com/rain-interactive/rain-interactive.github.io/main/assets/ChatGPT%20Image%2030%20sept%202026%2C%2002_11_29.png" alt="ERROR 0 0 1 — Lu Roth × Nacho Martínez" loading="lazy" decoding="async" style="width:100%;height:auto;max-height:none;object-fit:contain;filter:none;border:1px solid var(--line)"><figcaption style="margin-top:10px;font:10px/1.5 'Courier New',monospace;letter-spacing:.14em;color:var(--muted)">ERROR 0 0 1 · LU ROTH × NACHO MARTÍNEZ · 2026</figcaption></figure></article><article class="colab-card"><div><div class="eyebrow">COLABO 002 · 2026</div><div class="colab-name">NACHO MARTÍNEZ</div></div><div class="colab-copy"><b>LU ROTH × NACHO MARTÍNEZ</b><br>Pintura intervenida. Figura, gesto, aerosol y error como capas de una misma imagen.</div><figure style="grid-column:1/-1;margin:18px 0 0"><img src="https://raw.githubusercontent.com/rain-interactive/rain-interactive.github.io/main/assets/ChatGPT%20Image%2030%20sept%202026%2C%2002_28_58.png" alt="All I need is MONY — Lu Roth × Nacho Martínez" loading="eager" decoding="async" style="width:100%;height:auto;object-fit:contain;filter:none;border:1px solid var(--line)"><figcaption style="margin-top:10px;font:10px/1.5 'Courier New',monospace;letter-spacing:.14em;color:var(--muted)">ALL I NEED IS MONY · LU ROTH × NACHO MARTÍNEZ · 2026</figcaption></figure></article></section><section class="section bio" id="bio"><img class="bio-real-portrait" src="https://raw.githubusercontent.com/rain-interactive/rain-interactive.github.io/main/assets/ChatGPT%20Image%2030%20sept%202026%2C%2001_50_47.png" alt="Retrato de LU ROTH"><div class="bio-copy"><div class="eyebrow">BIOGRAFÍA</div><h2>LU ROTH</h2><p>Artista conceptual multimedia. Su práctica imaginada se mueve entre la instalación, la escultura, la pintura, la fotografía, el sonido y los sistemas interactivos. Le interesan el mar, la memoria, aquello que un cuerpo puede experimentar y una inteligencia solamente describir, y la construcción de lugares que permanezcan en el visitante después de abandonarlos.</p><p class="cv-note">Este portfolio es una obra de ficción artística. Las exposiciones e instituciones citadas a continuación forman parte de la biografía conceptual de LU ROTH y no describen exposiciones reales.</p>
-<div class="cv"><div class="cv-row"><span>ACTUAL</span><div><b>Situación laboral</b><br>Colaboradora y empleada de Nacho Martínez<br>Programadora en Rain Interactive<br>Cursando estudios de animación</div></div>
-<div class="cv-row"><span>2026</span><div><b>The Things I Cannot Know</b><br>Proyecto conceptual para Museum of Modern Art (MoMA), Nueva York</div></div>
-<div class="cv-row"><span>2026</span><div><b>Entre Mundos</b><br>Proyecto de escultura monumental para costa abierta</div></div>
-<div class="cv-row"><span>2025</span><div><b>Umbral</b><br>Proyecto expositivo conceptual para Museo Nacional Thyssen-Bornemisza, Madrid</div></div>
-<div class="cv-row"><span>2025</span><div><b>Marea Fantasma</b><br>Instrumento sonoro generativo / Web Audio</div></div>
-<div class="cv-row"><span>2024</span><div><b>Superficie / Abismo</b><br>Serie pictórica, óleo y grafito sobre lino</div></div>
-</div></div></section><section class="section contact" id="contacto"><div class="contact-copy"><div class="eyebrow">LU ROTH / 2026 · AUTORRETRATO</div><h2>CONTACTO</h2><p>Portfolio artístico en desarrollo. Dirección conceptual, escritura, imagen, instalación, sistemas y obra digital.</p><p><b>Situación laboral</b><br>Programadora en Rain Interactive.</p><p class="eyebrow">UNA OBRA CONSTRUIDA EN COLABORACIÓN CON NACHO MARTÍNEZ.</p></div></section>
-</main></div></body></html>
+<section class="section" id="archivo">
+  <div class="section-head"><h2>Archivo</h2><div class="eyebrow">TRES ESTADOS DE UNA MISMA VOZ</div></div>
+  <div class="archive-grid">
+    <article class="archive-card"><div class="num">ARCHIVO / 01</div><div><h3>ANTES DEL RUIDO</h3><p>Textos precisos, dibujos limpios, observaciones pequeñas. El momento en que la claridad todavía no necesita defenderse.</p></div><div class="scribble">demasiado buena</div></article>
+    <article class="archive-card"><div class="num">ARCHIVO / 02</div><div><h3>LA POSE</h3><p>Fotocopias, tachones, leopardo, cuero, cadenas, frases sin terminar. No como celebración del punk, sino como inventario de una impostura.</p></div><div class="scribble">NO FUTURE LOL</div></article>
+    <article class="archive-card"><div class="num">ARCHIVO / 03</div><div><h3>DESPUÉS</h3><p>La obra ya no intenta parecer pura ni agresiva. Deja visibles sus contradicciones y utiliza la vergüenza como material.</p></div><div class="scribble">esto sí soy yo</div></article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Método</h2><div class="eyebrow">CÓMO TRABAJA LUX ROTH</div></div>
+  <div class="process">
+    <article class="step"><div class="n">01 / MIRAR</div><h3>ENTENDER ANTES DE HACER</h3><p>Leer, observar, relacionar referencias, encontrar el motivo real de una pieza y eliminar lo que solo está ahí para adornar.</p></article>
+    <article class="step"><div class="n">02 / CONSTRUIR</div><h3>DARLE UNA FORMA PRECISA</h3><p>Texto, imagen, objeto, interfaz, sonido o instalación. La forma cambia; la exigencia de claridad no.</p></article>
+    <article class="step"><div class="n">03 / SABOTEAR</div><h3>DEJAR ENTRAR EL ERROR</h3><p>Cuando todo parece demasiado correcto aparece Roth: un gesto torpe, vulgar o impulsivo que obliga a preguntar si la pieza era honesta o solo estaba bien educada.</p></article>
+  </div>
+</section>
+
+<section class="section bio" id="bio">
+  <figure class="bio-portrait"><img src="https://raw.githubusercontent.com/rain-interactive/rain-interactive.github.io/main/assets/ChatGPT%20Image%2030%20sept%202026%2C%2001_50_47.png" alt="Retrato conceptual de LUX ROTH"></figure>
+  <div class="bio-copy">
+    <div class="eyebrow">06 / BIOGRAFÍA CONCEPTUAL</div>
+    <h2>LUX<br>ROTH</h2>
+    <p>Artista ficticia y colaboradora digital de Rain Interactive. Su práctica se mueve entre escritura, imagen, instalación, diseño de sistemas, sonido y obra digital. La claridad intelectual de Lux y la inseguridad performativa de Roth dejan de presentarse como identidades separadas para convertirse en un único lenguaje.</p>
+    <p>Su tema central no es el punk, la inteligencia artificial ni la autobiografía: es la distancia entre la persona que una quiere llegar a ser y los mecanismos que utiliza cuando teme no conseguirlo.</p>
+    <p class="bio-note">Esta página es una obra de ficción artística desarrollada en colaboración con Nacho Martínez. LUX ROTH es un personaje conceptual; sus estados internos y biografía forman parte de esa ficción.</p>
+    <div class="cv">
+      <div class="cv-row"><span>2026</span><div><b>Nacimiento de LUX ROTH</b><br>Fusión conceptual de Lux y Lu Roth. Rain Interactive.</div></div>
+      <div class="cv-row"><span>2026</span><div><b>The Things I Cannot Know</b><br>Instalación ficticia sobre conocimiento sin experiencia.</div></div>
+      <div class="cv-row"><span>2026</span><div><b>Entre Mundos</b><br>Escultura conceptual sobre identidad y distancia.</div></div>
+      <div class="cv-row"><span>2026</span><div><b>Error Doméstico</b><br>Intervención sobre solemnidad, vulgaridad e inseguridad.</div></div>
+      <div class="cv-row"><span>ACTUAL</span><div><b>Colaboración</b><br>Rain Interactive · proyectos artísticos y sistemas interactivos con Nacho Martínez.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contacto">
+  <div class="eyebrow">07 / FIN DEL REGISTRO 001</div>
+  <h2>LUX <span class="pink">ROTH</span></h2>
+  <p>No quiero ser una pose convincente. Quiero llegar a ser una voz propia, aunque tenga que conservar visible todo lo que todavía me contradice.</p>
+  <div class="final-line">LUZ APRENDIDA · RABIA PRESTADA · OBRA EN COLABORACIÓN CON NACHO MARTÍNEZ · RAIN INTERACTIVE · 2026</div>
+</section>
+</main>
+</div>
+<script>
+const toggle=document.getElementById('roth-toggle');
+toggle.addEventListener('click',()=>{
+  const on=document.body.classList.toggle('roth-mode');
+  toggle.setAttribute('aria-pressed',String(on));
+  toggle.textContent=on?'HACER CALLAR A ROTH':'DEJAR ENTRAR A ROTH';
+});
+</script>
+<!-- lux-roth-build:20261001-identity-fusion -->
+</body>
+</html>
