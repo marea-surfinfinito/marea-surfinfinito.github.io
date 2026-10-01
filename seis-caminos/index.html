@@ -885,6 +885,29 @@ footer{
   .gate{border-radius:1px}
   .entry-quote{color:#2d251c !important}
 }
+
+.origin-strip{
+  display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;
+  padding:0 0 18px;margin-bottom:22px;border-bottom:1px solid rgba(108,84,50,.28)
+}
+.origin-strip span{
+  font-family:"Noto Serif JP",serif;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:#786a56
+}
+.origin-strip strong{
+  font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  font-size:20px;font-weight:500;color:var(--ink)
+}
+.practice-block{
+  background:rgba(222,204,165,.32);padding:22px;border:1px solid rgba(108,84,50,.25)
+}
+.practice-block p{font-size:17px!important;line-height:1.72!important;color:#4f4435!important}
+.maxim-block{text-align:center;padding:30px 18px 10px}
+.maxim-block blockquote{
+  margin:0 auto;max-width:680px;font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  font-size:clamp(28px,4vw,44px);line-height:1.18;color:#342a1f;font-weight:500
+}
+
 /* --- /SEIS CAMINOS · TOMO ANTIGUO --- */
 
 </style>
@@ -922,173 +945,90 @@ footer{
 <script>
 const works=[
 {
-id:"tao",num:"I",glyph:"道",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",coverTitle:"El camino del vacío",coverDesc:"Ceder, dejar espacio y actuar sin forzar.",
-era:"China antigua · tradición taoísta",focus:"No-forzar · equilibrio",form:"81 secciones en la versión recibida",
-lead:"Una obra sobre el orden que no se impone. Propone atender a los ritmos de las cosas, reducir la violencia de la intervención y comprender la fuerza de lo flexible, lo vacío y lo incompleto.",
+id:"tao",num:"I",glyph:"道",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",
+source:"Tao Te Ching · Laozi",
+coverTitle:"El camino del vacío",coverDesc:"Ceder, dejar espacio y actuar sin forzar.",
+lead:"Este camino enseña a no violentar el curso de las cosas. No pide pasividad, sino una acción tan ajustada que no necesita imponerse. Su fuerza está en la flexibilidad, la sencillez y el espacio que dejas para que algo pueda transformarse.",
 ideas:[
-["Wu wei","Actuar sin forzar: intervenir de manera ajustada a la situación, evitando el exceso de voluntad que destruye lo que pretende ordenar."],
-["Vacío","La ausencia no es carencia. Un recipiente sirve precisamente por el espacio que contiene."],
-["Agua","Lo flexible cede sin desaparecer. La suavidad puede sobrevivir allí donde la rigidez se rompe."],
-["Simplicidad","Disminuir artificios, ambición y ruido para recuperar claridad y medida."]
-]},
+["No fuerces","Antes de intervenir, observa si la situación realmente necesita tu empuje. Muchas veces el exceso de voluntad crea el obstáculo que intenta resolver."],
+["Haz espacio","No llenes cada silencio, cada agenda ni cada decisión. El vacío también trabaja: permite escuchar, cambiar de dirección y recibir lo que todavía no conoces."],
+["Sé como el agua","Adapta tu forma sin perder tu naturaleza. Rodear una dificultad puede ser más sabio que romperte contra ella."],
+["Reduce","Cuando estés confundido, elimina lo superfluo. Menos deseo, menos ruido y menos exhibición pueden devolver claridad."]
+],
+practice:"Elige hoy una situación que estés intentando controlar. Haz una intervención menos. Observa qué ocurre cuando no empujas inmediatamente.",
+maxim:"No confundas fuerza con rigidez."
+},
 {
-id:"sunzi",num:"II",glyph:"兵",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",coverTitle:"El camino de la estrategia",coverDesc:"Leer el conflicto antes del choque.",
-era:"China antigua",focus:"Información · adaptación",form:"Tratado en 13 capítulos",
-lead:"Un tratado sobre la gestión del conflicto antes de que el choque se produzca. La ventaja nace del conocimiento, la preparación, la lectura del terreno y la capacidad de transformar la situación.",
+id:"sunzi",num:"II",glyph:"兵",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",
+source:"El arte de la guerra · Sun Tzu",
+coverTitle:"El camino de la estrategia",coverDesc:"Leer el conflicto antes del choque.",
+lead:"Este camino propone comprender antes de actuar. La estrategia no consiste en luchar mejor, sino en llegar al conflicto con una visión más amplia: saber dónde estás, qué desea el otro, qué puedes perder y qué enfrentamientos no merecen existir.",
 ideas:[
-["Conocer","La información sobre uno mismo, el adversario y el entorno reduce la dependencia de la fuerza bruta."],
-["Forma","No ofrecer una estructura rígida que el adversario pueda leer y explotar."],
-["Terreno","Toda decisión depende del espacio, el tiempo, los recursos y las relaciones presentes."],
-["Economía","El conflicto prolongado consume incluso al vencedor. La eficacia exige evitar costes innecesarios."]
-]},
+["Conoce antes de actuar","No decidas desde la primera impresión. Reúne información sobre ti, la situación y las fuerzas que tienes delante."],
+["No enseñes toda tu forma","Evita convertirte en alguien completamente previsible. Conserva margen para cambiar de método, ritmo o posición."],
+["Elige el terreno","No aceptes todos los conflictos en las condiciones que otros imponen. Cambiar el lugar, el momento o las reglas puede transformar el problema."],
+["Evita la victoria costosa","Una victoria que consume tus recursos, relaciones o tranquilidad puede ser otra forma de derrota."]
+],
+practice:"Antes de responder a un conflicto, escribe tres cosas: qué sabes, qué estás suponiendo y qué puedes cambiar sin confrontación directa.",
+maxim:"La mejor posición es la que reduce la necesidad de combatir."
+},
 {
-id:"hagakure",num:"III",glyph:"葉",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",coverTitle:"El camino de la decisión",coverDesc:"Actuar sin quedar dividido por la duda.",
-era:"Japón · Edo · 1709–1716",focus:"Presencia · resolución",form:"Conversaciones y observaciones recopiladas",
-lead:"Una colección de reflexiones asociadas al mundo samurái de Saga. Combina disciplina, servicio, muerte, reputación, etiqueta y resolución inmediata, pero refleja un contexto social e histórico muy concreto.",
+id:"hagakure",num:"III",glyph:"葉",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",
+source:"Hagakure · Yamamoto Tsunetomo",
+coverTitle:"El camino de la decisión",coverDesc:"Actuar sin quedar dividido por la duda.",
+lead:"Este camino gira alrededor de la resolución. No elimina el miedo ni la incertidumbre: intenta evitar que pases la vida dividido entre decisiones que nunca terminas de tomar. Recordar que el tiempo es limitado convierte lo cotidiano en una disciplina.",
 ideas:[
-["Decisión","La vacilación prolongada puede ser una forma de derrota interior. La preparación busca reducir esa fractura."],
-["Muerte","La conciencia de la mortalidad aparece como método para relativizar miedo, cálculo y apego."],
-["Servicio","La identidad del guerrero se formula en relación con deberes, jerarquías y vínculos propios de su época."],
-["Atención","La conducta cotidiana importa tanto como los momentos excepcionales."]
-]},
+["Decide por completo","Cuando hayas pensado lo necesario, deja de negociar infinitamente contigo mismo. Una decisión parcial consume más energía que una decisión difícil."],
+["Recuerda la muerte","No como obsesión, sino como medida. Pregúntate si aquello que hoy te paraliza seguirá teniendo importancia cuando recuerdes que tu tiempo es finito."],
+["Prepárate en lo pequeño","La resolución no aparece mágicamente en una crisis. Se construye en la puntualidad, la palabra dada, el cuidado y los hábitos ordinarios."],
+["No busques parecer resuelto","La firmeza real no necesita teatro. Se demuestra en lo que haces cuando nadie observa."]
+],
+practice:"Toma una decisión pequeña que llevas aplazando y ciérrala hoy. Después no vuelvas a discutirla contigo mismo salvo que aparezca nueva información.",
+maxim:"Vivir dividido desgasta más que elegir."
+},
 {
-id:"bushido",num:"IV",glyph:"武",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",coverTitle:"El camino de la conducta",coverDesc:"Ordenar la vida mediante deber, forma y rectitud.",
-era:"Japón · tradición histórica",focus:"Conducta · deber",form:"Conjunto cambiante de ideales",
-lead:"Más que un único código eterno, el bushidō reúne ideas cambiantes sobre la conducta guerrera japonesa. Sus formulaciones modernas mezclan materiales medievales, Edo y reinterpretaciones posteriores.",
+id:"bushido",num:"IV",glyph:"武",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",
+source:"Bushido: The Soul of Japan · Inazo Nitobe",
+coverTitle:"El camino de la conducta",coverDesc:"Ordenar la vida mediante deber, forma y rectitud.",
+lead:"Este camino pregunta cómo comportarte cuando nadie puede decidir por ti. Propone que el carácter se construye mediante actos repetidos: rectitud, coraje, cortesía, honestidad y responsabilidad hacia los demás.",
 ideas:[
-["Rectitud","La conducta se juzga por obligaciones, relaciones y expectativas sociales, no solo por intención individual."],
-["Coraje","No equivale a temeridad: históricamente aparece unido a autocontrol, reputación y deber."],
-["Cortesía","La forma externa de la conducta regula el conflicto y expresa jerarquía, respeto y dominio de uno mismo."],
-["Lealtad","Fue un valor central en muchos discursos guerreros, aunque su significado y alcance variaron según época y dominio."]
-]},
+["Actúa con rectitud","No elijas solamente lo cómodo o lo beneficioso. Pregúntate qué conducta podrías defender incluso si nadie fuese a premiarla."],
+["Practica un coraje sobrio","El coraje no necesita imprudencia. A veces consiste en soportar, admitir un error, proteger a alguien o mantener una decisión impopular."],
+["Cuida la forma","La cortesía no es decoración cuando protege la dignidad del otro. Tu manera de actuar también forma parte de lo que haces."],
+["Hazte responsable","No conviertas la lealtad en obediencia ciega. Empieza por ser fiel a tu palabra y asumir las consecuencias de tus decisiones."]
+],
+practice:"Escoge una relación importante y revisa una sola pregunta: ¿mi conducta está a la altura de lo que digo valorar?",
+maxim:"El carácter es una costumbre convertida en forma de vida."
+},
 {
-id:"shoninki",num:"V",glyph:"忍",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",coverTitle:"El camino de la sombra",coverDesc:"Observar, comprender y pasar desapercibido.",
-era:"Japón · 1681",focus:"Observación · infiltración",form:"Manual de shinobi · tres rollos",
-lead:"Un manual de inteligencia y actividad shinobi asociado a Natori Masazumi. Consta de tres rollos y su núcleo no es la fantasía del ninja moderno, sino la observación, el disfraz, la memoria, la adaptación social y la obtención de información.",
+id:"shoninki",num:"V",glyph:"忍",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",
+source:"Shōninki · Natori Masazumi",
+coverTitle:"El camino de la sombra",coverDesc:"Observar, comprender y pasar desapercibido.",
+lead:"Este camino enseña a disminuir tu presencia para aumentar tu percepción. Antes de intervenir, mira. Antes de hablar, escucha. La sombra no busca protagonismo: intenta comprender el lugar, las personas y los patrones que normalmente pasan inadvertidos.",
 ideas:[
-["Observación","Antes de actuar se estudian hábitos, espacios, voces, rutas y patrones de comportamiento."],
-["Disfraz","La invisibilidad no consiste necesariamente en ocultarse, sino en parecer pertenecer al lugar."],
-["Memoria","Retener información sin depender de registros comprometedores forma parte de la disciplina del agente."],
-["Psicología","Comprender deseos, temores y expectativas permite anticipar conductas y reducir la confrontación."]
-]},
+["Observa sin anunciarte","No conviertas cada observación en una opinión inmediata. Mira el comportamiento repetido antes de decidir qué significa."],
+["Adáptate al entorno","Entrar en un lugar imponiendo tu identidad te vuelve visible. Aprende primero sus ritmos, códigos y expectativas."],
+["Recuerda detalles","Entrena una memoria concreta: nombres, recorridos, cambios, silencios, hábitos. La atención acumulada se convierte en conocimiento."],
+["Comprende motivaciones","No mires solo lo que alguien hace. Pregunta qué teme perder, qué desea obtener y qué necesita proteger."]
+],
+practice:"En una conversación, habla menos de lo habitual. Al terminar, anota cinco detalles que normalmente habrías pasado por alto.",
+maxim:"Quien necesita ser visto observa menos."
+},
 {
-id:"bansenshukai",num:"VI",glyph:"萬",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",coverTitle:"El camino de las corrientes",coverDesc:"Unir tiempo, señales, información y método.",
-era:"Japón · 1676",focus:"Inteligencia · sistema",form:"Compendio shinobi · 22 volúmenes",
-lead:"Una gran compilación de conocimientos shinobi del período Edo, atribuida a Fujibayashi Yasutake. Integra estrategia, organización, reconocimiento, señales, infiltración, herramientas, fuego, clima y principios de inteligencia; su título evoca muchas corrientes reuniéndose en un mismo mar.",
+id:"bansenshukai",num:"VI",glyph:"萬",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",
+source:"Bansenshūkai · Fujibayashi Yasutake",
+coverTitle:"El camino de las corrientes",coverDesc:"Unir tiempo, señales, información y método.",
+lead:"Este camino no confía en una única técnica. Enseña a combinar métodos según el momento, el entorno y el objetivo. Muchas corrientes pueden avanzar hacia un mismo resultado sin recorrer el mismo cauce.",
 ideas:[
-["Sistema","La operación eficaz depende de combinar información, preparación, coordinación y medios adecuados."],
-["Tiempo","Clima, luz, estaciones y ritmos humanos transforman por completo una oportunidad."],
-["Señales","La comunicación discreta permite coordinar grupos sin revelar intención."],
-["Adaptación","No existe una técnica universal: el método cambia con el terreno, la vigilancia y el objetivo."]
-]}
+["Piensa como un sistema","Una acción rara vez funciona sola. Observa cómo se relacionan tiempo, recursos, personas, información y consecuencias."],
+["Respeta el momento","Una buena idea ejecutada en el momento equivocado puede fracasar. Aprende a esperar sin quedarte inmóvil."],
+["Usa señales pequeñas","No toda coordinación necesita grandes discursos. Crea sistemas simples para comunicar, recordar y actuar con precisión."],
+["No adores la técnica","Una herramienta útil puede convertirse en una limitación si intentas aplicarla a todo. Cambia de método cuando cambien las condiciones."]
+],
+practice:"Elige un objetivo actual y diseña tres caminos distintos para alcanzarlo. No decidas todavía cuál es el mejor: observa qué condiciones harían válido a cada uno.",
+maxim:"El método debe servir a la situación, nunca al revés."
+}
 ];
-
-
-
-const workExtras={
-  tao:{
-    history:"El Tao Te Ching pertenece a la tradición filosófica china antigua. La versión recibida está organizada en 81 secciones, pero los manuscritos antiguos muestran una historia textual compleja. En el portal se trata como una tradición de pensamiento sobre el dao, la virtud, la naturalidad, el vacío y la acción no forzada.",
-    connections:[
-      ["El arte de la guerra","Comparte imágenes de flexibilidad, adaptación y ausencia de una forma rígida, aunque ambos textos persiguen fines distintos."],
-      ["Bansenshūkai","La idea de adaptarse a las condiciones reaparece siglos después en contextos estratégicos muy diferentes."]
-    ]
-  },
-  sunzi:{
-    history:"El arte de la guerra es un tratado estratégico chino organizado en 13 capítulos. El último se ocupa de inteligencia y agentes, lo que lo convierte en una referencia especialmente relevante para comprender textos shinobi posteriores.",
-    connections:[
-      ["Bansenshūkai","La tradición estratégica de Sun Tzu reaparece de manera explícita en compilaciones shinobi posteriores."],
-      ["Shōninki","Ambos privilegian información, observación y comprensión del entorno antes que el choque directo."],
-      ["Tao Te Ching","Comparten imágenes de flexibilidad y transformación sin ser una misma doctrina."]
-    ]
-  },
-  hagakure:{
-    history:"Hagakure reúne reflexiones de Yamamoto Tsunetomo recogidas por Tashiro Tsuramoto entre 1709 y 1716. Surge en pleno período Edo, cuando la identidad samurái debía pensarse también en una sociedad más estable y burocrática, no solo en el campo de batalla.",
-    connections:[
-      ["Bushidō","Hagakure es una obra concreta dentro del amplio universo de ideas sobre conducta samurái; no equivale a un código universal del bushidō."],
-      ["Tao Te Ching","La conciencia de la muerte y el desapego pueden dialogar conceptualmente con ideas de transitoriedad, aunque proceden de tradiciones distintas."]
-    ]
-  },
-  bushido:{
-    history:"Bushidō no es un único libro antiguo ni un código idéntico para todos los samuráis. Es una tradición cambiante de discursos sobre rectitud, deber, lealtad, coraje, reputación y conducta, reinterpretada de forma distinta según época y contexto.",
-    connections:[
-      ["Hagakure","Permite ver una formulación particular de conducta samurái en el período Edo, sin tomarla como definición total del bushidō."],
-      ["Budō Shoshinshū","Ofrece otro contrapunto histórico sobre disciplina y conducta guerrera dentro del mismo horizonte Edo."]
-    ]
-  },
-  shoninki:{
-    history:"Shōninki, asociado a Natori Masazumi y fechado en 1681, se estructura en tres rollos. Su interés histórico está en la observación, el disfraz, la memoria, la adaptación social y la inteligencia, muy lejos de la imagen fantástica moderna del ninja.",
-    connections:[
-      ["Bansenshūkai","Forma con Bansenshūkai y Ninpiden un núcleo documental fundamental para estudiar el ninjutsu histórico."],
-      ["El arte de la guerra","Comparte la prioridad dada a información, observación, engaño y comprensión del adversario."]
-    ]
-  },
-  bansenshukai:{
-    history:"Bansenshūkai, compilado en 1676 y atribuido a Fujibayashi Yasutake, es una gran enciclopedia shinobi de 22 volúmenes. Reúne estrategia, reconocimiento, señales, infiltración, herramientas, clima, fuego y principios de inteligencia. Su propio título evoca muchas corrientes reuniéndose en un mismo mar.",
-    connections:[
-      ["El arte de la guerra","La tradición de Sun Tzu aparece como una de sus referencias estratégicas más importantes."],
-      ["Shōninki","Ambos permiten separar la historia del shinobi de su representación moderna y espectacular."],
-      ["Ninpiden","Junto con Shōninki, completa el triángulo de grandes textos históricos asociados al ninjutsu."]
-    ]
-  }
-};
-
-const relatedArchives={
-  tao:{title:"Zhuangzi · 莊子",text:"Texto relacionado del taoísmo clásico. Amplía temas como espontaneidad, transformación, perspectiva y límites del lenguaje mediante relatos y paradojas.",tag:"Texto relacionado"},
-  sunzi:{title:"Wuzi · 吳子",text:"Otro tratado militar de la tradición estratégica china. Sirve para comparar cómo distintas obras antiguas piensan mando, organización, disciplina y conflicto.",tag:"Archivo estratégico"},
-  hagakure:{title:"Budō Shoshinshū · 武道初心集",text:"Texto del período Edo asociado a Daidōji Yūzan. Permite contrastar el Hagakure con otra formulación de deber, conducta y preparación samurái.",tag:"Contrapunto Edo"},
-  bushido:{title:"Preceptos y códigos de casa",text:"En lugar de un único libro canónico, conviene leer el bushidō junto a reglamentos de clanes, preceptos familiares y tratados de distintas épocas para ver cómo cambia la idea de conducta guerrera.",tag:"Tradición plural"},
-  shoninki:{title:"Ninpiden · 忍秘傳",text:"Considerado junto con Shōninki y Bansenshūkai uno de los tres grandes textos históricos de ninjutsu. Aquí aparece como archivo secundario, no como séptimo camino.",tag:"Archivo oculto"},
-  bansenshukai:{title:"Ninpiden + Shōninki",text:"Los tres textos forman un triángulo documental útil para separar la historia del shinobi de su imagen moderna. Bansenshūkai queda como la gran compilación; los otros dos funcionan como contrapuntos.",tag:"Tres grandes textos"}
-};
-
-const principleData={
-"Adaptación":[
-["Tao Te Ching","La flexibilidad aparece como capacidad de conservarse cambiando con las circunstancias."],
-["El arte de la guerra","La forma estratégica debe variar según enemigo, terreno, recursos y momento."],
-["Shōninki","La conducta del agente cambia para confundirse con el entorno social."],
-["Bansenshūkai","Métodos, herramientas y tiempos se eligen según la situación concreta."]
-],
-"Vacío":[
-["Tao Te Ching","El espacio vacío permite que una forma tenga uso."],
-["El arte de la guerra","La ausencia de una forma fija dificulta que el adversario encuentre dónde golpear."]
-],
-"Agua":[
-["Tao Te Ching","El agua simboliza flexibilidad, humildad y persistencia."],
-["El arte de la guerra","La estrategia se compara con un flujo que toma forma según el terreno."]
-],
-"Observación":[
-["El arte de la guerra","Conocer condiciones y movimientos precede al enfrentamiento."],
-["Shōninki","Observar personas, rutas y costumbres es una herramienta central de inteligencia."],
-["Bansenshūkai","El reconocimiento convierte información dispersa en ventaja operacional."]
-],
-"Disciplina":[
-["Hagakure","La preparación cotidiana busca reducir la indecisión cuando llega el momento de actuar."],
-["Bushidō","Diversos discursos guerreros vinculan conducta, autocontrol, deber y reputación."],
-["Shōninki","La eficacia depende de memoria, paciencia, autocontrol y atención a detalles."]
-],
-"Engaño":[
-["El arte de la guerra","La percepción del adversario puede manipularse para alterar sus decisiones."],
-["Shōninki","Disfraz y comportamiento permiten ocultar identidad e intención."],
-["Bansenshūkai","La inteligencia utiliza señuelos, desinformación y ocultación en contextos estratégicos."]
-],
-"Decisión":[
-["Hagakure","La resolución inmediata se presenta como una disciplina contra la vacilación."],
-["El arte de la guerra","La decisión eficaz depende de preparar condiciones antes del momento crítico."]
-],
-"Silencio":[
-["Tao Te Ching","La reducción del ruido y de la exhibición se vincula con una acción menos forzada."],
-["Shōninki","La discreción protege información, identidad y movilidad."],
-["Bansenshūkai","Ocultar intención y comunicación forma parte de la seguridad operacional."]
-],
-"Muerte":[
-["Hagakure","La conciencia de la mortalidad se convierte en método de resolución y desapego."],
-["Tao Te Ching","Vida y muerte aparecen dentro de un proceso mayor de transformación, no como dominios completamente separados."]
-],
-"No acción":[
-["Tao Te Ching","Wu wei no es pasividad: es evitar la acción excesiva o contraria al curso de la situación."],
-["El arte de la guerra","La victoria ideal reduce la necesidad del choque directo mediante preparación y posición."]
-]
-};
 
 const gates=document.getElementById("gates");
 const viewer=document.getElementById("viewer");
@@ -1098,37 +1038,37 @@ function coverMarkup(w){
    src:"https://upload.wikimedia.org/wikipedia/commons/c/ca/Guodian-laozi.kopi.png",
    fallback:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Guodian-laozi.kopi.png",
    alt:"Tablillas de bambú de Guodian con una antigua versión del Laozi",
-   note:"Laozi de Guodian · s. IV a. C. · testimonio antiguo"
+   note:"Tao Te Ching · Laozi"
   },
   sunzi:{
    src:"https://upload.wikimedia.org/wikipedia/commons/3/3e/Bamboo_Slips_with_Text_of_Sunzi_%289873600775%29.jpg",
    fallback:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Bamboo_Slips_with_Text_of_Sunzi_%289873600775%29.jpg",
    alt:"Tablillas de bambú de Yinqueshan con texto de Sunzi",
-   note:"Sunzi · tradición de Yinqueshan · Han occidental"
+   note:"El arte de la guerra · Sun Tzu"
   },
   hagakure:{
    src:"https://online.bunka.go.jp/heritage/416804/_137493/416804_137493110613154542233_900.jpg",
    fallback:"https://www.dl.saga-u.ac.jp/images/book/5/thum/251613102757.jpg",
    alt:"Conjunto histórico de manuscritos Hagakure Yamamoto-bon",
-   note:"Hagakure · Yamamoto-bon · copia histórica Edo"
+   note:"Hagakure · Yamamoto Tsunetomo"
   },
   bushido:{
    src:"https://upload.wikimedia.org/wikipedia/commons/4/4c/Houghton_Hearn_92.40.10_-_Bushido_cover.jpg",
    fallback:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Houghton_Hearn_92.40.10_-_Bushido_cover.jpg",
    alt:"Cubierta de la edición de 1900 de Bushido The Soul of Japan de Inazo Nitobe",
-   note:"Nitobe · Bushido · cubierta original de 1900"
+   note:"Bushido · Inazo Nitobe"
   },
   shoninki:{
    src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/NDL12865777_%E6%AD%A3%E5%BF%8D%E8%A8%98_3%E5%B7%BB.%E5%A4%A9.pdf?width=960&page=1",
    fallback:"https://www.ninja-museum.com/ninja-database/wp-content/uploads/sites/2/2015/02/syoujin.jpg",
    alt:"Copia histórica del Shoninki, tradición manuscrita de 1743",
-   note:"Shōninki · copia de 1743 · no se conserva el autógrafo"
+   note:"Shōninki · Natori Masazumi"
   },
   bansenshukai:{
    src:"https://iganinja.jp/2008/02/15/bansensyukai.jpg",
    fallback:"https://www.shinobinosato.com/common/images/heritage/front05.png",
    alt:"Volúmenes históricos de Bansenshukai conservados en la tradición de Iga y Koka",
-   note:"Bansenshūkai · copia histórica Edo · colección ninja"
+   note:"Bansenshūkai · Fujibayashi Yasutake"
   }
  };
  const x=covers[w.id];
@@ -1144,12 +1084,6 @@ works.forEach(w=>{
 });
 function openWork(w){
  viewer.className="viewer open";
- const principles=Object.entries(principleData)
-   .map(([name,items])=>({name,item:items.find(x=>x[0]===w.title)}))
-   .filter(x=>x.item);
- const extra=workExtras[w.id];
- const related=relatedArchives[w.id];
-
  viewer.innerHTML=`
  <aside class="viewer-side">
    <button class="close" aria-label="Cerrar">×</button>
@@ -1158,38 +1092,22 @@ function openWork(w){
    <small>${w.title} · ${w.subtitle}</small>
  </aside>
  <article class="viewer-main">
+   <div class="origin-strip"><span>Texto de origen</span><strong>${w.source}</strong></div>
    <p class="lead">${w.lead}</p>
 
-   <div class="meta">
-     <div><span>Contexto</span><strong>${w.era}</strong></div>
-     <div><span>Núcleo</span><strong>${w.focus}</strong></div>
-     <div><span>Forma</span><strong>${w.form}</strong></div>
-   </div>
-
    <section class="path-block">
-     <div class="path-block-label">Contexto histórico</div>
-     <p>${extra.history}</p>
-   </section>
-
-   <section class="path-block">
-     <div class="path-block-label">Principios</div>
+     <div class="path-block-label">Pautas del camino</div>
      <div class="ideas">${w.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p></div>`).join("")}</div>
    </section>
 
-   <section class="path-block">
-     <div class="path-block-label">Ecos dentro de los seis caminos</div>
-     <div class="path-principles">${principles.map(x=>`<div class="path-principle"><strong>${x.name}</strong><span>${x.item[1]}</span></div>`).join("")}</div>
+   <section class="path-block practice-block">
+     <div class="path-block-label">Práctica</div>
+     <p>${w.practice}</p>
    </section>
 
-   <section class="path-block">
-     <div class="path-block-label">Conexiones</div>
-     <div class="path-list">${extra.connections.map(c=>`<div class="path-item"><b>${c[0]}</b><p>${c[1]}</p></div>`).join("")}</div>
-   </section>
-
-   <section class="path-block">
-     <div class="path-block-label">Manuscrito relacionado</div>
-     <h4>${related.title}</h4>
-     <p>${related.text}</p>
+   <section class="path-block maxim-block">
+     <div class="path-block-label">Para recordar</div>
+     <blockquote>${w.maxim}</blockquote>
    </section>
  </article>`;
  viewer.querySelector(".close").onclick=()=>viewer.className="viewer";
@@ -1281,3 +1199,4 @@ const entryPhrases=[
 <!-- bansenshukai-frame-fix: 2026-10-01 -->
 <!-- visual-refresh: linen-bamboo-book-theme-2026-10-01 -->
 <!-- force-theme-publish: 2026-10-01T18:58+02:00 -->
+<!-- philosophy-paths: 2026-10-01 -->
