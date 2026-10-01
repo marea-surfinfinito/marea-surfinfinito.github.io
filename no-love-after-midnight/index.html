@@ -62,6 +62,29 @@ body.hit #message{animation:msg .45s steps(2)}
 body.hit h1{animation:glitch .2s steps(2)}
 @keyframes glitch{0%{transform:translate(-7px,2px);text-shadow:8px 0 var(--red)}50%{transform:translate(8px,-2px);text-shadow:-7px 0 #fff}100%{transform:none}}
 .mini{position:absolute;right:18px;bottom:85px;font:700 8px/1.6 "Courier New",monospace;color:#817a76;letter-spacing:.08em;text-align:right;text-transform:uppercase;z-index:7}
+
+#bootstrike{position:absolute;inset:0;z-index:30;display:none;place-items:center;pointer-events:none;background:#000}
+#bootstrike.on{display:grid}
+#bootstrike b{font-size:clamp(54px,15vw,220px);line-height:.72;letter-spacing:-.09em;text-transform:uppercase;text-align:center}
+#bootstrike small{position:absolute;bottom:8vh;font:700 9px/1 "Courier New",monospace;letter-spacing:.28em;color:#ff2a22}
+#ending{position:absolute;inset:0;z-index:45;display:none;background:#000;place-items:center;text-align:center;padding:24px}
+#ending.show{display:grid}
+#ending strong{display:block;font-size:clamp(56px,16vw,220px);line-height:.72;letter-spacing:-.09em;text-transform:uppercase}
+#ending span{display:block;margin-top:24px;font:700 10px/1.5 "Courier New",monospace;letter-spacing:.28em;color:#777;text-transform:uppercase}
+body[data-chapter="0"] .scan{opacity:.28}
+body[data-chapter="0"] .noise{opacity:.27}
+body[data-chapter="1"] .scan{opacity:.10;transform:skewY(-2deg)}
+body[data-chapter="1"] .titlewrap{mix-blend-mode:difference}
+body[data-chapter="2"] .scan{opacity:.22;background:repeating-linear-gradient(90deg,transparent 0 13px,#fff 14px 14px)}
+body[data-chapter="2"] h1{letter-spacing:-.11em}
+body[data-chapter="3"] .noise{opacity:.07}
+body[data-chapter="3"] .vignette{background:radial-gradient(circle at 50% 50%,transparent 0 10%,#000b 58%,#000 100%)}
+body[data-chapter="3"] .titlewrap{opacity:.72}
+body[data-chapter="4"] .scan{opacity:.32}
+body[data-chapter="4"] .noise{opacity:.34}
+body[data-chapter="4"] h1 .love{-webkit-text-stroke:1px #ff2a22}
+body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .controls{filter:contrast(180%)}
+
 @media(max-width:700px){
  .controls{grid-template-columns:auto auto 1fr}.controls .load{display:none}
  .timeline{grid-column:1/-1;grid-row:1}.chapter{bottom:118px}.mini{display:none}
@@ -69,7 +92,7 @@ body.hit h1{animation:glitch .2s steps(2)}
 }
 @media(prefers-reduced-motion:reduce){.noise,.live:before{animation:none}}
 </style>
-<!-- BUILD 20261002B -->
+<!-- BUILD 20261002C -->
 </head>
 <body>
 <div id="stage">
@@ -79,6 +102,8 @@ body.hit h1{animation:glitch .2s steps(2)}
   <div class="topbar"><div><span class="live">LIVE 001</span><br>RAIN INTERACTIVE PRESENTS</div><div class="right">LUX ROTH<br>NO LOVE AFTER MIDNIGHT</div></div>
   <div class="center"><div class="titlewrap"><div class="kicker">A WEB AUDIOVISUAL SESSION</div><h1><span>NO <i class="love">LOVE</i></span><span>AFTER MIDNIGHT</span></h1><div class="sub">LUX ROTH — LIVE 001</div></div></div>
   <div id="message">KEEP<br>DANCING</div>
+  <div id="bootstrike"><b id="bootword">LUX<br>ROTH</b><small>TRANSMISSION START</small></div>
+  <div id="ending"><div><strong>NO LOVE</strong><span>TRANSMISSION ENDED<br>LUX ROTH — LIVE 001</span></div></div>
   <div class="chapter"><div class="n" id="chapterNo">01 / 05</div><h2 id="chapterTitle">SIGNAL LOST</h2><p id="chapterText">digital damage / punk / broken transmission</p></div>
   <div class="mini">75 MINUTES / FIVE ACTS<br>GENERATIVE VISUAL ENGINE<br>LOCAL MIX READY</div>
   <div class="controls">
@@ -110,6 +135,7 @@ const playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'
 const fill=document.getElementById('fill'),time=document.getElementById('time');
 const cno=document.getElementById('chapterNo'),ct=document.getElementById('chapterTitle'),cp=document.getElementById('chapterText');
 const msg=document.getElementById('message'),audio=document.getElementById('audio');
+const boot=document.getElementById('bootstrike'),bootword=document.getElementById('bootword'),ending=document.getElementById('ending');
 
 const chapters=[
  {at:0,title:'SIGNAL LOST',text:'digital damage / punk / broken transmission'},
@@ -120,7 +146,7 @@ const chapters=[
 ];
 const messages=['KEEP DANCING','SIGNAL LOST','BODY CONTROL','NO LOVE','AFTER MIDNIGHT','SYSTEM FEVER','DO NOT STOP','TRANSMISSION ERROR','LUX ROTH'];
 const DURATION=75*60;
-let ac,analyser,master,data,started=false,paused=false,startT=0,pauseAt=0,usingFile=false,lastBeat=0,lastMsg=0;
+let ac,analyser,master,data,started=false,paused=false,startT=0,pauseAt=0,usingFile=false,lastBeat=0,lastMsg=0,ended=false;
 
 function resize(){
  const d=Math.min(devicePixelRatio||1,2);cvs.width=innerWidth*d;cvs.height=innerHeight*d;ctx.setTransform(d,0,0,d,0,0);
@@ -171,12 +197,32 @@ function chapterFor(sec){
 let currentChapter=-1;
 function setChapter(sec){
  const [i,c]=chapterFor(usingFile ? (sec/(totalSeconds()||1))*DURATION : sec);
- if(i!==currentChapter){currentChapter=i;cno.textContent=String(i+1).padStart(2,'0')+' / 05';ct.textContent=c.title;cp.textContent=c.text;trigger(c.title);}
+ if(i!==currentChapter){currentChapter=i;document.body.dataset.chapter=String(i);cno.textContent=String(i+1).padStart(2,'0')+' / 05';ct.textContent=c.title;cp.textContent=c.text;trigger(c.title);}
 }
 function trigger(text){
  msg.innerHTML=text.replace(' ','<br>');document.body.classList.remove('hit');void document.body.offsetWidth;document.body.classList.add('hit');
  flash.animate([{opacity:.55},{opacity:0}],{duration:130});redflash.animate([{opacity:.24},{opacity:0}],{duration:380});
 }
+
+function bootSequence(){
+ document.body.classList.add('intro-assault');boot.classList.add('on');
+ const words=['LUX\\nROTH','NO\\nLOVE','AFTER\\nMIDNIGHT','LIVE\\n001','SIGNAL\\nLOST'];
+ words.forEach((w,i)=>setTimeout(()=>{bootword.innerHTML=w.replace('\\n','<br>');flash.animate([{opacity:.85},{opacity:0}],{duration:85});},i*520));
+ setTimeout(()=>{boot.style.background='#ff2a22';bootword.textContent='';},2750);
+ setTimeout(()=>{boot.style.background='#000';bootword.innerHTML='ENTER<br>THE NOISE';},2920);
+ setTimeout(()=>{boot.classList.remove('on');document.body.classList.remove('intro-assault');trigger('SIGNAL LOST');},3500);
+ ['KEEP DANCING','BODY CONTROL','NO LOVE','DO NOT STOP'].forEach((w,i)=>setTimeout(()=>trigger(w),5200+i*3200));
+}
+function endTransmission(){
+ if(ended)return;ended=true;
+ if(usingFile) audio.pause(); else if(ac&&ac.state==='running') ac.suspend();
+ playBtn.textContent='ENDED';
+ document.querySelector('.controls').style.opacity='.18';
+ document.querySelector('.chapter').style.opacity='0';
+ document.querySelector('.center').style.opacity='0';
+ setTimeout(()=>{ending.classList.add('show');flash.animate([{opacity:1},{opacity:0}],{duration:110});},450);
+}
+
 function draw(){
  requestAnimationFrame(draw);
  const w=innerWidth,h=innerHeight,t=performance.now()/1000,sec=sessionSeconds(),total=totalSeconds();
@@ -186,22 +232,33 @@ function draw(){
    for(let i=0;i<data.length;i++){sum+=data[i];if(i<22)b+=data[i];if(i>90)tr+=data[i]}
    energy=sum/data.length/255;bassE=b/22/255;treble=tr/(data.length-90)/255;
  }
- ctx.fillStyle='#050505';ctx.fillRect(0,0,w,h);
+ const [act]=chapterFor(usingFile ? (sec/(total||1))*DURATION : sec);
+ ctx.fillStyle=act===4?'#020202':'#050505';ctx.fillRect(0,0,w,h);
  const pulse=0.3+energy*1.8+Math.sin(t*1.7)*.05;
- ctx.save();ctx.translate(w/2,h/2);
- ctx.strokeStyle='rgba(255,255,255,'+(0.035+energy*.12)+')';ctx.lineWidth=1;
- for(let i=0;i<24;i++){const r=(i*42+(t*35)%42)*(1+pulse*.08);ctx.beginPath();ctx.ellipse(0,0,r,r*.55,Math.sin(t*.13)*.12,0,Math.PI*2);ctx.stroke()}
- ctx.restore();
- const bars=44,bw=w/bars;
- for(let i=0;i<bars;i++){
-   const idx=Math.floor(i/data?.length*(data?.length||1)),v=data?data[idx]/255:Math.random()*.1;
-   const bh=(8+v*h*.26)*(i%3===0?1.35:1);
-   ctx.fillStyle=i%7===0?'rgba(255,42,34,'+(.13+v*.45)+')':'rgba(240,235,230,'+(.03+v*.12)+')';
-   ctx.fillRect(i*bw,h/2-bh/2,Math.max(1,bw*.14),bh);
+ if(act===0){
+   const bars=70,bw=w/bars;
+   for(let i=0;i<bars;i++){const idx=Math.floor(i/(bars-1)*(data?data.length-1:1)),v=data?data[idx]/255:Math.random()*.1;const bh=14+v*h*.42;ctx.fillStyle=i%9===0?'rgba(255,42,34,'+(.2+v*.55)+')':'rgba(240,235,230,'+(.03+v*.16)+')';ctx.fillRect(i*bw,h/2-bh/2,Math.max(1,bw*.11),bh)}
+   for(let i=0;i<8;i++){ctx.fillStyle='rgba(255,255,255,'+(.015+energy*.035)+')';ctx.fillRect(Math.random()*w,Math.random()*h,Math.random()*w*.22,1+Math.random()*3)}
+ } else if(act===1){
+   ctx.save();ctx.translate(w/2,h/2);
+   for(let i=0;i<20;i++){const r=(i*48+(t*95)%48)*(1+pulse*.1);ctx.strokeStyle=i%4===0?'rgba(255,42,34,.22)':'rgba(255,255,255,.08)';ctx.lineWidth=1+energy*2;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.stroke()}
+   ctx.restore();
+ } else if(act===2){
+   const cols=16,rows=10,cw=w/cols,rh=h/rows;
+   for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const k=(x+y*cols)%((data&&data.length)||1),v=data?data[k]/255:.1;if(v>.22){ctx.fillStyle=(x+y)%5===0?'rgba(255,42,34,'+(.08+v*.26)+')':'rgba(255,255,255,'+(.02+v*.09)+')';ctx.fillRect(x*cw+2,y*rh+2,cw-4,rh-4)}}
+ } else if(act===3){
+   ctx.save();ctx.translate(w/2,h/2);
+   for(let i=0;i<28;i++){const r=40+i*32+(Math.sin(t*.7+i)*12);ctx.strokeStyle='rgba(220,215,210,'+(.012+energy*.055)+')';ctx.beginPath();ctx.ellipse(0,0,r,r*.32,Math.sin(t*.08)*.6,0,Math.PI*2);ctx.stroke()}
+   ctx.restore();
+   ctx.fillStyle='rgba(255,42,34,'+(.025+bassE*.08)+')';ctx.fillRect(w*.49,0,Math.max(1,w*.012),h);
+ } else {
+   const bars=24,bw=w/bars;
+   for(let i=0;i<bars;i++){const idx=Math.floor(i/(bars-1)*(data?data.length-1:1)),v=data?data[idx]/255:.1;const bh=h*(.08+v*.72);ctx.fillStyle=i%3===0?'rgba(255,42,34,'+(.24+v*.6)+')':'rgba(245,240,235,'+(.035+v*.11)+')';ctx.fillRect(i*bw,h-bh,bw*.18,bh)}
+   ctx.strokeStyle='rgba(255,42,34,'+(.12+bassE*.4)+')';ctx.lineWidth=2;ctx.strokeRect(12+Math.sin(t*7)*5,12,w-24,h-24);
  }
  if(bassE>.53&&performance.now()-lastBeat>120){lastBeat=performance.now();flash.animate([{opacity:Math.min(.36,bassE*.35)},{opacity:0}],{duration:90});}
  if(started&&performance.now()-lastMsg>7000+Math.random()*9000){lastMsg=performance.now();trigger(messages[(Math.random()*messages.length)|0]);}
- const pct=Math.min(1,sec/(total||1));fill.style.width=(pct*100)+'%';time.textContent=fmt(sec)+' / '+fmt(total);setChapter(sec);
+ const pct=Math.min(1,sec/(total||1));fill.style.width=(pct*100)+'%';time.textContent=fmt(sec)+' / '+fmt(total);setChapter(sec);if(started&&sec<20&&Math.random()<.018){redflash.animate([{opacity:.4},{opacity:0}],{duration:70})}if(started&&total>0&&sec>=total-.15)endTransmission();
 }
 draw();
 
@@ -209,7 +266,7 @@ function connectFile(){
  try{const src=ac.createMediaElementSource(audio);src.connect(analyser);analyser.connect(ac.destination)}catch(e){}
 }
 enterBtn.addEventListener('click',async()=>{
- setupAudio();await ac.resume();started=true;paused=false;startT=ac.currentTime;nextStep=ac.currentTime+.05;enter.style.display='none';trigger('SIGNAL LOST');
+ setupAudio();await ac.resume();started=true;paused=false;ended=false;startT=ac.currentTime;nextStep=ac.currentTime+.05;enter.style.display='none';bootSequence();
 });
 playBtn.addEventListener('click',async()=>{
  if(!started)return;
@@ -219,7 +276,7 @@ playBtn.addEventListener('click',async()=>{
 });
 file.addEventListener('change',async e=>{
  const f=e.target.files[0];if(!f)return;if(!ac){setupAudio();started=true;enter.style.display='none'}
- usingFile=true;paused=false;master.gain.value=0;audio.src=URL.createObjectURL(f);connectFile();await ac.resume();await audio.play();playBtn.textContent='PAUSE';trigger('LOCAL MIX');
+ usingFile=true;paused=false;ended=false;ending.classList.remove('show');master.gain.value=0;audio.src=URL.createObjectURL(f);connectFile();await ac.resume();await audio.play();playBtn.textContent='PAUSE';bootSequence();
 });
 fsBtn.addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
 })();
