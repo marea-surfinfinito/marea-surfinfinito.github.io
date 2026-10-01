@@ -40,7 +40,7 @@ h1 .love{color:transparent;-webkit-text-stroke:1px #f2eee9}
 .chapter .n{font:700 10px/1 "Courier New",monospace;color:var(--red);letter-spacing:.23em;margin-bottom:8px}
 .chapter h2{font-size:clamp(28px,5vw,72px);line-height:.86;letter-spacing:-.05em;margin:0;text-transform:uppercase}
 .chapter p{font:700 9px/1.4 "Courier New",monospace;letter-spacing:.1em;color:#aaa29d;margin:10px 0 0;text-transform:uppercase}
-.controls{position:absolute;z-index:20;left:18px;right:18px;bottom:max(14px,env(safe-area-inset-bottom));display:grid;grid-template-columns:auto auto 1fr auto;gap:9px;align-items:center}
+.controls{position:absolute;z-index:20;left:18px;right:18px;bottom:max(14px,env(safe-area-inset-bottom));display:grid;grid-template-columns:auto auto auto auto 1fr auto;gap:9px;align-items:center}
 .ctrl,.load{border:1px solid #3a3532;background:#070707;color:#eee;padding:10px 12px;font:700 9px/1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;min-height:36px}
 .ctrl:hover,.load:hover{border-color:#eee}
 .load input{display:none}
@@ -85,6 +85,25 @@ body[data-chapter="4"] .noise{opacity:.34}
 body[data-chapter="4"] h1 .love{-webkit-text-stroke:1px #ff2a22}
 body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .controls{filter:contrast(180%)}
 
+
+#enter{background:
+ linear-gradient(90deg,rgba(0,0,0,.22),rgba(0,0,0,.78)),
+ linear-gradient(0deg,rgba(0,0,0,.48),rgba(0,0,0,.08)),
+ url('/assets/no-love-after-midnight-cover.webp?v=mix1') center/cover no-repeat #030303}
+#enter:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 62% 42%,transparent 0 18%,#0009 72%,#000 100%)}
+.enterbox{position:relative;z-index:2;text-shadow:0 2px 18px #000}
+.credit{z-index:3}
+.mixstatus{position:absolute;z-index:19;left:18px;top:58px;max-width:min(520px,70vw);font:700 8px/1.45 "Courier New",monospace;letter-spacing:.09em;text-transform:uppercase;color:#8e8782}
+.mixstatus strong{display:block;color:#f3eee9;font-size:10px;margin-bottom:4px}
+.mixstatus em{font-style:normal;color:#ff2a22}
+body.autodj .center{opacity:.38}
+body.autodj .mini:after{content:" / AUTO DJ";color:#ff2a22}
+.deckdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#ff2a22;margin-right:6px;box-shadow:0 0 8px #ff2a22}
+@media(max-width:700px){
+ #enter{background-position:62% center}
+ .mixstatus{top:54px;max-width:86vw}
+}
+
 @media(max-width:700px){
  .controls{grid-template-columns:auto auto 1fr}.controls .load{display:none}
  .timeline{grid-column:1/-1;grid-row:1}.chapter{bottom:118px}.mini{display:none}
@@ -92,7 +111,7 @@ body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .contr
 }
 @media(prefers-reduced-motion:reduce){.noise,.live:before{animation:none}}
 </style>
-<!-- BUILD 20261002R2 -->
+<!-- BUILD 20261002MIX1 -->
 </head>
 <body>
 <div id="stage">
@@ -102,6 +121,7 @@ body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .contr
   <div class="topbar"><div><span class="live">LUX ROTH RADIO · 001</span><br>RAIN INTERACTIVE PRESENTS</div><div class="right">LUX ROTH<br>NO LOVE AFTER MIDNIGHT</div></div>
   <div class="center"><div class="titlewrap"><div class="kicker">A WEB AUDIOVISUAL SESSION</div><h1><span>NO <i class="love">LOVE</i></span><span>AFTER MIDNIGHT</span></h1><div class="sub">LUX ROTH — LIVE 001</div></div></div>
   <div id="message">KEEP<br>DANCING</div>
+  <div class="mixstatus" id="mixstatus"><strong><span class="deckdot"></span><span id="nowTrack">DEMO SIGNAL</span></strong><span>NEXT · <em id="nextTrack">LOAD TRACKS TO BUILD THE MIX</em></span></div>
   <div id="bootstrike"><b id="bootword">LUX<br>ROTH</b><small>TRANSMISSION START</small></div>
   <div id="ending"><div><strong>NO LOVE</strong><span>TRANSMISSION ENDED<br>LUX ROTH — LIVE 001</span></div></div>
   <div class="chapter"><div class="n" id="chapterNo">01 / 05</div><h2 id="chapterTitle">SIGNAL LOST</h2><p id="chapterText">digital damage / punk / broken transmission</p></div>
@@ -109,6 +129,8 @@ body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .contr
   <div class="controls">
     <button class="ctrl" id="play">PAUSE</button>
     <label class="load">LOAD MIX<input id="file" type="file" accept="audio/*"></label>
+    <label class="load">LOAD TRACKS<input id="trackFiles" type="file" accept="audio/*" multiple></label>
+    <button class="ctrl" id="autoMix">AUTO MIX</button>
     <div class="timeline"><div class="bar"><span class="fill" id="fill"></span></div><div class="time" id="time">00:00 / 75:00</div></div>
     <button class="ctrl" id="fs">FULL</button>
   </div>
@@ -131,11 +153,12 @@ body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .contr
 const cvs=document.getElementById('viz'),ctx=cvs.getContext('2d');
 const flash=document.getElementById('flash'),redflash=document.getElementById('redflash');
 const enter=document.getElementById('enter'),enterBtn=document.getElementById('enterBtn');
-const playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),file=document.getElementById('file');
+const playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),file=document.getElementById('file'),trackFiles=document.getElementById('trackFiles'),autoMixBtn=document.getElementById('autoMix');
 const fill=document.getElementById('fill'),time=document.getElementById('time');
 const cno=document.getElementById('chapterNo'),ct=document.getElementById('chapterTitle'),cp=document.getElementById('chapterText');
 const msg=document.getElementById('message'),audio=document.getElementById('audio');
 const boot=document.getElementById('bootstrike'),bootword=document.getElementById('bootword'),ending=document.getElementById('ending');
+const nowTrack=document.getElementById('nowTrack'),nextTrack=document.getElementById('nextTrack');
 
 const chapters=[
  {at:0,title:'SIGNAL LOST',text:'digital damage / punk / broken transmission'},
@@ -147,6 +170,7 @@ const chapters=[
 const messages=['KEEP DANCING','SIGNAL LOST','BODY CONTROL','NO LOVE','AFTER MIDNIGHT','SYSTEM FEVER','DO NOT STOP','TRANSMISSION ERROR','LUX ROTH'];
 const DURATION=75*60;
 let ac,analyser,master,data,started=false,paused=false,startT=0,pauseAt=0,usingFile=false,lastBeat=0,lastMsg=0,ended=false;
+let playlist=[],library=[],mixQueue=[],mixIndex=0,autoDJ=false,mixStart=0,mixTimer=null,deckActive=0,decks=[];
 
 function resize(){
  const d=Math.min(devicePixelRatio||1,2);cvs.width=innerWidth*d;cvs.height=innerHeight*d;ctx.setTransform(d,0,0,d,0,0);
@@ -159,6 +183,105 @@ function setupAudio(){
  master=ac.createGain();master.gain.value=.36;master.connect(analyser);analyser.connect(ac.destination);
  data=new Uint8Array(analyser.frequencyBinCount);
 }
+
+function normalizeName(s){
+ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\.[a-z0-9]{2,5}$/,'').replace(/[^a-z0-9]+/g,' ').trim();
+}
+async function loadTracklist(){
+ try{const t=await fetch('tracklist.txt?v=mix1').then(r=>r.text());playlist=t.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}catch(e){playlist=[]}
+}
+loadTracklist();
+
+function ensureDecks(){
+ if(decks.length||!ac)return;
+ for(let i=0;i<2;i++){
+   const el=new Audio(); el.preload='auto'; el.playsInline=true;
+   const src=ac.createMediaElementSource(el);
+   const filter=ac.createBiquadFilter(); filter.type='lowpass'; filter.frequency.value=19000; filter.Q.value=.7;
+   const gain=ac.createGain(); gain.gain.value=i===0?1:0;
+   const delay=ac.createDelay(1.2); delay.delayTime.value=.34;
+   const wet=ac.createGain(); wet.gain.value=0;
+   const fb=ac.createGain(); fb.gain.value=.34;
+   src.connect(filter); filter.connect(gain); gain.connect(master);
+   filter.connect(delay); delay.connect(wet); wet.connect(master); delay.connect(fb); fb.connect(delay);
+   decks.push({el,filter,gain,delay,wet,fb,url:null,title:'',loopTimer:null});
+ }
+}
+function matchLibrary(){
+ const files=[...trackFiles.files];
+ library=playlist.map(title=>{
+   const n=normalizeName(title);
+   let best=null,bestScore=0;
+   for(const f of files){
+     const fn=normalizeName(f.name);
+     const a=n.split(' '),b=new Set(fn.split(' '));
+     const score=a.filter(x=>x.length>2&&b.has(x)).length/Math.max(1,a.filter(x=>x.length>2).length);
+     if(score>bestScore){bestScore=score;best=f}
+   }
+   return bestScore>=.48?{title,file:best}:null;
+ }).filter(Boolean);
+ return library;
+}
+function buildMixQueue(items){
+ if(items.length<=30)return items.slice();
+ const out=[],count=30,step=(items.length-1)/(count-1);
+ for(let i=0;i<count;i++)out.push(items[Math.round(i*step)]);
+ return [...new Map(out.map(x=>[x.title,x])).values()];
+}
+function loadDeck(d,item,startAt=0){
+ if(d.url)URL.revokeObjectURL(d.url);
+ d.url=URL.createObjectURL(item.file);d.title=item.title;d.el.src=d.url;d.el.currentTime=0;d.el.playbackRate=1;d.filter.frequency.value=19000;d.wet.gain.value=0;
+ return new Promise(resolve=>{
+   const ready=()=>{d.el.removeEventListener('loadedmetadata',ready);d.el.currentTime=Math.min(startAt,Math.max(0,(d.el.duration||0)-30));resolve()};
+   d.el.addEventListener('loadedmetadata',ready);d.el.load();
+ });
+}
+function stopLoop(d){
+ if(d.loopTimer){clearInterval(d.loopTimer);d.loopTimer=null}
+}
+function startLoop(d,seconds=8){
+ stopLoop(d);const end=d.el.currentTime,start=Math.max(0,end-seconds);
+ d.loopTimer=setInterval(()=>{if(d.el.currentTime>=end-.04)d.el.currentTime=start},40);
+}
+function ramp(param,to,dur){
+ const t=ac.currentTime;param.cancelScheduledValues(t);param.setValueAtTime(param.value,t);param.linearRampToValueAtTime(to,t+dur);
+}
+async function crossfadeTo(nextItem){
+ const out=decks[deckActive],incoming=decks[1-deckActive];
+ await loadDeck(incoming,nextItem,mixIndex%3===0?12:20);
+ incoming.gain.gain.value=0;incoming.wet.gain.value=0;incoming.filter.frequency.value=11000;
+ await incoming.el.play();
+ const dur=18;
+ if(mixIndex%4===2)startLoop(out,8);
+ if(mixIndex%3===1){ramp(out.wet.gain,.42,dur*.7);ramp(out.fb.gain,.48,dur*.7)}
+ ramp(out.filter.frequency,850,dur);ramp(incoming.filter.frequency,19000,dur*.72);
+ ramp(out.gain.gain,0,dur);ramp(incoming.gain.gain,1,dur);
+ trigger(mixIndex%4===2?'LOOP / CROSSFADE':mixIndex%3===1?'ECHO / FADE':'CROSSFADE');
+ setTimeout(()=>{out.el.pause();stopLoop(out);out.wet.gain.value=0;out.filter.frequency.value=19000;deckActive=1-deckActive;mixIndex++;updateMixLabels();scheduleNextTransition()},dur*1000+120);
+}
+function updateMixLabels(){
+ const current=mixQueue[mixIndex],next=mixQueue[mixIndex+1];
+ nowTrack.textContent=current?current.title:'TRANSMISSION ENDED';
+ nextTrack.textContent=next?next.title:'NO LOVE';
+}
+function scheduleNextTransition(){
+ clearTimeout(mixTimer);
+ if(!autoDJ)return;
+ if(mixIndex>=mixQueue.length-1){mixTimer=setTimeout(endTransmission,90000);return}
+ const d=decks[deckActive];
+ const segment=Math.max(70,Math.min(155,(isFinite(d.el.duration)?d.el.duration-28:145)));
+ mixTimer=setTimeout(()=>crossfadeTo(mixQueue[mixIndex+1]),segment*1000);
+}
+async function startAutoDJ(){
+ if(!ac){setupAudio();await ac.resume();started=true;enter.style.display='none'}
+ ensureDecks();matchLibrary();mixQueue=buildMixQueue(library);
+ if(mixQueue.length<2){trigger('LOAD TRACKS');nextTrack.textContent='NEED AT LEAST 2 MATCHED AUDIO FILES';return}
+ usingFile=true;autoDJ=true;ended=false;document.body.classList.add('autodj');ending.classList.remove('show');master.gain.value=.72;
+ audio.pause();mixIndex=0;deckActive=0;mixStart=ac.currentTime;startT=ac.currentTime;
+ await loadDeck(decks[0],mixQueue[0],0);decks[0].gain.gain.value=1;decks[1].gain.gain.value=0;
+ await decks[0].el.play();updateMixLabels();bootSequence();scheduleNextTransition();autoMixBtn.textContent='MIXING';
+}
+
 function kick(t){
  const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(45,t+.14);
  g.gain.setValueAtTime(.95,t);g.gain.exponentialRampToValueAtTime(.001,t+.22);o.connect(g);g.connect(master);o.start(t);o.stop(t+.23);
@@ -183,11 +306,12 @@ function scheduler(){
 setInterval(scheduler,25);
 
 function sessionSeconds(){
+ if(autoDJ&&ac)return Math.max(0,ac.currentTime-mixStart);
  if(usingFile) return audio.currentTime||0;
  if(!started)return 0;
  return paused?pauseAt:Math.max(0,ac.currentTime-startT);
 }
-function totalSeconds(){return usingFile&&isFinite(audio.duration)?audio.duration:DURATION}
+function totalSeconds(){return autoDJ?DURATION:(usingFile&&isFinite(audio.duration)?audio.duration:DURATION)}
 function fmt(s){s=Math.max(0,Math.floor(s||0));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
 
 function chapterFor(sec){
@@ -215,7 +339,7 @@ function bootSequence(){
 }
 function endTransmission(){
  if(ended)return;ended=true;
- if(usingFile) audio.pause(); else if(ac&&ac.state==='running') ac.suspend();
+ if(autoDJ){decks.forEach(d=>{d.el.pause();stopLoop(d)});clearTimeout(mixTimer);autoDJ=false}else if(usingFile) audio.pause(); else if(ac&&ac.state==='running') ac.suspend();
  playBtn.textContent='ENDED';
  document.querySelector('.controls').style.opacity='.18';
  document.querySelector('.chapter').style.opacity='0';
@@ -278,6 +402,15 @@ file.addEventListener('change',async e=>{
  const f=e.target.files[0];if(!f)return;if(!ac){setupAudio();started=true;enter.style.display='none'}
  usingFile=true;paused=false;ended=false;ending.classList.remove('show');master.gain.value=0;audio.src=URL.createObjectURL(f);connectFile();await ac.resume();await audio.play();playBtn.textContent='PAUSE';bootSequence();
 });
+
+trackFiles.addEventListener('change',()=>{
+ const matched=matchLibrary();
+ nowTrack.textContent='LIBRARY READY · '+matched.length+' MATCHED';
+ nextTrack.textContent=matched.length?'PRESS AUTO MIX':'CHECK FILE NAMES';
+ trigger('TRACKS LOADED');
+});
+autoMixBtn.addEventListener('click',()=>{if(!autoDJ)startAutoDJ();});
+
 fsBtn.addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
 })();
 </script>
