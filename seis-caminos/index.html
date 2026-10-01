@@ -389,6 +389,37 @@ footer{padding:52px 0 70px;color:#5f5b55;font-size:12px;text-align:center;letter
 }
 
 
+
+/* --- ejemplares históricos reales --- */
+.historical-cover{
+  width:min(86%,250px);height:300px;margin:auto;position:relative;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;padding:10px;
+  background:#090908;border:1px solid #292722;
+  box-shadow:0 19px 42px rgba(0,0,0,.46);
+  overflow:hidden;transition:transform .28s ease,box-shadow .28s ease
+}
+.gate:hover .historical-cover,.gate:focus-visible .historical-cover{
+  transform:translateY(-5px);box-shadow:0 28px 58px rgba(0,0,0,.58)
+}
+.historical-cover img{
+  width:100%;height:100%;display:block;object-fit:contain;
+  filter:saturate(.84) contrast(1.035) brightness(.94)
+}
+.historical-cover:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 28px rgba(0,0,0,.18);
+  background:linear-gradient(115deg,rgba(255,255,255,.035),transparent 24%,transparent 76%,rgba(0,0,0,.08))
+}
+.historical-cover figcaption{
+  position:absolute;left:8px;right:8px;bottom:7px;padding:5px 6px;
+  background:rgba(5,5,5,.82);backdrop-filter:blur(5px);
+  color:#aaa297;font:8px ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.06em;text-transform:uppercase;text-align:center;z-index:2
+}
+@media(max-width:820px){
+  .historical-cover{width:min(88%,280px);height:300px}
+}
+
 /* --- entrada aleatoria --- */
 body.intro-active{overflow:hidden}
 body.intro-active #siteContent,
@@ -703,13 +734,40 @@ const principleData={
 const gates=document.getElementById("gates");
 const viewer=document.getElementById("viewer");
 function coverMarkup(w){
- const common=`cover-${w.id}`;
- if(w.id==="tao") return `<div class="book ${common}"><span class="slip vertical">${w.jp}</span><span class="mini">老子</span><i class="binding"></i></div>`;
- if(w.id==="sunzi") return `<div class="book ${common}"><span class="pattern"></span><span class="slip vertical">${w.jp}</span><span class="seal">兵</span><i class="binding"></i></div>`;
- if(w.id==="hagakure") return `<div class="book ${common}"><span class="slip vertical">${w.jp}</span><span class="vol">聞書</span><i class="binding"></i></div>`;
- if(w.id==="bushido") return `<div class="book ${common}"><span class="gold-rule"></span><span class="branch"></span><span class="latin-title">BUSHIDO</span><span class="latin-sub">THE SOUL OF JAPAN</span><span class="red-sun"></span></div>`;
- if(w.id==="shoninki") return `<div class="book ${common}"><span class="brush">${w.jp}</span><span class="small-kanji">天</span><i class="binding"></i></div>`;
- return `<div class="book ${common}"><span class="brush">${w.jp}</span><span class="cord c1"></span><span class="cord c2"></span><span class="knot"></span></div>`;
+ const covers={
+  tao:{
+   src:"https://upload.wikimedia.org/wikipedia/commons/b/b9/%E9%83%AD%E5%BA%97%E6%A5%9A%E7%AE%80%E3%80%8A%E8%80%81%E5%AD%90%E7%94%B2%E3%80%8B.jpg",
+   alt:"Tablillas de bambú de Guodian con una versión antigua del Laozi",
+   note:"Guodian · Laozi · ca. 300 a. C."
+  },
+  sunzi:{
+   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Bamboo_Slips_with_Text_of_Sunzi_%289873600775%29.jpg",
+   alt:"Tablillas de bambú de Yinqueshan con texto de Sunzi",
+   note:"Yinqueshan · Sunzi · Han occidental"
+  },
+  hagakure:{
+   src:"https://online.bunka.go.jp/heritage/416804/_137493/416804_137493110613154542233_900.jpg",
+   alt:"Conjunto de manuscritos de Hagakure de época Edo",
+   note:"Hagakure · copia Yamamoto · época Edo"
+  },
+  bushido:{
+   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Houghton_Hearn_92.40.10_-_Bushido_cover.jpg",
+   alt:"Cubierta de Bushido The Soul of Japan de Inazo Nitobe, edición de 1900",
+   note:"Nitobe · Bushido · edición de 1900"
+  },
+  shoninki:{
+   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/NDL12865777_%E6%AD%A3%E5%BF%8D%E8%A8%98_3%E5%B7%BB.%E5%A4%A9.pdf?width=900&page=1",
+   alt:"Escaneo histórico del volumen Ten de Shoninki conservado por la Biblioteca Nacional de Japón",
+   note:"Shōninki · copia de 1743 · NDL"
+  },
+  bansenshukai:{
+   src:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Bansenshukai_at_Shinobi_no_sato_PLALA%2C_Koka_city.jpg",
+   alt:"Ejemplar histórico de Bansenshukai expuesto en Koka",
+   note:"Bansenshūkai · tradición manuscrita Edo"
+  }
+ };
+ const x=covers[w.id];
+ return '<figure class="historical-cover"><img src="'+x.src+'" alt="'+x.alt+'" loading="eager" decoding="async" referrerpolicy="no-referrer"><figcaption>'+x.note+'</figcaption></figure>';
 }
 works.forEach(w=>{
  const b=document.createElement("button");
@@ -851,3 +909,4 @@ const entryPhrases=[
 <!-- redeploy: 2026-10-01 17:15 Europe/Madrid -->
 </body>
 </html>
+<!-- historical-covers-refresh: 2026-10-01T18:32+02:00 -->
