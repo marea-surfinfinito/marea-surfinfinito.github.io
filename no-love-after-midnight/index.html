@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>NO LOVE AFTER MIDNIGHT — LUX ROTH LIVE 001</title>
+<meta name="description" content="NO LOVE AFTER MIDNIGHT — an audiovisual live web session by Lux Roth.">
+<style>
+:root{--bg:#050505;--fg:#f2eee9;--muted:#817b78;--red:#ff2a22;--acid:#d8ff40;--line:#2a2725}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Arial,Helvetica,sans-serif;overflow:hidden}
+body{height:100svh}
+button,input{font:inherit}
+button{color:inherit}
+#stage{position:fixed;inset:0;background:#050505}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+.scan{position:absolute;inset:0;pointer-events:none;opacity:.16;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px 4px);mix-blend-mode:overlay}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,transparent 0 25%,#0006 65%,#000 100%)}
+.noise{position:absolute;inset:-30%;pointer-events:none;opacity:.16;filter:contrast(200%);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");animation:noise .19s steps(2) infinite}
+@keyframes noise{0%{transform:translate(0,0)}25%{transform:translate(3%,-4%)}50%{transform:translate(-4%,2%)}75%{transform:translate(2%,4%)}100%{transform:translate(-2%,-3%)}}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;mix-blend-mode:difference}
+#redflash{position:absolute;inset:0;background:var(--red);opacity:0;pointer-events:none;mix-blend-mode:screen}
+.topbar{position:absolute;left:18px;right:18px;top:max(14px,env(safe-area-inset-top));display:flex;justify-content:space-between;gap:20px;align-items:flex-start;z-index:10;font:700 9px/1.2 "Courier New",monospace;letter-spacing:.16em;text-transform:uppercase}
+.topbar .right{text-align:right;color:#b6afa9}
+.live{color:var(--red)}
+.live:before{content:"";display:inline-block;width:6px;height:6px;background:var(--red);border-radius:50%;margin-right:7px;box-shadow:0 0 12px var(--red);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:.2}}
+.center{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:4}
+.titlewrap{width:min(94vw,1100px);text-align:center;transform:translateY(-2vh)}
+.kicker{font:700 clamp(9px,1.1vw,13px)/1 "Courier New",monospace;letter-spacing:.45em;color:#b5adaa;text-transform:uppercase;margin-bottom:18px}
+h1{font-size:clamp(52px,11vw,168px);line-height:.76;letter-spacing:-.085em;margin:0;text-transform:uppercase;font-weight:900;filter:drop-shadow(0 3px 0 #000)}
+h1 span{display:block}
+h1 .love{color:transparent;-webkit-text-stroke:1px #f2eee9}
+.sub{margin-top:20px;font-size:clamp(10px,1.25vw,15px);letter-spacing:.35em;text-transform:uppercase;color:#a49d98}
+.chapter{position:absolute;left:18px;bottom:max(88px,calc(env(safe-area-inset-bottom) + 78px));z-index:8;max-width:min(76vw,620px)}
+.chapter .n{font:700 10px/1 "Courier New",monospace;color:var(--red);letter-spacing:.23em;margin-bottom:8px}
+.chapter h2{font-size:clamp(28px,5vw,72px);line-height:.86;letter-spacing:-.05em;margin:0;text-transform:uppercase}
+.chapter p{font:700 9px/1.4 "Courier New",monospace;letter-spacing:.1em;color:#aaa29d;margin:10px 0 0;text-transform:uppercase}
+.controls{position:absolute;z-index:20;left:18px;right:18px;bottom:max(14px,env(safe-area-inset-bottom));display:grid;grid-template-columns:auto auto 1fr auto;gap:9px;align-items:center}
+.ctrl,.load{border:1px solid #3a3532;background:#070707;color:#eee;padding:10px 12px;font:700 9px/1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;min-height:36px}
+.ctrl:hover,.load:hover{border-color:#eee}
+.load input{display:none}
+.timeline{height:36px;display:flex;align-items:center;gap:10px;border:1px solid #2a2725;padding:0 10px;background:#070707}
+.timeline .bar{height:2px;flex:1;background:#2e2a28;position:relative}
+.timeline .fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--red);box-shadow:0 0 10px #ff2a2277}
+.time{font:700 8px/1 "Courier New",monospace;color:#a39c97;min-width:72px;text-align:right}
+#enter{position:fixed;inset:0;background:#030303;z-index:50;display:grid;place-items:center;padding:24px}
+.enterbox{text-align:center;max-width:760px}
+.enterbox .eyebrow{font:700 10px/1 "Courier New",monospace;letter-spacing:.35em;color:var(--red);text-transform:uppercase}
+.enterbox h3{font-size:clamp(48px,11vw,126px);line-height:.78;letter-spacing:-.08em;margin:18px 0 22px;text-transform:uppercase}
+.enterbox p{margin:0 auto 28px;color:#a69f99;max-width:500px;font:700 10px/1.6 "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}
+.enterbtn{border:1px solid #eee;background:#eee;color:#050505;padding:15px 24px;font:900 11px/1 "Courier New",monospace;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+.enterbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.credit{position:absolute;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);font:700 7px/1 "Courier New",monospace;color:#5d5855;letter-spacing:.13em;white-space:nowrap}
+#message{position:absolute;z-index:12;right:18px;top:50%;transform:translateY(-50%);font:900 clamp(15px,2vw,28px)/.95 "Courier New",monospace;letter-spacing:.05em;text-align:right;max-width:36vw;color:#fff;text-transform:uppercase;opacity:0}
+body.hit #message{animation:msg .45s steps(2)}
+@keyframes msg{0%{opacity:1;transform:translateY(-50%) translateX(4px)}60%{opacity:.9;transform:translateY(-50%) translateX(-7px)}100%{opacity:0}}
+body.hit h1{animation:glitch .2s steps(2)}
+@keyframes glitch{0%{transform:translate(-7px,2px);text-shadow:8px 0 var(--red)}50%{transform:translate(8px,-2px);text-shadow:-7px 0 #fff}100%{transform:none}}
+.mini{position:absolute;right:18px;bottom:85px;font:700 8px/1.6 "Courier New",monospace;color:#817a76;letter-spacing:.08em;text-align:right;text-transform:uppercase;z-index:7}
+@media(max-width:700px){
+ .controls{grid-template-columns:auto auto 1fr}.controls .load{display:none}
+ .timeline{grid-column:1/-1;grid-row:1}.chapter{bottom:118px}.mini{display:none}
+ h1{font-size:18vw}.sub{font-size:8px}.titlewrap{transform:translateY(-7vh)}
+}
+@media(prefers-reduced-motion:reduce){.noise,.live:before{animation:none}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="viz"></canvas>
+  <div class="noise"></div><div class="scan"></div><div class="vignette"></div>
+  <div id="flash"></div><div id="redflash"></div>
+  <div class="topbar"><div><span class="live">LIVE 001</span><br>RAIN INTERACTIVE PRESENTS</div><div class="right">LUX ROTH<br>NO LOVE AFTER MIDNIGHT</div></div>
+  <div class="center"><div class="titlewrap"><div class="kicker">A WEB AUDIOVISUAL SESSION</div><h1><span>NO <i class="love">LOVE</i></span><span>AFTER MIDNIGHT</span></h1><div class="sub">LUX ROTH — LIVE 001</div></div></div>
+  <div id="message">KEEP<br>DANCING</div>
+  <div class="chapter"><div class="n" id="chapterNo">01 / 05</div><h2 id="chapterTitle">SIGNAL LOST</h2><p id="chapterText">digital damage / punk / broken transmission</p></div>
+  <div class="mini">75 MINUTES / FIVE ACTS<br>GENERATIVE VISUAL ENGINE<br>LOCAL MIX READY</div>
+  <div class="controls">
+    <button class="ctrl" id="play">PAUSE</button>
+    <label class="load">LOAD MIX<input id="file" type="file" accept="audio/*"></label>
+    <div class="timeline"><div class="bar"><span class="fill" id="fill"></span></div><div class="time" id="time">00:00 / 75:00</div></div>
+    <button class="ctrl" id="fs">FULL</button>
+  </div>
+</div>
+
+<div id="enter">
+  <div class="enterbox">
+    <div class="eyebrow">RAIN INTERACTIVE / LUX ROTH</div>
+    <h3>NO LOVE<br>AFTER MIDNIGHT</h3>
+    <p>LIVE 001 — 75 MINUTES OF BROKEN SIGNALS, BODY MUSIC, RAVE PRESSURE AND INDUSTRIAL AFTERGLOW. HEADPHONES RECOMMENDED.</p>
+    <button class="enterbtn" id="enterBtn">ENTER / START</button>
+  </div>
+  <div class="credit">CREATED BY NACHOMMMARTINEZ × LUX ROTH</div>
+</div>
+
+<audio id="audio" crossorigin="anonymous"></audio>
+
+<script>
+(()=>{
+const cvs=document.getElementById('viz'),ctx=cvs.getContext('2d');
+const flash=document.getElementById('flash'),redflash=document.getElementById('redflash');
+const enter=document.getElementById('enter'),enterBtn=document.getElementById('enterBtn');
+const playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),file=document.getElementById('file');
+const fill=document.getElementById('fill'),time=document.getElementById('time');
+const cno=document.getElementById('chapterNo'),ct=document.getElementById('chapterTitle'),cp=document.getElementById('chapterText');
+const msg=document.getElementById('message'),audio=document.getElementById('audio');
+
+const chapters=[
+ {at:0,title:'SIGNAL LOST',text:'digital damage / punk / broken transmission'},
+ {at:12,title:'RAVE IS NOT DEAD',text:'breakbeat / warehouse / pressure'},
+ {at:27,title:'BODY CONTROL',text:'EBM / machinery / repetition'},
+ {at:42,title:'AFTER MIDNIGHT',text:'dark club / tunnel / no exit'},
+ {at:58,title:'NO LOVE',text:'hard techno / redline / terminal state'}
+];
+const messages=['KEEP DANCING','SIGNAL LOST','BODY CONTROL','NO LOVE','AFTER MIDNIGHT','SYSTEM FEVER','DO NOT STOP','TRANSMISSION ERROR','LUX ROTH'];
+const DURATION=75*60;
+let ac,analyser,master,data,started=false,paused=false,startT=0,pauseAt=0,usingFile=false,lastBeat=0,lastMsg=0;
+
+function resize(){
+ const d=Math.min(devicePixelRatio||1,2);cvs.width=innerWidth*d;cvs.height=innerHeight*d;ctx.setTransform(d,0,0,d,0,0);
+}
+addEventListener('resize',resize);resize();
+
+function setupAudio(){
+ ac=new (window.AudioContext||window.webkitAudioContext)();
+ analyser=ac.createAnalyser();analyser.fftSize=512;analyser.smoothingTimeConstant=.82;
+ master=ac.createGain();master.gain.value=.36;master.connect(analyser);analyser.connect(ac.destination);
+ data=new Uint8Array(analyser.frequencyBinCount);
+}
+function kick(t){
+ const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(45,t+.14);
+ g.gain.setValueAtTime(.95,t);g.gain.exponentialRampToValueAtTime(.001,t+.22);o.connect(g);g.connect(master);o.start(t);o.stop(t+.23);
+}
+function hat(t){
+ const b=ac.createBuffer(1,ac.sampleRate*.05,ac.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+ const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=b;f.type='highpass';f.frequency.value=6000;g.gain.setValueAtTime(.13,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);s.connect(f);f.connect(g);g.connect(master);s.start(t);
+}
+function bass(t,n){
+ const o=ac.createOscillator(),f=ac.createBiquadFilter(),g=ac.createGain();o.type='sawtooth';o.frequency.value=[55,61.74,65.41,73.42][n%4];f.type='lowpass';f.frequency.setValueAtTime(280,t);f.frequency.exponentialRampToValueAtTime(90,t+.24);g.gain.setValueAtTime(.13,t);g.gain.exponentialRampToValueAtTime(.001,t+.28);o.connect(f);f.connect(g);g.connect(master);o.start(t);o.stop(t+.3);
+}
+let nextStep=0,step=0;
+function scheduler(){
+ if(!started||paused||usingFile)return;
+ while(nextStep<ac.currentTime+.12){
+   if(step%4===0)kick(nextStep);
+   if(step%2===1)hat(nextStep);
+   if(step%4===2)bass(nextStep,Math.floor(step/4));
+   step++; nextStep+=60/148/2;
+ }
+}
+setInterval(scheduler,25);
+
+function sessionSeconds(){
+ if(usingFile) return audio.currentTime||0;
+ if(!started)return 0;
+ return paused?pauseAt:Math.max(0,ac.currentTime-startT);
+}
+function totalSeconds(){return usingFile&&isFinite(audio.duration)?audio.duration:DURATION}
+function fmt(s){s=Math.max(0,Math.floor(s||0));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+
+function chapterFor(sec){
+ const min=sec/60;let idx=0;for(let i=0;i<chapters.length;i++)if(min>=chapters[i].at)idx=i;
+ return [idx,chapters[idx]];
+}
+let currentChapter=-1;
+function setChapter(sec){
+ const [i,c]=chapterFor(usingFile ? (sec/(totalSeconds()||1))*DURATION : sec);
+ if(i!==currentChapter){currentChapter=i;cno.textContent=String(i+1).padStart(2,'0')+' / 05';ct.textContent=c.title;cp.textContent=c.text;trigger(c.title);}
+}
+function trigger(text){
+ msg.innerHTML=text.replace(' ','<br>');document.body.classList.remove('hit');void document.body.offsetWidth;document.body.classList.add('hit');
+ flash.animate([{opacity:.55},{opacity:0}],{duration:130});redflash.animate([{opacity:.24},{opacity:0}],{duration:380});
+}
+function draw(){
+ requestAnimationFrame(draw);
+ const w=innerWidth,h=innerHeight,t=performance.now()/1000,sec=sessionSeconds(),total=totalSeconds();
+ let energy=.2,bassE=.15,treble=.1;
+ if(analyser){
+   analyser.getByteFrequencyData(data);let sum=0,b=0,tr=0;
+   for(let i=0;i<data.length;i++){sum+=data[i];if(i<22)b+=data[i];if(i>90)tr+=data[i]}
+   energy=sum/data.length/255;bassE=b/22/255;treble=tr/(data.length-90)/255;
+ }
+ ctx.fillStyle='#050505';ctx.fillRect(0,0,w,h);
+ const pulse=0.3+energy*1.8+Math.sin(t*1.7)*.05;
+ ctx.save();ctx.translate(w/2,h/2);
+ ctx.strokeStyle='rgba(255,255,255,'+(0.035+energy*.12)+')';ctx.lineWidth=1;
+ for(let i=0;i<24;i++){const r=(i*42+(t*35)%42)*(1+pulse*.08);ctx.beginPath();ctx.ellipse(0,0,r,r*.55,Math.sin(t*.13)*.12,0,Math.PI*2);ctx.stroke()}
+ ctx.restore();
+ const bars=44,bw=w/bars;
+ for(let i=0;i<bars;i++){
+   const idx=Math.floor(i/data?.length*(data?.length||1)),v=data?data[idx]/255:Math.random()*.1;
+   const bh=(8+v*h*.26)*(i%3===0?1.35:1);
+   ctx.fillStyle=i%7===0?'rgba(255,42,34,'+(.13+v*.45)+')':'rgba(240,235,230,'+(.03+v*.12)+')';
+   ctx.fillRect(i*bw,h/2-bh/2,Math.max(1,bw*.14),bh);
+ }
+ if(bassE>.53&&performance.now()-lastBeat>120){lastBeat=performance.now();flash.animate([{opacity:Math.min(.36,bassE*.35)},{opacity:0}],{duration:90});}
+ if(started&&performance.now()-lastMsg>7000+Math.random()*9000){lastMsg=performance.now();trigger(messages[(Math.random()*messages.length)|0]);}
+ const pct=Math.min(1,sec/(total||1));fill.style.width=(pct*100)+'%';time.textContent=fmt(sec)+' / '+fmt(total);setChapter(sec);
+}
+draw();
+
+function connectFile(){
+ try{const src=ac.createMediaElementSource(audio);src.connect(analyser);analyser.connect(ac.destination)}catch(e){}
+}
+enterBtn.addEventListener('click',async()=>{
+ setupAudio();await ac.resume();started=true;paused=false;startT=ac.currentTime;nextStep=ac.currentTime+.05;enter.style.display='none';trigger('SIGNAL LOST');
+});
+playBtn.addEventListener('click',async()=>{
+ if(!started)return;
+ if(usingFile){if(audio.paused){await audio.play();playBtn.textContent='PAUSE'}else{audio.pause();playBtn.textContent='PLAY'};return}
+ if(paused){await ac.resume();startT=ac.currentTime-pauseAt;nextStep=ac.currentTime+.05;paused=false;playBtn.textContent='PAUSE'}
+ else{pauseAt=ac.currentTime-startT;await ac.suspend();paused=true;playBtn.textContent='PLAY'}
+});
+file.addEventListener('change',async e=>{
+ const f=e.target.files[0];if(!f)return;if(!ac){setupAudio();started=true;enter.style.display='none'}
+ usingFile=true;paused=false;master.gain.value=0;audio.src=URL.createObjectURL(f);connectFile();await ac.resume();await audio.play();playBtn.textContent='PAUSE';trigger('LOCAL MIX');
+});
+fsBtn.addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
+})();
+</script>
+</body>
+</html>
