@@ -1031,6 +1031,35 @@ footer{
   .manual-glyph{font-size:68px!important}
 }
 
+
+/* --- sellos propios de cada camino --- */
+.path-sigil{
+  width:54px;height:54px;margin:22px 0 4px;
+  border:1px solid rgba(143,62,48,.48);
+  display:grid;place-items:center;
+  color:rgba(143,62,48,.78);
+  font-family:"Noto Serif JP",serif;
+  font-size:26px;line-height:1;
+  transform:rotate(-2deg);
+  background:rgba(143,62,48,.035)
+}
+.manual-header{position:relative}
+.path-seal{
+  position:absolute;right:0;top:0;
+  width:58px;height:58px;
+  border:2px solid rgba(143,62,48,.52);
+  color:rgba(143,62,48,.72);
+  display:grid;place-items:center;
+  font-family:"Noto Serif JP",serif;
+  font-size:27px;line-height:1;
+  transform:rotate(3deg);
+  opacity:.88
+}
+@media(max-width:820px){
+  .path-seal{width:48px;height:48px;font-size:22px;opacity:.7}
+  .path-sigil{width:48px;height:48px;font-size:22px}
+}
+
 /* --- /SEIS CAMINOS · TOMO ANTIGUO --- */
 
 </style>
@@ -1068,85 +1097,85 @@ footer{
 <script>
 const works=[
 {
-id:"tao",num:"I",glyph:"道",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",
+id:"tao",num:"I",glyph:"道",sigil:"水",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",
 source:"Tao Te Ching · Laozi",
 coverTitle:"El camino del vacío",coverDesc:"Ceder, dejar espacio y actuar sin forzar.",
 lead:"Este camino enseña a no violentar el curso de las cosas. No pide pasividad, sino una acción tan ajustada que no necesita imponerse. Su fuerza está en la flexibilidad, la sencillez y el espacio que dejas para que algo pueda transformarse.",
 ideas:[
-["No fuerces","Antes de intervenir, observa si la situación realmente necesita tu empuje. Muchas veces el exceso de voluntad crea el obstáculo que intenta resolver."],
-["Haz espacio","No llenes cada silencio, cada agenda ni cada decisión. El vacío también trabaja: permite escuchar, cambiar de dirección y recibir lo que todavía no conoces."],
-["Sé como el agua","Adapta tu forma sin perder tu naturaleza. Rodear una dificultad puede ser más sabio que romperte contra ella."],
-["Reduce","Cuando estés confundido, elimina lo superfluo. Menos deseo, menos ruido y menos exhibición pueden devolver claridad."]
+["No fuerces","Antes de intervenir, observa. El exceso de voluntad puede crear el obstáculo que intentas resolver."],
+["Haz espacio","No llenes cada silencio. El vacío también trabaja: permite escuchar, cambiar y recibir."],
+["Sé como el agua","Adapta tu forma sin perder tu naturaleza. Rodear puede ser más sabio que romper."],
+["Reduce","Cuando estés confundido, elimina lo superfluo. Menos ruido devuelve claridad."]
 ],
 practice:"Elige hoy una situación que estés intentando controlar. Haz una intervención menos. Observa qué ocurre cuando no empujas inmediatamente.",
 maxim:"No confundas fuerza con rigidez."
 },
 {
-id:"sunzi",num:"II",glyph:"兵",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",
+id:"sunzi",num:"II",glyph:"兵",sigil:"勢",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",
 source:"El arte de la guerra · Sun Tzu",
 coverTitle:"El camino de la estrategia",coverDesc:"Leer el conflicto antes del choque.",
 lead:"Este camino propone comprender antes de actuar. La estrategia no consiste en luchar mejor, sino en llegar al conflicto con una visión más amplia: saber dónde estás, qué desea el otro, qué puedes perder y qué enfrentamientos no merecen existir.",
 ideas:[
-["Conoce antes de actuar","No decidas desde la primera impresión. Reúne información sobre ti, la situación y las fuerzas que tienes delante."],
-["No enseñes toda tu forma","Evita convertirte en alguien completamente previsible. Conserva margen para cambiar de método, ritmo o posición."],
-["Elige el terreno","No aceptes todos los conflictos en las condiciones que otros imponen. Cambiar el lugar, el momento o las reglas puede transformar el problema."],
-["Evita la victoria costosa","Una victoria que consume tus recursos, relaciones o tranquilidad puede ser otra forma de derrota."]
+["Conoce antes de actuar","No decidas desde la primera impresión. Conoce tu posición, el entorno y lo que tienes delante."],
+["No enseñes toda tu forma","No te vuelvas previsible. Conserva margen para cambiar de método, ritmo o posición."],
+["Elige el terreno","No aceptes todo conflicto en condiciones ajenas. Cambiar el terreno cambia el problema."],
+["Evita la victoria costosa","Una victoria que te vacía puede ser otra forma de derrota."]
 ],
 practice:"Antes de responder a un conflicto, escribe tres cosas: qué sabes, qué estás suponiendo y qué puedes cambiar sin confrontación directa.",
 maxim:"La mejor posición es la que reduce la necesidad de combatir."
 },
 {
-id:"hagakure",num:"III",glyph:"葉",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",
+id:"hagakure",num:"III",glyph:"葉",sigil:"死",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",
 source:"Hagakure · Yamamoto Tsunetomo",
 coverTitle:"El camino de la decisión",coverDesc:"Actuar sin quedar dividido por la duda.",
 lead:"Este camino gira alrededor de la resolución. No elimina el miedo ni la incertidumbre: intenta evitar que pases la vida dividido entre decisiones que nunca terminas de tomar. Recordar que el tiempo es limitado convierte lo cotidiano en una disciplina.",
 ideas:[
-["Decide por completo","Cuando hayas pensado lo necesario, deja de negociar infinitamente contigo mismo. Una decisión parcial consume más energía que una decisión difícil."],
-["Recuerda la muerte","No como obsesión, sino como medida. Pregúntate si aquello que hoy te paraliza seguirá teniendo importancia cuando recuerdes que tu tiempo es finito."],
-["Prepárate en lo pequeño","La resolución no aparece mágicamente en una crisis. Se construye en la puntualidad, la palabra dada, el cuidado y los hábitos ordinarios."],
-["No busques parecer resuelto","La firmeza real no necesita teatro. Se demuestra en lo que haces cuando nadie observa."]
+["Decide por completo","Cuando hayas pensado lo necesario, deja de negociar contigo mismo. Una decisión parcial desgasta más que una difícil."],
+["Recuerda la muerte","Recuerda que el tiempo es finito. Muchas urgencias pierden poder cuando las miras desde ahí."],
+["Prepárate en lo pequeño","La resolución se construye antes de la crisis: en los hábitos, la palabra y la disciplina."],
+["No busques parecer resuelto","La firmeza real no necesita teatro. Se demuestra cuando nadie observa."]
 ],
 practice:"Toma una decisión pequeña que llevas aplazando y ciérrala hoy. Después no vuelvas a discutirla contigo mismo salvo que aparezca nueva información.",
 maxim:"Vivir dividido desgasta más que elegir."
 },
 {
-id:"bushido",num:"IV",glyph:"武",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",
+id:"bushido",num:"IV",glyph:"武",sigil:"義",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",
 source:"Bushido: The Soul of Japan · Inazo Nitobe",
 coverTitle:"El camino de la conducta",coverDesc:"Ordenar la vida mediante deber, forma y rectitud.",
 lead:"Este camino pregunta cómo comportarte cuando nadie puede decidir por ti. Propone que el carácter se construye mediante actos repetidos: rectitud, coraje, cortesía, honestidad y responsabilidad hacia los demás.",
 ideas:[
-["Actúa con rectitud","No elijas solamente lo cómodo o lo beneficioso. Pregúntate qué conducta podrías defender incluso si nadie fuese a premiarla."],
-["Practica un coraje sobrio","El coraje no necesita imprudencia. A veces consiste en soportar, admitir un error, proteger a alguien o mantener una decisión impopular."],
-["Cuida la forma","La cortesía no es decoración cuando protege la dignidad del otro. Tu manera de actuar también forma parte de lo que haces."],
-["Hazte responsable","No conviertas la lealtad en obediencia ciega. Empieza por ser fiel a tu palabra y asumir las consecuencias de tus decisiones."]
+["Actúa con rectitud","No elijas solo lo cómodo. Elige una conducta que puedas defender aunque nadie la premie."],
+["Practica un coraje sobrio","El coraje no necesita imprudencia. A veces consiste en resistir, admitir un error o proteger."],
+["Cuida la forma","La cortesía no es decoración. La forma de actuar también revela el carácter."],
+["Hazte responsable","No confundas lealtad con obediencia ciega. Sé fiel a tu palabra y asume sus consecuencias."]
 ],
 practice:"Escoge una relación importante y revisa una sola pregunta: ¿mi conducta está a la altura de lo que digo valorar?",
 maxim:"El carácter es una costumbre convertida en forma de vida."
 },
 {
-id:"shoninki",num:"V",glyph:"忍",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",
+id:"shoninki",num:"V",glyph:"忍",sigil:"影",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",
 source:"Shōninki · Natori Masazumi",
 coverTitle:"El camino de la sombra",coverDesc:"Observar, comprender y pasar desapercibido.",
 lead:"Este camino enseña a disminuir tu presencia para aumentar tu percepción. Antes de intervenir, mira. Antes de hablar, escucha. La sombra no busca protagonismo: intenta comprender el lugar, las personas y los patrones que normalmente pasan inadvertidos.",
 ideas:[
-["Observa sin anunciarte","No conviertas cada observación en una opinión inmediata. Mira el comportamiento repetido antes de decidir qué significa."],
-["Adáptate al entorno","Entrar en un lugar imponiendo tu identidad te vuelve visible. Aprende primero sus ritmos, códigos y expectativas."],
-["Recuerda detalles","Entrena una memoria concreta: nombres, recorridos, cambios, silencios, hábitos. La atención acumulada se convierte en conocimiento."],
-["Comprende motivaciones","No mires solo lo que alguien hace. Pregunta qué teme perder, qué desea obtener y qué necesita proteger."]
+["Observa sin anunciarte","No conviertas cada observación en una opinión. Mira primero los patrones."],
+["Adáptate al entorno","No impongas tu forma al entrar. Aprende primero los ritmos y códigos del lugar."],
+["Recuerda detalles","Recuerda nombres, recorridos, cambios y silencios. La atención acumulada se convierte en conocimiento."],
+["Comprende motivaciones","No mires solo lo que alguien hace. Pregunta qué teme perder y qué necesita proteger."]
 ],
 practice:"En una conversación, habla menos de lo habitual. Al terminar, anota cinco detalles que normalmente habrías pasado por alto.",
 maxim:"Quien necesita ser visto observa menos."
 },
 {
-id:"bansenshukai",num:"VI",glyph:"萬",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",
+id:"bansenshukai",num:"VI",glyph:"萬",sigil:"流",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",
 source:"Bansenshūkai · Fujibayashi Yasutake",
 coverTitle:"El camino de las corrientes",coverDesc:"Unir tiempo, señales, información y método.",
 lead:"Este camino no confía en una única técnica. Enseña a combinar métodos según el momento, el entorno y el objetivo. Muchas corrientes pueden avanzar hacia un mismo resultado sin recorrer el mismo cauce.",
 ideas:[
-["Piensa como un sistema","Una acción rara vez funciona sola. Observa cómo se relacionan tiempo, recursos, personas, información y consecuencias."],
-["Respeta el momento","Una buena idea ejecutada en el momento equivocado puede fracasar. Aprende a esperar sin quedarte inmóvil."],
-["Usa señales pequeñas","No toda coordinación necesita grandes discursos. Crea sistemas simples para comunicar, recordar y actuar con precisión."],
-["No adores la técnica","Una herramienta útil puede convertirse en una limitación si intentas aplicarla a todo. Cambia de método cuando cambien las condiciones."]
+["Piensa como un sistema","Ninguna acción funciona sola. Mira tiempo, recursos, personas, información y consecuencias."],
+["Respeta el momento","Una buena idea en mal momento puede fracasar. Aprende a esperar sin quedarte inmóvil."],
+["Usa señales pequeñas","No toda coordinación necesita discursos. Usa señales simples y precisas."],
+["No adores la técnica","Toda técnica se vuelve límite si la aplicas a todo. Cambia cuando cambie la situación."]
 ],
 practice:"Elige un objetivo actual y diseña tres caminos distintos para alcanzarlo. No decidas todavía cuál es el mejor: observa qué condiciones harían válido a cada uno.",
 maxim:"El método debe servir a la situación, nunca al revés."
@@ -1210,14 +1239,14 @@ function openWork(w){
  viewer.innerHTML=`
  <aside class="viewer-side manual-side">
    <button class="close" aria-label="Cerrar">×</button>
-   <div class="manual-number">CAMINO ${w.num}</div>
+   <div class="manual-number">CAMINO ${w.num}</div><div class="path-sigil" aria-hidden="true">${w.sigil}</div>
    <div class="jp manual-glyph">${w.glyph}</div>
    <h3>${w.coverTitle}</h3>
    <small>Basado en ${w.title}</small>
  </aside>
  <article class="viewer-main manual-page">
    <header class="manual-header">
-     <div class="manual-kicker">CAMINO ${w.num} · ${w.jp}</div>
+     <div class="manual-kicker">CAMINO ${w.num} · ${w.jp}</div><div class="path-seal" aria-hidden="true">${w.sigil}</div>
      <h2>${w.coverTitle}</h2>
      <div class="manual-source">Basado en <strong>${w.source}</strong></div>
    </header>
@@ -1336,3 +1365,4 @@ const entryPhrases=[
 <!-- philosophy-paths: 2026-10-01 -->
 <!-- force-philosophy-publish: 2026-10-01T19:05+02:00 -->
 <!-- manual-philosophy-layout: 2026-10-01 -->
+<!-- concise-principles-sigils: 2026-10-01 -->
