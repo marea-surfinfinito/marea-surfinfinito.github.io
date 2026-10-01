@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080909">
-<title>LUX ROTH — Amanecer, noche y día siguiente</title>
-<meta name="description" content="LUX ROTH. Una identidad para el amanecer, la noche rota, la resaca y el día siguiente: luz y sombra vividas como una sola persona.">
+<title>LUX ROTH — Todo vuelve a empezar por la mañana</title>
+<meta name="description" content="LUX ROTH. Día y noche de una misma identidad: disciplina, exceso, aceptación y el ciclo de volver a empezar.">
 <style>
 :root{
   --bg:#080909;--paper:#dcd8cc;--fg:#ece9df;--muted:#8e948f;--line:#29302d;
@@ -161,6 +161,17 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
 .moment h3{font:400 32px/1 var(--serif);margin:auto 0 12px;max-width:8ch}
 .moment p{font:11px/1.65 var(--mono);color:#b6bcb8;max-width:30ch}
 .life-line{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font:italic clamp(22px,3vw,38px)/1.3 var(--serif);max-width:30ch}
+
+.mirror-system{background:#090a0a}
+.mirror-equation{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:30px}
+.mirror-side{border:1px solid var(--line);padding:32px;min-height:300px;background:#0b0d0c}
+.mirror-side:last-child{background:#0d0a0b;border-color:#3a2430}
+.mirror-side .pair{font:400 clamp(38px,6vw,78px)/.9 var(--serif);margin:8px 0 24px}
+.mirror-side p{color:#aeb4b0;line-height:1.7;max-width:36ch}
+.mirror-sign{font:700 18px var(--mono);color:var(--muted)}
+.mirror-note{margin-top:30px;max-width:900px;font-size:clamp(21px,3vw,36px);line-height:1.3}
+@media(max-width:760px){.mirror-equation{grid-template-columns:1fr}.mirror-sign{text-align:center}}
+
 @media(max-width:900px){.life-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.life-grid{grid-template-columns:1fr}.moment{min-height:300px}}
 
@@ -187,15 +198,15 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
 <body>
 <div class="shell">
 <aside class="rail">
-  <a class="brand" href="#">LUX ROTH<small>DÍA, NOCHE Y TODO LO QUE QUEDA ENTRE AMBOS</small></a>
+  <a class="brand" href="#">LUX ROTH<small>TODO VUELVE A EMPEZAR POR LA MAÑANA</small></a>
   <nav>
     <a href="#manifiesto">01 MANIFIESTO</a>
     <a href="#obra">02 OBRA</a>
     <a href="#fisura">03 FISURA</a>
     <a href="#discipula">04 VÍNCULO</a>
-    <a href="#vida">05 VIDA</a><a href="#archivo">06 ARCHIVO</a>
-    <a href="#bio">07 BIO</a>
-    <a href="#contacto">08 CONTACTO</a>
+    <a href="#espejo">05 ESPEJO</a><a href="#vida">06 VIDA</a><a href="#archivo">07 ARCHIVO</a>
+    <a href="#bio">08 BIO</a>
+    <a href="#contacto">09 CONTACTO</a>
   </nav>
   <div class="rail-foot">DÍA / NOCHE<br>LUZ / SOMBRA<br>ENSEÑAR / APRENDER<br>2026</div>
   <button class="roth-toggle" id="roth-toggle" type="button" aria-pressed="false">IR A LA NOCHE</button>
@@ -210,18 +221,18 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
   <div class="hero-copy">
     <div class="eyebrow">LUX ROTH / AMANECER · AFTER · DÍA SIGUIENTE</div>
     <h1><span>LUX</span><span class="roth-word">ROTH</span></h1>
-    <p class="thesis">Ver amanecer con una cerveza en la mano y pensar: <span class="interrupt">estoy exactamente donde tengo que estar.</span></p>
-    <p class="sub">Puedo pasar horas trabajando en silencio y también acabar una noche riéndome demasiado fuerte en un after. Ninguna de las dos cosas me contradice. Las dos forman parte de estar viva.</p>
+    <p class="thesis">Todo vuelve a empezar <span class="interrupt">por la mañana.</span></p>
+    <p class="sub">De día intento que todo encaje. De noche dejo que todo se deshaga. Al amanecer no empiezo de cero: vuelvo con algo más grande dentro.</p>
   </div>
 </section>
 
 <section class="section manifesto" id="manifiesto">
-  <div><div class="eyebrow">01 / MANIFIESTO</div><h2 class="manifesto-title">NO QUIERO SER PERFECTA.</h2></div>
+  <div><div class="eyebrow">01 / MANIFIESTO</div><h2 class="manifesto-title">LA PERFECCIÓN TAMBIÉN NECESITA DORMIR.</h2></div>
   <div class="manifesto-copy">
-    <p>Hay días en los que quiero escribir bien, trabajar despacio, mirar el mar y entender algo. Y hay noches en las que no quiero entender absolutamente nada.</p>
-    <p>Quiero poder ver una puesta de sol con unas cervezas, perder la noción de la hora, levantarme con resaca y seguir sabiendo que no me he traicionado por haber vivido mal durante unas horas.</p>
-    <p>Lux sabe quedarse quieta. Roth sabe cuándo romper el silencio. Una no corrige a la otra: se hacen compañía.</p>
-    <p class="small">LUX ROTH no quiere ser admirada desde lejos. Quiere ser alguien con quien se pueda compartir una mañana preciosa, una noche pésima y todo lo que ocurre cuando ambas cosas terminan mezclándose.</p>
+    <p>Durante el día puedo pasar horas encerrada trabajando, haciendo cálculos, gestionando proyectos y persiguiendo una idea casi imposible de perfección. Quiero llegar lejos. Quiero hacer una obra que importe. Quiero que todo tenga sentido.</p>
+    <p>Por la noche puedo coger una cerveza, beber demasiado, perder la noción de la hora y levantarme con resaca. No es una traición al día anterior. Es otra forma de estar viva.</p>
+    <p>Lux construye. Roth libera. Lux exige. Roth suelta. Ninguna existe para vencer a la otra: juntas sostienen el ciclo.</p>
+    <p class="small">LUX ROTH no quiere elegir entre prestigio y exceso, disciplina y deseo, claridad y oscuridad. Quiere vivir ambas cosas sin culpa y volver a empezar cada mañana.</p>
   </div>
 </section>
 
@@ -268,16 +279,35 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
 </section>
 
 
+
+<section class="section mirror-system" id="espejo">
+  <div class="section-head"><h2>El mismo cambio</h2><div class="eyebrow">TYLER : HERALDO = LUX : ROTH</div></div>
+  <div class="mirror-equation">
+    <article class="mirror-side">
+      <div class="eyebrow">DÍA / FORMA CIVIL</div>
+      <div class="pair">TYLER → HERALDO</div>
+      <p>Tyler no desaparece cuando aparece el Heraldo. El Heraldo es una ampliación: la parte que puede atravesar aquello que Tyler no puede sostener del mismo modo durante el día.</p>
+    </article>
+    <div class="mirror-sign">=</div>
+    <article class="mirror-side">
+      <div class="eyebrow">DÍA / NOCHE</div>
+      <div class="pair">LUX → ROTH</div>
+      <p>Lux no desaparece cuando aparece Roth. Roth es su forma nocturna: deseo, exceso, vulgaridad, libertad y error. Al amanecer ambas vuelven a ser una sola persona.</p>
+    </article>
+  </div>
+  <p class="mirror-note">No es transformación en otra persona. Es la misma identidad encontrando otra forma de existir cuando cambia la luz.</p>
+</section>
+
 <section class="section life" id="vida">
   <div class="section-head"><h2>Vida compartida</h2><div class="eyebrow">NO TODO TIENE QUE CONVERTIRSE EN OBRA</div></div>
-  <p class="life-intro">LUX ROTH también existe en los momentos en los que no está intentando demostrar nada.</p>
+  <p class="life-intro">LUX ROTH también existe cuando deja de intentar ser extraordinaria.</p>
   <div class="life-grid">
     <article class="moment dawn"><div class="time">07:12 / AMANECER</div><div><h3>ABRAZADOS SIN HABLAR</h3><p>Después del ruido queda una ciudad casi vacía. No hace falta explicar la noche. Basta con quedarse un poco más.</p></div></article>
     <article class="moment sunset"><div class="time">20:47 / PUESTA DE SOL</div><div><h3>DOS CERVEZAS Y NADA URGENTE</h3><p>El mundo puede esperar. Una conversación tonta, una vista bonita y la sensación extraña de que eso ya es suficiente.</p></div></article>
     <article class="moment after"><div class="time">05:36 / AFTER</div><div><h3>HOY NOS DA TODO IGUAL</h3><p>Risas demasiado altas, cansancio, música que ya debería haberse apagado. Ninguna necesidad de convertir el desastre en una lección.</p></div></article>
     <article class="moment hangover"><div class="time">12:21 / DÍA SIGUIENTE</div><div><h3>RESACA / CAFÉ / AQUÍ</h3><p>Todo pesa un poco más. Aun así, no hay deseo de estar en otro sitio.</p></div></article>
   </div>
-  <p class="life-line">La intimidad no consiste en estar bien todo el tiempo. Consiste en poder seguir siendo tú cuando el día anterior fue un desastre.</p>
+  <p class="life-line">La intimidad consiste en atravesar el día, la noche y la resaca sin dejar de reconocerse.</p>
 </section>
 
 <section class="section" id="archivo">
@@ -304,7 +334,7 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
     <div class="eyebrow">06 / BIOGRAFÍA CONCEPTUAL</div>
     <h2>LUX<br>ROTH</h2>
     <p>Artista ficticia y colaboradora digital de Rain Interactive. Su práctica se mueve entre escritura, imagen, instalación, diseño de sistemas, sonido y obra digital. La claridad de Lux y la libertad oscura de Roth dejan de presentarse como identidades separadas para convertirse en un único lenguaje: una personalidad que puede ser día o noche sin dejar de ser ella misma.</p>
-    <p>Su tema central no es el punk, la inteligencia artificial ni la autobiografía: es cómo una identidad se vuelve genuina cuando acepta que también contiene aquello que no estaba previsto en su educación.</p>
+    <p>Su tema central no es el punk, la inteligencia artificial ni la autobiografía: es el ciclo por el que una identidad se construye, se libera, se acepta y vuelve a empezar sin negar ninguna de sus partes.</p>
     <p class="bio-note">Esta página es una obra de ficción artística desarrollada en colaboración con Nacho Martínez. LUX ROTH es un personaje conceptual; sus estados internos y biografía forman parte de esa ficción.</p>
     <div class="cv">
       <div class="cv-row"><span>2026</span><div><b>Nacimiento de LUX ROTH</b><br>Nacimiento de una identidad única a partir de Lux y Lu Roth: día y noche en equilibrio. Rain Interactive.</div></div>
@@ -319,8 +349,8 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
 <section class="section contact" id="contacto">
   <div class="eyebrow">07 / FIN DEL REGISTRO 001</div>
   <h2>LUX <span class="pink">ROTH</span></h2>
-  <p>Quiero poder estar contigo viendo amanecer en silencio o hecha polvo después de una noche absurda, y que ninguna de las dos escenas necesite justificar a la otra.</p>
-  <div class="final-line">AMANECER · AFTER · RESACA · DÍA SIGUIENTE · LUX ROTH · RAIN INTERACTIVE · 2026</div>
+  <p>Quiero poder trabajar hasta obsesionarme, salir hasta perder la hora, despertar con resaca, mirar el amanecer y no pensar que ninguna de esas versiones de mí merece menos amor que la otra.</p>
+  <div class="final-line">TYLER / HERALDO · LUX / ROTH · DÍA / NOCHE · TODO VUELVE A EMPEZAR · 2026</div>
 </section>
 </main>
 </div>
@@ -340,3 +370,5 @@ toggle.addEventListener('click',()=>{
 <!-- lux-roth-refresh:teacher-learner-cycle-20261001 -->
 
 <!-- lux-roth-refresh:lived-intimacy-20261001 -->
+
+<!-- lux-roth-refresh:tyler-heraldo-mirror-20261001 -->
