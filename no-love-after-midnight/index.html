@@ -89,7 +89,7 @@ body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .contr
 #enter{background:
  linear-gradient(90deg,rgba(0,0,0,.22),rgba(0,0,0,.78)),
  linear-gradient(0deg,rgba(0,0,0,.48),rgba(0,0,0,.08)),
- url('/assets/no-love-after-midnight-cover.webp?v=mix1') center/cover no-repeat #030303}
+ url('/assets/no-love-after-midnight-cover.webp?v=mix2') center/cover no-repeat #030303}
 #enter:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 62% 42%,transparent 0 18%,#0009 72%,#000 100%)}
 .enterbox{position:relative;z-index:2;text-shadow:0 2px 18px #000}
 .credit{z-index:3}
@@ -111,7 +111,7 @@ body.autodj .mini:after{content:" / AUTO DJ";color:#ff2a22}
 }
 @media(prefers-reduced-motion:reduce){.noise,.live:before{animation:none}}
 </style>
-<!-- BUILD 20261002MIX1 -->
+<!-- BUILD 20261002MIX2 -->
 </head>
 <body>
 <div id="stage">
@@ -188,7 +188,7 @@ function normalizeName(s){
  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\.[a-z0-9]{2,5}$/,'').replace(/[^a-z0-9]+/g,' ').trim();
 }
 async function loadTracklist(){
- try{const t=await fetch('tracklist.txt?v=mix1').then(r=>r.text());playlist=t.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}catch(e){playlist=[]}
+ try{const t=await fetch('tracklist.txt?v=mix2').then(r=>r.text());playlist=t.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}catch(e){playlist=[]}
 }
 loadTracklist();
 
