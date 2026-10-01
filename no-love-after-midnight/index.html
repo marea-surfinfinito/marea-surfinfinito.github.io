@@ -40,7 +40,7 @@ h1 .love{color:transparent;-webkit-text-stroke:1px #f2eee9}
 .chapter .n{font:700 10px/1 "Courier New",monospace;color:var(--red);letter-spacing:.23em;margin-bottom:8px}
 .chapter h2{font-size:clamp(28px,5vw,72px);line-height:.86;letter-spacing:-.05em;margin:0;text-transform:uppercase}
 .chapter p{font:700 9px/1.4 "Courier New",monospace;letter-spacing:.1em;color:#aaa29d;margin:10px 0 0;text-transform:uppercase}
-.controls{position:absolute;z-index:20;left:18px;right:18px;bottom:max(14px,env(safe-area-inset-bottom));display:grid;grid-template-columns:auto auto auto auto 1fr auto;gap:9px;align-items:center}
+.controls{position:absolute;z-index:20;left:18px;right:18px;bottom:max(14px,env(safe-area-inset-bottom));display:grid;grid-template-columns:auto auto auto auto auto auto 1fr auto;gap:9px;align-items:center}
 .ctrl,.load{border:1px solid #3a3532;background:#070707;color:#eee;padding:10px 12px;font:700 9px/1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;min-height:36px}
 .ctrl:hover,.load:hover{border-color:#eee}
 .load input{display:none}
@@ -99,19 +99,26 @@ body.intro-assault .topbar,body.intro-assault .chapter,body.intro-assault .contr
 body.autodj .center{opacity:.38}
 body.autodj .mini:after{content:" / AUTO DJ";color:#ff2a22}
 .deckdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#ff2a22;margin-right:6px;box-shadow:0 0 8px #ff2a22}
+
+.ctrl.recording{border-color:#ff2a22;color:#ff2a22;box-shadow:inset 0 0 0 1px #ff2a2244}
+.ctrl.recording:before{content:"● ";animation:blink 1s steps(1) infinite}
+.ctrl[disabled]{opacity:.35;cursor:not-allowed}
+#recStatus{position:absolute;z-index:19;right:18px;top:58px;font:700 8px/1.4 "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase;color:#777;text-align:right}
+#recStatus.active{color:#ff2a22}
+
 @media(max-width:700px){
  #enter{background-position:62% center}
  .mixstatus{top:54px;max-width:86vw}
 }
 
 @media(max-width:700px){
- .controls{grid-template-columns:auto auto 1fr}.controls .load{display:none}
- .timeline{grid-column:1/-1;grid-row:1}.chapter{bottom:118px}.mini{display:none}
+ .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.controls .load{display:none}.controls .track-load{display:block}
+ .timeline{grid-column:1/-1;grid-row:1}.ctrl,.load{text-align:center;padding:9px 7px}.chapter{bottom:178px}.mini{display:none}#recStatus{top:76px}
  h1{font-size:18vw}.sub{font-size:8px}.titlewrap{transform:translateY(-7vh)}
 }
 @media(prefers-reduced-motion:reduce){.noise,.live:before{animation:none}}
 </style>
-<!-- BUILD 20261002MIX2 -->
+<!-- BUILD 20261002REC1 -->
 </head>
 <body>
 <div id="stage">
@@ -122,6 +129,7 @@ body.autodj .mini:after{content:" / AUTO DJ";color:#ff2a22}
   <div class="center"><div class="titlewrap"><div class="kicker">A WEB AUDIOVISUAL SESSION</div><h1><span>NO <i class="love">LOVE</i></span><span>AFTER MIDNIGHT</span></h1><div class="sub">LUX ROTH — LIVE 001</div></div></div>
   <div id="message">KEEP<br>DANCING</div>
   <div class="mixstatus" id="mixstatus"><strong><span class="deckdot"></span><span id="nowTrack">DEMO SIGNAL</span></strong><span>NEXT · <em id="nextTrack">LOAD TRACKS TO BUILD THE MIX</em></span></div>
+  <div id="recStatus">MASTER · READY</div>
   <div id="bootstrike"><b id="bootword">LUX<br>ROTH</b><small>TRANSMISSION START</small></div>
   <div id="ending"><div><strong>NO LOVE</strong><span>TRANSMISSION ENDED<br>LUX ROTH — LIVE 001</span></div></div>
   <div class="chapter"><div class="n" id="chapterNo">01 / 05</div><h2 id="chapterTitle">SIGNAL LOST</h2><p id="chapterText">digital damage / punk / broken transmission</p></div>
@@ -129,8 +137,10 @@ body.autodj .mini:after{content:" / AUTO DJ";color:#ff2a22}
   <div class="controls">
     <button class="ctrl" id="play">PAUSE</button>
     <label class="load">LOAD MIX<input id="file" type="file" accept="audio/*"></label>
-    <label class="load">LOAD TRACKS<input id="trackFiles" type="file" accept="audio/*" multiple></label>
+    <label class="load track-load">LOAD TRACKS<input id="trackFiles" type="file" accept="audio/*" multiple></label>
     <button class="ctrl" id="autoMix">AUTO MIX</button>
+    <button class="ctrl" id="recSession">REC SESSION</button>
+    <button class="ctrl" id="exportMix" disabled>EXPORT MIX</button>
     <div class="timeline"><div class="bar"><span class="fill" id="fill"></span></div><div class="time" id="time">00:00 / 75:00</div></div>
     <button class="ctrl" id="fs">FULL</button>
   </div>
@@ -153,7 +163,7 @@ body.autodj .mini:after{content:" / AUTO DJ";color:#ff2a22}
 const cvs=document.getElementById('viz'),ctx=cvs.getContext('2d');
 const flash=document.getElementById('flash'),redflash=document.getElementById('redflash');
 const enter=document.getElementById('enter'),enterBtn=document.getElementById('enterBtn');
-const playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),file=document.getElementById('file'),trackFiles=document.getElementById('trackFiles'),autoMixBtn=document.getElementById('autoMix');
+const playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),file=document.getElementById('file'),trackFiles=document.getElementById('trackFiles'),autoMixBtn=document.getElementById('autoMix'),recSessionBtn=document.getElementById('recSession'),exportMixBtn=document.getElementById('exportMix'),recStatus=document.getElementById('recStatus');
 const fill=document.getElementById('fill'),time=document.getElementById('time');
 const cno=document.getElementById('chapterNo'),ct=document.getElementById('chapterTitle'),cp=document.getElementById('chapterText');
 const msg=document.getElementById('message'),audio=document.getElementById('audio');
@@ -171,6 +181,7 @@ const messages=['KEEP DANCING','SIGNAL LOST','BODY CONTROL','NO LOVE','AFTER MID
 const DURATION=75*60;
 let ac,analyser,master,data,started=false,paused=false,startT=0,pauseAt=0,usingFile=false,lastBeat=0,lastMsg=0,ended=false;
 let playlist=[],library=[],mixQueue=[],mixIndex=0,autoDJ=false,mixStart=0,mixTimer=null,deckActive=0,decks=[];
+let recordDest=null,mediaRecorder=null,recordChunks=[],recordBlob=null,recordStartedAt=0,recordClock=null,recordMime='';
 
 function resize(){
  const d=Math.min(devicePixelRatio||1,2);cvs.width=innerWidth*d;cvs.height=innerHeight*d;ctx.setTransform(d,0,0,d,0,0);
@@ -181,7 +192,58 @@ function setupAudio(){
  ac=new (window.AudioContext||window.webkitAudioContext)();
  analyser=ac.createAnalyser();analyser.fftSize=512;analyser.smoothingTimeConstant=.82;
  master=ac.createGain();master.gain.value=.36;master.connect(analyser);analyser.connect(ac.destination);
+ recordDest=ac.createMediaStreamDestination();analyser.connect(recordDest);
  data=new Uint8Array(analyser.frequencyBinCount);
+}
+
+
+function chooseRecordMime(){
+ const types=['audio/mp4','audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/webm'];
+ if(!window.MediaRecorder)return '';
+ return types.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
+}
+function recordExt(mime){
+ if((mime||'').includes('mp4'))return 'm4a';
+ if((mime||'').includes('ogg'))return 'ogg';
+ return 'webm';
+}
+function updateRecordClock(){
+ if(!mediaRecorder||mediaRecorder.state!=='recording')return;
+ const s=(performance.now()-recordStartedAt)/1000;
+ recStatus.textContent='● MASTER REC · '+fmt(s);
+}
+async function startRecording(){
+ if(!window.MediaRecorder){recStatus.textContent='REC NOT SUPPORTED IN THIS BROWSER';trigger('REC UNSUPPORTED');return}
+ if(!ac){setupAudio();await ac.resume();started=true;enter.style.display='none'}
+ if(ac.state==='suspended')await ac.resume();
+ if(!recordDest){recStatus.textContent='REC OUTPUT ERROR';return}
+ recordChunks=[];recordBlob=null;exportMixBtn.disabled=true;recordMime=chooseRecordMime();
+ try{mediaRecorder=recordMime?new MediaRecorder(recordDest.stream,{mimeType:recordMime}):new MediaRecorder(recordDest.stream)}
+ catch(e){mediaRecorder=new MediaRecorder(recordDest.stream);recordMime=mediaRecorder.mimeType||''}
+ mediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size)recordChunks.push(e.data)};
+ mediaRecorder.onstop=()=>{
+   const mime=mediaRecorder.mimeType||recordMime||'audio/webm';
+   recordBlob=new Blob(recordChunks,{type:mime});
+   exportMixBtn.disabled=!recordBlob.size;
+   recSessionBtn.textContent='REC SESSION';recSessionBtn.classList.remove('recording');
+   recStatus.classList.remove('active');recStatus.textContent='MASTER READY · '+(recordBlob.size/1048576).toFixed(1)+' MB';
+   clearInterval(recordClock);recordClock=null;trigger('MASTER READY');
+ };
+ mediaRecorder.start(1000);recordStartedAt=performance.now();
+ recSessionBtn.textContent='STOP REC';recSessionBtn.classList.add('recording');recStatus.classList.add('active');updateRecordClock();
+ clearInterval(recordClock);recordClock=setInterval(updateRecordClock,500);
+ trigger('MASTER REC');
+}
+function stopRecording(){
+ if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();
+}
+function exportRecording(){
+ if(!recordBlob)return;
+ const ext=recordExt(recordBlob.type||recordMime);
+ const url=URL.createObjectURL(recordBlob),a=document.createElement('a');
+ a.href=url;a.download='LUX_ROTH_RADIO_001_NO_LOVE_AFTER_MIDNIGHT.'+ext;
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+ recStatus.textContent='MASTER EXPORTED · '+ext.toUpperCase();trigger('EXPORT MIX');
 }
 
 function normalizeName(s){
@@ -339,6 +401,7 @@ function bootSequence(){
 }
 function endTransmission(){
  if(ended)return;ended=true;
+ if(mediaRecorder&&mediaRecorder.state==='recording')stopRecording();
  if(autoDJ){decks.forEach(d=>{d.el.pause();stopLoop(d)});clearTimeout(mixTimer);autoDJ=false}else if(usingFile) audio.pause(); else if(ac&&ac.state==='running') ac.suspend();
  playBtn.textContent='ENDED';
  document.querySelector('.controls').style.opacity='.18';
@@ -410,6 +473,8 @@ trackFiles.addEventListener('change',()=>{
  trigger('TRACKS LOADED');
 });
 autoMixBtn.addEventListener('click',()=>{if(!autoDJ)startAutoDJ();});
+recSessionBtn.addEventListener('click',()=>{if(mediaRecorder&&mediaRecorder.state==='recording')stopRecording();else startRecording();});
+exportMixBtn.addEventListener('click',exportRecording);
 
 fsBtn.addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
 })();
