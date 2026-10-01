@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<title>Seis Caminos — Filosofía, estrategia y disciplina</title>
+<meta name="description" content="Portal de filosofía, estrategia y disciplina del Oriente clásico: Tao Te Ching, El arte de la guerra, Hagakure, Bushidō, Shōninki y Bansenshūkai.">
+<style>
+:root{
+  --bg:#080808; --paper:#d8d2c6; --muted:#8b877e; --line:#2b2a27;
+  --ink:#111; --accent:#a9976f; --panel:#0e0e0d; --soft:#161614;
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 50% -20%,#1b1a16 0,#0b0b0a 35%,#080808 68%),
+  var(--bg);
+  color:var(--paper);
+  font-family:ui-serif,Georgia,Cambria,"Times New Roman",serif;
+  min-height:100vh;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;
+  background-image:
+  linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);
+  background-size:36px 36px;
+  mask-image:linear-gradient(to bottom,black,transparent 80%);
+}
+a{color:inherit}
+button{font:inherit}
+.wrap{width:min(calc(100% - 34px),var(--max));margin:auto}
+.hero{
+  min-height:92svh;display:flex;align-items:flex-end;text-align:left;padding:0;
+  border-bottom:1px solid var(--line);position:relative;isolation:isolate;overflow:hidden;
+  background:#050505
+}
+.hero:before{
+  content:"";position:absolute;inset:0;z-index:-3;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(169,151,111,.10) 0%,rgba(169,151,111,.04) 18%,transparent 42%),
+    linear-gradient(180deg,#11110f 0%,#090909 42%,#060606 100%)
+}
+.hero:after{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:36px 36px;
+  opacity:.22
+}
+.hero .wrap{position:relative;padding:70px 0 9vh}
+.hero-copy{max-width:880px;border-left:1px solid rgba(216,210,198,.42);padding-left:24px}
+.kicker{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.32em;text-transform:uppercase;font-size:11px;color:#b2aa9d;
+  text-shadow:0 2px 14px rgba(0,0,0,.8)
+}
+h1{font-size:clamp(52px,10vw,126px);font-weight:400;letter-spacing:.055em;margin:16px 0 10px;line-height:.92;text-shadow:0 3px 24px rgba(0,0,0,.78)}
+.hero p{max-width:690px;margin:0;color:#c6beb1;font-size:clamp(16px,2vw,21px);line-height:1.62;text-shadow:0 2px 16px rgba(0,0,0,.9)}
+.scroll{margin-top:34px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.22em;color:#9c958a;text-transform:uppercase}
+.hero-credit{position:absolute;right:0;bottom:20px;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;color:#817a70;text-transform:uppercase;text-align:right}
+.section{padding:82px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:32px}
+.section h2{font-weight:400;font-size:clamp(28px,4.5vw,52px);margin:0;letter-spacing:.03em}
+.section-intro{max-width:620px;color:#8f8b82;line-height:1.65;margin:0}
+.gates{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line)
+}
+.gate{
+  min-height:520px;border:0;color:var(--paper);padding:28px 24px 24px;text-align:left;
+  cursor:pointer;position:relative;transition:.25s ease;overflow:hidden;background:#0a0a09;
+  display:flex;flex-direction:column;align-items:center
+}
+.gate:hover,.gate:focus-visible{outline:none;background:#0f0f0d}
+.gate .num{
+  width:100%;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:#656159;letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px
+}
+.book{
+  width:min(72%,230px);aspect-ratio:.72/1;position:relative;margin:auto;
+  box-shadow:0 18px 45px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.06);
+  overflow:hidden;transform:translateY(0);transition:transform .28s ease,box-shadow .28s ease;
+  flex:0 0 auto
+}
+.gate:hover .book,.gate:focus-visible .book{
+  transform:translateY(-5px);
+  box-shadow:0 24px 58px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.09)
+}
+.book:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.035),transparent 12%,transparent 88%,rgba(0,0,0,.09)),
+    linear-gradient(180deg,rgba(255,255,255,.025),transparent 18%,transparent 82%,rgba(0,0,0,.10));
+  mix-blend-mode:screen;opacity:.45
+}
+.book .vertical{
+  writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.14em
+}
+.book .binding{
+  position:absolute;right:10px;top:0;bottom:0;width:15px;
+  border-left:1px solid rgba(0,0,0,.35)
+}
+.book .binding:before{
+  content:"";position:absolute;left:3px;top:8%;bottom:8%;width:8px;
+  background:repeating-linear-gradient(to bottom,transparent 0 28px,rgba(30,24,17,.68) 28px 31px,transparent 31px 56px)
+}
+.cover-tao{
+  background:#213147;
+  background-image:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:5px 100%
+}
+.cover-tao .slip{
+  position:absolute;left:18px;top:18px;bottom:18px;width:52px;background:#d8cfb3;
+  color:#151515;border:1px solid rgba(0,0,0,.38);display:flex;align-items:center;
+  justify-content:flex-start;padding-top:14px;font-size:23px;line-height:1
+}
+.cover-tao .mini{
+  position:absolute;left:35px;bottom:30px;color:#1d1d1c;font-size:11px;z-index:2
+}
+
+.cover-sunzi{
+  background:#26211b
+}
+.cover-sunzi .pattern{
+  position:absolute;right:0;top:0;bottom:0;width:34%;
+  background:
+    radial-gradient(circle at 8px 8px,transparent 0 4px,rgba(83,67,42,.28) 4.5px 5.5px,transparent 6px),
+    #c5b79a;
+  background-size:16px 16px
+}
+.cover-sunzi .slip{
+  position:absolute;left:30%;top:13%;bottom:13%;width:58px;background:#c7aa7b;
+  color:#181512;border:1px solid #6f5c3d;display:flex;align-items:center;
+  justify-content:flex-start;padding-top:22px;font-size:25px
+}
+.cover-sunzi .seal{
+  position:absolute;left:calc(30% + 10px);top:17%;width:34px;height:34px;
+  border:2px solid #8d2e27;color:#8d2e27;display:grid;place-items:center;font-size:18px
+}
+.cover-sunzi .binding{left:8px;right:auto;border-left:0;border-right:1px solid rgba(0,0,0,.45)}
+.cover-sunzi .binding:before{left:auto;right:3px}
+
+.cover-hagakure{
+  background:#8d9b92;
+  background-image:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:7px 100%
+}
+.cover-hagakure .slip{
+  position:absolute;left:20px;top:18px;bottom:18px;width:48px;background:#ded6bd;
+  color:#25231f;border:1px solid rgba(0,0,0,.24);display:flex;align-items:center;
+  justify-content:flex-start;padding-top:16px;font-size:24px
+}
+.cover-hagakure .vol{
+  position:absolute;left:37px;bottom:28px;color:#514a40;font-size:10px;writing-mode:vertical-rl
+}
+
+.cover-bushido{
+  background:#506f68;color:#d7b56d
+}
+.cover-bushido .gold-rule{
+  position:absolute;left:13%;right:13%;top:11%;height:1px;background:#b99455
+}
+.cover-bushido .latin-title{
+  position:absolute;left:0;right:0;top:35%;text-align:center;
+  font-family:Georgia,"Times New Roman",serif;font-size:26px;letter-spacing:.12em
+}
+.cover-bushido .latin-sub{
+  position:absolute;left:18%;right:18%;top:49%;text-align:center;
+  font-family:Georgia,"Times New Roman",serif;font-size:10px;line-height:1.35;letter-spacing:.11em
+}
+.cover-bushido .red-sun{
+  position:absolute;width:82px;height:41px;border-radius:82px 82px 0 0;
+  background:#a9342e;left:50%;bottom:0;transform:translateX(-50%)
+}
+.cover-bushido .branch{
+  position:absolute;left:15%;top:19%;width:90px;height:1px;background:#a9342e;transform:rotate(-13deg)
+}
+.cover-bushido .branch:before,.cover-bushido .branch:after{
+  content:"";position:absolute;width:18px;height:8px;border:1px solid #a9342e;border-radius:50%
+}
+.cover-bushido .branch:before{left:17px;top:-8px;transform:rotate(-28deg)}
+.cover-bushido .branch:after{left:54px;top:2px;transform:rotate(24deg)}
+
+.cover-shoninki{
+  background:
+    radial-gradient(circle at 20% 18%,rgba(68,45,22,.10) 0 1px,transparent 2px),
+    radial-gradient(circle at 72% 61%,rgba(68,45,22,.08) 0 1px,transparent 2px),
+    #b79a6b;
+  background-size:43px 43px,61px 61px,auto
+}
+.cover-shoninki .brush{
+  position:absolute;left:28px;top:22px;color:#171512;font-size:31px;
+  writing-mode:vertical-rl;letter-spacing:.16em;font-weight:600
+}
+.cover-shoninki .small-kanji{
+  position:absolute;left:34px;bottom:26px;color:#171512;font-size:17px
+}
+
+.cover-bansenshukai{
+  background:
+    repeating-linear-gradient(0deg,rgba(61,37,15,.10) 0 1px,transparent 1px 9px),
+    #a87846
+}
+.cover-bansenshukai .brush{
+  position:absolute;left:50%;top:16%;transform:translateX(-50%);
+  color:#16120e;font-size:34px;writing-mode:vertical-rl;letter-spacing:.12em;font-weight:700
+}
+.cover-bansenshukai .cord{
+  position:absolute;background:#3a2417;opacity:.9
+}
+.cover-bansenshukai .c1{left:0;right:0;top:29%;height:5px}
+.cover-bansenshukai .c2{top:0;bottom:0;left:52%;width:5px;transform:rotate(-7deg);transform-origin:center}
+.cover-bansenshukai .knot{
+  position:absolute;left:46%;top:26%;width:28px;height:22px;border:4px solid #3a2417;
+  border-radius:50%;transform:rotate(-18deg)
+}
+
+.gate-caption{width:100%;padding-top:24px}
+.gate-caption .original{
+  display:block;color:#8e897f;font:10px ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px
+}
+.gate h3{
+  font-size:clamp(23px,2.4vw,32px);font-weight:400;line-height:1.08;
+  margin:0 0 8px;max-width:15ch;text-shadow:none
+}
+.gate p{
+  font-size:13px;color:#77736c;margin:0;line-height:1.55;max-width:32ch;text-shadow:none
+}
+.gate:after{
+  content:"Abrir";align-self:flex-start;margin-top:16px;color:#6f6a61;
+  font:10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase
+}
+.viewer{
+  margin-top:1px;border:1px solid var(--line);background:#0c0c0b;display:none
+}
+.viewer.open{display:grid;grid-template-columns:minmax(240px,.7fr) 1.3fr}
+.viewer-side{padding:34px;border-right:1px solid var(--line)}
+.viewer-side .jp{font-size:64px;line-height:1;margin-bottom:38px;color:#b9b1a1}
+.viewer-side h3{font-size:34px;font-weight:400;margin:0 0 6px}
+.viewer-side small{color:#6f6a61;letter-spacing:.12em;text-transform:uppercase}
+.viewer-main{padding:34px 38px 42px}
+.viewer-main .lead{font-size:21px;line-height:1.65;color:#c8c2b7;margin-top:0}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:28px 0}
+.meta div{background:#11110f;padding:16px}
+.meta span{display:block;color:#625e57;font:10px ui-monospace,SFMono-Regular,monospace;text-transform:uppercase;letter-spacing:.12em;margin-bottom:7px}
+.meta strong{font-weight:400;font-size:14px}
+.ideas{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.idea{border-top:1px solid #37342f;padding-top:14px}
+.idea b{display:block;font-weight:400;margin-bottom:5px;color:#d7d0c4}
+.idea p{margin:0;color:#817c73;line-height:1.55;font-size:14px}
+.principles{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 32px}
+.chip{
+  background:transparent;border:1px solid #34322e;color:#9e998f;padding:10px 14px;border-radius:999px;cursor:pointer;
+  transition:.2s
+}
+.chip:hover,.chip.active{border-color:#aaa18f;color:#ddd5c7;background:#151410}
+.connections{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.connection{background:#0e0e0d;padding:24px;min-height:160px}
+.connection .source{font:10px ui-monospace,SFMono-Regular,monospace;color:#6d685f;letter-spacing:.14em;text-transform:uppercase}
+.connection h3{font-size:20px;font-weight:400;margin:12px 0 8px}
+.connection p{margin:0;color:#858077;line-height:1.58;font-size:14px}
+.note{
+  padding:28px;border:1px solid #2f2d29;background:#0d0d0c;color:#8c877e;line-height:1.7
+}
+.note strong{color:#cfc7b8;font-weight:400}
+footer{padding:52px 0 70px;color:#5f5b55;font-size:12px;text-align:center;letter-spacing:.08em}
+.close{
+  float:right;border:1px solid #35322e;background:transparent;color:#aaa39a;padding:7px 10px;cursor:pointer
+}
+@media(max-width:820px){
+  .hero{min-height:78svh}
+  .hero:before{background:radial-gradient(circle at 50% 14%,rgba(169,151,111,.10) 0%,transparent 38%),linear-gradient(180deg,#11110f 0%,#080808 55%,#060606 100%)}
+  .hero:after{background:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:28px 28px;opacity:.2}
+  .hero .wrap{padding:56px 0 84px}
+  .hero-copy{max-width:100%;padding-left:16px}
+  .hero-credit{left:16px;right:auto;bottom:18px;text-align:left;max-width:80%;line-height:1.4}
+  .gates{grid-template-columns:1fr}
+  .gate{min-height:520px}
+  .book{width:min(70%,220px)}
+  .viewer.open{grid-template-columns:1fr}
+  .viewer-side{border-right:0;border-bottom:1px solid var(--line)}
+  .meta{grid-template-columns:1fr}
+  .ideas,.connections{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-intro{margin-top:15px}
+}
+
+.bridge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.bridge-card{background:#0e0e0d;padding:26px;min-height:270px;display:flex;flex-direction:column}
+.bridge-card .eyebrow{font:10px ui-monospace,SFMono-Regular,monospace;letter-spacing:.14em;text-transform:uppercase;color:#6f6a61}
+.bridge-card h3{font-size:25px;font-weight:400;margin:14px 0 10px}
+.bridge-card p{color:#858077;line-height:1.62;font-size:14px;margin:0 0 18px}
+.bridge-card a{margin-top:auto;text-decoration:none;border-top:1px solid #34312d;padding-top:14px;color:#c8c0b2;font-size:13px}
+.bridge-card a:hover{color:white}
+.film-line{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:16px;margin:30px 0}
+.film-box{border:1px solid var(--line);padding:24px;background:#0e0e0d}
+.film-box h3{font-weight:400;margin:0 0 8px;font-size:24px}
+.film-box p{margin:0;color:#888279;line-height:1.6;font-size:14px}
+.arrow{font-size:30px;text-align:center;color:#6f685d}
+.visual-archive{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+.visual-card{min-height:220px;border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;background:#0d0d0c}
+.visual-card:before{content:"";position:absolute;inset:0;opacity:.18;background:linear-gradient(135deg,transparent 0 25%,#7a1820 25% 38%,transparent 38% 54%,#b78b2f 54% 65%,transparent 65%),linear-gradient(25deg,#23354b,transparent 50%)}
+.visual-card:nth-child(2):before{background:linear-gradient(160deg,#b22b24 0 18%,transparent 18% 50%,#d6a832 50% 62%,transparent 62%),linear-gradient(30deg,#253b2e,transparent 60%);opacity:.22}
+.visual-card:nth-child(3):before{background:radial-gradient(circle at 30% 30%,#e0b735 0 8%,transparent 9%),linear-gradient(140deg,#2f5d3b,transparent 45%),linear-gradient(25deg,#456da0,transparent 60%);opacity:.28}
+.visual-card:nth-child(4):before{background:linear-gradient(120deg,#762f2b 0 20%,transparent 20% 43%,#334761 43% 58%,transparent 58%),linear-gradient(20deg,#7f6938,transparent 65%);opacity:.22}
+.visual-card>*{position:relative}
+.visual-card h3{margin:0 0 8px;font-size:25px;font-weight:400}
+.visual-card p{margin:0;color:#8c867d;line-height:1.55;font-size:14px}
+.visual-card a{margin-top:22px;display:inline-block;text-decoration:none;color:#d0c8b9;border-bottom:1px solid #655f55;padding-bottom:4px}
+.rights{margin-top:18px;color:#68635c;font-size:12px;line-height:1.55}
+@media(max-width:820px){
+  .bridge-grid,.visual-archive{grid-template-columns:1fr}
+  .film-line{grid-template-columns:1fr}
+  .arrow{transform:rotate(90deg)}
+}
+
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="kicker">Biblioteca de pensamiento estratégico</div>
+      <h1>SEIS CAMINOS</h1>
+      <p>Filosofía, estrategia y disciplina del Oriente clásico. Seis tradiciones para leer el conflicto, la conducta, la percepción y el vacío desde perspectivas distintas.</p>
+      <div class="scroll">Entrar en los caminos ↓</div>
+    </div>
+    <div class="hero-credit">Portal de filosofía, estrategia y disciplina · versión depurada</div>
+  </div>
+</header>
+
+<main>
+<section class="section" id="caminos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Escoge un camino</h2>
+      <p class="section-intro">Seis reinterpretaciones abstractas inspiradas en manuscritos y ediciones históricas: papel, tinta, cartelas, cosido y tipografía. Sin fotografías.</p>
+    </div>
+    <div class="gates" id="gates"></div>
+    <div class="viewer" id="viewer" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section" id="principios">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Principios</h2>
+      <p class="section-intro">Explora ideas que atraviesan varias obras. No como equivalencias exactas, sino como ecos: distintas respuestas a problemas semejantes.</p>
+    </div>
+    <div class="principles" id="chips"></div>
+    <div class="connections" id="connections"></div>
+  </div>
+</section>
+
+
+<section class="section" id="akutagawa-kurosawa">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Akutagawa → Kurosawa</h2>
+      <p class="section-intro">Un puente entre literatura y cine: la verdad fragmentada, el ego, la violencia, la percepción y la conversión de una idea escrita en una imagen.</p>
+    </div>
+
+    <div class="bridge-grid">
+      <article class="bridge-card">
+        <div class="eyebrow">Ryūnosuke Akutagawa · 1915</div>
+        <h3>Rashōmon</h3>
+        <p>Un relato breve situado junto a la gran puerta arruinada de Kioto. Hambre, decadencia y supervivencia erosionan las certezas morales. Kurosawa tomaría de aquí el título y la atmósfera del marco narrativo de su película.</p>
+        <a href="https://www.aozora.gr.jp/cards/000879/card128.html" target="_blank" rel="noopener">Leer el original japonés en Aozora Bunko ↗</a>
+      </article>
+      <article class="bridge-card">
+        <div class="eyebrow">Ryūnosuke Akutagawa · 1922</div>
+        <h3>En el bosque</h3>
+        <p>Un mismo crimen aparece a través de testimonios incompatibles. Cada voz recompone los hechos de una manera diferente. Éste es el núcleo narrativo que Kurosawa transforma en <em>Rashōmon</em>.</p>
+        <a href="https://www.aozora.gr.jp/cards/000879/card179.html" target="_blank" rel="noopener">Leer el original japonés en Aozora Bunko ↗</a>
+      </article>
+      <article class="bridge-card">
+        <div class="eyebrow">Ryūnosuke Akutagawa · 1927</div>
+        <h3>Kappa</h3>
+        <p>Una sátira fantástica y amarga sobre sociedad, cultura, trabajo, arte y locura. Amplía el portal desde la disciplina guerrera hacia una mirada moderna sobre el individuo atrapado dentro de un orden colectivo.</p>
+        <a href="https://www.aozora.gr.jp/cards/000879/card69.html" target="_blank" rel="noopener">Leer el original japonés en Aozora Bunko ↗</a>
+      </article>
+    </div>
+
+    <div class="film-line">
+      <div class="film-box">
+        <h3>En el bosque + Rashōmon</h3>
+        <p>Akutagawa construye una verdad que se rompe en versiones. El relato no ofrece un punto de vista soberano que cierre del todo el acontecimiento.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="film-box">
+        <h3>Rashōmon · Kurosawa, 1950</h3>
+        <p>Kurosawa combina ambos relatos y convierte la incertidumbre narrativa en experiencia cinematográfica: espacio, lluvia, bosque, cuerpos y miradas pasan a formar parte del problema de la verdad.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Conexión con los seis caminos.</strong> La tensión entre percepción y realidad enlaza con Sun Tzu y la información; la ambigüedad moral dialoga con la disciplina y el deber del mundo guerrero; y la imposibilidad de fijar una verdad absoluta introduce un contrapunto moderno frente a sistemas que buscan orden, método o conducta.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="kurosawa-visual">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>El cuaderno de Kurosawa</h2>
+      <p class="section-intro">Kurosawa fue pintor antes que cineasta y realizó cientos de dibujos y storyboards para traducir una película futura a color, movimiento, vestuario y composición.</p>
+    </div>
+
+    <div class="visual-archive">
+      <article class="visual-card">
+        <div><div class="eyebrow">1980</div><h3>Kagemusha</h3><p>Durante años de espera para financiar la película, Kurosawa convirtió escenas imaginadas en pinturas de gran formato. El film terminó naciendo, literalmente, de esos cuadros.</p></div>
+        <a href="https://www.criterion.com/current/posts/360-kagemusha-from-painting-to-film-pageantry" target="_blank" rel="noopener">Ver pinturas y estudio en Criterion ↗</a>
+      </article>
+      <article class="visual-card">
+        <div><div class="eyebrow">1985</div><h3>Ran</h3><p>Color como estrategia narrativa: ejércitos, clanes y violencia organizados mediante una planificación pictórica previa. Criterion documenta la reconstrucción de la película a través de pinturas y sketches.</p></div>
+        <a href="https://www.criterion.com/films/754-ran" target="_blank" rel="noopener">Abrir archivo de Ran ↗</a>
+      </article>
+      <article class="visual-card">
+        <div><div class="eyebrow">1990</div><h3>Dreams</h3><p>Los dibujos se utilizaron como referencia exacta de color para decorados, vestuario y fotografía. Aquí el storyboard deja de ser simple planificación y se acerca a una pintura autónoma.</p></div>
+        <a href="https://www.criterion.com/current/posts/3862-the-color-of-dreams" target="_blank" rel="noopener">Ver el archivo visual de Dreams ↗</a>
+      </article>
+      <article class="visual-card">
+        <div><div class="eyebrow">Archivo · 120 dibujos</div><h3>La mirada del samurái</h3><p>El catálogo del Museo ABC reúne storyboards de seis proyectos tardíos de Kurosawa y permite recorrer de forma continua su proceso pictórico y cinematográfico.</p></div>
+        <a href="https://museo.abc.es/wp-content/uploads/2011/04/ABC_AkiraKurosawa_MedRes.pdf" target="_blank" rel="noopener">Abrir catálogo del Museo ABC ↗</a>
+      </article>
+    </div>
+    <p class="rights">Las pinturas y storyboards de Akira Kurosawa siguen protegidos. Por eso el portal no almacena copias de las obras: enlaza a archivos, museos y ediciones que pueden mostrarlas legítimamente.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="note">
+      <strong>Nota histórica.</strong> “Bushidō” no designa un único libro canónico antiguo, sino un conjunto de ideales, discursos y códigos sobre la conducta guerrera que cambiaron con el tiempo. Aquí se presenta como tradición histórica y ética, diferenciándola de obras concretas como <em>Hagakure</em>, <em>Shōninki</em> o <em>Bansenshūkai</em>. El contenido de este portal es contextual y original; no reproduce traducciones modernas protegidas.
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">SEIS CAMINOS · Archivo de filosofía, estrategia y disciplina · actualización 01.10.2026</div>
+</footer>
+
+<script>
+const works=[
+{
+id:"tao",num:"I",glyph:"道",title:"Tao Te Ching",subtitle:"El Camino",jp:"道德經",coverTitle:"El camino del vacío",coverDesc:"Ceder, dejar espacio y actuar sin forzar.",
+era:"China · tradición taoísta",focus:"No-forzar · equilibrio",form:"81 capítulos breves",
+lead:"Una obra sobre el orden que no se impone. Propone atender a los ritmos de las cosas, reducir la violencia de la intervención y comprender la fuerza de lo flexible, lo vacío y lo incompleto.",
+ideas:[
+["Wu wei","Actuar sin forzar: intervenir de manera ajustada a la situación, evitando el exceso de voluntad que destruye lo que pretende ordenar."],
+["Vacío","La ausencia no es carencia. Un recipiente sirve precisamente por el espacio que contiene."],
+["Agua","Lo flexible cede sin desaparecer. La suavidad puede sobrevivir allí donde la rigidez se rompe."],
+["Simplicidad","Disminuir artificios, ambición y ruido para recuperar claridad y medida."]
+]},
+{
+id:"sunzi",num:"II",glyph:"兵",title:"El arte de la guerra",subtitle:"La Estrategia",jp:"孫子兵法",coverTitle:"El camino de la estrategia",coverDesc:"Leer el conflicto antes del choque.",
+era:"China · período antiguo",focus:"Información · adaptación",form:"Tratado estratégico",
+lead:"Un tratado sobre la gestión del conflicto antes de que el choque se produzca. La ventaja nace del conocimiento, la preparación, la lectura del terreno y la capacidad de transformar la situación.",
+ideas:[
+["Conocer","La información sobre uno mismo, el adversario y el entorno reduce la dependencia de la fuerza bruta."],
+["Forma","No ofrecer una estructura rígida que el adversario pueda leer y explotar."],
+["Terreno","Toda decisión depende del espacio, el tiempo, los recursos y las relaciones presentes."],
+["Economía","El conflicto prolongado consume incluso al vencedor. La eficacia exige evitar costes innecesarios."]
+]},
+{
+id:"hagakure",num:"III",glyph:"葉",title:"Hagakure",subtitle:"La Decisión",jp:"葉隱",coverTitle:"El camino de la decisión",coverDesc:"Actuar sin quedar dividido por la duda.",
+era:"Japón · período Edo",focus:"Presencia · resolución",form:"Recopilación de conversaciones",
+lead:"Una colección de reflexiones asociadas al mundo samurái de Saga. Combina disciplina, servicio, muerte, reputación, etiqueta y resolución inmediata, pero refleja un contexto social e histórico muy concreto.",
+ideas:[
+["Decisión","La vacilación prolongada puede ser una forma de derrota interior. La preparación busca reducir esa fractura."],
+["Muerte","La conciencia de la mortalidad aparece como método para relativizar miedo, cálculo y apego."],
+["Servicio","La identidad del guerrero se formula en relación con deberes, jerarquías y vínculos propios de su época."],
+["Atención","La conducta cotidiana importa tanto como los momentos excepcionales."]
+]},
+{
+id:"bushido",num:"IV",glyph:"武",title:"Bushidō",subtitle:"La Conducta",jp:"武士道",coverTitle:"El camino de la conducta",coverDesc:"Ordenar la vida mediante deber, forma y rectitud.",
+era:"Japón · tradición histórica",focus:"Conducta · deber",form:"Conjunto cambiante de ideales",
+lead:"Más que un único código eterno, el bushidō reúne ideas cambiantes sobre la conducta guerrera japonesa. Sus formulaciones modernas mezclan materiales medievales, Edo y reinterpretaciones posteriores.",
+ideas:[
+["Rectitud","La conducta se juzga por obligaciones, relaciones y expectativas sociales, no solo por intención individual."],
+["Coraje","No equivale a temeridad: históricamente aparece unido a autocontrol, reputación y deber."],
+["Cortesía","La forma externa de la conducta regula el conflicto y expresa jerarquía, respeto y dominio de uno mismo."],
+["Lealtad","Fue un valor central en muchos discursos guerreros, aunque su significado y alcance variaron según época y dominio."]
+]},
+{
+id:"shoninki",num:"V",glyph:"忍",title:"Shōninki",subtitle:"La Sombra",jp:"正忍記",coverTitle:"El camino de la sombra",coverDesc:"Observar, comprender y pasar desapercibido.",
+era:"Japón · 1681",focus:"Observación · infiltración",form:"Manual de shinobi",
+lead:"Un manual de inteligencia y actividad shinobi atribuido a Natori Masazumi. Su núcleo no es la fantasía del ninja moderno, sino la observación, el disfraz, la memoria, la adaptación social y la obtención de información.",
+ideas:[
+["Observación","Antes de actuar se estudian hábitos, espacios, voces, rutas y patrones de comportamiento."],
+["Disfraz","La invisibilidad no consiste necesariamente en ocultarse, sino en parecer pertenecer al lugar."],
+["Memoria","Retener información sin depender de registros comprometedores forma parte de la disciplina del agente."],
+["Psicología","Comprender deseos, temores y expectativas permite anticipar conductas y reducir la confrontación."]
+]},
+{
+id:"bansenshukai",num:"VI",glyph:"萬",title:"Bansenshūkai",subtitle:"Las Diez Mil Corrientes",jp:"萬川集海",coverTitle:"El camino de las corrientes",coverDesc:"Unir tiempo, señales, información y método.",
+era:"Japón · 1676",focus:"Inteligencia · sistema",form:"Compendio enciclopédico",
+lead:"Una gran compilación de conocimientos shinobi del período Edo. Integra estrategia, organización, reconocimiento, señales, infiltración, herramientas, fuego, clima y principios de inteligencia.",
+ideas:[
+["Sistema","La operación eficaz depende de combinar información, preparación, coordinación y medios adecuados."],
+["Tiempo","Clima, luz, estaciones y ritmos humanos transforman por completo una oportunidad."],
+["Señales","La comunicación discreta permite coordinar grupos sin revelar intención."],
+["Adaptación","No existe una técnica universal: el método cambia con el terreno, la vigilancia y el objetivo."]
+]}
+];
+
+const principleData={
+"Adaptación":[
+["Tao Te Ching","La flexibilidad aparece como capacidad de conservarse cambiando con las circunstancias."],
+["El arte de la guerra","La forma estratégica debe variar según enemigo, terreno, recursos y momento."],
+["Shōninki","La conducta del agente cambia para confundirse con el entorno social."],
+["Bansenshūkai","Métodos, herramientas y tiempos se eligen según la situación concreta."]
+],
+"Vacío":[
+["Tao Te Ching","El espacio vacío permite que una forma tenga uso."],
+["El arte de la guerra","La ausencia de una forma fija dificulta que el adversario encuentre dónde golpear."]
+],
+"Agua":[
+["Tao Te Ching","El agua simboliza flexibilidad, humildad y persistencia."],
+["El arte de la guerra","La estrategia se compara con un flujo que toma forma según el terreno."]
+],
+"Observación":[
+["El arte de la guerra","Conocer condiciones y movimientos precede al enfrentamiento."],
+["Shōninki","Observar personas, rutas y costumbres es una herramienta central de inteligencia."],
+["Bansenshūkai","El reconocimiento convierte información dispersa en ventaja operacional."]
+],
+"Disciplina":[
+["Hagakure","La preparación cotidiana busca reducir la indecisión cuando llega el momento de actuar."],
+["Bushidō","Diversos discursos guerreros vinculan conducta, autocontrol, deber y reputación."],
+["Shōninki","La eficacia depende de memoria, paciencia, autocontrol y atención a detalles."]
+],
+"Engaño":[
+["El arte de la guerra","La percepción del adversario puede manipularse para alterar sus decisiones."],
+["Shōninki","Disfraz y comportamiento permiten ocultar identidad e intención."],
+["Bansenshūkai","La inteligencia utiliza señuelos, desinformación y ocultación en contextos estratégicos."]
+],
+"Decisión":[
+["Hagakure","La resolución inmediata se presenta como una disciplina contra la vacilación."],
+["El arte de la guerra","La decisión eficaz depende de preparar condiciones antes del momento crítico."]
+],
+"Silencio":[
+["Tao Te Ching","La reducción del ruido y de la exhibición se vincula con una acción menos forzada."],
+["Shōninki","La discreción protege información, identidad y movilidad."],
+["Bansenshūkai","Ocultar intención y comunicación forma parte de la seguridad operacional."]
+],
+"Muerte":[
+["Hagakure","La conciencia de la mortalidad se convierte en método de resolución y desapego."],
+["Tao Te Ching","Vida y muerte aparecen dentro de un proceso mayor de transformación, no como dominios completamente separados."]
+],
+"No acción":[
+["Tao Te Ching","Wu wei no es pasividad: es evitar la acción excesiva o contraria al curso de la situación."],
+["El arte de la guerra","La victoria ideal reduce la necesidad del choque directo mediante preparación y posición."]
+]
+};
+
+const gates=document.getElementById("gates");
+const viewer=document.getElementById("viewer");
+function coverMarkup(w){
+ const common=`cover-${w.id}`;
+ if(w.id==="tao") return `<div class="book ${common}"><span class="slip vertical">${w.jp}</span><span class="mini">老子</span><i class="binding"></i></div>`;
+ if(w.id==="sunzi") return `<div class="book ${common}"><span class="pattern"></span><span class="slip vertical">${w.jp}</span><span class="seal">兵</span><i class="binding"></i></div>`;
+ if(w.id==="hagakure") return `<div class="book ${common}"><span class="slip vertical">${w.jp}</span><span class="vol">聞書</span><i class="binding"></i></div>`;
+ if(w.id==="bushido") return `<div class="book ${common}"><span class="gold-rule"></span><span class="branch"></span><span class="latin-title">BUSHIDO</span><span class="latin-sub">THE SOUL OF JAPAN</span><span class="red-sun"></span></div>`;
+ if(w.id==="shoninki") return `<div class="book ${common}"><span class="brush">${w.jp}</span><span class="small-kanji">天</span><i class="binding"></i></div>`;
+ return `<div class="book ${common}"><span class="brush">${w.jp}</span><span class="cord c1"></span><span class="cord c2"></span><span class="knot"></span></div>`;
+}
+works.forEach(w=>{
+ const b=document.createElement("button");
+ b.className="gate";
+ b.innerHTML=`<span class="num">CAMINO ${w.num}</span>${coverMarkup(w)}<div class="gate-caption"><span class="original">${w.title}</span><h3>${w.coverTitle}</h3><p>${w.coverDesc}</p></div>`;
+ b.onclick=()=>openWork(w);
+ gates.appendChild(b);
+});
+function openWork(w){
+ viewer.className="viewer open";
+ viewer.innerHTML=`
+ <aside class="viewer-side"><button class="close" aria-label="Cerrar">×</button><div class="jp">${w.jp}</div><h3>${w.coverTitle}</h3><small>${w.title} · ${w.subtitle}</small></aside>
+ <article class="viewer-main">
+  <p class="lead">${w.lead}</p>
+  <div class="meta"><div><span>Contexto</span><strong>${w.era}</strong></div><div><span>Núcleo</span><strong>${w.focus}</strong></div><div><span>Forma</span><strong>${w.form}</strong></div></div>
+  <div class="ideas">${w.ideas.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p></div>`).join("")}</div>
+ </article>`;
+ viewer.querySelector(".close").onclick=()=>viewer.className="viewer";
+ viewer.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+const chips=document.getElementById("chips");
+const connections=document.getElementById("connections");
+Object.keys(principleData).forEach((name,i)=>{
+ const b=document.createElement("button");b.className="chip";b.textContent=name;
+ b.onclick=()=>selectPrinciple(name,b);chips.appendChild(b);
+ if(i===0) setTimeout(()=>selectPrinciple(name,b),0);
+});
+function selectPrinciple(name,b){
+ document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ connections.innerHTML=principleData[name].map(x=>`<article class="connection"><div class="source">${x[0]}</div><h3>${name}</h3><p>${x[1]}</p></article>`).join("");
+}
+</script>
+<!-- clean-route: seis-caminos-v2 · 2026-10-01 -->
+</body>
+</html>
