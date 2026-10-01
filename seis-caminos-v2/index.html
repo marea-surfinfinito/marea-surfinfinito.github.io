@@ -82,142 +82,193 @@ h1{font-size:clamp(52px,10vw,126px);font-weight:400;letter-spacing:.055em;margin
   color:#656159;letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px
 }
 .book{
-  width:min(72%,230px);aspect-ratio:.72/1;position:relative;margin:auto;
-  box-shadow:0 18px 45px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.06);
-  overflow:hidden;transform:translateY(0);transition:transform .28s ease,box-shadow .28s ease;
-  flex:0 0 auto
+  position:relative;margin:auto;flex:0 0 auto;
+  transform:translateY(0);transition:transform .28s ease,filter .28s ease;
+  filter:drop-shadow(0 22px 18px rgba(0,0,0,.38))
 }
 .gate:hover .book,.gate:focus-visible .book{
-  transform:translateY(-5px);
-  box-shadow:0 24px 58px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.09)
+  transform:translateY(-5px) rotate(.25deg);
+  filter:drop-shadow(0 29px 24px rgba(0,0,0,.52))
 }
 .book:after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(255,255,255,.035),transparent 12%,transparent 88%,rgba(0,0,0,.09)),
-    linear-gradient(180deg,rgba(255,255,255,.025),transparent 18%,transparent 82%,rgba(0,0,0,.10));
-  mix-blend-mode:screen;opacity:.45
-}
-.book .vertical{
-  writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.14em
-}
-.book .binding{
-  position:absolute;right:10px;top:0;bottom:0;width:15px;
-  border-left:1px solid rgba(0,0,0,.35)
-}
-.book .binding:before{
-  content:"";position:absolute;left:3px;top:8%;bottom:8%;width:8px;
-  background:repeating-linear-gradient(to bottom,transparent 0 28px,rgba(30,24,17,.68) 28px 31px,transparent 31px 56px)
-}
-.cover-tao{
-  background:#213147;
-  background-image:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:5px 100%
-}
-.cover-tao .slip{
-  position:absolute;left:18px;top:18px;bottom:18px;width:52px;background:#d8cfb3;
-  color:#151515;border:1px solid rgba(0,0,0,.38);display:flex;align-items:center;
-  justify-content:flex-start;padding-top:14px;font-size:23px;line-height:1
-}
-.cover-tao .mini{
-  position:absolute;left:35px;bottom:30px;color:#1d1d1c;font-size:11px;z-index:2
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:20;
+  background:linear-gradient(115deg,rgba(255,255,255,.07),transparent 24%,transparent 76%,rgba(0,0,0,.12));
+  mix-blend-mode:soft-light
 }
 
-.cover-sunzi{
-  background:#26211b
+/* China antigua: no se muestran como códices modernos, sino como haces de tablillas. */
+.bamboo-set{
+  width:min(92%,278px);height:286px;box-shadow:none;overflow:visible;
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  padding:10px 15px 12px;background:transparent
 }
-.cover-sunzi .pattern{
-  position:absolute;right:0;top:0;bottom:0;width:34%;
+.bamboo-set:before{
+  content:"";position:absolute;left:8%;right:8%;bottom:8px;height:18px;
+  background:rgba(0,0,0,.36);filter:blur(13px);border-radius:50%;z-index:-1
+}
+.bamboo-slip{
+  position:relative;display:block;width:15px;height:245px;border-radius:7px 6px 4px 5px;
+  border-left:1px solid rgba(255,237,188,.2);border-right:1px solid rgba(65,38,15,.34);
   background:
-    radial-gradient(circle at 8px 8px,transparent 0 4px,rgba(83,67,42,.28) 4.5px 5.5px,transparent 6px),
-    #c5b79a;
-  background-size:16px 16px
+    linear-gradient(90deg,rgba(70,42,16,.24),transparent 18%,rgba(255,231,171,.14) 54%,rgba(64,37,13,.18)),
+    repeating-linear-gradient(0deg,transparent 0 16px,rgba(63,40,20,.05) 17px 18px),
+    #9d6d36;
+  box-shadow:inset 0 0 8px rgba(49,29,12,.3),0 2px 2px rgba(0,0,0,.24);
+  transform-origin:center bottom
 }
-.cover-sunzi .slip{
-  position:absolute;left:30%;top:13%;bottom:13%;width:58px;background:#c7aa7b;
-  color:#181512;border:1px solid #6f5c3d;display:flex;align-items:center;
-  justify-content:flex-start;padding-top:22px;font-size:25px
+.bamboo-slip:before,.bamboo-slip:after{
+  content:"";position:absolute;left:-2px;right:-2px;height:3px;background:#4b301d;
+  box-shadow:0 1px 0 rgba(190,143,81,.28);z-index:4
 }
-.cover-sunzi .seal{
-  position:absolute;left:calc(30% + 10px);top:17%;width:34px;height:34px;
-  border:2px solid #8d2e27;color:#8d2e27;display:grid;place-items:center;font-size:18px
+.bamboo-slip:before{top:64px}.bamboo-slip:after{bottom:64px}
+.bamboo-slip em{
+  position:absolute;inset:13px 1px;font-style:normal;writing-mode:vertical-rl;text-orientation:upright;
+  color:#17110c;font-family:"STKaiti","KaiTi","Noto Serif CJK SC",serif;font-size:15px;
+  letter-spacing:.34em;line-height:1;opacity:.9;text-shadow:0 0 .35px #000
 }
-.cover-sunzi .binding{left:8px;right:auto;border-left:0;border-right:1px solid rgba(0,0,0,.45)}
-.cover-sunzi .binding:before{left:auto;right:3px}
+.bamboo-slip:nth-child(3n){height:252px;transform:rotate(.8deg)}
+.bamboo-slip:nth-child(4n){height:238px;transform:rotate(-1deg)}
+.bamboo-slip:nth-child(5n){height:248px;top:2px}
+.bamboo-tao .bamboo-slip{
+  background:
+    linear-gradient(90deg,rgba(75,44,16,.25),transparent 18%,rgba(244,208,135,.14) 58%,rgba(62,38,15,.19)),
+    repeating-linear-gradient(0deg,transparent 0 17px,rgba(58,35,15,.06) 18px 19px),
+    #986a35
+}
+.bamboo-tao .bamboo-slip:nth-child(2n){background-color:#a7773d}
+.bamboo-sunzi .bamboo-slip{height:255px;width:13px;background-color:#ae7e43}
+.bamboo-sunzi .bamboo-slip:nth-child(3n){height:262px}
+.bamboo-sunzi:after{opacity:.65}
 
+/* Wahon Edo: papel, fukurotoji y costura lateral en vez de una tapa occidental. */
+.wahon{
+  width:min(70%,188px);aspect-ratio:19/25.9;overflow:visible;
+  border:1px solid rgba(25,20,14,.48);
+  box-shadow:0 15px 32px rgba(0,0,0,.32),inset 0 0 28px rgba(255,255,255,.035)
+}
+.wahon:before{
+  content:"";position:absolute;left:3px;right:-5px;bottom:-5px;height:6px;
+  background:repeating-linear-gradient(0deg,#b9ad91 0 1px,#d2c7aa 1px 2px);
+  border:1px solid rgba(38,28,18,.25);z-index:-1;transform:skewX(-18deg)
+}
+.wahon .stitch{
+  position:absolute;right:7px;top:5%;bottom:5%;width:16px;z-index:8;
+  border-left:1px solid rgba(34,26,18,.3)
+}
+.wahon .stitch i{
+  position:absolute;right:-1px;width:16px;height:9px;border-top:2px solid #443226;border-bottom:2px solid #443226;
+  transform:skewY(-12deg);box-shadow:0 1px 0 rgba(255,255,255,.12)
+}
+.wahon .stitch i:nth-child(1){top:5%}
+.wahon .stitch i:nth-child(2){top:33%}
+.wahon .stitch i:nth-child(3){top:61%}
+.wahon .stitch i:nth-child(4){top:88%}
+.wahon .label{
+  position:absolute;left:19px;top:18px;width:39px;min-height:136px;padding:10px 6px;
+  background:#d9cfb4;color:#201b15;border:1px solid rgba(47,35,22,.26);
+  writing-mode:vertical-rl;text-orientation:upright;text-align:left;font-size:22px;
+  line-height:1;letter-spacing:.08em;box-shadow:0 1px 1px rgba(0,0,0,.12)
+}
+.wahon .paper-wear{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(38,29,20,.13) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 74% 63%,rgba(51,38,23,.09) 0 1px,transparent 1.4px),
+    radial-gradient(circle at 44% 82%,rgba(255,255,255,.06) 0 1px,transparent 1.3px);
+  background-size:31px 37px,47px 43px,53px 49px;mix-blend-mode:multiply
+}
+
+/* Hagakure: reconstrucción basada en el ejemplar de Saga: tapa hierro-azul verdosa,
+   patrón de calabaza/arabesco en seco y cuatro puntos; sin falsa etiqueta de título. */
 .cover-hagakure{
-  background:#8d9b92;
-  background-image:linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:7px 100%
+  background:
+    radial-gradient(ellipse at 10px 8px,transparent 0 6px,rgba(29,43,42,.16) 6.5px 7.5px,transparent 8px),
+    radial-gradient(ellipse at 20px 18px,transparent 0 5px,rgba(255,255,255,.035) 5.5px 6.5px,transparent 7px),
+    #3f5d5c;
+  background-size:30px 26px,30px 26px,auto
 }
-.cover-hagakure .slip{
-  position:absolute;left:20px;top:18px;bottom:18px;width:48px;background:#ded6bd;
-  color:#25231f;border:1px solid rgba(0,0,0,.24);display:flex;align-items:center;
-  justify-content:flex-start;padding-top:16px;font-size:24px
+.cover-hagakure .blind-title{
+  position:absolute;left:25px;top:28px;writing-mode:vertical-rl;color:rgba(15,26,25,.28);
+  font-size:26px;letter-spacing:.12em;text-shadow:0 1px rgba(255,255,255,.05)
 }
-.cover-hagakure .vol{
-  position:absolute;left:37px;bottom:28px;color:#514a40;font-size:10px;writing-mode:vertical-rl
+.cover-hagakure .edge-cloth{
+  position:absolute;left:0;right:0;top:0;height:7px;background:#44342c;opacity:.86
 }
 
-.cover-bushido{
-  background:#506f68;color:#d7b56d
-}
-.cover-bushido .gold-rule{
-  position:absolute;left:13%;right:13%;top:11%;height:1px;background:#b99455
-}
-.cover-bushido .latin-title{
-  position:absolute;left:0;right:0;top:35%;text-align:center;
-  font-family:Georgia,"Times New Roman",serif;font-size:26px;letter-spacing:.12em
-}
-.cover-bushido .latin-sub{
-  position:absolute;left:18%;right:18%;top:49%;text-align:center;
-  font-family:Georgia,"Times New Roman",serif;font-size:10px;line-height:1.35;letter-spacing:.11em
-}
-.cover-bushido .red-sun{
-  position:absolute;width:82px;height:41px;border-radius:82px 82px 0 0;
-  background:#a9342e;left:50%;bottom:0;transform:translateX(-50%)
-}
-.cover-bushido .branch{
-  position:absolute;left:15%;top:19%;width:90px;height:1px;background:#a9342e;transform:rotate(-13deg)
-}
-.cover-bushido .branch:before,.cover-bushido .branch:after{
-  content:"";position:absolute;width:18px;height:8px;border:1px solid #a9342e;border-radius:50%
-}
-.cover-bushido .branch:before{left:17px;top:-8px;transform:rotate(-28deg)}
-.cover-bushido .branch:after{left:54px;top:2px;transform:rotate(24deg)}
-
+/* Shōninki: volumen Edo en papel kōzo sin blasones inventados. */
 .cover-shoninki{
   background:
-    radial-gradient(circle at 20% 18%,rgba(68,45,22,.10) 0 1px,transparent 2px),
-    radial-gradient(circle at 72% 61%,rgba(68,45,22,.08) 0 1px,transparent 2px),
-    #b79a6b;
-  background-size:43px 43px,61px 61px,auto
+    repeating-linear-gradient(88deg,rgba(75,55,32,.045) 0 1px,transparent 1px 5px),
+    #b79a69
 }
-.cover-shoninki .brush{
-  position:absolute;left:28px;top:22px;color:#171512;font-size:31px;
-  writing-mode:vertical-rl;letter-spacing:.16em;font-weight:600
+.cover-shoninki .label{background:#d8ccb0;color:#241d15}
+.cover-shoninki .stitch i{border-color:#39291f}
+
+/* Bansenshūkai: compendio de muchos fascículos; se representa como pequeño apilado. */
+.book-stack{
+  width:min(77%,205px);aspect-ratio:18/25;overflow:visible;background:#9b7048;
+  border:1px solid rgba(37,26,17,.44)
 }
-.cover-shoninki .small-kanji{
-  position:absolute;left:34px;bottom:26px;color:#171512;font-size:17px
+.book-stack:before,.book-stack .under{
+  content:"";position:absolute;left:-8px;right:8px;height:100%;border:1px solid rgba(35,25,16,.35);
+  background:#836044;z-index:-2
+}
+.book-stack:before{top:9px;transform:rotate(-2.2deg)}
+.book-stack .under{top:4px;left:7px;right:-5px;background:#aa8258;transform:rotate(1.3deg);z-index:-1}
+.book-stack .label{
+  position:absolute;left:19px;top:18px;width:40px;min-height:150px;padding:9px 6px;background:#d8ccb1;
+  color:#201a14;border:1px solid rgba(48,34,22,.27);writing-mode:vertical-rl;
+  text-orientation:upright;font-size:22px;line-height:1;letter-spacing:.07em
+}
+.book-stack .volmark{
+  position:absolute;left:28px;bottom:23px;color:#33261a;font-size:11px;writing-mode:vertical-rl
+}
+.book-stack .stitch{
+  position:absolute;right:7px;top:5%;bottom:5%;width:16px;border-left:1px solid rgba(34,26,18,.3)
+}
+.book-stack .stitch i{
+  position:absolute;right:-1px;width:16px;height:9px;border-top:2px solid #493326;border-bottom:2px solid #493326
+}
+.book-stack .stitch i:nth-child(1){top:5%}.book-stack .stitch i:nth-child(2){top:33%}
+.book-stack .stitch i:nth-child(3){top:61%}.book-stack .stitch i:nth-child(4){top:88%}
+
+/* Nitobe, 1900: formato occidental de tela, no un supuesto códice samurái. */
+.cover-bushido{
+  width:min(66%,174px);aspect-ratio:1095/1693;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.035),transparent 8%,transparent 93%,rgba(0,0,0,.18)),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
+    #465851;
+  border-radius:2px;border:1px solid #26332f;
+  box-shadow:0 18px 42px rgba(0,0,0,.4),inset 5px 0 10px rgba(0,0,0,.14)
+}
+.cover-bushido .frame{
+  position:absolute;inset:16px 13px;border:1px solid #b3975d;box-shadow:inset 0 0 0 2px rgba(179,151,93,.13)
+}
+.cover-bushido .latin-title{
+  position:absolute;left:17px;right:17px;top:31%;text-align:center;color:#c6aa6a;
+  font-family:Georgia,"Times New Roman",serif;font-size:23px;line-height:1.08;letter-spacing:.09em
+}
+.cover-bushido .latin-sub{
+  position:absolute;left:24px;right:24px;top:49%;text-align:center;color:#bda160;
+  font-family:Georgia,"Times New Roman",serif;font-size:9px;line-height:1.4;letter-spacing:.12em
+}
+.cover-bushido .author{
+  position:absolute;left:20px;right:20px;bottom:25px;text-align:center;color:#aa915a;
+  font:8px Georgia,"Times New Roman",serif;letter-spacing:.1em
+}
+.cover-bushido .ornament{
+  position:absolute;left:50%;top:19%;width:48px;height:48px;transform:translateX(-50%) rotate(45deg);
+  border:1px solid #aa915a
+}
+.cover-bushido .ornament:after{
+  content:"";position:absolute;inset:8px;border:1px solid #aa915a
 }
 
-.cover-bansenshukai{
-  background:
-    repeating-linear-gradient(0deg,rgba(61,37,15,.10) 0 1px,transparent 1px 9px),
-    #a87846
-}
-.cover-bansenshukai .brush{
-  position:absolute;left:50%;top:16%;transform:translateX(-50%);
-  color:#16120e;font-size:34px;writing-mode:vertical-rl;letter-spacing:.12em;font-weight:700
-}
-.cover-bansenshukai .cord{
-  position:absolute;background:#3a2417;opacity:.9
-}
-.cover-bansenshukai .c1{left:0;right:0;top:29%;height:5px}
-.cover-bansenshukai .c2{top:0;bottom:0;left:52%;width:5px;transform:rotate(-7deg);transform-origin:center}
-.cover-bansenshukai .knot{
-  position:absolute;left:46%;top:26%;width:28px;height:22px;border:4px solid #3a2417;
-  border-radius:50%;transform:rotate(-18deg)
+.artifact-note{
+  position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);width:max-content;max-width:260px;
+  color:#716b62;font:9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;
+  text-transform:uppercase;text-align:center;white-space:nowrap
 }
 
 .gate-caption{width:100%;padding-top:24px}
@@ -562,14 +613,22 @@ const principleData={
 
 const gates=document.getElementById("gates");
 const viewer=document.getElementById("viewer");
+function bambooSlips(chars,count){
+ return Array.from({length:count},function(_,i){
+   var ch=chars[i%chars.length];
+   return '<span class="bamboo-slip"><em>'+ch+'</em></span>';
+ }).join('');
+}
+function stitches(){
+ return '<span class="stitch"><i></i><i></i><i></i><i></i></span>';
+}
 function coverMarkup(w){
- const common=`cover-${w.id}`;
- if(w.id==="tao") return `<div class="book ${common}"><span class="slip vertical">${w.jp}</span><span class="mini">老子</span><i class="binding"></i></div>`;
- if(w.id==="sunzi") return `<div class="book ${common}"><span class="pattern"></span><span class="slip vertical">${w.jp}</span><span class="seal">兵</span><i class="binding"></i></div>`;
- if(w.id==="hagakure") return `<div class="book ${common}"><span class="slip vertical">${w.jp}</span><span class="vol">聞書</span><i class="binding"></i></div>`;
- if(w.id==="bushido") return `<div class="book ${common}"><span class="gold-rule"></span><span class="branch"></span><span class="latin-title">BUSHIDO</span><span class="latin-sub">THE SOUL OF JAPAN</span><span class="red-sun"></span></div>`;
- if(w.id==="shoninki") return `<div class="book ${common}"><span class="brush">${w.jp}</span><span class="small-kanji">天</span><i class="binding"></i></div>`;
- return `<div class="book ${common}"><span class="brush">${w.jp}</span><span class="cord c1"></span><span class="cord c2"></span><span class="knot"></span></div>`;
+ if(w.id==="tao") return '<div class="book bamboo-set bamboo-tao">'+bambooSlips('道德天地水無為玄谷柔弱',13)+'<span class="artifact-note">Guodian · ca. 300 a. C. · bambú</span></div>';
+ if(w.id==="sunzi") return '<div class="book bamboo-set bamboo-sunzi">'+bambooSlips('兵勢形地計謀攻軍行火用間',14)+'<span class="artifact-note">Yinqueshan · Han occidental · bambú</span></div>';
+ if(w.id==="hagakure") return '<div class="book wahon cover-hagakure"><span class="edge-cloth"></span><span class="blind-title">葉隱聞書</span>'+stitches()+'<span class="paper-wear"></span><span class="artifact-note">Saga · manuscrito Edo · 四ツ目袋綴</span></div>';
+ if(w.id==="bushido") return '<div class="book cover-bushido"><span class="frame"></span><span class="ornament"></span><span class="latin-title">BUSHIDO</span><span class="latin-sub">THE SOUL<br>OF JAPAN</span><span class="author">INAZO NITOBE · 1900</span><span class="artifact-note">Nitobe · edición inglesa · 1900</span></div>';
+ if(w.id==="shoninki") return '<div class="book wahon cover-shoninki"><span class="label">正忍記</span>'+stitches()+'<span class="paper-wear"></span><span class="artifact-note">1681 · reconstrucción tipológica Edo</span></div>';
+ return '<div class="book book-stack cover-bansenshukai"><span class="under"></span><span class="label">萬川集海</span><span class="volmark">全二十二巻</span>'+stitches()+'<span class="paper-wear"></span><span class="artifact-note">1676 · compendio de 22 volúmenes</span></div>';
 }
 works.forEach(w=>{
  const b=document.createElement("button");
