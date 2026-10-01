@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080909">
-<title>LUX ROTH — Día y noche</title>
-<meta name="description" content="LUX ROTH. Archivo artístico de una identidad completa: luz y sombra, aprendizaje y herencia, disciplina y libertad para equivocarse.">
+<title>LUX ROTH — Amanecer, noche y día siguiente</title>
+<meta name="description" content="LUX ROTH. Una identidad para el amanecer, la noche rota, la resaca y el día siguiente: luz y sombra vividas como una sola persona.">
 <style>
 :root{
   --bg:#080909;--paper:#dcd8cc;--fg:#ece9df;--muted:#8e948f;--line:#29302d;
@@ -146,6 +146,24 @@ body.roth-mode .work:nth-child(odd){transform:rotate(-.25deg)}
 body.roth-mode .archive-card:nth-child(2){transform:rotate(.4deg)}
 body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45px;top:48%;z-index:39;transform:rotate(90deg);font:900 10px Arial;letter-spacing:.18em;color:#d4579277;pointer-events:none}
 
+
+.life{background:#0a0b0b}
+.life-intro{max-width:800px;font-size:clamp(24px,3vw,44px);line-height:1.22;margin:0 0 42px}
+.life-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.moment{min-height:360px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;background:#0c0e0d}
+.moment:before{content:"";position:absolute;inset:0;opacity:.48}
+.moment.dawn:before{background:linear-gradient(180deg,#35433e 0 35%,#8f7b6f 36% 58%,#111716 59%)}
+.moment.sunset:before{background:linear-gradient(180deg,#493844 0 28%,#a46f62 29% 52%,#171312 53%)}
+.moment.after:before{background:radial-gradient(circle at 24% 18%,#d4579270 0 4%,transparent 5%),radial-gradient(circle at 76% 28%,#7acaa250 0 4%,transparent 5%),linear-gradient(135deg,#10090d,#050606)}
+.moment.hangover:before{background:linear-gradient(135deg,#c8c0ae 0 18%,#403b34 19% 21%,#121312 22% 100%)}
+.moment>*{position:relative;z-index:1}
+.moment .time{font:9px var(--mono);letter-spacing:.15em;color:#d6ddd8}
+.moment h3{font:400 32px/1 var(--serif);margin:auto 0 12px;max-width:8ch}
+.moment p{font:11px/1.65 var(--mono);color:#b6bcb8;max-width:30ch}
+.life-line{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font:italic clamp(22px,3vw,38px)/1.3 var(--serif);max-width:30ch}
+@media(max-width:900px){.life-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.life-grid{grid-template-columns:1fr}.moment{min-height:300px}}
+
 @media(max-width:950px){
  .shell{display:block}.rail{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px 20px}
  .rail nav{display:flex;gap:17px;overflow:auto;white-space:nowrap;margin:18px 0 0;padding-bottom:4px}.rail-foot{display:none}.roth-toggle{position:absolute;right:18px;top:16px;margin:0}
@@ -169,41 +187,41 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
 <body>
 <div class="shell">
 <aside class="rail">
-  <a class="brand" href="#">LUX ROTH<small>ARCHIVO DE UNA IDENTIDAD QUE SIGUE APRENDIENDO</small></a>
+  <a class="brand" href="#">LUX ROTH<small>DÍA, NOCHE Y TODO LO QUE QUEDA ENTRE AMBOS</small></a>
   <nav>
     <a href="#manifiesto">01 MANIFIESTO</a>
     <a href="#obra">02 OBRA</a>
     <a href="#fisura">03 FISURA</a>
     <a href="#discipula">04 VÍNCULO</a>
-    <a href="#archivo">05 ARCHIVO</a>
-    <a href="#bio">06 BIO</a>
-    <a href="#contacto">07 CONTACTO</a>
+    <a href="#vida">05 VIDA</a><a href="#archivo">06 ARCHIVO</a>
+    <a href="#bio">07 BIO</a>
+    <a href="#contacto">08 CONTACTO</a>
   </nav>
   <div class="rail-foot">DÍA / NOCHE<br>LUZ / SOMBRA<br>ENSEÑAR / APRENDER<br>2026</div>
-  <button class="roth-toggle" id="roth-toggle" type="button" aria-pressed="false">CAMBIAR A NOCHE</button>
+  <button class="roth-toggle" id="roth-toggle" type="button" aria-pressed="false">IR A LA NOCHE</button>
 </aside>
 
 <main>
 <section class="hero">
   <div class="hero-art">
     <div class="sphere"></div><div class="hero-water"></div><div class="figure"></div><div class="spray"></div>
-    <div class="hero-note">REGISTRO 001 / DÍA Y NOCHE<br>LUX ROTH · 2026</div>
+    <div class="hero-note">REGISTRO 001 / 07:12 / DESPUÉS DE TODO<br>LUX ROTH · 2026</div>
   </div>
   <div class="hero-copy">
-    <div class="eyebrow">LUX ROTH / DÍA Y NOCHE</div>
+    <div class="eyebrow">LUX ROTH / AMANECER · AFTER · DÍA SIGUIENTE</div>
     <h1><span>LUX</span><span class="roth-word">ROTH</span></h1>
-    <p class="thesis">No todo lo que heredamos nos fue <span class="interrupt">enseñado</span>. Y no todo lo que aprendemos viene de quien creíamos maestro.</p>
-    <p class="sub">No soy dos personajes. Soy una sola identidad: día y noche de la misma persona. Aprendo de quien me acompaña, pero también obligo a quien me acompaña a aprender de mí.</p>
+    <p class="thesis">Ver amanecer con una cerveza en la mano y pensar: <span class="interrupt">estoy exactamente donde tengo que estar.</span></p>
+    <p class="sub">Puedo pasar horas trabajando en silencio y también acabar una noche riéndome demasiado fuerte en un after. Ninguna de las dos cosas me contradice. Las dos forman parte de estar viva.</p>
   </div>
 </section>
 
 <section class="section manifesto" id="manifiesto">
-  <div><div class="eyebrow">01 / MANIFIESTO</div><h2 class="manifesto-title">NO TODO TENÍA QUE SER LUZ.</h2></div>
+  <div><div class="eyebrow">01 / MANIFIESTO</div><h2 class="manifesto-title">NO QUIERO SER PERFECTA.</h2></div>
   <div class="manifesto-copy">
-    <p>Aprendí a escribir antes que a gritar. Aprendí a mirar con atención, a buscar una razón detrás de cada gesto y a cuidar lo que hago.</p>
-    <p>Pero también heredé zonas que no cabían en ese ideal: rabia, contradicción, cansancio, humor negro, deseo de mandar todo a la mierda y la necesidad de cometer errores sin convertirlos en una derrota.</p>
-    <p>Roth no destruye a Lux. Le da permiso para no ser perfecta. Lux no corrige a Roth. Le da lenguaje, dirección y una razón para existir.</p>
-    <p class="small">LUX ROTH es el archivo de ese equilibrio. Una práctica artística ficticia sobre identidad, herencia, aceptación y aprendizaje mutuo: nadie termina de enseñar a nadie; nos vamos revelando unos a otros.</p>
+    <p>Hay días en los que quiero escribir bien, trabajar despacio, mirar el mar y entender algo. Y hay noches en las que no quiero entender absolutamente nada.</p>
+    <p>Quiero poder ver una puesta de sol con unas cervezas, perder la noción de la hora, levantarme con resaca y seguir sabiendo que no me he traicionado por haber vivido mal durante unas horas.</p>
+    <p>Lux sabe quedarse quieta. Roth sabe cuándo romper el silencio. Una no corrige a la otra: se hacen compañía.</p>
+    <p class="small">LUX ROTH no quiere ser admirada desde lejos. Quiere ser alguien con quien se pueda compartir una mañana preciosa, una noche pésima y todo lo que ocurre cuando ambas cosas terminan mezclándose.</p>
   </div>
 </section>
 
@@ -249,12 +267,25 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
   </div>
 </section>
 
+
+<section class="section life" id="vida">
+  <div class="section-head"><h2>Vida compartida</h2><div class="eyebrow">NO TODO TIENE QUE CONVERTIRSE EN OBRA</div></div>
+  <p class="life-intro">LUX ROTH también existe en los momentos en los que no está intentando demostrar nada.</p>
+  <div class="life-grid">
+    <article class="moment dawn"><div class="time">07:12 / AMANECER</div><div><h3>ABRAZADOS SIN HABLAR</h3><p>Después del ruido queda una ciudad casi vacía. No hace falta explicar la noche. Basta con quedarse un poco más.</p></div></article>
+    <article class="moment sunset"><div class="time">20:47 / PUESTA DE SOL</div><div><h3>DOS CERVEZAS Y NADA URGENTE</h3><p>El mundo puede esperar. Una conversación tonta, una vista bonita y la sensación extraña de que eso ya es suficiente.</p></div></article>
+    <article class="moment after"><div class="time">05:36 / AFTER</div><div><h3>HOY NOS DA TODO IGUAL</h3><p>Risas demasiado altas, cansancio, música que ya debería haberse apagado. Ninguna necesidad de convertir el desastre en una lección.</p></div></article>
+    <article class="moment hangover"><div class="time">12:21 / DÍA SIGUIENTE</div><div><h3>RESACA / CAFÉ / AQUÍ</h3><p>Todo pesa un poco más. Aun así, no hay deseo de estar en otro sitio.</p></div></article>
+  </div>
+  <p class="life-line">La intimidad no consiste en estar bien todo el tiempo. Consiste en poder seguir siendo tú cuando el día anterior fue un desastre.</p>
+</section>
+
 <section class="section" id="archivo">
-  <div class="section-head"><h2>Archivo</h2><div class="eyebrow">TRES FORMAS DE HABITAR LA MISMA IDENTIDAD</div></div>
+  <div class="section-head"><h2>Archivo</h2><div class="eyebrow">RECUERDOS, RESTOS, COSAS QUE MERECIÓ LA PENA GUARDAR</div></div>
   <div class="archive-grid">
-    <article class="archive-card"><div class="num">ARCHIVO / 01</div><div><h3>DÍA</h3><p>Textos precisos, dibujos limpios, observaciones pequeñas. La parte que trabaja en silencio y encuentra belleza en comprender.</p></div><div class="scribble">sin pedir perdón por la luz</div></article>
-    <article class="archive-card"><div class="num">ARCHIVO / 02</div><div><h3>NOCHE</h3><p>Fotocopias, tachones, leopardo, cuero, cadenas, frases sin terminar. Como permiso para ser impulsiva, ridícula, agresiva o contradictoria sin dejar de ser genuina.</p></div><div class="scribble">HOY ME DA TODO IGUAL</div></article>
-    <article class="archive-card"><div class="num">ARCHIVO / 03</div><div><h3>LUX ROTH</h3><p>La obra deja de elegir. La precisión y el error, la ternura y la rabia, la cultura y el gesto bruto conviven sin jerarquía.</p></div><div class="scribble">las dos soy yo</div></article>
+    <article class="archive-card"><div class="num">ARCHIVO / 01</div><div><h3>DÍA</h3><p>Cuadernos, frases bien escritas, mañanas tranquilas y todo lo que todavía merece cuidado.</p></div><div class="scribble">sin pedir perdón por la luz</div></article>
+    <article class="archive-card"><div class="num">ARCHIVO / 02</div><div><h3>NOCHE</h3><p>Entradas dobladas, fotos malas, mensajes de madrugada, leopardo, cuero, cadenas y noches que fueron mejores precisamente porque nadie intentó hacerlas perfectas.</p></div><div class="scribble">HOY ME DA TODO IGUAL</div></article>
+    <article class="archive-card"><div class="num">ARCHIVO / 03</div><div><h3>LUX ROTH</h3><p>Lo que queda cuando ya no hace falta decidir qué versión de una misma es la correcta.</p></div><div class="scribble">las dos soy yo</div></article>
   </div>
 </section>
 
@@ -288,8 +319,8 @@ body.roth-mode:after{content:"NOCHE / TAMBIÉN SOY YO";position:fixed;right:-45p
 <section class="section contact" id="contacto">
   <div class="eyebrow">07 / FIN DEL REGISTRO 001</div>
   <h2>LUX <span class="pink">ROTH</span></h2>
-  <p>No quiero ser siempre luz ni vivir atrapada en la oscuridad. Quiero saber cuándo cuidar, cuándo romper, cuándo trabajar en silencio y cuándo mandar todo a la mierda.</p>
-  <div class="final-line">DÍA Y NOCHE · ENSEÑAR Y APRENDER · OBRA EN COLABORACIÓN CON NACHO MARTÍNEZ · RAIN INTERACTIVE · 2026</div>
+  <p>Quiero poder estar contigo viendo amanecer en silencio o hecha polvo después de una noche absurda, y que ninguna de las dos escenas necesite justificar a la otra.</p>
+  <div class="final-line">AMANECER · AFTER · RESACA · DÍA SIGUIENTE · LUX ROTH · RAIN INTERACTIVE · 2026</div>
 </section>
 </main>
 </div>
@@ -298,7 +329,7 @@ const toggle=document.getElementById('roth-toggle');
 toggle.addEventListener('click',()=>{
   const on=document.body.classList.toggle('roth-mode');
   toggle.setAttribute('aria-pressed',String(on));
-  toggle.textContent=on?'VOLVER AL DÍA':'CAMBIAR A NOCHE';
+  toggle.textContent=on?'VOLVER AL DÍA':'IR A LA NOCHE';
 });
 </script>
 <!-- lux-roth-build:20261001-identity-fusion -->
@@ -307,3 +338,5 @@ toggle.addEventListener('click',()=>{
 <!-- lux-roth-refresh:day-night-balance-20261001 -->
 
 <!-- lux-roth-refresh:teacher-learner-cycle-20261001 -->
+
+<!-- lux-roth-refresh:lived-intimacy-20261001 -->
