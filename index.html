@@ -76,8 +76,9 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .noise-thumb{background:#050505!important}
 .noise-thumb:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#050505 0 3px,#eee 3px 5px);opacity:.85}
 .noise-thumb:after{content:"INFINITE\A NOISE";white-space:pre;position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#0009;color:#fff;font:900 29px/.8 Arial Black,Arial,sans-serif;letter-spacing:-.06em;mix-blend-mode:difference}
-.lux-thumb{background:radial-gradient(circle at 50% 30%,#3b3b39,#111 38%,#050505 76%)!important;display:grid;place-items:center}
-.lux-thumb img{object-fit:cover!important;filter:grayscale(.25) contrast(1.08)}
+.lux-thumb{background:radial-gradient(circle at 50% 44%,#1d2722 0 7%,#111613 31%,#080909 68%)!important;display:grid;place-items:center}
+.lux-orb{width:58%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 29%,#d8eee0 0 1.2%,#7f988a 8%,#27312c 28%,#0b0e0c 62%,#030404 78%);box-shadow:0 0 0 1px #7791824c,0 20px 60px #000,inset -22px -28px 55px #000;position:relative}
+.lux-orb:after{content:"";position:absolute;inset:12%;border-radius:50%;border:1px solid #ccefdc12;box-shadow:0 0 35px #bfe6cf12}
 .heraldo-thumb{background:#111!important}
 .heraldo-thumb img{object-position:center 25%;filter:grayscale(.12) contrast(1.08)}
 .playlist-thumb{background:radial-gradient(circle at 35% 30%,#37d3b03b,transparent 30%),#080808!important;display:grid;place-items:center}.playlist-thumb:after{content:"PLAYLIST";font:900 24px/1 Arial,sans-serif;letter-spacing:-.04em;color:#f1efe9}
@@ -107,7 +108,7 @@ footer{padding:38px 0 60px}
  .card .thumb{aspect-ratio:1.35/1;min-height:0}
 }
 </style>
-<!-- BUILD 20261002LAB7-SPOTIFY-FIX -->
+<!-- BUILD 20261002LAB8-LUX-SPHERE -->
 </head>
 <body>
 <header>
@@ -187,7 +188,7 @@ footer{padding:38px 0 60px}
     <div class="section-head"><h2>Experiment</h2><span>Systems / narrative / noise / web</span></div>
     <div class="grid">
       <a class="card" href="/infinite-noise/"><div class="thumb noise-thumb"><span class="n">R-009</span></div><div class="copy"><div><div class="type">Web experiment</div><h3>Infinite Noise</h3><p>Texto, ruido e interferencias generados mientras haces scroll. No termina.</p></div><span class="cta">Enter ↗</span></div></a>
-      <a class="card" href="/lux/"><div class="thumb lux-thumb"><span class="n">R-007</span><img src="/assets/lux-roth-polaroid-bio.jpg?v=lab6" alt="Lux Roth"></div><div class="copy"><div><div class="type">Artistic system</div><h3>Lux Roth</h3><p>Imagen, instalación, escritura, sonido, escultura y sistemas interactivos.</p></div><span class="cta">Enter archive ↗</span></div></a>
+      <a class="card" href="/lux/"><div class="thumb lux-thumb"><span class="n">R-007</span><div class="lux-orb" aria-label="Esfera de Lux Roth"></div></div><div class="copy"><div><div class="type">Artistic system</div><h3>Lux Roth</h3><p>Imagen, instalación, escritura, sonido, escultura y sistemas interactivos.</p></div><span class="cta">Enter archive ↗</span></div></a>
       <a class="card" href="https://heraldodelfindelostiempos.github.io/"><div class="thumb heraldo-thumb"><span class="n">R-006</span><img src="https://heraldodelfindelostiempos.github.io/assets/meditacion-espejos.jpg" alt="Heraldo del fin de los tiempos"></div><div class="copy"><div><div class="type">Narrative archive · Interactive web</div><h3>Heraldo</h3><p>Archivo narrativo, personajes, tarot, sistemas y ficción digital en expansión.</p></div><span class="cta">Explore ↗</span></div></a>
     </div>
   </div>
