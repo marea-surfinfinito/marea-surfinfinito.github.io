@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /rain-interactive/
+Disallow: /no-love-after-midnight/
+Disallow: /punky-choni/
+Disallow: /wolf-story/
+Disallow: /seis-caminos-historico/
+Disallow: /seis-caminos-v2/
+
+Sitemap: https://rain-interactive.github.io/sitemap.xml
