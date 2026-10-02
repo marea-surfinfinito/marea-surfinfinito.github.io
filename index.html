@@ -1,186 +1,184 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#050807">
-  <meta name="description" content="Rain Interactive. Juegos independientes para descubrir lo desconocido.">
-  <title>Rain Interactive · Juegos</title>
-  <style>
-    :root{color-scheme:dark;--mint:#23c3a7;--ink:#050807;--line:#22413b;--text:#e9f5ef}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,#0d423344,transparent 42%);z-index:-1}
-    a{color:inherit}.wrap{width:min(1220px,calc(100% - 40px));margin:auto}
-    header{min-height:72vh;position:relative;overflow:hidden;display:grid;place-items:center;text-align:center;padding:90px 20px 65px;border-bottom:1px solid var(--line)}
-    .hero{width:min(850px,100%);position:relative;z-index:2}.water-light{position:absolute;inset:-20%;pointer-events:none;opacity:.18;background:repeating-radial-gradient(ellipse at 50% 0%,transparent 0 28px,#23c3a722 30px 32px,transparent 35px 68px);filter:blur(8px);animation:waterBreath 12s ease-in-out infinite alternate;transform:perspective(700px) rotateX(62deg) translateY(-28%)}@keyframes waterBreath{to{transform:perspective(700px) rotateX(62deg) translate3d(3%,-23%,0) scale(1.06);opacity:.27}}.logo{display:block;width:min(590px,90vw);margin:0 auto -12px;mix-blend-mode:screen}.logo-secret{display:block;margin:auto;padding:0;border:0;background:transparent;cursor:pointer}.interactive{display:block;color:var(--mint);font-size:clamp(12px,1.45vw,17px);letter-spacing:.53em;font-weight:700;margin-left:.53em}.tagline{font-size:clamp(24px,4.2vw,58px);font-weight:500;letter-spacing:-.045em;line-height:1.12;max-width:760px;margin:75px auto 24px}.hero p{color:#80b5a6;font-size:14px;letter-spacing:.2em;text-transform:uppercase}.hero-cta{display:inline-block;margin-top:22px;padding:13px 20px;border:1px solid var(--mint);color:var(--mint);text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.16em}.hero-cta:hover,.hero-cta:focus-visible{background:var(--mint);color:#03100d;outline:none}
-    main{padding:64px 0 110px;position:relative}.signal{position:fixed;left:50%;top:50%;z-index:9998;transform:translate(-50%,-50%) scale(.96);padding:24px 30px;border:1px solid var(--mint);background:#030807ee;box-shadow:0 0 80px #23c3a733;text-align:center;opacity:0;visibility:hidden;transition:.35s;pointer-events:none}.signal.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}.signal span,.signal strong{display:block}.signal span{font:700 9px monospace;letter-spacing:.3em;color:#7db9aa;margin-bottom:10px}.signal strong{font:700 14px monospace;letter-spacing:.2em;color:var(--mint)}.world-line{position:absolute;left:-24px;top:118px;bottom:70px;width:1px;background:linear-gradient(transparent,var(--line) 8%,var(--mint) 50%,var(--line) 92%,transparent)}.world-drop{position:sticky;display:block;transition:transform .18s ease,box-shadow .18s ease;top:42vh;width:11px;height:15px;margin-left:-5px;background:var(--mint);border-radius:55% 55% 60% 60%;transform:rotate(45deg);box-shadow:0 0 18px #23c3a799}@media(max-width:900px){.world-line{display:none}}.section-title{display:flex;align-items:end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:30px;gap:20px}.section-title h2{font-size:clamp(23px,3vw,36px);letter-spacing:-.04em;margin:0}.section-title span{color:#6f9f92;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.marea{grid-column:1/-1}.marea .art{height:clamp(360px,52vw,650px)}.marea .card-info{min-height:135px}.manifesto{margin:100px auto 72px;text-align:center;max-width:780px}.manifesto .eyebrow{color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase}.manifesto p{font-size:clamp(25px,4vw,48px);line-height:1.12;letter-spacing:-.04em;margin:18px 0 0}.card{opacity:.92}.card:hover{opacity:1}.card{display:flex;flex-direction:column;min-width:0;background:#0c1512;border:1px solid #214037;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s}a.card:hover,a.card:focus-visible{transform:translateY(-5px);border-color:var(--mint);box-shadow:0 20px 50px #0008;outline:none}.art{height:clamp(260px,31vw,390px);position:relative;overflow:hidden;background:#12352e}.art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}a.card:hover .art>img{transform:scale(1.04)}.marea .art img{object-position:center top}.marea .art:after{content:"";position:absolute;inset:55% 0 0;pointer-events:none;background:repeating-radial-gradient(ellipse at 50% 100%,transparent 0 18px,#8fffe51f 20px 21px,transparent 24px 42px);opacity:0;transform:scaleY(.45)}.marea.in-view .art:after{opacity:.5;animation:mareaRipple 6s ease-in-out infinite alternate}@keyframes mareaRipple{to{transform:scaleY(.58) translateX(2%);opacity:.25}}.descenso .art{background:#043544}.descenso .art:before{content:"";position:absolute;inset:-20%;z-index:2;pointer-events:none;background-image:radial-gradient(circle,#d6fff5 0 1px,transparent 1.5px);background-size:62px 62px;opacity:.12;animation:drift 12s linear infinite}.wolf .art:after{content:"";position:absolute;inset:45% -15% -20%;background:linear-gradient(0deg,#dceee922,transparent);filter:blur(14px);animation:fog 8s ease-in-out infinite alternate;pointer-events:none}@keyframes drift{to{transform:translate3d(-31px,-62px,0)}}@keyframes fog{to{transform:translateX(8%)}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.water-light{animation:none!important}.world-drop{transition:none!important}.marea .art:after,.boxerlife .art:before{animation:none!important}.rain08{transition:none!important}.descenso .art:before,.wolf .art:after{animation:none}}.descenso .art img{object-fit:cover;filter:saturate(1.3);opacity:.9}.descenso .art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#021e27a8,transparent 55%)}.wolf .art>img:first-child{object-position:center;filter:saturate(1.15)}.wolf .art .wolf-figure{position:absolute;width:66%;height:48%;object-fit:contain;left:16%;bottom:13%;filter:drop-shadow(0 7px 2px #18202c66);transform:scaleX(-1)}a.wolf:hover .art .wolf-figure{transform:scaleX(-1) translateX(-6px)}.esfera .art{display:block;background:#050807}.esfera .art img{width:100%;height:100%;object-fit:contain;object-position:center center;transform:scale(1);background:#050807}.esfera-mark{align-self:end;margin-bottom:25px;color:#d4eee6;font:700 15px monospace;letter-spacing:.24em;text-align:center;text-shadow:0 2px 10px #000}.card-info{padding:22px 23px 26px;min-height:155px;display:flex;flex-direction:column;gap:10px}.card-info .topline{color:var(--mint);font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase}.card-info h3{font-size:clamp(23px,2.3vw,30px);margin:0;letter-spacing:-.035em}.card-info p{margin:0;color:#9ab2a7;line-height:1.5;font-size:14px}.card-info .action{margin-top:auto;padding-top:10px;color:var(--mint);font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
-    .support{margin:32px auto 18px;max-width:760px;text-align:center}.paypal{display:inline-block;padding:15px 24px;border:1px solid var(--mint);background:var(--mint);color:#03100d;text-decoration:none;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.paypal:hover,.paypal:focus-visible{filter:brightness(1.12);outline:2px solid #baf6e5;outline-offset:3px}.support-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.support-option{display:block;padding:14px 18px;border:1px solid var(--mint);color:var(--mint);text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.support-option:hover,.support-option:focus-visible{background:var(--mint);color:#03100d;outline:none}@media(max-width:570px){.support-options{grid-template-columns:1fr}}footer{border-top:1px solid var(--line);padding:30px 0 50px;color:#68978a;font-size:12px;letter-spacing:.08em;text-align:center}.instagram{display:inline-block;margin-top:12px;color:var(--mint);text-decoration:none;font-weight:700;letter-spacing:.12em}.instagram:hover,.instagram:focus-visible{text-decoration:underline;outline:none}
-    .language{position:absolute;top:24px;right:clamp(20px,4vw,60px);border:1px solid #347b6a;background:#071c17d9;color:#baf6e5;padding:10px 14px;min-width:55px;font:700 12px system-ui;letter-spacing:.12em;cursor:pointer}.language:hover,.language:focus-visible{background:#155847;outline:2px solid #67d6b9;outline-offset:2px}
-    @media(max-width:800px){header{min-height:52vh}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tagline{margin-top:60px}}@media(max-width:570px){.grid{grid-template-columns:1fr}.art{height:350px}.wrap{width:min(100% - 28px,420px)}.section-title{align-items:start;flex-direction:column}.logo{width:min(480px,100%)}.tagline{font-size:32px;margin-top:55px}}
-    .boxerlife{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.boxerlife .art{height:clamp(320px,42vw,500px)}@media(max-width:570px){.boxerlife{display:flex;grid-column:auto}.boxerlife .art{height:auto;aspect-ratio:1/1}}.boxerlife .art{background:#080a0e;isolation:isolate}.boxerlife .art:before{content:"";position:absolute;inset:-30%;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 42%,#fff2 49%,transparent 56%);transform:translateX(-70%);opacity:0}.boxerlife.in-view .art:before{animation:ringFlash 2.8s ease-out 1}@keyframes ringFlash{35%{opacity:.28}100%{opacity:0;transform:translateX(70%)}}.boxerlife .art img{object-fit:cover;object-position:center}.boxerlife .art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#09080bd9,transparent 48%);pointer-events:none}.boxerlife .project-no{color:#ffccc5;border-color:#7b2930}.boxerlife .card-info .topline{color:#e85a5e}
-  .support-banner{display:block;width:100%;text-decoration:none}.support-banner img{display:block;width:100%;height:auto;border-radius:18px;filter:sepia(1) saturate(2.1) hue-rotate(118deg) brightness(1.03)}.support-banner:hover img,.support-banner:focus-visible img{filter:sepia(1) saturate(2.1) hue-rotate(118deg) brightness(1.1)}
-
-    .intro{position:fixed;inset:0;z-index:9999;background:#050807;display:grid;place-items:center;transition:opacity .38s ease,visibility .38s}.intro.hide{opacity:0;visibility:hidden}.intro-inner{text-align:center;animation:introIn .8s ease both}.intro-logo{width:min(420px,72vw);display:block;margin:auto;mix-blend-mode:screen}.intro-word{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.48em;margin-left:.48em}.project-no{position:absolute;top:16px;left:18px;z-index:4;font:700 10px monospace;letter-spacing:.18em;color:#baf6e5;background:#05080799;padding:6px 8px;border:1px solid #37685d}.rain08{height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:8vh;opacity:0;transform:translateY(18px);transition:opacity 1.2s ease,transform 1.2s ease;color:#315c52;font:700 9px monospace;letter-spacing:.28em}.rain08.visible{opacity:.72;transform:none}.rain08 strong{margin-top:9px;color:#477d70;font-size:8px}.more-worlds{text-align:center;color:#77b9a8;font-size:11px;font-weight:800;letter-spacing:.32em;margin:0 auto 92px}.leaving{opacity:0;transform:scale(.995);transition:opacity .28s ease,transform .28s ease}@keyframes introIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}@media(pointer:fine){body{cursor:default}a,button{cursor:pointer}a.card,.language,.instagram,.support-banner{cursor:crosshair}}@media(prefers-reduced-motion:reduce){.intro-inner{animation:none}.intro{transition:none}.leaving{transition:none}}
-.heraldo-island{padding:56px 0 18px}.heraldo-pair{display:grid;grid-template-columns:repeat(2,minmax(0,290px));justify-content:center;gap:24px}.heraldo-island .card{width:100%}.heraldo-island .art{height:auto;aspect-ratio:2/3}.heraldo-island .card-info{padding:16px 18px 18px;min-height:190px}.heraldo-island .card-info p{font-size:.88rem}.heraldo-island .project-no{font-size:.68rem}.heraldo-island .card-info h3{font-size:clamp(22px,2.2vw,28px)}@media(max-width:650px){.heraldo-pair{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.heraldo-island .card-info{padding:14px 12px 16px;min-height:210px}.heraldo-island .card-info h3{font-size:20px}.heraldo-island .card-info p{font-size:.78rem}}
-/* Show each cover at its native proportions, with no cropping. */
-.seis-caminos-card .art{
-  height:auto!important;
-  aspect-ratio:1/1;
-  background:
-    radial-gradient(circle at 22% 18%,rgba(255,255,255,.25),transparent 24%),
-    linear-gradient(180deg,#e7d7b3,#cbb78e)!important;
-  display:grid;
-  place-items:center;
-  color:#2c251c;
-  overflow:hidden;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Rain Interactive. Juegos, archivos, sonido y experimentos digitales.">
+<title>Rain Interactive</title>
+<style>
+:root{--bg:#050505;--fg:#f1efe9;--muted:#77736d;--mint:#37d3b0;--red:#ff4a3d;--line:#232323}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit}
+.wrap{width:min(1280px,calc(100% - 36px));margin:auto}
+header{min-height:76vh;display:flex;flex-direction:column;justify-content:space-between;padding:22px 0 42px;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.brand{font-size:14px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+.nav{display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{text-decoration:none;font:700 10px/1 "Courier New",monospace;letter-spacing:.14em;color:#9d9891;text-transform:uppercase}
+.nav a:hover{color:var(--fg)}
+.hero{max-width:1100px}
+.kicker{font:700 10px/1 "Courier New",monospace;letter-spacing:.25em;color:var(--mint);text-transform:uppercase;margin-bottom:18px}
+h1{font-size:clamp(60px,11vw,164px);line-height:.78;letter-spacing:-.075em;margin:0;text-transform:uppercase}
+.hero p{max-width:760px;font-size:clamp(18px,2.4vw,34px);line-height:1.08;letter-spacing:-.03em;color:#cfcac2;margin:26px 0 0}
+.manifest{margin-top:22px;font:700 10px/1.6 "Courier New",monospace;letter-spacing:.12em;color:#85807a;text-transform:uppercase}
+.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
+.mode{border:1px solid #343434;padding:10px 12px;font:700 10px/1 "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase;color:#bbb4ad}
+.mode strong{color:var(--mint)}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
+.section-head h2{font-size:clamp(32px,6vw,82px);line-height:.85;letter-spacing:-.055em;margin:0;text-transform:uppercase}
+.section-head span{font:700 9px/1.3 "Courier New",monospace;letter-spacing:.14em;color:#777;text-transform:uppercase;text-align:right}
+.feature{display:grid;grid-template-columns:1.3fr .7fr;min-height:560px;border:1px solid var(--line);background:#090909}
+.feature-media{position:relative;overflow:hidden;background:#111}
+.feature-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.05)}
+.feature-info{padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.meta{font:700 9px/1.5 "Courier New",monospace;letter-spacing:.14em;color:var(--mint);text-transform:uppercase}
+.feature-info h3,.card h3{font-size:clamp(30px,4vw,58px);line-height:.9;letter-spacing:-.05em;margin:12px 0}
+.feature-info p,.card p{color:#aaa39b;line-height:1.5;margin:0}
+.cta{display:inline-block;margin-top:24px;text-decoration:none;font:700 10px/1 "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #555;padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);background:#090909;text-decoration:none;display:grid;grid-template-columns:180px 1fr;min-height:210px}
+.card .thumb{background:#111;overflow:hidden;position:relative}
+.card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.card .copy{padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.card .n{position:absolute;left:10px;top:10px;background:#050505c9;border:1px solid #333;padding:5px 7px;font:700 9px/1 "Courier New",monospace;letter-spacing:.1em}
+.card .type{font:700 9px/1.2 "Courier New",monospace;letter-spacing:.12em;color:#837d77;text-transform:uppercase}
+.card:hover{border-color:#6f6f6f}
+.card:hover .type,.card:hover .cta{color:var(--mint)}
+.private{opacity:.78}
+.private .type{color:#a7837d}
+.private:hover{opacity:1;border-color:#5f403a}
+.private:hover .type{color:var(--red)}
+.text-only{grid-template-columns:1fr}
+.text-only .copy{min-height:240px}
+.archive-note{max-width:760px;color:#8f8983;font-size:15px;line-height:1.6}
+footer{padding:38px 0 60px}
+.footerline{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font:700 9px/1.5 "Courier New",monospace;letter-spacing:.12em;color:#777;text-transform:uppercase}
+.support{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.support a{border:1px solid #333;padding:12px 14px;text-decoration:none;font:700 9px/1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}
+.support a:hover{border-color:var(--mint);color:var(--mint)}
+@media(max-width:800px){
+ header{min-height:68vh}.feature{grid-template-columns:1fr;min-height:0}.feature-media{aspect-ratio:1/1}.grid{grid-template-columns:1fr}.card{grid-template-columns:120px 1fr}.section-head{align-items:flex-start;flex-direction:column}.section-head span{text-align:left}
 }
-.seis-caminos-card .art:before{
-  content:"";
-  position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(0deg,rgba(72,54,30,.035) 0 1px,transparent 1px 4px),
-    repeating-linear-gradient(90deg,rgba(88,66,36,.025) 0 1px,transparent 1px 5px);
-  opacity:.6;
+@media(max-width:520px){
+ .wrap{width:min(100% - 24px,520px)}.top{flex-direction:column}.nav{justify-content:flex-start}.card{grid-template-columns:1fr}.card .thumb{aspect-ratio:1.4/1}.text-only .copy{min-height:0}
 }
-.seis-caminos-card .art:after{
-  content:"道  兵  葉  武  忍  萬";
-  position:absolute;
-  left:10%;right:10%;bottom:12%;
-  text-align:center;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(18px,2.4vw,34px);
-  letter-spacing:.18em;
-  color:#6c5c45;
-}
-.seis-caminos-mark{
-  position:relative;z-index:2;text-align:center;
-  width:78%;padding:28px 20px;
-  border:1px solid rgba(93,72,43,.34);
-  background:rgba(239,228,200,.34);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)
-}
-.seis-caminos-mark strong{
-  display:block;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(28px,4vw,48px);
-  font-weight:400;
-  letter-spacing:.06em;
-  line-height:1.05
-}
-.seis-caminos-mark span{
-  display:block;margin-top:12px;
-  font:700 9px monospace;
-  letter-spacing:.22em;
-  color:#7d6b50
-}
-.seis-caminos-card .project-no{color:#5c4e3a;border-color:#8f7856;background:#e9d9b7cc}
-.seis-caminos-card .card-info .topline,
-.seis-caminos-card .card-info .action{color:#c3a679}
-
-.boxerlife .art:after{display:none!important}
-.boxerlife .art{height:auto!important;aspect-ratio:1/1}.boxerlife .art img{object-fit:contain!important}
-.marea{display:grid;grid-template-columns:minmax(0,620px) minmax(0,1fr)}.marea .art{height:auto!important;aspect-ratio:1/1}.marea .art img{object-fit:contain!important}
-.descenso .art{height:auto!important;aspect-ratio:1/1}.descenso .art img{object-fit:contain!important;filter:none!important;opacity:1!important}.descenso .art:after{display:none!important}
-.wolf .art{height:auto!important;aspect-ratio:3/1}.wolf .art>img:first-child{object-fit:contain!important}.wolf .art .wolf-figure{height:52%;width:40%;left:30%;bottom:5%}
-.heraldo-island .art{height:auto!important;aspect-ratio:2/3!important}.heraldo-island .art img{object-fit:cover!important;object-position:center 24%;filter:grayscale(.08) contrast(1.05)}.heraldo-island .card{border-color:#365249}.heraldo-island .topline,.heraldo-island .action{color:var(--mint)}
-a.card:hover .art>img{transform:none!important}
-@media(max-width:800px){.marea{display:flex;flex-direction:column}}
-.lux-sphere-art{position:relative;overflow:hidden;background:radial-gradient(circle at 58% 38%,#31302e 0 5%,#151515 22%,#080808 65%)!important}.lux-sphere{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;left:50%;top:43%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,#6d716f,#242a2b 34%,#050708 72%);box-shadow:0 28px 65px #000,inset -24px -24px 60px #000}.lux-water{position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(#1110,#0d0f10),repeating-linear-gradient(174deg,#181b1c 0 1px,#090a0b 2px 11px)}.lux-figure{position:absolute;bottom:5%;left:49%;width:12px;height:70px;background:#050505;clip-path:polygon(38% 0,62% 0,70% 28%,100% 100%,0 100%,30% 28%)}.lux-art-caption{position:absolute;left:12px;bottom:10px;z-index:3;font:7px/1.45 "Courier New",monospace;letter-spacing:.09em;color:#d8d4cb;text-shadow:0 1px 4px #000}.lux-art-caption small{font-size:6px;color:#928d84}
-
-.infinite-noise{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.infinite-noise .art{height:auto!important;aspect-ratio:1/1;background:repeating-linear-gradient(90deg,#000 0 2px,#fff 2px 5px);position:relative}.infinite-noise .art:after{content:"INFINITE NOISE";position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;background:#0009;font:900 clamp(38px,7vw,90px)/.8 Arial Black,Arial,sans-serif;letter-spacing:-.08em;mix-blend-mode:difference}.infinite-noise .topline,.infinite-noise .action{color:#fff}@media(max-width:570px){.infinite-noise{display:flex;grid-column:auto}}
-/* 2026-10-01: clearer project hierarchy */
-.project-section{margin:0 0 72px}
-.group-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:0 0 22px;padding:0 2px 12px;border-bottom:1px solid #17352e}
-.group-title h3{margin:0;font-size:clamp(17px,2vw,23px);font-weight:650;letter-spacing:-.025em}
-.group-title span{color:#628f83;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
-.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.project-grid>.card{grid-column:auto!important;display:flex!important;flex-direction:column!important}
-.project-grid>.card .art{height:auto!important;aspect-ratio:1/1!important}
-.project-grid>.card .card-info{min-height:170px}
-.project-grid>.wolf .art{aspect-ratio:1/1!important}
-.project-grid>.wolf .art>img:first-child{object-fit:cover!important}
-.project-grid>.infinite-noise .art{aspect-ratio:1/1!important}
-
-.development-section .card{opacity:.76}
-.universe-section{padding-top:6px}
-.universe-section .heraldo-pair{margin-top:0}
-@media(max-width:760px){
-  .project-section{margin-bottom:54px}
-  .group-title{align-items:flex-start;flex-direction:column;gap:6px}
-  .project-grid{grid-template-columns:1fr}
-  .project-grid>.card .card-info{min-height:0}
-
-  .heraldo-pair{grid-template-columns:1fr!important;max-width:420px;margin-inline:auto}
-}
-
 </style>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><!-- BUILD 20261002PRIVATE6 -->
+<!-- BUILD 20261002LAB1 -->
 </head>
-<body><div class="intro" id="intro" aria-hidden="true"><div class="intro-inner"><img class="intro-logo" src="/rain-interactive/assets/rain-logo.webp" alt=""><div class="intro-word">INTERACTIVE</div></div></div>
-  <header><div class="water-light" aria-hidden="true"></div><button class="language" id="language" type="button" aria-label="Switch to English">EN</button><div class="hero"><button class="logo-secret" id="logoSecret" type="button" aria-label="RAIN"><img class="logo" src="/rain-interactive/assets/rain-logo.webp" alt="RAIN"></button><span class="interactive">INTERACTIVE</span><h1 class="tagline">Juegos independientes para descubrir lo desconocido.</h1><p>Mundos para descubrir a tu ritmo</p><a class="hero-cta" href="/marea/">JUGAR A MAREA ↗</a></div></header><div class="signal" id="signal" aria-live="polite"><span>SIGNAL DETECTED.</span><strong>UNKNOWN WORLD // 08</strong></div>
-  <main class="wrap">
-    <div class="section-title"><h2>Nuestros juegos</h2><span>Explora cada mundo</span></div>
-    <div class="world-line" aria-hidden="true"><span class="world-drop"></span></div>
+<body>
+<header>
+  <div class="wrap top">
+    <div class="brand">RAIN INTERACTIVE</div>
+    <nav class="nav">
+      <a href="#play">Play</a>
+      <a href="#read">Read</a>
+      <a href="#listen">Listen</a>
+      <a href="#experiment">Experiment</a>
+      <a href="#development">Development</a>
+    </nav>
+  </div>
+  <div class="wrap hero">
+    <div class="kicker">Independent digital laboratory · 2026</div>
+    <h1>RAIN<br>INTERACTIVE</h1>
+    <p>Juegos, archivos, sonido y experimentos digitales. Mundos, sistemas y documentos para explorar.</p>
+    <div class="modebar">
+      <div class="mode"><strong>PLAY</strong> · games / worlds</div>
+      <div class="mode"><strong>READ</strong> · archives / philosophy</div>
+      <div class="mode"><strong>LISTEN</strong> · radio / sound</div>
+      <div class="mode"><strong>EXPERIMENT</strong> · web / systems</div>
+    </div>
+    <div class="manifest">No genre. No single format. Everything is built to be entered, read, played, heard or disturbed.</div>
+  </div>
+</header>
 
-    <section class="project-section available-section">
-      <div class="group-title"><h3 class="available-heading">Disponibles ahora</h3><span class="available-aside">Juega y explora</span></div>
-      <div class="project-grid available-grid">
-        <a id="boxer-life" class="card boxerlife" href="/boxer-life/"><div class="art"><span class="project-no">01</span><img loading="lazy" decoding="async" src="/assets/boxer-life-cover.webp" alt="Carátula de Boxer Life: Luca y cuatro escenas de su vida"></div><div class="card-info"><span class="topline">Gratis · Boxeo</span><h3>Boxer Life</h3><p>Tres decisiones al mes. Una carrera dentro y fuera del ring.</p><span class="action">Jugar ↗</span></div></a>
-        <a class="card marea" href="/marea/"><div class="art"><span class="project-no">02</span><img fetchpriority="high" decoding="async" src="/rain-interactive/assets/marea-caratula.webp" alt="Carátula de Marea: surfista ante una gran ola turquesa"></div><div class="card-info"><span class="topline">Gratis · Surf</span><h3>Marea</h3><p>Déjate llevar por las olas.</p><span class="action">Entrar ↗</span></div></a>
-        <a class="card thelema" href="/thelema-preview/"><div class="art" style="height:auto;aspect-ratio:1/1;background:#050505"><span class="project-no">05</span><img loading="lazy" decoding="async" src="/assets/thelema-cover.jpg?v=ba92f139" alt="THELEMA — Aleister Crowley" style="width:100%;height:100%;object-fit:cover"></div><div class="card-info"><span class="topline">Gratis · Archivo histórico</span><h3>THELEMA — Aleister Crowley</h3><p>Archivo digital sobre su vida, obra, pensamiento y legado cultural.</p><span class="action">Entrar ↗</span></div></a>
-        <a class="card seis-caminos-card" href="/seis-caminos/"><div class="art"><span class="project-no">10</span><div class="seis-caminos-mark"><strong>SEIS<br>CAMINOS</strong><span>哲学 · 戦略 · 規律</span></div></div><div class="card-info"><span class="topline">Gratis · Filosofía interactiva</span><h3>Seis Caminos</h3><p>Seis tradiciones antiguas convertidas en un manual contemporáneo de filosofía, estrategia y disciplina.</p><span class="action">Entrar ↗</span></div></a>
-        <a class="card infinite-noise" href="/infinite-noise/"><div class="art"><span class="project-no">09</span></div><div class="card-info"><span class="topline">Gratis · Experimento audiovisual</span><h3>Infinite Noise</h3><p>Texto, ruido e interferencias generados mientras haces scroll. No termina.</p><span class="action">Entrar ↗</span></div></a>
-              </div>
-    </section>
-    <section class="project-section development-section">
-      <div class="group-title"><h3 class="development-heading">En desarrollo</h3><span class="development-aside">Próximos mundos</span></div>
-      <div class="project-grid development-grid">
-        <article class="card no-love"><div class="art" style="background:#050505;aspect-ratio:1/1"><span class="project-no">11</span><img loading="lazy" decoding="async" src="/assets/lux-roth-radio-thumb.svg?v=private6" alt="Lux Roth Radio" style="width:100%;height:100%;object-fit:cover;object-position:center"></div><div class="card-info"><span class="topline">En desarrollo · Acceso privado</span><h3>Lux Roth Radio</h3><p>001 · NO LOVE AFTER MIDNIGHT · Sesión audiovisual y DJ set en desarrollo.</p></div></article>
-        <article class="card descenso"><div class="art"><span class="project-no">03</span><img loading="lazy" decoding="async" src="/rain-interactive/assets/descenso.webp" alt="Ilustración submarina del cuaderno de Descenso"></div><div class="card-info"><span class="topline">En desarrollo · Acceso privado</span><h3>Descenso: Biología Marina</h3><p>Sumérgete en un océano vivo y descubre sus especies.</p></div></article>
-        <article class="card wolf"><div class="art"><span class="project-no">04</span><img loading="lazy" decoding="async" src="/rain-interactive/assets/wolf-bosque.webp" alt="Bosque mágico dibujado a mano"><img class="wolf-figure" loading="lazy" decoding="async" src="/rain-interactive/assets/wolf-lobo.webp" alt=""></div><div class="card-info"><span class="topline">En desarrollo · Acceso privado</span><h3>Wolf Story</h3><p>Piérdete en un bosque de color junto a un lobo negro.</p></div></article>
+<main>
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2>Featured</h2><span>Current signal<br>R-011</span></div>
+    <div class="feature private">
+      <div class="feature-media"><img src="/assets/lux-roth-radio-thumb.svg?v=lab1" alt="Lux Roth Radio"></div>
+      <div class="feature-info">
+        <div>
+          <div class="meta">In development · Private access · Listen</div>
+          <h3>LUX ROTH RADIO</h3>
+          <p>001 · NO LOVE AFTER MIDNIGHT. Sesión audiovisual, DJ set y archivo de transmisión nocturna.</p>
+        </div>
+        <div class="cta">Development signal</div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="project-section universe-section">
-      <div class="group-title"><h3 class="universe-heading">Universo Rain</h3><span class="universe-aside">Arte y mundos conectados</span></div>
-      <div class="heraldo-pair">
-        <a class="card heraldo-card" href="https://heraldodelfindelostiempos.github.io/"><div class="art"><span class="project-no">06</span><img loading="lazy" decoding="async" src="https://heraldodelfindelostiempos.github.io/assets/meditacion-espejos.jpg" alt="El Heraldo · El fin de los tiempos"></div><div class="card-info"><span class="topline">Gratis · Web interactiva · Juego de rol</span><h3>El fin de los tiempos</h3><p>Entra en el universo del Heraldo: personajes, tarot y juegos.</p><span class="action">Explorar ↗</span></div></a>
-        <a class="card esfera lux-card" href="/lux/"><div class="art lux-sphere-art"><span class="project-no">07</span><div class="lux-sphere"></div><div class="lux-water"></div><div class="lux-figure"></div><div class="lux-art-caption">THE THINGS I CANNOT KNOW<br><small>2026</small></div></div><div class="card-info"><span class="topline">Artista multidisciplinar · Rain Interactive</span><h3>LUX ROTH</h3><p>Imagen, instalación, escritura, sonido, escultura y sistemas interactivos.</p><span class="action">Entrar al estudio ↗</span></div></a>
-      </div>
-    </section>
+<section id="play">
+  <div class="wrap">
+    <div class="section-head"><h2>Play</h2><span>Games / interactive worlds</span></div>
+    <div class="grid">
+      <a class="card" href="/boxer-life/"><div class="thumb"><span class="n">R-001</span><img src="/assets/boxer-life-cover.webp" alt="Boxer Life"></div><div class="copy"><div><div class="type">Game · Boxing</div><h3>Boxer Life</h3><p>Tres decisiones al mes. Una carrera dentro y fuera del ring.</p></div><span class="cta">Play ↗</span></div></a>
+      <a class="card" href="/marea/"><div class="thumb"><span class="n">R-002</span><img src="/rain-interactive/assets/marea-caratula.webp" alt="Marea"></div><div class="copy"><div><div class="type">Game · Surf</div><h3>Marea</h3><p>Un endless runner de surf, clima, fauna y movimiento.</p></div><span class="cta">Enter ↗</span></div></a>
+    </div>
+  </div>
+</section>
 
-    <section class="manifesto"><span class="eyebrow">RAIN INTERACTIVE</span><p class="manifesto-copy">Pequeños juegos. Mundos extraños. Hechos de forma independiente.</p></section>
-  </main>
-  <footer class="wrap"><span class="footer-copy">RAIN INTERACTIVE · 2026</span><br><section class="support"><a class="support-banner" href="https://www.paypal.com/ncp/payment/UMGRDCW4PXS26" target="_blank" rel="noopener noreferrer" aria-label="Support Rain Interactive with PayPal"><img src="/rain-interactive/assets/Imagen%20de%20ChatGPT%2027%20sept%202026%2C%2014_09_18.png?v=52e8d79d" alt="Support our projects · Donate with PayPal"></a><div class="support-options"><a class="support-option" href="https://www.paypal.com/ncp/payment/UMGRDCW4PXS26" target="_blank" rel="noopener noreferrer">ONE-TIME SUPPORT · PAYPAL</a><a class="support-option" href="https://patreon.com/RainInteractive" target="_blank" rel="noopener noreferrer">MONTHLY SUPPORT · PATREON</a></div></section><a class="instagram" href="https://www.instagram.com/rain.interactive/" target="_blank" rel="noopener noreferrer" aria-label="Rain Interactive en Instagram">@rain.interactive ↗</a></footer>
-  <script>
-    const copy={
-      es:{title:'Rain Interactive · Juegos',description:'Rain Interactive. Juegos independientes para descubrir lo desconocido.',tagline:'Juegos independientes para descubrir lo desconocido.',sub:'Mundos para descubrir a tu ritmo',heading:'Nuestros juegos',aside:'Explora cada mundo',mareaTop:'Gratis · Surf',mareaText:'Déjate llevar por las olas.',mareaAction:'Entrar ↗',heraldoTop:'Gratis · Web interactiva · Juego de rol',heraldoText:'Entra en el universo del Heraldo: personajes, tarot y juegos.',heraldoAction:'Explorar ↗',esferaTop:'LUX ROTH · Archivo artístico · Rain Interactive',esferaText:'Luz aprendida, rabia prestada. Escritura, imagen, instalación y sistemas atravesados por una identidad en conflicto.',esferaAction:'Entrar al archivo ↗',descTop:'En desarrollo · Acceso privado',descTitle:'Descenso: Biología Marina',descText:'Sumérgete en un océano vivo y descubre sus especies.',wolfText:'Piérdete en un bosque de color junto a un lobo negro.',boxerTop:'Gratis · Boxeo',boxerAction:'Jugar ↗',boxerText:'Tres decisiones al mes. Una carrera dentro y fuera del ring.',seisTop:'Gratis · Filosofía interactiva',seisText:'Seis tradiciones antiguas convertidas en un manual contemporáneo de filosofía, estrategia y disciplina.',seisAction:'Entrar ↗',footer:'RAIN INTERACTIVE · 2026',mareaAlt:'Carátula de Marea: surfista ante una gran ola turquesa',descAlt:'Ilustración submarina del cuaderno de Descenso',wolfAlt:'Bosque mágico dibujado a mano',manifesto:'Pequeños juegos. Mundos extraños. Hechos de forma independiente.',heroAction:'JUGAR A MAREA ↗',availableHeading:'Disponibles ahora',availableAside:'Juega y explora',developmentHeading:'En desarrollo',developmentAside:'Próximos mundos',universeHeading:'Universo Rain',universeAside:'Arte y mundos conectados'},
-      en:{title:'Rain Interactive · Games',description:'Rain Interactive. Independent games for discovering the unknown.',tagline:'Independent games for discovering the unknown.',sub:'Worlds to discover at your own pace',heading:'Our games',aside:'Explore every world',mareaTop:'Free · Surf',mareaText:'Let the waves carry you.',mareaAction:'Play ↗',heraldoTop:'Free · Interactive web · Role-playing game',heraldoText:'Enter the Herald universe: characters, tarot and games.',heraldoAction:'Explore ↗',esferaTop:'LUX ROTH · Artistic archive · Rain Interactive',esferaText:'Learned light, borrowed rage. Writing, image, installation and systems shaped by an identity in conflict.',esferaAction:'Enter the archive ↗',descTop:'In development · Private access',descTitle:'Descenso: Marine Biology',descText:'Dive into a living ocean and discover its species.',wolfText:'Lose yourself in a colorful forest with a black wolf.',boxerTop:'Free · Boxing',boxerAction:'Play ↗',boxerText:'Three decisions each month. A career inside and outside the ring.',seisTop:'Free · Interactive philosophy',seisText:'Six ancient traditions transformed into a contemporary manual of philosophy, strategy and discipline.',seisAction:'Enter ↗',footer:'RAIN INTERACTIVE · 2026',mareaAlt:'Marea cover: a surfer facing a huge turquoise wave',descAlt:'Underwater illustration from the Descenso field notebook',wolfAlt:'Hand-drawn magical forest',manifesto:'Small games. Strange worlds. Made independently.',heroAction:'PLAY MAREA ↗',availableHeading:'Available now',availableAside:'Play and explore',developmentHeading:'In development',developmentAside:'Upcoming worlds',universeHeading:'Rain universe',universeAside:'Art and connected worlds'}
-    };
-    const targets={tagline:'.tagline',heroAction:'.hero-cta',sub:'.hero p',heading:'.section-title h2',aside:'.section-title span',mareaTop:'.marea .topline',mareaText:'.marea .card-info p',mareaAction:'.marea .action',heraldoTop:'.heraldo-card .topline',heraldoText:'.heraldo-card .card-info p',heraldoAction:'.heraldo-card .action',esferaTop:'.lux-card .topline',esferaText:'.lux-card .card-info p',esferaAction:'.lux-card .action',descTop:'.descenso .topline',descTitle:'.descenso h3',descText:'.descenso .card-info p',wolfText:'.wolf .card-info p',boxerTop:'.boxerlife .topline',boxerAction:'.boxerlife .action',boxerText:'.boxerlife .card-info p',seisTop:'.seis-caminos-card .topline',seisText:'.seis-caminos-card .card-info p',seisAction:'.seis-caminos-card .action',footer:'.footer-copy',manifesto:'.manifesto-copy',availableHeading:'.available-heading',availableAside:'.available-aside',developmentHeading:'.development-heading',developmentAside:'.development-aside',universeHeading:'.universe-heading',universeAside:'.universe-aside'};
-    function setLanguage(lang){const t=copy[lang];document.documentElement.lang=lang;document.title=t.title;const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=t.description;for(const [key,selector] of Object.entries(targets)){const el=document.querySelector(selector);if(el&&t[key]!=null)el.textContent=t[key]}document.querySelectorAll('.descenso .topline').forEach(el=>el.textContent=t.descTop);const m=document.querySelector('.marea .art img'),d=document.querySelector('.descenso .art img');if(m)m.alt=t.mareaAlt;if(d)d.alt=t.descAlt;const language=document.querySelector('#language');if(language){language.textContent=lang==='es'?'EN':'ES';language.setAttribute('aria-label',lang==='es'?'Switch to English':'Cambiar a español')}try{localStorage.setItem('rain-language',lang)}catch(e){}}
-    let lang='es';try{lang=localStorage.getItem('rain-language')||'es'}catch(e){}if(!copy[lang])lang='es';setLanguage(lang);document.querySelector('#language').addEventListener('click',()=>setLanguage(document.documentElement.lang==='es'?'en':'es'));
-  
-    const intro=document.querySelector('#intro');let seen=false;try{seen=sessionStorage.getItem('rain-intro')==='1'}catch(e){}if(seen){intro.remove()}else{try{sessionStorage.setItem('rain-intro','1')}catch(e){}setTimeout(()=>intro.classList.add('hide'),900);setTimeout(()=>intro.remove(),1350)}
-    const observed=document.querySelectorAll('.card');if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view')}}),{threshold:.28});observed.forEach(el=>io.observe(el))}else{observed.forEach(el=>el.classList.add('in-view'))}
-    const drop=document.querySelector('.world-drop');if(drop){addEventListener('scroll',()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const p=Math.min(1,scrollY/max);drop.style.transform='rotate(45deg) scale('+(1+p*.45)+')';drop.style.boxShadow='0 0 '+(18+p*22)+'px #23c3a7bb'},{passive:true})}
-    let secretClicks=0,secretTimer;const logoSecret=document.querySelector('#logoSecret'),signal=document.querySelector('#signal');if(logoSecret&&signal){logoSecret.addEventListener('click',()=>{secretClicks++;clearTimeout(secretTimer);secretTimer=setTimeout(()=>secretClicks=0,1600);if(secretClicks>=5){secretClicks=0;signal.classList.add('show');setTimeout(()=>signal.classList.remove('show'),3200)}})}
-    document.querySelectorAll('a.card[href]').forEach(link=>link.addEventListener('click',e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target==='_blank')return;e.preventDefault();document.body.classList.add('leaving');setTimeout(()=>location.href=link.href,260)}));
-  </script>
-<!-- pages-refresh: infinite-noise-20260929-b -->
+<section id="read">
+  <div class="wrap">
+    <div class="section-head"><h2>Read</h2><span>Archive / history / philosophy</span></div>
+    <div class="grid">
+      <a class="card" href="/thelema-preview/"><div class="thumb"><span class="n">R-005</span><img src="/assets/thelema-cover.jpg?v=ba92f139" alt="Thelema"></div><div class="copy"><div><div class="type">Historical archive</div><h3>THELEMA</h3><p>Archivo digital sobre Aleister Crowley, su obra, pensamiento y legado cultural.</p></div><span class="cta">Read ↗</span></div></a>
+      <a class="card text-only" href="/seis-caminos/"><div class="copy"><div><div class="type">Interactive philosophy · R-010</div><h3>Seis Caminos</h3><p>Seis tradiciones antiguas convertidas en un manual contemporáneo de filosofía, estrategia y disciplina.</p></div><span class="cta">Explore ↗</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section id="listen">
+  <div class="wrap">
+    <div class="section-head"><h2>Listen</h2><span>Radio / sound / transmission</span></div>
+    <div class="grid">
+      <article class="card private"><div class="thumb"><span class="n">R-011</span><img src="/assets/lux-roth-radio-thumb.svg?v=lab1" alt="Lux Roth Radio"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Lux Roth Radio</h3><p>NO LOVE AFTER MIDNIGHT · DJ set, mezcla y experiencia audiovisual.</p></div><span class="cta">Private development</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="experiment">
+  <div class="wrap">
+    <div class="section-head"><h2>Experiment</h2><span>Systems / noise / web</span></div>
+    <div class="grid">
+      <a class="card text-only" href="/infinite-noise/"><div class="copy"><div><div class="type">Web experiment · R-009</div><h3>Infinite Noise</h3><p>Texto, ruido e interferencias generados mientras haces scroll. No termina.</p></div><span class="cta">Enter ↗</span></div></a>
+      <a class="card text-only" href="/lux/"><div class="copy"><div><div class="type">Artistic system · R-007</div><h3>Lux Roth</h3><p>Imagen, instalación, escritura, sonido, escultura y sistemas interactivos.</p></div><span class="cta">Enter archive ↗</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section id="development">
+  <div class="wrap">
+    <div class="section-head"><h2>Development</h2><span>Private access / unfinished worlds</span></div>
+    <div class="grid">
+      <article class="card private"><div class="thumb"><span class="n">R-003</span><img src="/rain-interactive/assets/descenso.webp" alt="Descenso"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Descenso</h3><p>Biología marina, exploración submarina y catálogo vivo de especies.</p></div><span class="cta">Private development</span></div></article>
+      <article class="card private"><div class="thumb"><span class="n">R-004</span><img src="/rain-interactive/assets/wolf-bosque.webp" alt="Wolf Story"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Wolf Story</h3><p>Un lobo negro atraviesa un bosque mágico dibujado a mano.</p></div><span class="cta">Private development</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2>Archive</h2><span>Rain universe</span></div>
+    <p class="archive-note">Rain no se define por una sola disciplina. Cada pieza puede ser juego, documento, radio, archivo, sistema o experimento. El catálogo crece como una colección de señales independientes conectadas por una misma lógica: entrar, explorar y descubrir.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footerline"><span>RAIN INTERACTIVE · 2026</span><span>Independent digital laboratory</span></div>
+    <div class="support">
+      <a href="https://www.paypal.com/ncp/payment/UMGRDCW4PXS26" target="_blank" rel="noopener">Support · PayPal</a>
+      <a href="https://patreon.com/RainInteractive" target="_blank" rel="noopener">Support · Patreon</a>
+      <a href="https://www.instagram.com/rain.interactive/" target="_blank" rel="noopener">@rain.interactive</a>
+    </div>
+  </div>
+</footer>
 </body>
-<!-- pages-redeploy: heraldo-lux-pair -->
-\n</html>
-<!-- rain-refresh: infinite-noise-20260929-final -->
-
-<!-- rain-force-refresh:20261001-c -->
-<!-- rain-public-version:20261001-0045 -->
-<!-- rain-update:20261001-0050 -->
-<!-- rain-layout:organized-sections-20261001 -->
-<!-- rain-refresh-final:organized-20261001 -->
-
-<!-- rain-refresh:20261001-post-cleanup -->
-
-<!-- rain-refresh:lux-roth-20261001 -->
-<!-- seis-caminos-rain-publish: public-free-2026-10-01 -->
+</html>
