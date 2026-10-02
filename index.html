@@ -36,8 +36,8 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .section-head span{font:700 9px/1.3 "Courier New",monospace;letter-spacing:.14em;color:#777;text-transform:uppercase;text-align:right}
 
 /* Featured playlist */
-.feature{display:grid;grid-template-columns:minmax(320px,.72fr) 1.28fr;min-height:500px;border:1px solid var(--line);background:#090909}
-.feature-media{position:relative;overflow:hidden;background:#080808;display:grid;place-items:center;isolation:isolate}
+
+
 .feature-media:before{content:"";position:absolute;inset:-15%;background:radial-gradient(circle at 30% 28%,#37d3b055,transparent 28%),radial-gradient(circle at 72% 66%,#37d3b026,transparent 34%),linear-gradient(145deg,#111,#050505 70%);filter:blur(8px);transform:scale(1.08);z-index:-2}
 .feature-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000,#0008);z-index:-1}
 .spotify-mark{width:min(310px,72%);aspect-ratio:1/1;border:1px solid #3a3a3a;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;box-shadow:0 22px 80px #000;text-align:center}
@@ -47,7 +47,7 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .spotify-disc:after{top:66%}
 .spotify-mark strong{font-size:28px;line-height:.9;letter-spacing:-.04em}
 .spotify-mark small{font:700 9px/1.4 "Courier New",monospace;letter-spacing:.18em;color:var(--mint);text-transform:uppercase}
-.feature-info{padding:clamp(24px,4vw,54px);display:flex;flex-direction:column;justify-content:space-between}
+
 .meta{font:700 9px/1.5 "Courier New",monospace;letter-spacing:.14em;color:var(--mint);text-transform:uppercase}
 .feature-info h3,.card h3{font-size:clamp(30px,4vw,58px);line-height:.9;letter-spacing:-.05em;margin:12px 0}
 .feature-info p,.card p{color:#aaa39b;line-height:1.5;margin:0}
@@ -92,8 +92,8 @@ footer{padding:38px 0 60px}
 
 @media(max-width:800px){
  header{min-height:68vh}
- .feature{grid-template-columns:1fr;min-height:0}
- .feature-media{min-height:390px}
+ 
+ 
  .feature-media img{width:min(300px,70vw)}
  .grid{grid-template-columns:1fr}
  .card{grid-template-columns:145px 1fr}
@@ -108,7 +108,7 @@ footer{padding:38px 0 60px}
  .card .thumb{aspect-ratio:1.35/1;min-height:0}
 }
 </style>
-<!-- BUILD 20261002-REFRESH-V20 -->
+<!-- BUILD 20261002-FEATURED-PURGED-V21 -->
 
 <link rel="canonical" href="https://rain-interactive.github.io/">
 <meta property="og:type" content="website">
