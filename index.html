@@ -32,12 +32,18 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .section-head h2{font-size:clamp(32px,6vw,82px);line-height:.85;letter-spacing:-.055em;margin:0;text-transform:uppercase}
 .section-head span{font:700 9px/1.3 "Courier New",monospace;letter-spacing:.14em;color:#777;text-transform:uppercase;text-align:right}
 
-/* Featured radio: portrait is intentionally kept small so the source is never blown up. */
+/* Featured playlist */
 .feature{display:grid;grid-template-columns:minmax(320px,.72fr) 1.28fr;min-height:500px;border:1px solid var(--line);background:#090909}
 .feature-media{position:relative;overflow:hidden;background:#080808;display:grid;place-items:center;isolation:isolate}
-.feature-media:before{content:"";position:absolute;inset:-12%;background:url('/assets/lux-roth-radio-thumb.svg?v=lab3') center/cover no-repeat;filter:blur(24px) brightness(.32) saturate(.8);transform:scale(1.08);opacity:.9;z-index:-2}
-.feature-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0001,#0009);z-index:-1}
-.feature-media img{width:min(310px,72%);height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;box-shadow:0 22px 80px #000}
+.feature-media:before{content:"";position:absolute;inset:-15%;background:radial-gradient(circle at 30% 28%,#37d3b055,transparent 28%),radial-gradient(circle at 72% 66%,#37d3b026,transparent 34%),linear-gradient(145deg,#111,#050505 70%);filter:blur(8px);transform:scale(1.08);z-index:-2}
+.feature-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000,#0008);z-index:-1}
+.spotify-mark{width:min(310px,72%);aspect-ratio:1/1;border:1px solid #3a3a3a;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;box-shadow:0 22px 80px #000;text-align:center}
+.spotify-disc{width:94px;height:94px;border:1px solid var(--mint);border-radius:50%;position:relative}
+.spotify-disc:before,.spotify-disc:after{content:"";position:absolute;left:20%;right:20%;height:1px;background:var(--mint);border-radius:50%}
+.spotify-disc:before{top:39%;box-shadow:0 14px 0 var(--mint)}
+.spotify-disc:after{top:66%}
+.spotify-mark strong{font-size:28px;line-height:.9;letter-spacing:-.04em}
+.spotify-mark small{font:700 9px/1.4 "Courier New",monospace;letter-spacing:.18em;color:var(--mint);text-transform:uppercase}
 .feature-info{padding:clamp(24px,4vw,54px);display:flex;flex-direction:column;justify-content:space-between}
 .meta{font:700 9px/1.5 "Courier New",monospace;letter-spacing:.14em;color:var(--mint);text-transform:uppercase}
 .feature-info h3,.card h3{font-size:clamp(30px,4vw,58px);line-height:.9;letter-spacing:-.05em;margin:12px 0}
@@ -71,7 +77,7 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .lux-thumb img{object-fit:cover!important;filter:grayscale(.25) contrast(1.08)}
 .heraldo-thumb{background:#111!important}
 .heraldo-thumb img{object-position:center 25%;filter:grayscale(.12) contrast(1.08)}
-.radio-thumb img{object-fit:cover!important}
+.playlist-thumb{background:radial-gradient(circle at 35% 30%,#37d3b03b,transparent 30%),#080808!important;display:grid;place-items:center}.playlist-thumb:after{content:"PLAYLIST";font:900 24px/1 Arial,sans-serif;letter-spacing:-.04em;color:#f1efe9}
 
 .archive-note{max-width:760px;color:#8f8983;font-size:15px;line-height:1.6}
 footer{padding:38px 0 60px}
@@ -98,7 +104,7 @@ footer{padding:38px 0 60px}
  .card .thumb{aspect-ratio:1.35/1;min-height:0}
 }
 </style>
-<!-- BUILD 20261002LAB4 -->
+<!-- BUILD 20261002LAB5-SPOTIFY -->
 </head>
 <body>
 <header>
@@ -119,7 +125,7 @@ footer{padding:38px 0 60px}
     <div class="modebar">
       <div class="mode"><strong>PLAY</strong> · games / worlds</div>
       <div class="mode"><strong>READ</strong> · archives / philosophy</div>
-      <div class="mode"><strong>LISTEN</strong> · radio / sound</div>
+      <div class="mode"><strong>LISTEN</strong> · playlist / sound</div>
       <div class="mode"><strong>EXPERIMENT</strong> · web / systems</div>
     </div>
     <div class="manifest">NO HAY UN FORMATO ÚNICO. CADA PROYECTO ES UNA PRUEBA: PUEDE FUNCIONAR, ROMPERSE, MUTAR O CONVERTIRSE EN OTRA COSA.</div>
@@ -130,17 +136,17 @@ footer{padding:38px 0 60px}
 <section>
   <div class="wrap">
     <div class="section-head"><h2>Featured</h2><span>Current signal<br>R-011</span></div>
-    <div class="feature private">
-      <div class="feature-media"><img src="/assets/lux-roth-radio-thumb.svg?v=lab3" alt="Lux Roth Radio"></div>
+    <a class="feature" href="https://open.spotify.com/playlist/4l7Q5zlpxrBLu7yFwyJeEY?si=14nLV5uCTTa5JWp-NMoHuA&utm_source=copy-link&pi=R4AHbneTQaqED" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="feature-media"><div class="spotify-mark"><div class="spotify-disc"></div><strong>RAIN<br>PLAYLIST</strong><small>Listen on Spotify</small></div></div>
       <div class="feature-info">
         <div>
-          <div class="meta">In development · Private access · Listen</div>
-          <h3>LUX ROTH RADIO</h3>
-          <p>001 · NO LOVE AFTER MIDNIGHT. Sesión audiovisual, DJ set y archivo de transmisión nocturna.</p>
+          <div class="meta">Public · Spotify · Listen</div>
+          <h3>RAIN PLAYLIST</h3>
+          <p>Selección musical del laboratorio: electrónica, ambient, ruido, deriva nocturna y música alrededor de los proyectos de Rain.</p>
         </div>
-        <div class="cta">Development signal</div>
+        <div class="cta">Open in Spotify ↗</div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -166,9 +172,9 @@ footer{padding:38px 0 60px}
 
 <section id="listen">
   <div class="wrap">
-    <div class="section-head"><h2>Listen</h2><span>Radio / sound / transmission</span></div>
+    <div class="section-head"><h2>Listen</h2><span>Playlist / sound / transmission</span></div>
     <div class="grid">
-      <article class="card private"><div class="thumb radio-thumb"><span class="n">R-011</span><img src="/assets/lux-roth-radio-thumb.svg?v=lab3" alt="Lux Roth Radio"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Lux Roth Radio</h3><p>NO LOVE AFTER MIDNIGHT · DJ set, mezcla y experiencia audiovisual.</p></div><span class="cta">Private development</span></div></article>
+      <a class="card" href="https://open.spotify.com/playlist/4l7Q5zlpxrBLu7yFwyJeEY?si=14nLV5uCTTa5JWp-NMoHuA&utm_source=copy-link&pi=R4AHbneTQaqED" target="_blank" rel="noopener"><div class="thumb playlist-thumb"><span class="n">R-011</span></div><div class="copy"><div><div class="type">Spotify · Playlist</div><h3>Rain Playlist</h3><p>La banda sonora abierta del laboratorio y sus mutaciones.</p></div><span class="cta">Listen ↗</span></div></a>
     </div>
   </div>
 </section>
@@ -197,7 +203,7 @@ footer{padding:38px 0 60px}
 <section>
   <div class="wrap">
     <div class="section-head"><h2>Archive</h2><span>Rain universe</span></div>
-    <p class="archive-note">Rain es un laboratorio. Cada pieza puede ser juego, documento, radio, archivo, sistema o experimento. Algunas pruebas salen bien, otras fallan y otras terminan convertidas en algo que no estaba previsto. El archivo conserva todas esas mutaciones.</p>
+    <p class="archive-note">Rain es un laboratorio. Cada pieza puede ser juego, documento, sonido, archivo, sistema o experimento. Algunas pruebas salen bien, otras fallan y otras terminan convertidas en algo que no estaba previsto. El archivo conserva todas esas mutaciones.</p>
   </div>
 </section>
 </main>
