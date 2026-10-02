@@ -31,43 +31,74 @@ section{padding:72px 0;border-bottom:1px solid var(--line)}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
 .section-head h2{font-size:clamp(32px,6vw,82px);line-height:.85;letter-spacing:-.055em;margin:0;text-transform:uppercase}
 .section-head span{font:700 9px/1.3 "Courier New",monospace;letter-spacing:.14em;color:#777;text-transform:uppercase;text-align:right}
-.feature{display:grid;grid-template-columns:1.3fr .7fr;min-height:560px;border:1px solid var(--line);background:#090909}
-.feature-media{position:relative;overflow:hidden;background:#111}
-.feature-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.05)}
-.feature-info{padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+
+/* Featured radio: portrait is intentionally kept small so the source is never blown up. */
+.feature{display:grid;grid-template-columns:minmax(320px,.72fr) 1.28fr;min-height:500px;border:1px solid var(--line);background:#090909}
+.feature-media{position:relative;overflow:hidden;background:#080808;display:grid;place-items:center;isolation:isolate}
+.feature-media:before{content:"";position:absolute;inset:-12%;background:url('/assets/lux-roth-radio-thumb.svg?v=lab3') center/cover no-repeat;filter:blur(24px) brightness(.32) saturate(.8);transform:scale(1.08);opacity:.9;z-index:-2}
+.feature-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0001,#0009);z-index:-1}
+.feature-media img{width:min(310px,72%);height:auto;aspect-ratio:1/1;object-fit:cover;display:block;image-rendering:auto;box-shadow:0 22px 80px #000}
+.feature-info{padding:clamp(24px,4vw,54px);display:flex;flex-direction:column;justify-content:space-between}
 .meta{font:700 9px/1.5 "Courier New",monospace;letter-spacing:.14em;color:var(--mint);text-transform:uppercase}
 .feature-info h3,.card h3{font-size:clamp(30px,4vw,58px);line-height:.9;letter-spacing:-.05em;margin:12px 0}
 .feature-info p,.card p{color:#aaa39b;line-height:1.5;margin:0}
 .cta{display:inline-block;margin-top:24px;text-decoration:none;font:700 10px/1 "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #555;padding-bottom:4px}
+
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{border:1px solid var(--line);background:#090909;text-decoration:none;display:grid;grid-template-columns:180px 1fr;min-height:210px}
-.card .thumb{background:#111;overflow:hidden;position:relative}
-.card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.card{border:1px solid var(--line);background:#090909;text-decoration:none;display:grid;grid-template-columns:180px 1fr;min-height:220px}
+.card .thumb{background:#111;overflow:hidden;position:relative;min-height:220px}
+.card .thumb img{width:100%;height:100%;object-fit:cover;display:block;image-rendering:auto}
 .card .copy{padding:20px;display:flex;flex-direction:column;justify-content:space-between}
-.card .n{position:absolute;left:10px;top:10px;background:#050505c9;border:1px solid #333;padding:5px 7px;font:700 9px/1 "Courier New",monospace;letter-spacing:.1em}
+.card .n{position:absolute;left:10px;top:10px;z-index:4;background:#050505d9;border:1px solid #333;padding:5px 7px;font:700 9px/1 "Courier New",monospace;letter-spacing:.1em}
 .card .type{font:700 9px/1.2 "Courier New",monospace;letter-spacing:.12em;color:#837d77;text-transform:uppercase}
 .card:hover{border-color:#6f6f6f}
 .card:hover .type,.card:hover .cta{color:var(--mint)}
-.private{opacity:.78}
+.private{opacity:.8}
 .private .type{color:#a7837d}
 .private:hover{opacity:1;border-color:#5f403a}
 .private:hover .type{color:var(--red)}
-.text-only{grid-template-columns:1fr}
-.text-only .copy{min-height:240px}
+
+/* Generated editorial thumbnails */
+.paper-thumb{display:grid;place-items:center;background:linear-gradient(150deg,#e3d3ad,#b9a37b)!important;color:#2a241b}
+.paper-thumb:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#6b56340b 0 1px,transparent 1px 5px),repeating-linear-gradient(90deg,#6b563408 0 1px,transparent 1px 6px)}
+.paper-mark{position:relative;text-align:center;border:1px solid #574a3766;padding:22px 16px;width:74%;font-family:Georgia,serif}
+.paper-mark strong{display:block;font-size:27px;line-height:.92;font-weight:400}
+.paper-mark small{display:block;margin-top:10px;font:700 9px monospace;letter-spacing:.16em;color:#6f6048}
+.noise-thumb{background:#050505!important}
+.noise-thumb:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#050505 0 3px,#eee 3px 5px);opacity:.85}
+.noise-thumb:after{content:"INFINITE\A NOISE";white-space:pre;position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#0009;color:#fff;font:900 29px/.8 Arial Black,Arial,sans-serif;letter-spacing:-.06em;mix-blend-mode:difference}
+.lux-thumb{background:radial-gradient(circle at 50% 30%,#3b3b39,#111 38%,#050505 76%)!important;display:grid;place-items:center}
+.lux-thumb img{object-fit:cover!important;filter:grayscale(.25) contrast(1.08)}
+.heraldo-thumb{background:#111!important}
+.heraldo-thumb img{object-position:center 25%;filter:grayscale(.12) contrast(1.08)}
+.radio-thumb img{object-fit:cover!important}
+
 .archive-note{max-width:760px;color:#8f8983;font-size:15px;line-height:1.6}
 footer{padding:38px 0 60px}
 .footerline{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font:700 9px/1.5 "Courier New",monospace;letter-spacing:.12em;color:#777;text-transform:uppercase}
 .support{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 .support a{border:1px solid #333;padding:12px 14px;text-decoration:none;font:700 9px/1 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}
 .support a:hover{border-color:var(--mint);color:var(--mint)}
+
 @media(max-width:800px){
- header{min-height:68vh}.feature{grid-template-columns:1fr;min-height:0}.feature-media{aspect-ratio:1/1}.grid{grid-template-columns:1fr}.card{grid-template-columns:120px 1fr}.section-head{align-items:flex-start;flex-direction:column}.section-head span{text-align:left}
+ header{min-height:68vh}
+ .feature{grid-template-columns:1fr;min-height:0}
+ .feature-media{min-height:390px}
+ .feature-media img{width:min(300px,70vw)}
+ .grid{grid-template-columns:1fr}
+ .card{grid-template-columns:145px 1fr}
+ .section-head{align-items:flex-start;flex-direction:column}
+ .section-head span{text-align:left}
 }
 @media(max-width:520px){
- .wrap{width:min(100% - 24px,520px)}.top{flex-direction:column}.nav{justify-content:flex-start}.card{grid-template-columns:1fr}.card .thumb{aspect-ratio:1.4/1}.text-only .copy{min-height:0}
+ .wrap{width:min(100% - 24px,520px)}
+ .top{flex-direction:column}
+ .nav{justify-content:flex-start}
+ .card{grid-template-columns:1fr}
+ .card .thumb{aspect-ratio:1.35/1;min-height:0}
 }
 </style>
-<!-- BUILD 20261002LAB2 -->
+<!-- BUILD 20261002LAB3 -->
 </head>
 <body>
 <header>
@@ -100,7 +131,7 @@ footer{padding:38px 0 60px}
   <div class="wrap">
     <div class="section-head"><h2>Featured</h2><span>Current signal<br>R-011</span></div>
     <div class="feature private">
-      <div class="feature-media"><img src="/assets/lux-roth-radio-thumb.svg?v=lab2" alt="Lux Roth Radio"></div>
+      <div class="feature-media"><img src="/assets/lux-roth-radio-thumb.svg?v=lab3" alt="Lux Roth Radio"></div>
       <div class="feature-info">
         <div>
           <div class="meta">In development · Private access · Listen</div>
@@ -117,8 +148,8 @@ footer{padding:38px 0 60px}
   <div class="wrap">
     <div class="section-head"><h2>Play</h2><span>Games / interactive worlds</span></div>
     <div class="grid">
-      <a class="card" href="/boxer-life/"><div class="thumb"><span class="n">R-001</span><img src="/assets/boxer-life-cover.webp" alt="Boxer Life"></div><div class="copy"><div><div class="type">Game · Boxing</div><h3>Boxer Life</h3><p>Tres decisiones al mes. Una carrera dentro y fuera del ring.</p></div><span class="cta">Play ↗</span></div></a>
-      <a class="card" href="/marea/"><div class="thumb"><span class="n">R-002</span><img src="/rain-interactive/assets/marea-caratula.webp" alt="Marea"></div><div class="copy"><div><div class="type">Game · Surf</div><h3>Marea</h3><p>Un endless runner de surf, clima, fauna y movimiento.</p></div><span class="cta">Enter ↗</span></div></a>
+      <a class="card" href="/boxer-life/"><div class="thumb"><span class="n">R-001</span><img src="/assets/boxer-life-cover.webp?v=lab3" alt="Boxer Life"></div><div class="copy"><div><div class="type">Game · Boxing</div><h3>Boxer Life</h3><p>Tres decisiones al mes. Una carrera dentro y fuera del ring.</p></div><span class="cta">Play ↗</span></div></a>
+      <a class="card" href="/marea/"><div class="thumb"><span class="n">R-002</span><img src="/rain-interactive/assets/marea-caratula.webp?v=lab3" alt="Marea"></div><div class="copy"><div><div class="type">Game · Surf</div><h3>Marea</h3><p>Un endless runner de surf, clima, fauna y movimiento.</p></div><span class="cta">Enter ↗</span></div></a>
     </div>
   </div>
 </section>
@@ -127,8 +158,8 @@ footer{padding:38px 0 60px}
   <div class="wrap">
     <div class="section-head"><h2>Read</h2><span>Archive / history / philosophy</span></div>
     <div class="grid">
-      <a class="card" href="/thelema-preview/"><div class="thumb"><span class="n">R-005</span><img src="/assets/thelema-cover.jpg?v=ba92f139" alt="Thelema"></div><div class="copy"><div><div class="type">Historical archive</div><h3>THELEMA</h3><p>Archivo digital sobre Aleister Crowley, su obra, pensamiento y legado cultural.</p></div><span class="cta">Read ↗</span></div></a>
-      <a class="card text-only" href="/seis-caminos/"><div class="copy"><div><div class="type">Interactive philosophy · R-010</div><h3>Seis Caminos</h3><p>Seis tradiciones antiguas convertidas en un manual contemporáneo de filosofía, estrategia y disciplina.</p></div><span class="cta">Explore ↗</span></div></a>
+      <a class="card" href="/thelema-preview/"><div class="thumb"><span class="n">R-005</span><img src="/assets/thelema-cover.jpg?v=lab3" alt="Thelema"></div><div class="copy"><div><div class="type">Historical archive</div><h3>THELEMA</h3><p>Archivo digital sobre Aleister Crowley, su obra, pensamiento y legado cultural.</p></div><span class="cta">Read ↗</span></div></a>
+      <a class="card" href="/seis-caminos/"><div class="thumb paper-thumb"><span class="n">R-010</span><div class="paper-mark"><strong>SEIS<br>CAMINOS</strong><small>哲学 · 戦略 · 規律</small></div></div><div class="copy"><div><div class="type">Interactive philosophy</div><h3>Seis Caminos</h3><p>Seis tradiciones antiguas convertidas en un manual contemporáneo de filosofía, estrategia y disciplina.</p></div><span class="cta">Explore ↗</span></div></a>
     </div>
   </div>
 </section>
@@ -137,17 +168,18 @@ footer{padding:38px 0 60px}
   <div class="wrap">
     <div class="section-head"><h2>Listen</h2><span>Radio / sound / transmission</span></div>
     <div class="grid">
-      <article class="card private"><div class="thumb"><span class="n">R-011</span><img src="/assets/lux-roth-radio-thumb.svg?v=lab2" alt="Lux Roth Radio"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Lux Roth Radio</h3><p>NO LOVE AFTER MIDNIGHT · DJ set, mezcla y experiencia audiovisual.</p></div><span class="cta">Private development</span></div></article>
+      <article class="card private"><div class="thumb radio-thumb"><span class="n">R-011</span><img src="/assets/lux-roth-radio-thumb.svg?v=lab3" alt="Lux Roth Radio"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Lux Roth Radio</h3><p>NO LOVE AFTER MIDNIGHT · DJ set, mezcla y experiencia audiovisual.</p></div><span class="cta">Private development</span></div></article>
     </div>
   </div>
 </section>
 
 <section id="experiment">
   <div class="wrap">
-    <div class="section-head"><h2>Experiment</h2><span>Systems / noise / web</span></div>
+    <div class="section-head"><h2>Experiment</h2><span>Systems / narrative / noise / web</span></div>
     <div class="grid">
-      <a class="card text-only" href="/infinite-noise/"><div class="copy"><div><div class="type">Web experiment · R-009</div><h3>Infinite Noise</h3><p>Texto, ruido e interferencias generados mientras haces scroll. No termina.</p></div><span class="cta">Enter ↗</span></div></a>
-      <a class="card text-only" href="/lux/"><div class="copy"><div><div class="type">Artistic system · R-007</div><h3>Lux Roth</h3><p>Imagen, instalación, escritura, sonido, escultura y sistemas interactivos.</p></div><span class="cta">Enter archive ↗</span></div></a>
+      <a class="card" href="/infinite-noise/"><div class="thumb noise-thumb"><span class="n">R-009</span></div><div class="copy"><div><div class="type">Web experiment</div><h3>Infinite Noise</h3><p>Texto, ruido e interferencias generados mientras haces scroll. No termina.</p></div><span class="cta">Enter ↗</span></div></a>
+      <a class="card" href="/lux/"><div class="thumb lux-thumb"><span class="n">R-007</span><img src="/assets/lux-roth-polaroid-bio.jpg?v=lab3" alt="Lux Roth"></div><div class="copy"><div><div class="type">Artistic system</div><h3>Lux Roth</h3><p>Imagen, instalación, escritura, sonido, escultura y sistemas interactivos.</p></div><span class="cta">Enter archive ↗</span></div></a>
+      <a class="card" href="https://heraldodelfindelostiempos.github.io/"><div class="thumb heraldo-thumb"><span class="n">R-006</span><img src="https://heraldodelfindelostiempos.github.io/assets/meditacion-espejos.jpg" alt="Heraldo del fin de los tiempos"></div><div class="copy"><div><div class="type">Narrative archive · Interactive web</div><h3>Heraldo</h3><p>Archivo narrativo, personajes, tarot, sistemas y ficción digital en expansión.</p></div><span class="cta">Explore ↗</span></div></a>
     </div>
   </div>
 </section>
@@ -156,8 +188,8 @@ footer{padding:38px 0 60px}
   <div class="wrap">
     <div class="section-head"><h2>Development</h2><span>Private access / unfinished worlds</span></div>
     <div class="grid">
-      <article class="card private"><div class="thumb"><span class="n">R-003</span><img src="/rain-interactive/assets/descenso.webp" alt="Descenso"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Descenso</h3><p>Biología marina, exploración submarina y catálogo vivo de especies.</p></div><span class="cta">Private development</span></div></article>
-      <article class="card private"><div class="thumb"><span class="n">R-004</span><img src="/rain-interactive/assets/wolf-bosque.webp" alt="Wolf Story"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Wolf Story</h3><p>Un lobo negro atraviesa un bosque mágico dibujado a mano.</p></div><span class="cta">Private development</span></div></article>
+      <article class="card private"><div class="thumb"><span class="n">R-003</span><img src="/rain-interactive/assets/descenso.webp?v=lab3" alt="Descenso"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Descenso</h3><p>Biología marina, exploración submarina y catálogo vivo de especies.</p></div><span class="cta">Private development</span></div></article>
+      <article class="card private"><div class="thumb"><span class="n">R-004</span><img src="/rain-interactive/assets/wolf-bosque.webp?v=lab3" alt="Wolf Story"></div><div class="copy"><div><div class="type">In development · Private access</div><h3>Wolf Story</h3><p>Un lobo negro atraviesa un bosque mágico dibujado a mano.</p></div><span class="cta">Private development</span></div></article>
     </div>
   </div>
 </section>
