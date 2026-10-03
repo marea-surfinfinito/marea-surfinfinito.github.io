@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080909">
+<title>The Space Gorilla — Archivo espacial de Nacho Martínez | Rain Interactive</title>
+<meta name="description" content="The Space Gorilla: una identidad ficticia para la biografía real de Nacho Martínez. Pintura, escultura, exposiciones, O Raposo Púrpura, WICKED9 y Rain Interactive, con fuentes documentales.">
+<link rel="canonical" href="https://rain-interactive.github.io/the-space-gorilla/">
+<link rel="icon" type="image/webp" href="assets/space-gorilla.webp">
+<link rel="preload" as="image" href="assets/space-gorilla.webp">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rain Interactive">
+<meta property="og:title" content="The Space Gorilla — Archivo espacial">
+<meta property="og:description" content="Piloto espacial Nacho Martínez. Un gorila de regreso a la Tierra y una biografía real, documentada.">
+<meta property="og:url" content="https://rain-interactive.github.io/the-space-gorilla/">
+<meta property="og:image" content="https://rain-interactive.github.io/the-space-gorilla/assets/space-gorilla.webp">
+<meta property="og:image:alt" content="Avatar ilustrado de un gorila astronauta entre estrellas">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--night:#080909;--paper:#f1e8d5;--ink:#151615;--grey:#aca899;--red:#f14232;--blue:#176ada;--yellow:#f5d63d;--rule:#d1c6af;--mono:'Courier New',Courier,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--night);color:var(--paper);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:.22em}
+img{display:block;max-width:100%;height:auto}
+button,summary{font:inherit}
+::selection{background:var(--yellow);color:var(--night)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
+.wrap{width:min(1160px,calc(100% - 48px));margin-inline:auto}
+.skip{position:absolute;left:-10000px;top:10px;z-index:20;background:var(--paper);color:var(--ink);padding:14px}
+.skip:focus{left:14px}
+.top{position:sticky;top:0;z-index:10;background:rgba(8,9,9,.96);border-bottom:1px solid #32332e}
+.top-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:70px}
+.brand{font:700 11px/1.3 var(--mono);letter-spacing:.15em;text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{display:flex;align-items:center;min-height:44px;font:700 11px/1.2 var(--mono);text-decoration:none;color:var(--grey)}
+.nav a:hover{color:var(--yellow)}
+.hero{position:relative;padding:55px 0 78px;isolation:isolate}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.93fr);gap:36px;align-items:center}
+.folio{font:700 11px/1.4 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--grey);margin:0 0 36px}
+.identity-tag{display:inline-block;position:relative;background:var(--yellow);color:var(--night);padding:8px 12px;transform:rotate(-3deg);font:700 11px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.hero h1{margin:30px 0 26px;font-size:clamp(56px,8.9vw,114px);line-height:.84;letter-spacing:-.075em;font-weight:900}
+.hero h1 .small{display:block;font-size:.34em;letter-spacing:.035em;line-height:1.3;margin-bottom:8px}
+.hero h1 .space{display:block}
+.hero h1 .gorila{display:block;color:var(--yellow);transform:rotate(-2deg);transform-origin:left center}
+.subhead{margin:0 0 26px;font:700 13px/1.65 var(--mono);color:var(--grey);max-width:36em}
+.arrival{max-width:32rem;margin:0;font-size:clamp(20px,2.3vw,28px);line-height:1.25;letter-spacing:-.025em}
+.arrival strong{font-weight:700}
+.identity-explanation{max-width:31rem;margin:17px 0 0;color:#bdb8ac;font-size:15px;line-height:1.65}
+.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:27px}
+.enter{display:inline-flex;gap:24px;align-items:center;min-height:48px;padding:0 16px;background:var(--paper);color:var(--ink);font:700 12px/1 var(--mono);text-decoration:none;border-bottom:4px solid var(--blue)}
+.enter:hover{background:var(--yellow)}
+.art-link{font:700 11px/1.4 var(--mono);color:var(--grey);min-height:44px;display:inline-flex;align-items:center}
+.avatar{position:relative;margin:0;align-self:center}
+.avatar img{width:100%;aspect-ratio:1;border-radius:50%}
+.avatar figcaption{margin-top:18px;display:flex;justify-content:space-between;gap:20px;font:700 10px/1.4 var(--mono);letter-spacing:.08em;color:var(--grey);text-transform:uppercase}
+.avatar figcaption span:first-child{color:var(--yellow)}
+.seam{border-top:1px solid #42433b;position:relative;padding:16px 0 18px;font:700 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#cbc5b8}
+.seam .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.seam:before{content:'';position:absolute;top:-3px;left:0;width:27%;height:5px;background:var(--red);transform:rotate(-.35deg)}
+.earth{background:var(--paper);color:var(--ink);position:relative;padding:66px 0 72px}
+.earth:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%238d7750' filter='url(%23n)' opacity='.22' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+.earth .wrap{position:relative}
+.section-label{margin:0 0 23px;font:700 11px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#635d50}
+.section-label b{background:var(--blue);color:white;padding:5px 7px;margin-right:10px}
+.bio-grid{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1fr);gap:65px}
+.bio-heading{margin:0;font-size:clamp(42px,5.5vw,70px);line-height:.88;letter-spacing:-.06em;font-weight:900;text-transform:uppercase}
+.bio-heading span{display:block}
+.bio-kicker{margin:20px 0 0;font:700 12px/1.6 var(--mono);max-width:23rem}
+.authenticity{margin:28px 0 0;max-width:26rem;padding-left:15px;border-left:4px solid var(--red);font-size:14px;line-height:1.6;color:#534d42}
+.prose{font-size:18px;line-height:1.72;max-width:660px}
+.prose p{margin:0 0 23px}
+.prose p:last-child{margin-bottom:0}
+.ref{font:700 10px/1 var(--mono);color:#11459a;text-decoration:none;white-space:nowrap;margin-left:4px;vertical-align:super}
+.ref:hover{text-decoration:underline}
+.chronology{margin-top:48px;border-block:1px solid #b8ac95}
+.chronology>summary{min-height:66px;cursor:pointer;padding:20px 32px 20px 0;position:relative;font:700 13px/1.6 var(--mono);list-style:none;display:flex;justify-content:space-between;gap:20px}
+.chronology>summary::-webkit-details-marker{display:none}
+.chronology>summary:after{content:'+';position:absolute;right:4px;top:19px;font:24px/1 var(--mono)}
+.chronology[open]>summary:after{content:'−'}
+.chronology>summary span{color:#635d50}
+.timeline{list-style:none;margin:0;padding:0 0 15px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 44px}
+.timeline li{display:grid;grid-template-columns:58px minmax(0,1fr);gap:15px;border-top:1px solid var(--rule);padding:18px 0}
+.timeline time{font:700 12px/1.4 var(--mono);color:#1747a1}
+.timeline h3{font-size:16px;line-height:1.35;margin:0 0 7px}
+.timeline p{font-size:14px;line-height:1.6;margin:0;color:#5c5548}
+.projects{padding:66px 0 58px;border-bottom:1px solid #30312b}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:28px}
+.section-head h2{font-size:clamp(32px,4.8vw,58px);line-height:.95;letter-spacing:-.04em;margin:0}
+.section-head p{margin:0;color:var(--grey);font:11px/1.6 var(--mono);max-width:240px}
+.project-row{display:grid;grid-template-columns:40px 235px minmax(0,1fr) 105px;gap:20px;align-items:start;padding:24px 0;border-top:1px solid #30312b}
+.project-no{color:var(--yellow);font:700 12px/1.6 var(--mono)}
+.project-row h3{font-size:24px;letter-spacing:-.03em;margin:0 0 7px;line-height:1.05}
+.project-row h3 a{text-decoration:none}
+.project-row h3 a:hover{color:var(--yellow)}
+.project-row .discipline{font:10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--grey);margin:0}
+.project-row .desc{margin:0;font-size:15px;line-height:1.65;color:#c6c0b2;max-width:35rem}
+.project-row .links{display:flex;flex-direction:column;align-items:end;gap:4px;font:700 11px/1.5 var(--mono)}
+.project-row .links a{display:flex;min-height:36px;align-items:center}
+.project-row .ref{color:#a8caff}
+.source-section{padding:59px 0 48px}
+.source-intro{font-size:15px;color:var(--grey);line-height:1.65;max-width:660px;margin:18px 0 24px}
+.sources{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.sources li{border-top:1px solid #30312b;scroll-margin-top:90px;padding:0}
+.source{display:grid;grid-template-columns:30px minmax(0,1fr) 20px;gap:12px;text-decoration:none;padding:17px 0;min-height:84px}
+.source:hover strong{color:var(--yellow)}
+.source .number{color:var(--yellow);font:700 11px/1.6 var(--mono)}
+.source strong{font-size:14px;line-height:1.4;display:block}
+.source small{display:block;margin-top:5px;font:10px/1.5 var(--mono);color:var(--grey)}
+.source .arrow{font-size:16px;color:var(--grey)}
+.credits{border-top:1px solid #30312b;padding-top:22px;margin:24px 0 0;font:10px/1.7 var(--mono);color:var(--grey);max-width:820px}
+footer{padding:22px 0 35px;border-top:1px solid #30312b;font:10px/1.6 var(--mono);color:var(--grey)}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer a{min-height:36px;display:inline-flex;align-items:center}
+@media(min-width:1440px){.hero{padding-top:72px}}
+@media(max-width:860px){.hero-grid{gap:26px}.bio-grid{gap:35px;grid-template-columns:minmax(0,.7fr) minmax(0,1fr)}.hero h1{font-size:clamp(56px,9.5vw,95px)}.project-row{grid-template-columns:30px 190px minmax(0,1fr)}.project-row .links{grid-column:3;flex-direction:row;justify-content:flex-start;gap:18px;align-items:center}.prose{font-size:17px}}
+@media(max-width:650px){
+ .wrap{width:calc(100% - 36px)}.top-inner{min-height:64px;gap:10px}.brand{font-size:9px;letter-spacing:.06em}.nav{gap:15px}.nav a{font-size:10px}
+ .hero{padding:31px 0 43px}.hero-grid{grid-template-columns:1fr;gap:30px}.folio{margin-bottom:22px;font-size:10px}.hero h1{font-size:clamp(60px,19vw,116px);margin-top:24px;margin-bottom:20px}.hero h1 .space,.hero h1 .gorila{display:inline-block}.hero h1 .space{margin-right:.12em}.hero h1 .small{font-size:.3em}.subhead{margin-bottom:20px;font-size:12px}.arrival{font-size:23px}.identity-explanation{font-size:14px}.hero-actions{margin-top:22px;gap:18px}.avatar{max-width:430px;width:100%;margin-inline:auto}.avatar figcaption{font-size:9px;margin-top:10px}.seam{font-size:9px}.seam .wrap{gap:8px}
+ .earth{padding:44px 0}.bio-grid{grid-template-columns:1fr;gap:25px}.bio-heading{font-size:clamp(46px,13vw,72px)}.bio-heading span{display:inline}.bio-heading span+span:before{content:' '}.bio-kicker{max-width:100%;margin-top:15px}.authenticity{margin-top:17px;max-width:100%;font-size:13px}.prose{font-size:17px;line-height:1.7}.prose p{margin-bottom:20px}.chronology{margin-top:30px}.chronology>summary{font-size:11px;display:block}.chronology>summary span{display:block;font-size:10px}.timeline{grid-template-columns:1fr}.timeline li{grid-template-columns:50px minmax(0,1fr);gap:12px}
+ .projects{padding:44px 0 32px}.section-head{display:block}.section-head h2{font-size:40px}.section-head p{margin-top:13px;max-width:100%}.project-row{grid-template-columns:26px minmax(0,1fr);gap:11px 14px;padding-block:21px}.project-row h3{font-size:24px}.project-row .desc{grid-column:2}.project-row .links{grid-column:2;gap:22px}.project-row .links a{min-height:44px}.source-section{padding:42px 0 32px}.sources{grid-template-columns:1fr}.source{min-height:78px}.source-intro{font-size:14px}.credits{font-size:10px}.section-label{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.top,.hero-actions,footer{display:none}.hero,.projects,.source-section{background:white;color:black}.hero{padding:20px 0}.avatar{max-width:180px}.hero h1{font-size:50px}.earth{padding:20px 0;background:white}.chronology:not([open]) .timeline{display:block}.source{min-height:0}.wrap{width:100%}.identity-tag{background:none;border:1px solid black}}
+/* Un cuaderno del espacio: trazos torcidos y colores del avatar. */
+:root{--night:#090c18;--blue:#3979df;--paper:#f7efdc;--grey:#b9b9b0}
+.top{background:rgba(9,12,24,.96);border-bottom:2px dashed #424850}
+.brand,.nav a,.identity-tag,.section-label,.bio-kicker,.folio,.subhead,.project-no,.source .number{font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',var(--mono)}
+.brand{letter-spacing:.05em}.nav a{font-size:12px}
+.hero{background:radial-gradient(ellipse at 88% 25%,#20223a55,transparent 60%)}
+.hero h1{font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',Arial,sans-serif;letter-spacing:-.045em;font-size:clamp(62px,8.4vw,104px);line-height:.96;transform:rotate(-1.4deg)}
+.hero h1 .space{color:var(--paper)}.hero h1 .gorila{color:var(--yellow);transform:rotate(1.5deg)}
+.identity-tag{border-radius:4px 9px 5px 7px;box-shadow:3px 3px 0 #f14232;font-size:12px;letter-spacing:.03em}
+.avatar{padding:5px;transform:rotate(1deg)}
+.avatar:before{content:'';position:absolute;inset:0 0 33px;border:2px dashed #8ca0bc88;border-radius:49% 51% 52% 48%;transform:rotate(-4deg);pointer-events:none}
+.avatar figcaption{transform:rotate(-1deg)}
+.enter{border-radius:5px 9px 7px 4px;transform:rotate(-1deg);border-bottom:4px solid var(--blue);font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',Arial,sans-serif;font-size:14px}
+.sky-map{padding:0 0 23px}.sky-map img{width:100%;height:auto;min-height:86px;object-fit:cover;object-position:center}
+.seam{border-top:2px dashed #777661}.seam:before{display:none}
+.earth{clip-path:polygon(0 0,7% .22%,15% 0,24% .17%,36% 0,46% .12%,59% 0,70% .19%,81% 0,92% .15%,100% 0,100% 100%,0 100%)}
+.section-label b{display:inline-block;transform:rotate(-2deg);border-radius:3px 5px 2px 4px;letter-spacing:.025em}
+.bio-heading{font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',Arial,sans-serif;font-size:clamp(38px,4.6vw,58px);line-height:1.05;letter-spacing:-.045em;transform:rotate(-1deg);text-transform:none}
+.bio-kicker{font-size:13px;line-height:1.7}.authenticity{border-left:3px dashed #cf382c;color:#514a3e}
+.prose{font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.75}
+.chronology{border-block:2px dashed #b5a78d}.chronology>summary{font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',Arial,sans-serif;font-size:15px}
+.timeline li{border-top:1px dashed #b8ad95}
+.projects .section-head h2,.source-section .section-head h2{font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',Arial,sans-serif;transform:rotate(-1deg);letter-spacing:-.035em}
+.project-row{border-top:2px dashed #40444c}.project-row h3{font-family:'Comic Sans MS','Chalkboard SE','Segoe Print',Arial,sans-serif}
+.sources li{border-top:1px dashed #40444c}.source .number{font-size:13px}
+@media(max-width:650px){
+ .hero h1{font-size:clamp(50px,15.8vw,90px);line-height:.95;margin-bottom:22px}.hero h1 .space,.hero h1 .gorila{display:block}.hero h1 .gorila{transform:rotate(1deg);margin-top:3px}.hero h1 .space{margin-right:0}
+ .bio-heading{font-size:clamp(41px,10.4vw,66px)}.nav a{font-size:11px}.sky-map{width:100%;padding:0 0 15px}.sky-map img{height:88px;width:100%;object-fit:cover;object-position:center}
+ .section-head h2{font-size:35px}.prose{font-size:17px}.chronology>summary{font-size:14px}.hero-grid{gap:28px}.avatar:before{inset:0 0 28px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"The Space Gorilla — Archivo espacial","url":"https://rain-interactive.github.io/the-space-gorilla/","description":"Archivo biográfico documental de Nacho Martínez presentado mediante una identidad ficticia de gorila astronauta.","inLanguage":"es","about":{"@type":"Person","name":"Nacho Martínez","jobTitle":"Artista visual","sameAs":["https://www.artmajeur.com/nachomartinez/en","https://www.instagram.com/nachommmartinez/"]},"publisher":{"@type":"Organization","name":"Rain Interactive","url":"https://rain-interactive.github.io/"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#biografia">Ir a la biografía documentada</a>
+<header class="top"><div class="wrap top-inner">
+ <a class="brand" href="/">← RAIN INTERACTIVE</a>
+ <nav class="nav" aria-label="Navegación del archivo"><a href="#identidad">Identidad</a><a href="#biografia">Biografía</a><a href="#fuentes">Fuentes</a></nav>
+</div></header>
+<main>
+<section class="hero" id="identidad" aria-labelledby="space-title"><div class="wrap hero-grid">
+ <div>
+  <p class="folio">R–014 / Archivo espacial</p>
+  <span class="identity-tag">Ficción · Identidad artística</span>
+  <h1 id="space-title"><span class="small">THE</span><span class="space">SPACE</span> <span class="gorila">GORILLA</span></h1>
+  <p class="subhead">Archivo espacial de una vida terrestre.</p>
+  <p class="arrival"><strong>Piloto espacial Nacho Martínez.</strong><br>Primate espacial de regreso a la Tierra.</p>
+  <p class="identity-explanation">Un gorila astronauta ocupa el lugar del retrato. Esta es la máscara: <em>The Space Gorilla</em>. Debajo de ella, el archivo conserva el nombre, la obra y la trayectoria real de Nacho Martínez.</p>
+  <div class="hero-actions"><a class="enter" href="#biografia">Leer la biografía <span aria-hidden="true">↓</span></a><a class="art-link" href="https://www.artmajeur.com/nachomartinez/en" target="_blank" rel="noopener noreferrer">Explorar la obra ↗</a></div>
+ </div>
+ <figure class="avatar"><img src="assets/space-gorilla.webp" width="1254" height="1254" fetchpriority="high" alt="The Space Gorilla: un gorila astronauta dibujado con trazos de pastel, traje blanco y detalles rojos, entre planetas y estrellas de colores"><figcaption><span>The Space Gorilla</span><span>Avatar · identidad ficticia</span></figcaption></figure>
+</div></section>
+<div class="sky-map wrap" aria-hidden="true"><img src="assets/cosmos.svg" width="1160" height="150" alt=""></div>
+<div class="seam"><div class="wrap"><span>Máscara ficticia ↑</span><span>Biografía real ↓</span></div></div>
+<section class="earth" id="biografia" aria-labelledby="bio-title"><div class="wrap">
+ <p class="section-label"><b>REALIDAD</b> Biografía documentada / A Coruña</p>
+ <div class="bio-grid">
+  <div><h2 class="bio-heading" id="bio-title"><span>Nacho</span> <span>Martínez</span></h2><p class="bio-kicker">Pintura, dibujo, escultura y videoarte.<br>Un recorrido entre la obra, el taller y los proyectos digitales.</p><p class="authenticity"><strong>Esta biografía es real y documental.</strong> La ficción corresponde a la identidad del gorila astronauta. Los hechos de la trayectoria se acompañan de referencias consultables.</p></div>
+  <div class="prose">
+   <p>Nacho Martínez es un artista visual vinculado a A Coruña. Su catálogo público reúne pintura, dibujo, técnicas mixtas, escultura y arte digital, y conserva obras fechadas en 2010, como <em>Heroína</em>. La documentación de Sen Ánimo de Nome registra sus estudios de Bellas Artes en Pontevedra y de artes aplicadas a la escultura en la EASD Pablo Picasso, con especialización en forja artística.<a class="ref" href="#fuente-07" aria-label="Fuente 7: catálogo de ArtMajeur">[07]</a><a class="ref" href="#fuente-01" aria-label="Fuente 1: archivo de Sen Ánimo de Nome">[01]</a></p>
+   <p>En 2017 expuso individualmente en Pulpeira As Redes y participó en <em>Estudios Abertos</em> y en la colectiva <em>3es3</em>, junto a Olalla Franco y Pedro Silva Opazo, en el Fórum Metropolitano. En 2018 presentó obra en Bomoble y formó parte de <em>Tras la puerta del garaje</em>: una exposición de un solo día, realizada con Laura Pazos, Antón López Bazarra y Olalla Franco en su propio espacio de trabajo, en la rúa Xustiza.<a class="ref" href="#fuente-01" aria-label="Fuente 1: exposiciones de 2017 y 2018">[01]</a><a class="ref" href="#fuente-02" aria-label="Fuente 2: Concello da Coruña, exposición de 2018">[02]</a></p>
+   <p>En 2021 figura entre los participantes de <em>Mil pequenos peixes brancos, coma se fervera a cor da auga</em>, en Palexco y el Kiosco Alfonso. En 2022 participó en <em>Taller Justicia</em>, en Studio Follow, junto a Antón L. Bazarra, Laura Pazos y Richy Veiga.<a class="ref" href="#fuente-03" aria-label="Fuente 3: registro de exposiciones de Richy Veiga">[03]</a></p>
+   <p>Su actividad también se desarrolla en <strong>O Raposo Púrpura</strong>, taller de pintura y cerámica del que es responsable en A Coruña. El espacio combina práctica y docencia artística. La programación municipal de <em>Estudios Abertos</em> documenta una proyección cinematográfica en 2025 y su participación, como espacio de pintura y escultura, los días 6 y 7 de junio de 2026.<a class="ref" href="#fuente-04" aria-label="Fuente 4: reportaje de G24 sobre O Raposo Púrpura">[04]</a><a class="ref" href="#fuente-05" aria-label="Fuente 5: Estudios Abertos 2025">[05]</a><a class="ref" href="#fuente-06" aria-label="Fuente 6: Estudios Abertos 2026">[06]</a><a class="ref" href="#fuente-09" aria-label="Fuente 9: página pública del artista y taller">[09]</a></p>
+   <p>El trabajo gráfico publicado bajo <strong>@nachommmartinez</strong> incluye diseños para <strong>WICKED9 Studio</strong>, y la página pública del artista enlaza WICKED9 Shop. En <strong>Rain Interactive</strong>, el catálogo reúne videojuegos como <em>Marea</em>, <em>Boxer Life</em> y <em>El Depósito</em>, además de experimentos de texto y sonido como <em>Infinite Noise</em>. Estas obras y páginas permiten seguir su actividad más allá de la exposición física.<a class="ref" href="#fuente-08" aria-label="Fuente 8: diseño para WICKED9 Studio">[08]</a><a class="ref" href="#fuente-09" aria-label="Fuente 9: enlaces públicos del artista">[09]</a><a class="ref" href="#fuente-10" aria-label="Fuente 10: catálogo publicado de Rain Interactive">[10]</a></p>
+  </div>
+ </div>
+ <details class="chronology"><summary>Cronología documentada <span>2010–2026 · abrir registro</span></summary><ol class="timeline">
+  <li><time datetime="2010">2010</time><div><h3>Obra en el catálogo público</h3><p>ArtMajeur registra <em>Heroína</em>, un acrílico de 55 × 46 cm, fechado en 2010.<a class="ref" href="#fuente-07" aria-label="Fuente 7">[07]</a></p></div></li>
+  <li><time datetime="2016">2016</time><div><h3>Mail art</h3><p>Participación en un proyecto internacional de mail art, recogida por Sen Ánimo de Nome.<a class="ref" href="#fuente-01" aria-label="Fuente 1">[01]</a></p></div></li>
+  <li><time datetime="2017">2017</time><div><h3>3es3 / Estudios Abertos</h3><p>Exposición en el Fórum Metropolitano con Olalla Franco y Pedro Silva Opazo, e incorporación a Estudios Abertos.<a class="ref" href="#fuente-01" aria-label="Fuente 1">[01]</a></p></div></li>
+  <li><time datetime="2018-11-03">2018</time><div><h3>Tras la puerta del garaje</h3><p>El 3 de noviembre, exposición colectiva en el taller de rúa Xustiza, 6, dentro de 1+1 Play.<a class="ref" href="#fuente-02" aria-label="Fuente 2">[02]</a></p></div></li>
+  <li><time datetime="2021">2021</time><div><h3>Mil pequenos peixes brancos…</h3><p>Participación en la exposición colectiva de Palexco y el Kiosco Alfonso, A Coruña.<a class="ref" href="#fuente-03" aria-label="Fuente 3">[03]</a></p></div></li>
+  <li><time datetime="2022">2022</time><div><h3>Taller Justicia</h3><p>Exposición conjunta en Studio Follow con Richy Veiga, Antón L. Bazarra y Laura Pazos.<a class="ref" href="#fuente-03" aria-label="Fuente 3">[03]</a></p></div></li>
+  <li><time datetime="2025">2025</time><div><h3>Un taller abierto al cine</h3><p>O Raposo Púrpura programa la proyección de <em>The Graeae</em>, de Elis Prostotak, en Estudios Abertos.<a class="ref" href="#fuente-05" aria-label="Fuente 5">[05]</a></p></div></li>
+  <li><time datetime="2026-06-06">2026</time><div><h3>O Raposo Púrpura / Estudios Abertos</h3><p>Participación los días 6 y 7 de junio; el Concello identifica a Nacho Martínez con pintura y escultura e incluye un DJ set en la programación del taller.<a class="ref" href="#fuente-06" aria-label="Fuente 6">[06]</a></p></div></li>
+ </ol></details>
+</div></section>
+<section class="projects" aria-labelledby="project-title"><div class="wrap">
+ <div class="section-head"><h2 id="project-title">Una práctica,<br>varios espacios.</h2><p>Proyectos vinculados al archivo.<br>Obra, docencia y experimentación.</p></div>
+ <article class="project-row"><span class="project-no" aria-hidden="true">01</span><div><h3><a href="https://oraposopurpura.github.io/oraposopurpura-/" target="_blank" rel="noopener noreferrer">O Raposo Púrpura</a></h3><p class="discipline">Taller / pintura / cerámica</p></div><p class="desc">Espacio de práctica y docencia artística en A Coruña. Su participación en Estudios Abertos está registrada por el Concello.<a class="ref" href="#fuente-06" aria-label="Fuente 6">[06]</a><a class="ref" href="#fuente-09" aria-label="Fuente 9">[09]</a></p><div class="links"><a href="https://oraposopurpura.github.io/oraposopurpura-/" target="_blank" rel="noopener noreferrer">Ver taller ↗</a></div></article>
+ <article class="project-row"><span class="project-no" aria-hidden="true">02</span><div><h3><a href="https://www.instagram.com/wicked9.studio/" target="_blank" rel="noopener noreferrer">WICKED9</a></h3><p class="discipline">Studio / Shop</p></div><p class="desc">El trabajo gráfico de @nachommmartinez aparece vinculado a WICKED9 Studio. WICKED9 Shop figura entre los enlaces de su página pública.<a class="ref" href="#fuente-08" aria-label="Fuente 8">[08]</a><a class="ref" href="#fuente-09" aria-label="Fuente 9">[09]</a></p><div class="links"><a href="https://www.instagram.com/wicked9.studio/" target="_blank" rel="noopener noreferrer">Studio ↗</a><a href="https://wicked9.shop/" target="_blank" rel="noopener noreferrer">Shop ↗</a></div></article>
+ <article class="project-row"><span class="project-no" aria-hidden="true">03</span><div><h3><a href="/">Rain Interactive</a></h3><p class="discipline">Juegos / archivos / sonido</p></div><p class="desc">Laboratorio digital con videojuegos, archivos y experimentos web. El catálogo publicado permite explorar los proyectos que conviven con este archivo.<a class="ref" href="#fuente-10" aria-label="Fuente 10">[10]</a></p><div class="links"><a href="/#play">Juegos ↗</a><a href="/#experiment">Experimentos ↗</a></div></article>
+</div></section>
+<section class="source-section" id="fuentes" aria-labelledby="sources-title"><div class="wrap">
+ <div class="section-head"><h2 id="sources-title">Las fuentes.</h2><p>Documentación consultada<br>3 de octubre de 2026</p></div>
+ <p class="source-intro">El archivo distingue la identidad ficticia de los hechos biográficos. Cada referencia indica su procedencia: institución, organización, prensa o publicación directa. La cronología contiene únicamente episodios respaldados por los documentos enlazados.</p>
+ <ol class="sources">
+  <li id="fuente-01"><a class="source" href="https://sinanimodenombre.blogspot.com/2018/11/" target="_blank" rel="noopener noreferrer"><span class="number">01</span><span><strong>Sen Ánimo de Nome</strong><small>Organización · Formación y exposiciones de 2016–2018</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-02"><a class="source" href="https://www.coruna.gal/web/es/actualidad/noticias/noticia/culturas-apoia-a-celebracion-do-ii-festival-escena-muller-que-dinamizara-en-novembro-a-agra-do/suceso/1453672964259?argIdioma=es" target="_blank" rel="noopener noreferrer"><span class="number">02</span><span><strong>Concello da Coruña · 1+1 Play</strong><small>Institución · Tras la puerta del garaje, 2018</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-03"><a class="source" href="https://richyveiga.bigcartel.com/formacion" target="_blank" rel="noopener noreferrer"><span class="number">03</span><span><strong>Richy Veiga · Archivo de exposiciones</strong><small>Participante · Colectivas de 2021 y 2022</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-04"><a class="source" href="https://www.g24.gal/-/unha-muller-faise-pasar-por-alumna-e-rouba-unha-escultura-dun-estudo-da-coruna" target="_blank" rel="noopener noreferrer"><span class="number">04</span><span><strong>G24 · Reportaje de O Raposo Púrpura</strong><small>Prensa · Nacho Martínez como responsable del taller, 2024</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-05"><a class="source" href="https://www.coruna.gal/web/gl/actualidade/novas/nova/a-xornada-estudios-abertos-deste-sabado-10-contara-con-14-actividades-complementarias-abertas-a/suceso/1453893133060?argIdioma=gl" target="_blank" rel="noopener noreferrer"><span class="number">05</span><span><strong>Concello da Coruña · Estudios Abertos</strong><small>Institución · Programación del taller en 2025</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-06"><a class="source" href="https://www.visitcoruna.com/turismo/gl/axenda/evento/estudios-abertos-2026/suceso/1453890869757" target="_blank" rel="noopener noreferrer"><span class="number">06</span><span><strong>Concello da Coruña · Estudios Abertos 2026</strong><small>Institución · Participantes y programación, 6–7 de junio</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-07"><a class="source" href="https://www.artmajeur.com/nachomartinez/en" target="_blank" rel="noopener noreferrer"><span class="number">07</span><span><strong>ArtMajeur · Catálogo de Nacho Martínez</strong><small>Archivo del artista · Obras, técnicas y fechas publicadas</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-08"><a class="source" href="https://www.instagram.com/p/DdpXOIiIBqS/" target="_blank" rel="noopener noreferrer"><span class="number">08</span><span><strong>@nachommmartinez · Diseño para WICKED9</strong><small>Publicación directa · Vínculo con @wicked9.studio</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-09"><a class="source" href="https://oraposopurpura.github.io/oraposopurpura-/nachommmartinez/" target="_blank" rel="noopener noreferrer"><span class="number">09</span><span><strong>Nacho Martínez · Página del artista</strong><small>Publicación directa · Taller, áreas de trabajo y WICKED9 Shop</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+  <li id="fuente-10"><a class="source" href="https://github.com/rain-interactive/rain-interactive.github.io/blob/main/index.html" target="_blank" rel="noopener noreferrer"><span class="number">10</span><span><strong>Rain Interactive · Catálogo publicado</strong><small>Publicación directa · Videojuegos y experimentos digitales</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+ </ol>
+ <p class="credits">Dirección artística e identidad: Nacho Martínez. Avatar del gorila astronauta: ilustración generada con IA y elegida por Nacho Martínez para su identidad artística. La imagen funciona como máscara ficticia; no representa un acontecimiento biográfico. El archivo conserva las atribuciones y enlaces de la documentación utilizada.</p>
+</div></section>
+</main>
+<footer><div class="wrap"><span>THE SPACE GORILLA · ARCHIVO ESPACIAL · RAIN INTERACTIVE</span><a href="/#read">Volver a Read ↑</a></div></footer>
+</body>
+</html>
